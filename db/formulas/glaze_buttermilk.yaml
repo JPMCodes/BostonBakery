@@ -1,0 +1,42 @@
+id: glaze_buttermilk
+name: Cooked Buttermilk Glaze
+kind: glaze
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [cinnamon_roll]
+yield:
+  grams: 229
+  description: "about 229 g after boiling off about 45 g of water; 12 rolls at 14 g plus a margin"
+
+ingredients:
+  - {stage: Cooked, item: buttermilk_cultured, qty: 60, unit: g}
+  - {stage: Cooked, item: sugar_granulated, qty: 50, unit: g}
+  - {stage: Cooked, item: butter_unsalted, qty: 30, unit: g}
+  - {stage: Cooked, item: syrup_glucose, qty: 15, unit: g}
+  - {stage: Cooked, item: baking_soda, qty: 0.3, unit: g, note: "small pinch, about 1/16 tsp"}
+  - {stage: Finish, item: buttermilk_cultured, qty: 15, unit: g, note: "cold"}
+  - {stage: Finish, item: vanilla_extract, qty: 3, unit: g}
+  - {stage: Finish, item: salt_fine, qty: 0.5, unit: g}
+  - {stage: Finish, item: sugar_powdered, qty: 100, unit: g, note: "sifted; ±10 g to adjust flow"}
+
+method:
+  - "Cook: in a 2-quart pan (it foams to 4× its volume), stir the cooked ingredients together and boil to 225–228°F, 5–7 minutes, until light tan with glossy, slow bubbles. Tilt the pan to cover the thermometer tip."
+  - "Cool to about 150°F, 5–10 minutes, so the fresh buttermilk does not curdle."
+  - "Finish: whisk in the cold buttermilk, vanilla and salt, then the powdered sugar. At 105–110°F it should flow like heavy cream. Thin with buttermilk 2 g at a time or thicken with powdered sugar."
+  - "Glaze rolls at 95–100°F with 14 g each. It sets to a soft satin in 20–30 minutes; then seal."
+  - "Leftovers keep refrigerated for 1 week; rewarm to 105°F."
+
+specs:
+  water_activity_target: "about 0.75–0.80 (about 84% sugar in the water phase)"
+  ph_note: "The soda pinch partly neutralizes the buttermilk so it cooks smooth; the fresh buttermilk at the end restores tang"
+  fat_percent: 11
+
+notes:
+  - "If the glaze turns tacky under the lid by 12 hours, bloom 0.5 g gelatin (gelatin_unflavored) in the 15 g finishing buttermilk."
+  - "Optional: brown the butter before cooking for more depth."
+  - "Replaces the honey-vanilla glaze, which tasted too honey-forward and one-note in the 2026-11-06 test."
+
+history:
+  - date: 2026-11-06
+    change: "Formulated; not yet test-baked. Approve after a first batch passes the 12 and 24 hour hold check."

@@ -1,0 +1,47 @@
+id: dough_signature
+name: Signature Milk Dough
+kind: dough
+status: approved
+version: "1.0"
+approved_on: 2026-11-06
+used_by: [cinnamon_roll, sandwich_roll]
+yield:
+  grams: 1095
+  description: "12 pieces of 90 g, plus about 15 g left on the bowl and hook"
+
+ingredients:
+  - {stage: Tangzhong, item: flour_bread_ka, qty: 26, unit: g}
+  - {stage: Tangzhong, item: milk_whole, qty: 130, unit: g, note: "cold"}
+  - {stage: Main dough, item: flour_bread_ka, qty: 492, unit: g}
+  - {stage: Main dough, item: sugar_granulated, qty: 62, unit: g}
+  - {stage: Main dough, item: salt_fine, qty: 9, unit: g}
+  - {stage: Main dough, item: yeast_instant, qty: 14, unit: g, note: "2 RapidRise packets"}
+  - {stage: Main dough, item: milk_whole, qty: 199, unit: g, note: "cold; hold back 15 g"}
+  - {stage: Main dough, item: egg_large, qty: 55, unit: g, note: "whisked, cold"}
+  - {stage: Main dough, item: egg_yolk, qty: 20, unit: g, note: "cold; save the white for egg wash"}
+  - {stage: Fats, item: butter_unsalted, qty: 62, unit: g, note: "cool but pliable, about 65°F"}
+  - {stage: Fats, item: oil_high_oleic_sunflower, qty: 26, unit: g}
+
+method:
+  - "Tangzhong: whisk the flour into the cold milk. Cook over medium-low, whisking constantly, to 149–154°F, until pudding-thick and the whisk leaves trails. Press plastic onto the surface and chill until cold: at least 30 minutes, up to 24 hours."
+  - "Combine: whisk the flour, sugar, salt and yeast in the mixer bowl. Add the cold milk (minus the 15 g held back), egg, yolk and cold tangzhong. The yeast only ever meets cold ingredients. Mix on speed 1 for 2 minutes, then rest 10 minutes."
+  - "Develop: speed 4 for 6–10 minutes, until the dough clears the bowl and stretches thin before tearing. Add the held-back milk only if the dough is stiff."
+  - "Fats: on speed 2, add the butter in 4 pieces, each mostly absorbed before the next, then the oil in a slow stream. Mix on speed 4 for 3–5 minutes until smooth and glossy. Finish at 80°F or below. This dough will not windowpane cleanly; stretchy and smooth is done."
+  - "Stall check: a visible rise by 20–30 minutes into the bulk rise. Nothing by 45 minutes means the yeast is dead."
+  - "Bulk rise and chill, option A (same day): bulk at 76–80°F to about 2× (45–65 minutes), press into an 8×10-inch slab about 1 inch thick, wrap and chill 1 hour, until firm."
+  - "Bulk rise and chill, option B (more flavor): bulk to about 1.5× (35–45 minutes), press the slab about 3/4 inch thick, wrap and chill 4–8 hours. For 6–8 hours, freezer for 20–30 minutes first. Do not hold longer than 8 hours with 2 packets."
+
+specs:
+  flour_total_g: 518
+  bakers_percent: "tangzhong flour 5% (paste 30% of flour weight, 1:5 flour to milk), sugar 12%, salt 1.7%, yeast 2.7%, egg plus yolk 14.5%, butter 12%, oil 5%"
+  total_water_percent: 68
+  final_dough_temp_f: "77–80, never above 80"
+  mixer: "KitchenAid; the manufacturer limits yeast dough to speed 2, so drop to 2 if the motor labors or runs hot"
+
+notes:
+  - "A 1-packet overnight version (bulk to 1.5×, chill 8–16 hours) gives more flavor; it is not yet approved."
+  - "Bulk 1 lb instant yeast costs far less than RapidRise packets and behaves the same."
+
+history:
+  - date: 2026-11-06
+    change: "First approved version. Test bake on 2026-11-06 in a 76°F kitchen: muffin-tin cinnamon rolls came out 'pretty much perfect' and the 90 g sandwich rolls got rave reviews. Replaces the earlier V4–V6 formulas: V4 would not rise and the V6 trial stalled in bulk."

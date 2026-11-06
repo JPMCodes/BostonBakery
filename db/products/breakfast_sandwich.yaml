@@ -1,0 +1,34 @@
+id: breakfast_sandwich
+name: Breakfast Sandwich
+status: approved
+version: "1.0"
+approved_on: 2026-11-06
+description: "Fried egg, sliced cheddar and harissa sauce on the house sandwich roll."
+batch_units: 12
+waste_pct: 3
+
+build:
+  - {item: sandwich_roll, qty: 1, unit: each}
+  - {item: butter_unsalted, qty: 5, unit: g, note: "for toasting the roll and frying the egg"}
+  - {item: egg_large, qty: 1, unit: each}
+  - {item: cheese_cheddar_sliced, qty: 21, unit: g, note: "1 slice, 3/4 oz"}
+  - {item: harissa_sauce, qty: 15, unit: g, note: "1 tablespoon"}
+
+production:
+  build:
+    - "Split the roll and toast the cut sides in the butter."
+    - "Fry the egg in the same pan. Lay the cheddar on the egg and cover for about 30 seconds to melt."
+    - "Spread the harissa on the top half. Stack: bottom roll, egg and cheese, top roll."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 8.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested:
+    - "Built on 2026-11-06 with the 90 g sandwich roll, fried egg, harissa sauce and cheddar: rave reviews."
+  pending:
+    - "Pick the harissa sauce brand and check its label for allergens."
+    - "Set a standard egg doneness (for example, over-medium) and confirm the sauce and cheese portions."

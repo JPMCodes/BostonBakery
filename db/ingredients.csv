@@ -1,0 +1,20 @@
+id,name,category,allergens,spec,each_g,density_g_per_ml,price_ref,notes
+flour_bread_ka,King Arthur Bread Flour,flour,wheat,"Unbleached bread flour, 12.7% protein",,,,
+flour_ap,All-purpose flour,flour,wheat,"Unbleached all-purpose, about 11.7% protein",,,,Filling binder
+milk_whole,Whole milk,dairy,milk,"3.25% fat, pasteurized",,1.03,,
+buttermilk_cultured,Cultured buttermilk,dairy,milk,"Cultured, full-fat if available",,1.03,,
+egg_large,Egg (large),egg,egg,"US large, about 50 g out of the shell",50,,,
+egg_yolk,Egg yolk (large),egg,egg,"Yolk of one large egg, about 18 g",18,,egg_large,"Costed as one whole egg per yolk; the white goes to the sandwich-roll egg wash"
+butter_unsalted,Unsalted butter,dairy,milk,"Unsalted, 80-82% fat; cultured optional",,,,
+oil_high_oleic_sunflower,High-oleic sunflower oil,fat,,"Neutral oil; canola is an acceptable substitute",,0.92,,
+sugar_granulated,Granulated sugar,sugar,,"Fine granulated; pulse 30 s in a food processor for the superfine used in the filling",,,,
+sugar_powdered,Powdered sugar (10x),sugar,,"Contains cornstarch",,,,
+syrup_glucose,Glucose syrup,sugar,,"Neutral glucose syrup; light corn syrup is a functional equivalent",,,,"Some glucose syrups are wheat-derived; check the supplier spec for allergen labeling"
+salt_fine,Fine salt,mineral,,"Fine sea salt or table salt",,,,
+yeast_instant,Instant yeast (Fleischmann's RapidRise),leavening,,"Instant yeast; mix into the dry ingredients, never into hot liquid",7,,,"Packets are 7 g; a 1 lb bag of instant yeast is the same type"
+cinnamon_ground,Ground cinnamon,spice,,"Saigon (Vietnamese) cassia preferred",,,,
+vanilla_extract,Pure vanilla extract,flavor,,"Pure extract, 35% alcohol",,0.95,,
+baking_soda,Baking soda,leavening,,"Sodium bicarbonate",,,,
+cheese_cheddar_sliced,Cheddar cheese (sliced),dairy,milk,"Sliced cheddar, about 21 g (3/4 oz) per slice",21,,,
+harissa_sauce,Harissa sauce,condiment,,"Jarred harissa sauce; brand not yet specified",,,,"Check the chosen brand's label for allergens before release"
+gelatin_unflavored,Unflavored gelatin,stabilizer,,"Knox powdered gelatin, 7 g envelopes",7,,,"Optional glaze stabilizer; not in the current glaze formula"

@@ -1,0 +1,33 @@
+id: filling_cinnamon
+name: Cinnamon Filling
+kind: filling
+status: approved
+version: "1.0"
+approved_on: 2026-11-06
+used_by: [cinnamon_roll]
+yield:
+  grams: 264
+  description: "12 rolls at 22 g"
+
+ingredients:
+  - {item: butter_unsalted, qty: 65, unit: g, note: "very soft, 72–75°F"}
+  - {item: sugar_granulated, qty: 140, unit: g, note: "superfine, or granulated pulsed 30 seconds"}
+  - {item: syrup_glucose, qty: 27, unit: g}
+  - {item: cinnamon_ground, qty: 14, unit: g}
+  - {item: flour_ap, qty: 17, unit: g}
+  - {item: salt_fine, qty: 1, unit: g}
+
+method:
+  - "Beat everything into a smooth paste. Spread it over cold dough."
+
+specs:
+  sugar_to_butter: "about 2.5:1"
+  filling_to_dough: "24% of dough weight"
+
+notes:
+  - "Glucose syrup keeps the white sugar from recrystallizing into a gritty filling by the next day. It replaces honey for a cleaner flavor."
+  - "Cinnamon stays out of the dough: cinnamaldehyde slows yeast."
+
+history:
+  - date: 2026-11-06
+    change: "First approved version. White-sugar filling tested on 2026-11-06 with 25 g honey per 245 g; this version swaps the honey for glucose syrup 1:1 (pending first bake) and scales to 12 rolls of 22 g."

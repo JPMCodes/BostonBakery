@@ -1,0 +1,28 @@
+id: sandwich_roll
+name: Sandwich Roll
+kind: roll
+status: approved
+version: "1.0"
+approved_on: 2026-11-06
+used_by: [breakfast_sandwich]
+yield:
+  units: 1
+  grams: 81
+  description: "1 roll: 90 g dough bakes to about 81 g"
+
+ingredients:
+  - {item: dough_signature, qty: 90, unit: g}
+
+method:
+  - "Shape tight balls from 90 g pieces of chilled dough. Set them seam side down, 6 per parchment-lined half-sheet."
+  - "Proof 45–75 minutes, until about doubled and a gentle poke springs back slowly."
+  - "Brush with egg wash: the white saved from the dough's yolk plus 1 tablespoon water. Optional: one shallow slash on top, about 1/4 inch deep."
+  - "Bake at 350°F on a light aluminum sheet for 18–22 minutes, to 190°F inside, tops deep golden. Optional: brush with melted butter as they come out for a softer crust."
+
+notes:
+  - "One dough batch makes 12 rolls."
+  - "Egg wash uses a by-product white, so it is not costed."
+
+history:
+  - date: 2026-11-06
+    change: "First approved version; tested 2026-11-06 for the breakfast sandwich (rave reviews)."

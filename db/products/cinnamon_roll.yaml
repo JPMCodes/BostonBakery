@@ -1,0 +1,52 @@
+id: cinnamon_roll
+name: Cinnamon Roll
+status: approved
+version: "1.0"
+approved_on: 2026-11-06
+description: "Tangzhong milk-dough cinnamon roll with a white-sugar cinnamon filling and a cooked buttermilk glaze. 4 oz finished."
+batch_units: 12
+waste_pct: 5
+
+build:
+  - {item: dough_signature, qty: 90, unit: g}
+  - {item: filling_cinnamon, qty: 22, unit: g}
+  - {item: glaze_buttermilk, qty: 14, unit: g}
+
+targets:
+  raw_weight_g: 112
+  baked_weight_g: 100
+  finished_weight_g: 113
+  finished_weight_tolerance_g: 5
+  internal_temp_f: 190
+
+production:
+  shape: "Roll one dough batch to 16×13 inches, about 5/16 inch thick. Spread the filling, leaving a 1/2-inch bare strip on one long edge. Roll up from the opposite long side, cut 12 slices 1 1/3 inches thick with floss, and tuck the tails under."
+  pans:
+    - "Light metal 9×13 pan, 3×4 (keeps the rolls freshest because they bake touching): 350°F for 24–30 minutes."
+    - "Jumbo muffin tin, dark nonstick: 325°F for 20–26 minutes. A standard muffin tin is too small for 4 oz."
+  proof: "Covered at 78–82°F for 45–75 minutes, until about doubled, a poke springs back slowly and a center roll reads at least 75°F."
+  bake: "Pull at 190°F in the center roll (probe the bread, not the sugar). Tent with foil if the tops brown before then."
+  glaze: "Glaze at 95–100°F roll temperature, 14 g each. Set uncovered 20–30 minutes."
+  hold:
+    - "Seal airtight once the glaze sets. Hold at 68–76°F; never refrigerate. Keep rolls together until serving."
+    - "0–12 hours: serve as is."
+    - "12–24 hours: warm 15–20 seconds in the microwave or 8–10 minutes at 300°F under foil."
+    - "Beyond 24 hours: freeze unglazed."
+
+qa:
+  - "Weigh 3 finished rolls per batch: 113 g ±5 g. Adjust glaze ±3 g or dough ±5 g."
+  - "Center roll at 190°F at pull."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 5.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested:
+    - "Dough and white-sugar filling (with honey), baked as muffin-tin rolls on 2026-11-06: 'pretty much perfect'."
+  pending:
+    - "First batch of the cooked buttermilk glaze, including the 12 and 24 hour hold check."
+    - "Glucose syrup in place of honey in the filling."
+    - "4 oz finished weight in a 9×13 or jumbo tin; confirm the 10% bake loss."
