@@ -1,0 +1,1153 @@
+<title>Bakery Site Finder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: an app bar over one working column (max 1440px); views switch on the URL hash; wide tables scroll in their own boxes. */
+:root {
+  --desk: #EEF1F5; --sheet: #FFFFFF; --alt: #F6F8FA; --field: #E4E9EE;
+  --ink: #141B24; --ink2: #47515E; --ink3: #5F6A78;
+  --rule: #D5DBE3; --rule2: #AEB7C3;
+  --blue: #1C5CAB; --blue-ink: #184F95; --on-blue: #FFFFFF; --blue-pale: #CDE2FB; --blue-wash: #EAF1FB;
+  --signal: #D95926; --signal-text: #A94B00; --signal-wash: #FBE7DC;
+  --taken: #C3CBD3;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --desk: #0E131A; --sheet: #151C25; --alt: #1B2330; --field: #111822;
+    --ink: #E5EAF1; --ink2: #B3BECB; --ink3: #97A3B2;
+    --rule: #283241; --rule2: #3A4656;
+    --blue: #6AA3F0; --blue-ink: #93BEF6; --on-blue: #0A1322; --blue-pale: #1E3657; --blue-wash: #172941;
+    --signal: #F0884F; --signal-text: #F4A273; --signal-wash: #3B2418;
+    --taken: #4B5665;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --desk: #0E131A; --sheet: #151C25; --alt: #1B2330; --field: #111822;
+  --ink: #E5EAF1; --ink2: #B3BECB; --ink3: #97A3B2;
+  --rule: #283241; --rule2: #3A4656;
+  --blue: #6AA3F0; --blue-ink: #93BEF6; --on-blue: #0A1322; --blue-pale: #1E3657; --blue-wash: #172941;
+  --signal: #F0884F; --signal-text: #F4A273; --signal-wash: #3B2418;
+  --taken: #4B5665;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { background: var(--desk); color: var(--ink); font-family: var(--font-sans); font-size: 14px; line-height: 1.45; }
+a { color: var(--blue-ink); }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--ink3); }
+.sub { color: var(--ink2); }
+.small { font-size: 12px; line-height: 1.4; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+[hidden] { display: none !important; }
+
+.wrap { max-width: 1440px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar { background: var(--sheet); border-bottom: 1px solid var(--rule); }
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 24px; min-height: 56px; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand b { font-weight: 600; font-size: 15px; }
+.brand span { color: var(--ink2); font-size: 13px; }
+.nav { display: flex; flex-wrap: wrap; gap: 2px; }
+.nav a { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; color: var(--ink2); text-decoration: none; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--blue); }
+.count { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 4px; font-family: var(--font-mono); font-size: 11px; color: var(--on-blue); background: var(--blue); border-radius: 2px; }
+.stamp { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--ink2); }
+.caveat { border-bottom: 1px solid var(--rule); color: var(--ink2); font-size: 13px; }
+.caveat .wrap { display: flex; gap: 8px; align-items: flex-start; padding-block: 8px; }
+.caveat svg { flex: none; margin-top: 2px; }
+main.wrap { padding-block: 24px 48px; }
+.view { display: flex; flex-direction: column; gap: 20px; }
+
+.card { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; }
+.pad { padding: 16px; }
+.pad-lg { padding: 20px; }
+.page-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.page-head h1 { font-size: 24px; line-height: 32px; font-weight: 600; }
+.lede { margin-top: 4px; color: var(--ink2); max-width: 88ch; }
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; }
+.section-head h2 { font-size: 15px; font-weight: 600; }
+h2.big { font-size: 18px; line-height: 24px; }
+.split { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+.split > .main { flex: 999 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.split > .side { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label, .legend { font-size: 12px; font-weight: 600; color: var(--ink2); letter-spacing: 0.01em; }
+input[type="search"], input[type="number"], input[type="text"], select, textarea { min-height: 44px; padding: 0 10px; border: 1px solid var(--ink3); border-radius: 2px; background: var(--sheet); color: var(--ink); font: inherit; }
+textarea { padding: 8px 10px; resize: vertical; width: 100%; }
+input[type="number"] { font-family: var(--font-mono); }
+input[type="checkbox"] { width: 20px; height: 20px; margin: 0; accent-color: var(--blue); flex: none; }
+input[type="range"] { width: 100%; accent-color: var(--blue); }
+.check { display: flex; align-items: center; gap: 8px; min-height: 40px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--ink3); border-radius: 2px; background: var(--sheet); color: var(--ink); font: inherit; font-weight: 500; text-decoration: none; cursor: pointer; }
+.btn:hover { border-color: var(--ink); color: var(--ink); }
+.btn-primary { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.btn-primary:hover { color: var(--on-blue); border-color: var(--blue-ink); background: var(--blue-ink); }
+.btn-outline { border-color: var(--blue); color: var(--blue-ink); }
+.btn[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.btn .n { font-family: var(--font-mono); font-size: 12px; }
+.btn-icon { width: 40px; padding: 0; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg { display: flex; flex-wrap: wrap; }
+.seg .btn { border-radius: 0; margin-left: -1px; min-width: 48px; font-family: var(--font-mono); font-size: 13px; }
+.seg .btn:first-child { margin-left: 0; border-radius: 2px 0 0 2px; }
+.seg .btn:last-child { border-radius: 0 2px 2px 0; }
+
+.chip { display: inline-block; padding: 1px 8px; font-size: 12px; font-weight: 500; border-radius: 2px; border: 1px solid transparent; white-space: nowrap; }
+.chip.active { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.chip.likely { background: var(--blue-pale); border-color: var(--blue); color: var(--ink); }
+.chip.stale { background: var(--sheet); border: 1px dashed var(--signal); color: var(--signal-text); }
+.chip.taken { background: var(--taken); border-color: var(--taken); color: var(--ink); text-decoration: line-through; }
+.swatch { display: block; width: 14px; height: 14px; border-radius: 2px; border: 1px solid transparent; }
+.swatch.active { background: var(--blue); border-color: var(--blue); }
+.swatch.likely { background: var(--blue-pale); border-color: var(--blue); }
+.swatch.stale { background: var(--sheet); border: 1px dashed var(--signal); }
+.swatch.taken { background: var(--taken); border-color: var(--taken); }
+.btn[aria-pressed="true"] .swatch { border-color: var(--on-blue); }
+.callno { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 22px; padding: 0 6px; background: var(--ink); color: var(--sheet); font-family: var(--font-mono); font-size: 12px; font-weight: 600; border-radius: 2px; white-space: nowrap; }
+.tag { display: inline-block; padding: 0 4px; font-family: var(--font-mono); font-size: 11px; line-height: 18px; border: 1px solid var(--rule2); color: var(--ink2); background: var(--sheet); border-radius: 2px; white-space: nowrap; }
+.tag.snip { border-style: dashed; border-color: var(--signal); color: var(--signal-text); }
+.tag.conflict { background: var(--signal-wash); border-color: var(--signal-wash); color: var(--signal-text); font-weight: 600; }
+.tag.ask { border-style: dashed; border-color: var(--signal); color: var(--signal-text); font-weight: 600; font-family: var(--font-sans); }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.kit { display: inline-block; padding: 0 6px; font-size: 12px; font-weight: 500; border-radius: 2px; border: 1px solid var(--blue); white-space: nowrap; }
+.kit.confirmed { background: var(--blue-wash); color: var(--blue-ink); }
+.kit.likely { background: var(--sheet); color: var(--blue-ink); }
+.kit.unknown { background: var(--signal-wash); border: 1px dashed var(--signal); color: var(--ink); }
+.kit.no { background: var(--alt); border-color: var(--rule2); color: var(--ink2); }
+
+.ruler { display: inline-flex; gap: 3px; vertical-align: middle; }
+.ruler .g { display: inline-flex; gap: 1px; }
+.tick { display: block; width: 7px; height: 14px; border: 1px solid var(--ink2); background: var(--sheet); }
+.tick.e { background: var(--blue); border-color: var(--blue); }
+.tick.h { background: var(--signal-wash); border: 1px dashed var(--signal); }
+.ruler.md { gap: 4px; }
+.ruler.md .g { gap: 2px; }
+.ruler.md .tick { width: 10px; height: 18px; }
+.ruler.lg { gap: 8px; }
+.ruler.lg .g { gap: 3px; }
+.ruler.lg .tick { width: 16px; height: 28px; }
+.fitnum { font-family: var(--font-mono); font-weight: 600; }
+.legend-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; font-size: 12px; color: var(--ink2); }
+.legend-row .item { display: inline-flex; align-items: center; gap: 6px; }
+
+.picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.pick { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-top: 1px solid var(--rule); }
+.pick h3 { font-size: 16px; line-height: 22px; font-weight: 600; }
+.pick .top { display: flex; align-items: flex-start; gap: 10px; }
+.pick .top .chip { margin-left: auto; }
+.pick .btns { margin-top: auto; }
+
+.filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px 28px; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+fieldset legend { padding: 0; margin-bottom: 6px; }
+.filters .push { margin-left: auto; }
+
+.table-box { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+.sites { min-width: 1180px; }
+.sites th, .sites td { padding: 8px 10px; text-align: left; vertical-align: middle; border-top: 1px solid var(--rule); }
+.sites thead th { background: var(--alt); font-size: 12px; font-weight: 600; color: var(--ink2); border-top: 0; white-space: nowrap; }
+.sites td.num { font-family: var(--font-mono); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sites tr.open > td { background: var(--blue-wash); }
+.sites .site-name { font-weight: 600; }
+.sites .site-sub { font-size: 12px; color: var(--ink2); }
+.sites .stage { display: block; margin-top: 3px; font-size: 12px; color: var(--ink2); }
+.detail > td { background: var(--blue-wash); padding: 16px 16px 20px 56px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px 32px; }
+.detail-grid h3 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.parts { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.parts li { display: grid; grid-template-columns: 104px 36px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+.chev { transition: transform 0.15s ease; }
+[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+.dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 12px 16px; margin: 0; }
+.dl dt { font-size: 12px; color: var(--ink2); }
+.dl dd { margin: 2px 0 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 20px; line-height: 28px; font-weight: 600; }
+.over { color: var(--signal-text); }
+.share { position: relative; height: 28px; background: var(--alt); border: 1px solid var(--rule2); }
+.share.sm { height: 16px; }
+.share .band { position: absolute; top: 0; bottom: 0; left: 25%; width: 25%; background: var(--blue-wash); }
+.share .fill { position: absolute; top: 6px; bottom: 6px; left: 0; background: var(--blue); }
+.share.sm .fill { top: 3px; bottom: 3px; }
+.share .fill.over { background: var(--signal); }
+.share .eight { position: absolute; top: -4px; bottom: -4px; left: 40%; width: 2px; background: var(--ink); }
+.scale { position: relative; height: 18px; font-family: var(--font-mono); font-size: 12px; color: var(--ink2); }
+.scale span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.scale span:first-child { transform: none; }
+.scale span:last-child { transform: translateX(-100%); }
+.note { padding: 10px 12px; background: var(--signal-wash); border: 1px dashed var(--signal); color: var(--ink); }
+
+.evidence-list, .kitchen-list { margin: 0; padding: 0; list-style: none; }
+.kitchen-list li { display: grid; grid-template-columns: minmax(130px, 190px) minmax(0, 1fr) auto; gap: 6px 16px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.kitchen-list li:last-child { border-bottom: 0; }
+.evidence-list { display: flex; flex-direction: column; gap: 10px; }
+.evidence-list li { display: flex; flex-direction: column; gap: 2px; }
+.qs { margin: 0; padding: 0; list-style: none; }
+.qs li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule); }
+.qs label { font-size: 13px; line-height: 20px; }
+.log { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.log li { display: flex; flex-direction: column; gap: 2px; padding: 8px; background: var(--alt); }
+.score-table th, .score-table td { padding: 10px 12px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.score-table thead th { font-size: 12px; font-weight: 600; color: var(--ink2); border-bottom-color: var(--rule2); }
+.score-table tbody th { font-weight: 500; }
+.score-table tbody tr:last-child th, .score-table tbody tr:last-child td { border-bottom: 0; }
+
+.marker { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; flex: none; font-family: var(--font-mono); font-size: 11px; font-weight: 600; border: 1px solid var(--blue); }
+.marker.sale { border-radius: 50%; }
+.marker.lg { width: 26px; height: 26px; font-size: 12px; }
+.marker.active { background: var(--blue); color: var(--on-blue); }
+.marker.likely { background: var(--blue-pale); color: var(--ink); border-width: 2px; }
+.marker.stale { background: var(--sheet); color: var(--signal-text); border: 1px dashed var(--signal); }
+.marker.taken { background: var(--taken); border-color: var(--taken); color: var(--ink); text-decoration: line-through; }
+.atlas-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); grid-template-rows: repeat(7, minmax(84px, auto)); gap: 6px; padding: 10px; background: var(--field); }
+.tile { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; padding: 6px; overflow: hidden; text-align: left; font: inherit; color: var(--ink); background: var(--sheet); border: 1px solid var(--rule2); border-radius: 2px; cursor: pointer; }
+.tile.empty { background: var(--alt); color: var(--ink2); border-color: var(--rule); }
+.tile[aria-pressed="true"] { background: var(--blue-wash); border: 2px solid var(--ink); }
+.tile .code { display: flex; width: 100%; justify-content: space-between; gap: 4px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+.tile .tier { padding: 0 4px; font-size: 11px; line-height: 16px; border: 1px solid var(--ink2); color: var(--ink2); background: var(--sheet); font-weight: 500; }
+.tile .nm { font-size: 11px; line-height: 14px; color: var(--ink2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.tile .marks { display: flex; flex-wrap: wrap; gap: 3px; margin-top: auto; }
+.atlas-list { margin: 0; padding: 0; list-style: none; max-height: 660px; overflow-y: auto; border-top: 1px solid var(--rule); }
+.atlas-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 10px 2px; border-bottom: 1px solid var(--rule); }
+.inset { padding: 12px; background: var(--alt); border: 1px solid var(--rule); }
+
+.cmp { min-width: 900px; }
+.cmp-row { display: grid; grid-template-columns: minmax(150px, 210px) repeat(3, minmax(220px, 1fr)); border-bottom: 1px solid var(--rule); }
+.cmp-row > div { padding: 10px 16px; min-width: 0; }
+.cmp-row > div + div { border-left: 1px solid var(--rule); }
+.cmp-sec { padding: 10px 16px 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink2); background: var(--alt); border-bottom: 1px solid var(--rule); }
+.cmp-head > div { display: flex; flex-direction: column; gap: 8px; padding: 16px; }
+.cmp-head h2 { font-size: 17px; line-height: 24px; }
+.cmp-row.hl { background: var(--blue-wash); }
+.cell-tag { margin-top: 4px; }
+
+.bench { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 12px 24px; }
+.bench dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 13px; }
+.bench dt { font-family: var(--font-mono); font-weight: 600; }
+.bench dd { margin: 0; }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(560px, 100%), 1fr)); gap: 20px; }
+.lane { display: grid; grid-template-columns: minmax(110px, 190px) minmax(0, 1fr) 96px; gap: 10px; align-items: center; }
+.lane .track { position: relative; display: block; height: 26px; background: var(--alt); border: 1px solid var(--rule); }
+.lane .ask { position: absolute; top: 0; bottom: 0; background: var(--field); border-left: 1px solid var(--rule2); border-right: 1px solid var(--rule2); }
+.lane .sold { position: absolute; top: 0; bottom: 0; background: var(--blue-pale); }
+.lane .med { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink2); }
+.lane .dot { position: absolute; top: 5px; width: 16px; height: 16px; transform: translateX(-50%); border-radius: 50%; background: var(--blue); border: 2px solid var(--blue); }
+.lane .dot.alt { background: var(--sheet); }
+.lane .dot.stale { background: var(--sheet); border: 2px dashed var(--signal); }
+.lane .link { position: absolute; top: 12px; height: 2px; background: var(--blue); }
+.lanes { display: flex; flex-direction: column; gap: 8px; }
+.deals { min-width: 1240px; font-size: 13px; }
+.deals th, .deals td { padding: 10px 12px; border-top: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.deals thead th { background: var(--alt); font-size: 12px; font-weight: 600; color: var(--ink2); border-top: 0; }
+.deals td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.phone { width: 100%; max-width: 430px; margin-inline: auto; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; display: flex; flex-direction: column; font-size: 16px; line-height: 24px; }
+.phone-head { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-bottom: 1px solid var(--rule); }
+.phone-head h1 { font-size: 20px; line-height: 26px; font-weight: 600; }
+.progress { flex: 1; height: 8px; background: var(--blue-pale); }
+.progress > span { display: block; height: 8px; background: var(--blue); }
+.tabs { display: flex; border-bottom: 1px solid var(--rule); }
+.tabs button { flex: 1; min-height: 48px; border: 0; border-bottom: 3px solid transparent; background: var(--sheet); color: var(--ink2); font: inherit; font-weight: 600; cursor: pointer; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--blue); }
+.phone-body { background: var(--alt); padding: 12px 16px 16px; }
+.items { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.item { background: var(--sheet); border: 1px solid var(--rule); }
+.item-head { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 56px; padding: 8px 12px; border: 0; background: var(--sheet); color: var(--ink); text-align: left; font: inherit; cursor: pointer; }
+.item-head .n { flex: none; width: 22px; font-family: var(--font-mono); font-size: 14px; color: var(--ink2); }
+.item-head .t { flex: 1; font-weight: 600; }
+.pill { flex: none; padding: 0 8px; font-size: 13px; line-height: 22px; font-weight: 500; border: 1px solid var(--rule2); color: var(--ink2); background: var(--sheet); }
+.pill.ok { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.pill.issue { background: var(--signal-wash); border: 1px dashed var(--signal); color: var(--ink); }
+.pill.ask { background: var(--blue-pale); border-color: var(--blue); color: var(--ink); }
+.item-body { display: flex; flex-direction: column; gap: 12px; padding: 0 12px 14px 44px; }
+.record { padding: 10px; background: var(--alt); border: 1px solid var(--rule); font-size: 15px; line-height: 22px; }
+.choices { display: flex; gap: 6px; }
+.choices .btn { flex: 1; min-height: 48px; padding: 0 6px; font-size: 15px; }
+.choices .btn[data-choice="issue"][aria-pressed="true"] { background: var(--signal-wash); border: 2px solid var(--signal); color: var(--ink); }
+.choices .btn[data-choice="ask"][aria-pressed="true"] { background: var(--blue-pale); border: 2px solid var(--blue); color: var(--ink); }
+.photo-btn { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 14px; border: 1px solid var(--blue); color: var(--blue-ink); font-weight: 500; cursor: pointer; }
+.photo-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.photo-btn:focus-within { outline: 2px solid var(--blue); outline-offset: 2px; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 6px; }
+.thumbs img { width: 56px; height: 56px; object-fit: cover; border: 1px solid var(--rule); }
+.tally { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 16px; background: var(--sheet); border: 1px solid var(--rule); }
+.tally .big { font-family: var(--font-mono); font-size: 56px; line-height: 64px; font-weight: 600; }
+.plus { width: 100%; min-height: 72px; border: 0; background: var(--blue); color: var(--on-blue); font: inherit; font-size: 22px; font-weight: 600; cursor: pointer; }
+.phone-foot { display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 12px 16px; border-top: 1px solid var(--rule); background: var(--sheet); }
+.phone-foot span { flex: 1; font-size: 14px; color: var(--ink2); }
+.site-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+footer.page-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-top: 8px; border-top: 1px solid var(--rule2); font-family: var(--font-mono); font-size: 12px; color: var(--ink2); }
+
+@media (max-width: 640px) {
+  .brand span { display: none; }
+  .nav { flex-wrap: nowrap; overflow-x: auto; width: 100%; }
+  .nav a { flex: none; }
+  .tile .nm { display: none; }
+  .atlas-grid { gap: 3px; padding: 4px; grid-template-rows: repeat(7, minmax(64px, auto)); }
+  .tile { padding: 3px; }
+  .tile .marks .marker { width: 16px; height: 16px; font-size: 9px; }
+  .detail > td { padding-left: 16px; }
+  .stamp { margin-left: 0; }
+  .lane { grid-template-columns: minmax(90px, 120px) minmax(0, 1fr) 72px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="1" y="1" width="9" height="9" stroke="currentColor" stroke-width="1.5"></rect><rect x="12" y="1" width="9" height="9" fill="var(--blue)"></rect><rect x="1" y="12" width="9" height="9" stroke="currentColor" stroke-width="1.5"></rect><rect x="12" y="12" width="9" height="9" stroke="currentColor" stroke-width="1.5"></rect></svg>
+      <b>Bakery Site Finder</b>
+      <span>Boston site scan</span>
+    </div>
+    <nav class="nav" aria-label="Sections">
+      <a href="#desk" data-nav="desk">Desk</a>
+      <a href="#atlas" data-nav="atlas">Atlas</a>
+      <a href="#compare" data-nav="compare">Compare <span class="count" id="compare-count">3</span></a>
+      <a href="#for-sale" data-nav="for-sale">For sale</a>
+      <a href="#visit-wash3089" data-nav="visit" id="nav-visit">Visit kit</a>
+    </nav>
+    <p class="stamp">Scan checked 2026-11-07 · 39 sites</p>
+  </div>
+</header>
+<div class="caveat">
+  <div class="wrap">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.5"></circle><path d="M8 7.2v4M8 4.6v.8" stroke="currentColor" stroke-width="1.5"></path></svg>
+    <p>Nothing here is confirmed with a broker yet. Rents are asking rents, and building charges (NNN) often come on top. Tags show where a fact came from: READ (listing page read), CITY (Boston license or inspection record), SNIP (search snippet only). Your stages, notes and checklists are saved in this browser only.</p>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="view" id="view-desk" aria-labelledby="desk-h">
+    <div class="page-head">
+      <div>
+        <h1 id="desk-h">Site desk</h1>
+        <p class="lede">39 sites checked. 23 still look available (7 live, 16 likely); 15 of those score 8 or more out of 10.</p>
+      </div>
+      <div class="field" style="min-width: min(320px, 100%)">
+        <label for="desk-search">Search</label>
+        <input id="desk-search" type="search" placeholder="Address, area or former tenant" autocomplete="off">
+      </div>
+    </div>
+
+    <section class="card" aria-labelledby="picks-h">
+      <div class="section-head pad" style="border-bottom: 1px solid var(--rule)">
+        <h2 id="picks-h">Call these three first</h2>
+        <a href="#compare">Compare them side by side</a>
+      </div>
+      <div class="picks" id="picks"></div>
+    </section>
+
+    <section class="card pad filters" aria-label="Filters" id="filters"></section>
+
+    <section class="card" aria-labelledby="table-h">
+      <div class="section-head pad">
+        <h2 id="table-h">Ranked sites <span class="sub" style="font-weight: 400" id="table-count" aria-live="polite"></span></h2>
+        <div class="legend-row">
+          <span class="mono">Fit = size 2 · rent or deal 2 · food space 3 · location 2 · available 1</span>
+          <span class="item"><span class="tick e" aria-hidden="true"></span>earned</span>
+          <span class="item"><span class="tick" aria-hidden="true"></span>missed</span>
+          <span class="item"><span class="tick h" aria-hidden="true"></span>held back: a call could win it</span>
+        </div>
+      </div>
+      <div class="table-box">
+        <table class="sites">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Fit</th>
+              <th scope="col">Site</th>
+              <th scope="col">Status</th>
+              <th scope="col">Sq ft</th>
+              <th scope="col">Rent $/sq ft/yr</th>
+              <th scope="col">Per year</th>
+              <th scope="col">Sales needed at 8%</th>
+              <th scope="col">Kitchen</th>
+              <th scope="col">Evidence</th>
+              <th scope="col"><span class="sr">Details</span></th>
+            </tr>
+          </thead>
+          <tbody id="desk-rows"></tbody>
+        </table>
+      </div>
+    </section>
+    <footer class="page-foot">
+      <span>Source: reports/Boston bakery site scan candidates.csv · checked 2026-11-07</span>
+      <span>Also in the scan: vacated food spaces not yet listed, and 221 unverified leads</span>
+    </footer>
+  </section>
+
+  <section class="view" id="view-site" aria-labelledby="site-h" hidden></section>
+
+  <section class="view" id="view-atlas" aria-labelledby="atlas-h" hidden>
+    <div class="page-head">
+      <div>
+        <h1 id="atlas-h">Place atlas</h1>
+        <p class="lede">The cheapest fit-9 leases cluster in neighboring southwest areas: Egleston Square, Jamaica Plain and Roslindale, at $29-39.50 a sq ft. Harvard Square's options are bigger and pricier. Downtown, the South End, Back Bay and the Seaport hold no verified site.</p>
+      </div>
+    </div>
+    <div class="split">
+      <section class="card pad main" aria-labelledby="map-h" style="gap: 12px">
+        <div class="section-head">
+          <h2 id="map-h">Areas (schematic, not to scale)</h2>
+          <div class="btns">
+            <label class="check"><input id="atlas-old" type="checkbox"> Include stale and taken</label>
+            <label class="check"><input id="atlas-tiers" type="checkbox" checked> Show rent tiers</label>
+          </div>
+        </div>
+        <div class="atlas-grid" id="atlas-grid"></div>
+        <div class="legend-row">
+          <span class="item"><span class="marker active" aria-hidden="true"></span>Lease, live</span>
+          <span class="item"><span class="marker likely" aria-hidden="true"></span>Likely live</span>
+          <span class="item"><span class="marker stale" aria-hidden="true"></span>Stale</span>
+          <span class="item"><span class="marker taken" aria-hidden="true"></span>Taken</span>
+          <span class="item"><span class="marker sale" style="background: var(--sheet); border-color: var(--ink)" aria-hidden="true"></span>Circle = business for sale</span>
+          <span>Number = fit score</span>
+          <span>Rent tiers from the market report: C $30-40, B about $55, A $100-150+ a sq ft</span>
+        </div>
+      </section>
+      <section class="card pad side" aria-labelledby="atlas-list-h" style="gap: 12px">
+        <div class="section-head">
+          <h2 id="atlas-list-h" aria-live="polite"></h2>
+          <button class="btn" type="button" id="atlas-clear" hidden>Show all areas</button>
+        </div>
+        <p class="small sub" id="atlas-note"></p>
+        <ul class="atlas-list" id="atlas-list"></ul>
+        <div class="inset small">
+          <p><b>No fixed location (3).</b> Businesses for sale that do not name a town: a Boston cafe-bakery, an Irish bakery-cafe and a waterfront cafe in Suffolk County, all fit 7. They are left off the map rather than guessed. See <a href="#for-sale">For sale</a>.</p>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="view" id="view-compare" aria-labelledby="compare-h" hidden>
+    <div class="page-head">
+      <div>
+        <h1 id="compare-h">Compare sites</h1>
+        <p class="lede" id="compare-lede"></p>
+      </div>
+      <label class="check"><input id="cmp-diff" type="checkbox"> Only rows that differ</label>
+    </div>
+    <section class="card pad" aria-labelledby="whatif-h" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px">
+      <h2 id="whatif-h" style="font-size: 15px">What if your bakery sells</h2>
+      <div class="field" style="flex: 1 1 280px">
+        <label for="cmp-sales" class="mono" style="font-size: 20px; line-height: 28px; color: var(--ink)"><span id="cmp-sales-text"></span> a year</label>
+        <input id="cmp-sales" type="range" min="300000" max="2000000" step="10000" value="600000">
+      </div>
+      <div class="btns" role="group" aria-label="Sales presets" id="cmp-presets"></div>
+    </section>
+    <section class="card table-box" aria-label="Comparison" id="cmp-table"></section>
+    <p class="small sub">Sales targets from the market report: a 1,200 sq ft counter bakery needs about $600K-800K a year; a 2,500 sq ft bakery-cafe about $1.2-1.7M. Rent should stay at or under 8% of sales. Add or remove sites from the desk or a dossier (up to three).</p>
+  </section>
+
+  <section class="view" id="view-for-sale" aria-labelledby="sale-h" hidden>
+    <div class="page-head">
+      <div>
+        <h1 id="sale-h">Businesses for sale</h1>
+        <p class="lede">14 businesses (15 records): 8 live or likely, 5 stale, 1 taken. Only 3 show both sales and owner earnings, and none is a clear buy. All figures are the sellers' own and unverified.</p>
+      </div>
+      <label class="check"><input id="sale-stale" type="checkbox" checked> Include stale and taken listings</label>
+    </div>
+    <section class="card pad bench" aria-labelledby="bench-h">
+      <h2 id="bench-h" style="grid-column: 1 / -1; font-size: 15px">What these businesses usually go for</h2>
+      <dl>
+        <dt>2.19x</dt><dd>Bakeries' sale price as a multiple of owner earnings (SDE); 0.48x of yearly sales</dd>
+        <dt>2.27x</dt><dd>Food businesses' sale price to SDE; 0.42x of sales</dd>
+        <dt>2.71x</dt><dd>Bakeries' median asking multiple (range 1.96-3.55x SDE; 0.37-0.75x of sales, median 0.51x)</dd>
+        <dt>~90%</dt><dd>Share of the asking price restaurants actually closed at in Q2 2026</dd>
+      </dl>
+      <p class="small sub">National benchmarks from BizBuySell, as recorded in the scan notes. Asking prices typically sit about half a year of earnings above what businesses sell for, so read each ask against the sold band, not the asking range.</p>
+    </section>
+    <div class="charts" id="sale-charts"></div>
+    <section class="card" aria-labelledby="deals-h">
+      <div class="section-head pad" style="border-bottom: 1px solid var(--rule)"><h2 id="deals-h">All listings <span class="sub" style="font-weight: 400" id="deals-count"></span></h2></div>
+      <div class="table-box">
+        <table class="deals">
+          <thead>
+            <tr>
+              <th scope="col">Business</th><th scope="col">Status</th><th scope="col">Fit</th><th scope="col">Ask</th><th scope="col">Sales a year</th><th scope="col">SDE or cash flow</th><th scope="col">Price ÷ SDE</th><th scope="col">Price ÷ sales</th><th scope="col">Worth at 2.19-2.71x SDE</th><th scope="col">Rent and lease</th><th scope="col">Read</th>
+            </tr>
+          </thead>
+          <tbody id="deals-rows"></tbody>
+        </table>
+      </div>
+    </section>
+    <p class="small sub">The Maverick shop's 7.5x is a multiple of EBITDA, a different earnings measure, so it is not plotted against the SDE bands.</p>
+  </section>
+
+  <section class="view" id="view-visit" aria-labelledby="visit-h" hidden></section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- data: the 39 sites from the Nov 7, 2026 scan ----------
+  var GROUPS = [
+    { name: "Size", max: 2 }, { name: "Rent or deal", max: 2 }, { name: "Food space", max: 3 }, { name: "Location", max: 2 }, { name: "Available", max: 1 }
+  ];
+  var STATUS = { active: "Live", likely: "Likely live", stale: "Stale?", taken: "Taken" };
+  var KIT = { confirmed: "Food use confirmed", likely: "Former food use", unknown: "Kitchen unknown", no: "No food use" };
+  var NS = "not stated";
+
+  var SITES = [
+    { id: "wash3089", order: 1, pick: 1, tile: "EGL", addr: "3089-3091 Washington St", area: "Egleston Sq, Roxbury/JP", kind: "lease", status: "active", fit: 9, pts: [2,2,3,1,1], held: [0,0,0,0,0], size: "1,490", sizeN: 1490, rent: "$29", rentN: 29, year: "$43,210", yearN: 43210, needed: "$540K", neededN: 540125, k: "confirmed", kText: "Hood + grease trap on city record", tags: ["READ 11-07", "CITY"], seen: "boston.com, listed 2026-09-28, live 2026-11-07", url: "https://www.boston.com/listings/268-l-21001-73497894/rent/02119/", traffic: "Corner by a city parking lot, a bank, McDonald's and bus stops; local trade, no weekend draw named", firstQ: "Gross or NNN, and what are the charges?", verdict: "Strong live lead: a counter-bakery-sized corner with a city-documented hood and grease trap at $29 a sq ft; check foot traffic and whether NNN charges come on top.", risk: "Lease type not stated, so NNN charges may come on top of $29. Hood and grease trap last documented 2025-26; condition unknown.",
+      reasons: ["1,490 sq ft: inside the 1,000-2,800 range, right for a counter bakery", "$29 a sq ft a year, under the $55 ceiling; lease type not stated", "City inspections recorded a hood (Feb 2025) and a grease trap (Feb 2026); food permit from Nov 2024 to early 2026", "Corner by a city parking lot, a bank, McDonald's and bus stops; local trade, no weekend draw named", "Listing live on 2026-11-07, first listed 2026-09-28"],
+      kitchen: [["Hood", "Hood system recorded at a February 2025 city inspection; condition and size not stated", "CITY"], ["Grease trap", "Recorded at a February 2026 inspection, which also noted a leaking sink drain", "CITY"], ["Last food permit", "Star Fish Market, eating and drinking permit 581615, issued 2024-11-14, now inactive", "CITY"], ["Equipment", "Listing mentions restaurant equipment and a deep freezer", "READ 11-07"]],
+      evidence: [["READ", "boston.com lease listing", "Listed 2026-09-28; page read 2026-11-07: available"], ["CITY", "Boston food permits and inspections", "Permit 581615 (2024-11-14, inactive); inspections Feb 2025 and Feb 2026"], ["SCAN", "Boston bakery site scan", "Ranked first of the call-first three, 2026-11-07"]],
+      risks: ["Lease type not stated, so NNN charges may come on top of the $29 base rent.", "The last tenant was a fish market: plan on a deep clean and check for odors.", "Hood and grease-trap condition unknown; the 2026 inspection noted a leaking sink drain.", "Local trade only: the listing names no weekend or destination draw, so count foot traffic before signing."],
+      visit: ["Hood system recorded at a February 2025 city inspection.", "Recorded in February 2026; that inspection also noted a leaking sink drain.", "", "The listing mentions restaurant equipment and a deep freezer.", "The last tenant was Star Fish Market.", "", "", "The listing does not say whether the lease is gross or NNN.", "Corner by a city parking lot, a bank, McDonald's and bus stops."] },
+    { id: "centre349", order: 2, pick: 2, tile: "JP", addr: "349 Centre St", area: "Jamaica Plain", kind: "lease", status: "active", fit: 9, pts: [2,2,2,2,1], held: [0,0,0,0,0], size: "2,380 / 1,200", sizeN: 2380, rent: "$30 / $39.50", rentN: 30, year: "$71,400 / $47,400", yearN: 71400, needed: "$893K / $593K", neededN: 892500, k: "likely", kText: "Restaurants 2011-2022; kitchen likely stripped", tags: ["READ 11-07", "CITY"], seen: "boston.com, whole space and 1,200 sq ft section, live 2026-11-07", url: "https://www.boston.com/listings/268-l-21945-73578251/rent/02130/", traffic: "Busy Centre St corner near Jackson Sq (Orange Line); great visibility", zoning: "The listing says restaurant use is allowed", firstQ: "Is the hood still in place, and can the section have its own kitchen?",
+      variants: [{ label: "Section 1,200", sizeN: 1200, rentN: 39.5, yearN: 47400 }, { label: "Whole 2,380", sizeN: 2380, rentN: 30, yearN: 71400 }],
+      verdict: "Live: a 1,200 sq ft section at $3,950 a month on a busy corner the listing says is zoned for restaurants, though the old kitchen was probably removed.", risk: "Lease type not stated (NNN may be extra). The kitchen was likely stripped in the renovation, so the hood and grease trap may need reinstalling." },
+    { id: "mass1105", order: 3, pick: 3, tile: "HSQ", addr: "1105 Massachusetts Ave", area: "Cambridge, Harvard Sq", kind: "lease", status: "likely", fit: 9, pts: [2,1,3,2,1], held: [0,1,0,0,0], size: "~2,500", sizeN: 2500, rent: "$35 (2024)", rentN: 35, year: "$87,500", yearN: 87500, needed: "$1.09M", neededN: 1093750, dated: true, k: "confirmed", kText: "Very large hood, 2 walk-ins (2024 listing)", tags: ["SNIP 2024", "READ BRT 07-01"], seen: "LoopNet 2024 listing; for-lease sign reported 2026-07-01", url: "https://loopnet.com/Listing/1105-Massachusetts-Ave-Cambridge-MA/33223782", traffic: "Mass Ave just outside Harvard Sq; students and visitors", firstQ: "What is today's rent? (CRG Commercial)", rReason: "The only rent on record is from 2024", verdict: "One of the best kitchens in the batch (big hood, two walk-ins) near Harvard Square and apparently still empty; call CRG Commercial for today's rent.", risk: "The only rate ($35 a sq ft) is from 2024. Two operators closed here in two years. Needs bakery-cafe sales." },
+    { id: "rosl", order: 4, tile: "ROS", addr: "Former pizza shop (address withheld)", area: "Roslindale", kind: "lease", status: "likely", fit: 9, pts: [2,2,3,1,1], held: [0,0,0,0,0], size: "~1,400", sizeN: 1400, rent: "$29 NNN", rentN: 29, nnnLease: true, year: "$40,600", yearN: 40600, needed: "$508K", neededN: 507500, k: "confirmed", kText: "Turnkey pizza shop, equipment in place", tags: ["SNIP undated"], seen: "BizQuest real-estate listing, undated, still indexed 2026-11-07", verdict: "Solid, affordable turnkey former pizza shop on a 5-plus-5-year lease; get the address and confirm the oven hood before going further.", risk: "NNN charges on top of the $29 base. Size conflict: about 1,400 sq ft stated, but the yearly rent implies about 1,610." },
+    { id: "centre1191", order: 5, tile: "NEW", addr: "1191 Centre St", area: "Newton Centre", kind: "lease", status: "likely", fit: 9, pts: [2,1,3,2,1], held: [0,1,0,0,0], size: "1,894", sizeN: 1894, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Second-generation restaurant (CBRE)", tags: ["SNIP 2026-06"], seen: "CBRE listing updated 2026-06", rReason: "Rent not published", verdict: "A second-generation restaurant in a busy village center that can grow to bakery-cafe size. Get the rent and ask why it has sat so long.", risk: "Rent and lease type not published. About 591 days on market: ask why." },
+    { id: "hunt250", order: 6, tile: "FEN", addr: "250 Huntington Ave, Unit 1", area: "Fenway / Symphony", kind: "lease", status: "active", fit: 9, pts: [2,1,3,2,1], held: [0,1,0,0,0], size: "2,765", sizeN: 2765, rent: "$17.36 or $60.76", rentN: 17.36, conflict: true, year: "$48K or $168K", yearN: 48000, needed: "$600K or $2.1M", neededN: 600000, k: "confirmed", kText: "Former Ginger Exchange: hood, walk-ins", tags: ["READ 11-07", "CITY", "CONFLICT"], seen: "boston.com lease listing, live 2026-11-07; sale listing by the same broker", url: "https://www.boston.com/listings/268-l-23502-73594131/rent/02115/", traffic: "Across from Symphony Hall; near theaters, Berklee, Northeastern and the Green Line", rReason: "Two monthly rents quoted: $4,000 and $14,000",
+      variants: [{ label: "$4,000 a month", sizeN: 2765, rentN: 17.36, yearN: 48000 }, { label: "$14,000 a month", sizeN: 2765, rentN: 60.76, yearN: 168000 }],
+      verdict: "A real hood-and-walk-ins restaurant across from Symphony Hall, but the broker quotes both $4,000 and $14,000 a month for it, so settle the rent before anything else.", risk: "Rent conflict; dark since late 2024; bigger than a counter bakery needs." },
+    { id: "harv34", order: 7, tile: "ALL", addr: "34 Harvard Ave", area: "Allston Village", kind: "lease", status: "likely", fit: 9, pts: [2,1,3,2,1], held: [0,1,0,0,0], size: "2,181", sizeN: 2181, rent: "on request + NNN", rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Hood, fryers, walk-in on city record", tags: ["SNIP 06-15", "CITY"], seen: "CommercialCafe updated 2026-06-15; building empty per Boston Globe 2026-08-20", rReason: "Rent on request, NNN on top", verdict: "A real second-generation kitchen with a hood in Allston Village, empty since The Draft lost its license; worth a call for the rent, but have the basement inspected.", risk: "2025 inspections found heavy rodent activity, leaking pipes and damaged walls downstairs. No license to inherit." },
+    { id: "lex", order: 11, tile: "LEX", addr: "Lexington Center cafe (address withheld)", area: "Lexington Center", kind: "sale", status: "likely", fit: 9, pts: [2,1,3,2,1], held: [0,1,0,0,0], size: "1,550", sizeN: 1550, rent: "$50.81", rentN: 50.81, year: "$78,756", yearN: 78756, needed: "$984K", neededN: 984450, k: "confirmed", kText: "New cafe build-out, 12 seats", tags: ["SNIP undated"], seen: "BizQuest BW2476956, undated, indexed 2026-11", rReason: "No sales or earnings shared",
+      deal: { ask: "$165,000", sales: NS, sde: NS, worth: NS, lease: "$6,563 a month ($50.81/sq ft); lease term not stated", read: "Turnkey new cafe in a strong weekend town center; rent needs nearly $1M of sales and there are no financials." },
+      verdict: "Turnkey new cafe in a strong weekend town center for a modest $165,000, but rent of about $6,560 a month needs nearly $1M in sales and there are no financials or lease terms.", risk: "No financials; the rent suits a bakery-cafe with lunch, not a counter bakery; lease term not stated." },
+    { id: "mass1326", order: 8, tile: "ARL", addr: "1326 Massachusetts Ave", area: "Arlington Heights", kind: "lease", status: "likely", fit: 8, pts: [2,1,3,1,1], held: [0,1,0,0,0], size: "1,412", sizeN: 1412, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Second-generation restaurant, not turnkey", tags: ["SNIP 2026-08"], seen: "CommercialCafe updated 2026-08", rReason: "Rent not published", verdict: "A right-sized former restaurant in a small neighborhood square; a good counter-bakery candidate if the rent comes in near $40 a sq ft and the hood is still in place.", risk: "Not turnkey: confirm the hood, grease trap, gas and electric remain." },
+    { id: "eliot", order: 9, tile: "HSQ", addr: "16-18 Eliot St", area: "Cambridge, Harvard Sq", kind: "lease", status: "likely", fit: 8, pts: [1,1,3,2,1], held: [0,1,0,0,0], size: "3,000", sizeN: 3000, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Former IHOP (about 20 years), fully fitted", tags: ["SNIP 2026-04"], seen: "Listing updated 2026-04-03; IHOP closed mid-July 2026 (BRT)", rReason: "Rent not published; likely above $55", verdict: "A real, fully fitted restaurant space in Harvard Square that went dark in July with no new tenant reported; worth a call, but it is big.", risk: "About 4,143 sq ft over two levels in total; Harvard Square rent likely above the $30-55 band." },
+    { id: "holland", order: 10, tile: "DAV", addr: "51 Holland St", area: "Somerville, Davis Sq", kind: "lease", status: "likely", fit: 8, pts: [2,2,1,2,1], held: [0,0,1,0,0], size: "1,840", sizeN: 1840, rent: "$37.50", rentN: 37.5, year: "$69,000", yearN: 69000, needed: "$863K", neededN: 862500, k: "unknown", kText: "Plain retail; no kitchen found", tags: ["SNIP 2026-05"], seen: "Crexi updated 2026-05", verdict: "A fairly priced storefront steps from Davis Square, but it is plain retail with no kitchen, so budget for a full build-out and a new license.", risk: "A hood, grease trap, gas and a new license would add cost and 6-12 months." },
+    { id: "quincy", order: 12, tile: "QCY", addr: "Quincy restaurant (address withheld)", area: "Quincy", kind: "sale", status: "active", fit: 8, pts: [2,1,3,1,1], held: [0,1,0,0,0], size: "1,850", sizeN: 1850, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating restaurant, kitchen equipment included", tags: ["READ 11-07"], seen: "MLS added 2026-08-31; boston.com read 2026-11-07", rReason: "No sales, rent or lease shared",
+      deal: { ask: "$160,000", sales: NS, sde: NS, worth: NS, lease: "Rent and term not stated", read: "Live, right-sized, equipped; only worth a call to see the lease." },
+      verdict: "A live, right-sized restaurant with equipment at a modest price; nothing is known about sales, rent or lease, so it is only worth a call to see the lease.", risk: "No financials, rent or lease term; commuter-oriented location." },
+    { id: "davis", order: 13, tile: "DAV", addr: "Davis Square cafe (address withheld)", area: "Somerville, Davis Sq", kind: "sale", status: "likely", fit: 8, pts: [1,1,3,2,1], held: [1,1,0,0,0], size: "800-1,000?", sizeN: -1, rent: "$36", rentN: 36, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating cafe; hood unlikely", tags: ["SNIP 11-07"], seen: "BizQuest Somerville page, 2026-11-07", rReason: "No sales or earnings shared",
+      deal: { ask: "$165,000", sales: NS, sde: NS, worth: NS, lease: "$36/sq ft plus NNN, tax and water; may have about 3 years left", read: "Cheap way into Davis Square, but no sales figures and possibly no hood." },
+      verdict: "A cheap way into Davis Square at $165,000, but there are no sales figures, the size is unclear, the lease may have only three years left and there may be no hood.", risk: "NNN, tax and water on top of base rent; size not tied to the listing." },
+    { id: "needham", order: 14, tile: "NEE", addr: "Needham Center boba shop", area: "Needham Center", kind: "sale", status: "likely", fit: 8, pts: [1,1,3,2,1], held: [1,1,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Boba shop with a bakery and sandwich side", tags: ["SNIP undated"], seen: "BizQuest BW2499331, undated", rReason: "Rent not stated; ask about 2.3x a $65,000 cash flow",
+      deal: { ask: "$150,000 or $200,000", sales: "$250,000", sde: "$65,000", mSde: 2.31, mSdeAlt: 3.08, mSales: 0.60, mSalesAlt: 0.80, worth: "$142K-176K", lease: "Not disclosed", read: "Fair at $150,000, but a $250K boba shop: you would mainly buy a corner and a lease." },
+      verdict: "A good town-center corner with civic foot traffic at a low price, but it is a small boba shop doing $250K, so you would mainly be buying a location and a lease.", risk: "Sales of $250K against the $0.6-0.8M a bakery needs; the format probably lacks a hood and ovens." },
+    { id: "central", order: 15, tile: "CSQ", addr: "Central Square bubble tea shop", area: "Cambridge, Central Sq", kind: "sale", status: "likely", fit: 8, pts: [1,1,3,2,1], held: [1,1,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating cafe; hood unlikely", tags: ["SNIP undated"], seen: "BizQuest BW2477788, undated", rReason: "No earnings, rent or lease shared",
+      deal: { ask: "$200,000 or $160,000", sales: "~$530,000 ($10,200 a week x 52)", sde: NS, mSales: 0.38, mSalesAlt: 0.30, worth: NS, lease: "Not stated", read: "Mainly a lease-takeover lead; a hood is unlikely." },
+      verdict: "A bubble tea shop marketed as a turnkey cafe in a busy square, probably without a hood; mainly a lease-takeover lead.", risk: "No earnings, rent or lease data; two asking prices seen." },
+    { id: "bostoncafe", order: 16, tile: null, addr: "Boston cafe-bakery (address withheld)", area: "Boston", kind: "sale", status: "likely", fit: 7, pts: [2,0,3,1,1], held: [0,0,0,0,0], size: "1,750", sizeN: 1750, rent: "$31.89", rentN: 31.89, year: "$55,808", yearN: 55808, needed: "$698K", neededN: 697594, k: "confirmed", kText: "Newly built cafe and bakery", tags: ["SNIP undated"], seen: "Listing indexed 2026-11-07, undated", rReason: "Ask 4.3x earnings; rent about 24% of sales",
+      deal: { ask: "$275,000", sales: "$322,744", sde: "$64,317", mSde: 4.28, mSales: 0.85, worth: "$141K-174K", lease: "$4,651 a month + $1,750 NNN: 24% of sales", read: "Newly built, but the ask is about 4.3x earnings and rent eats a quarter of sales." },
+      verdict: "A newly built cafe-bakery, but $275,000 is about 4.3 times earnings and rent eats about a quarter of sales.", risk: "NNN of $1,750 a month on top of base rent; address withheld." },
+    { id: "irish", order: 17, tile: null, addr: "Irish bakery-cafe (name withheld)", area: "Boston area", kind: "sale", status: "likely", fit: 7, pts: [1,1,3,1,1], held: [1,0,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating bakery-cafe, 35 years", tags: ["SNIP 11-07"], seen: "BizQuest Hot Listing, 2026-11-07", rReason: "Ask 3.4x earnings, above the ~2.2x bakeries sell for",
+      deal: { ask: "$1,200,000", sales: "$2,149,994", sde: "$356,997", mSde: 3.36, mSales: 0.56, worth: "$782K-967K", lease: "Rent, term and size not stated; seller financing available", read: "The only sizeable, profitable bakery-cafe for sale; rich at 3.4x earnings." },
+      verdict: "The only sizeable, profitable bakery-cafe for sale here; the price is rich at 3.4x earnings, and nothing is known about the lease or location until the broker shares them.", risk: "Much bigger than either target format; lease and rent not stated." },
+    { id: "waterfront", order: 18, tile: null, addr: "Waterfront cafe (address withheld)", area: "Suffolk County", kind: "sale", status: "likely", fit: 7, pts: [1,2,3,0,1], held: [1,0,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Turnkey breakfast and lunch cafe", tags: ["SNIP 11-07"], seen: "BizBuySell and BizQuest snippets, 2026-11-07", rReason: "Ask about 2.3x earnings",
+      deal: { ask: "$349,000 or $375,000", sales: NS, sde: "$151,000 cash flow", mSde: 2.31, worth: "$331K-409K", lease: "About 6-7 years left (second listing); beer and wine license", read: "Fairly priced if the two listings are the same cafe; get the address first." },
+      verdict: "Fairly priced at about 2.3x earnings, with 6-7 years of lease and a beer and wine license if the two listings are the same cafe.", risk: "Location unknown; the two listings may be different businesses; waterfront traffic may be seasonal." },
+    { id: "comm1211", order: 19, tile: "ALL", addr: "1211 Commonwealth Ave", area: "Allston", kind: "lease", status: "active", fit: 6, pts: [2,1,0,2,1], held: [0,0,0,0,0], size: "2,000", sizeN: 2000, rent: "$60", rentN: 60, year: "$120,000", yearN: 120000, needed: "$1.5M", neededN: 1500000, k: "no", kText: "No food permit on record", tags: ["READ 11-07", "CITY"], seen: "boston.com, live 2026-11-07", verdict: "Busy transit corner, but at about $60 a sq ft for raw space with no kitchen it is too expensive for a first bakery.", risk: "Needs a full hood and grease-trap build-out; NNN may be extra." },
+    { id: "liverpool", order: 20, tile: "EBO", addr: "152-154 Liverpool St", area: "East Boston", kind: "lease", status: "likely", fit: 6, pts: [2,2,0,1,1], held: [0,0,0,0,0], size: "1,185", sizeN: 1185, rent: "$35 NNN", rentN: 35, nnnLease: true, year: "$41,475", yearN: 41475, needed: "$518K", neededN: 518438, k: "no", kText: "New shell, no food history", tags: ["SNIP 2026-05"], seen: "Aggregator update 2026-05-07", verdict: "Affordable but a bare new shell with no food history and no crowd draw; only worth it if the landlord funds the kitchen build-out.", risk: "The $35 rate comes from an older MLS copy; CBRE now says contact for pricing." },
+    { id: "centre2070", order: 21, tile: "WRX", addr: "2070 Centre St", area: "West Roxbury", kind: "lease", status: "active", fit: 6, pts: [2,2,0,1,1], held: [0,0,0,0,0], size: "1,250", sizeN: 1250, rent: "$31.68", rentN: 31.68, year: "$39,600", yearN: 39600, needed: "$495K", neededN: 495000, k: "no", kText: "No food permit on record", tags: ["READ 11-07", "CITY"], seen: "boston.com, live 2026-11-07", verdict: "Right size and rent for a counter bakery on West Roxbury's main street, but it is raw retail with no food history, so budget for a full kitchen build-out.", risk: "Real-estate tax of $25,240 a year shown, which may be passed through." },
+    { id: "mass167", order: 22, tile: "FEN", addr: "167 Massachusetts Ave", area: "Back Bay / Fenway", kind: "lease", status: "likely", fit: 6, pts: [1,1,2,1,1], held: [0,1,0,0,0], size: "2,900", sizeN: 2900, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "likely", kText: "Former restaurant; kitchen likely needs rebuilding", tags: ["SNIP 2026-06"], seen: "Listing updated 2026-06-05", rReason: "Rent on request, likely near Back Bay levels", verdict: "Busy-corner former restaurant near Berklee, but it is at the top of the size range, rent is unpublished and probably high, and the kitchen likely needs rebuilding.", risk: "Top of the size range; rent probably high." },
+    { id: "bluehill", order: 23, tile: "DOR", addr: "879-881 Blue Hill Ave", area: "Dorchester", kind: "lease", status: "active", fit: 6, pts: [1,2,1,1,1], held: [1,0,1,0,0], size: NS, sizeN: -1, rent: "$25", rentN: 25, year: NS, yearN: -1, needed: NS, neededN: -1, k: "unknown", kText: "Former lounge; usable kitchen unclear", tags: ["READ 11-07", "CITY"], seen: "boston.com, live 2026-11-07", verdict: "Cheap per foot but oversized: a vacant former lounge building, only worth a call if the landlord will carve out a 1,500-2,500 sq ft unit with a usable kitchen.", risk: "The ground floor is about 7,380 sq ft and would need subdividing." },
+    { id: "dudley750", order: 24, tile: "DOR", addr: "750 Dudley St", area: "Dorchester, Upham's Corner", kind: "lease", status: "stale", fit: 8, pts: [2,2,3,1,0], held: [0,0,0,0,0], size: "1,720", sizeN: 1720, rent: "$20.93", rentN: 20.93, year: "$36,000", yearN: 36000, needed: "$450K", neededN: 450000, k: "confirmed", kText: "Former Paraiso Restaurant on city record", tags: ["CITY", "LIST 02-2026"], seen: "Neighborhood vacancy list, about 2026-02", verdict: "Cheapest built-out former restaurant in the batch at about $21 a sq ft, but it has sat empty since about 2020 and nobody has confirmed it is still on offer.", risk: "The only source is a neighborhood vacancy list from about February 2026." },
+    { id: "cam1248", order: 25, tile: "INM", addr: "1248-1260 Cambridge St", area: "Cambridge, Inman Sq", kind: "lease", status: "stale", fit: 8, pts: [2,1,3,2,0], held: [0,0,0,0,0], size: "2,372", sizeN: 2372, rent: "$60 NNN", rentN: 60, nnnLease: true, year: "$142,320", yearN: 142320, needed: "$1.78M", neededN: 1779000, k: "confirmed", kText: "Former Wit's End bar, fully equipped", tags: ["SNIP undated"], seen: "Showcase, CityFeet and LoopNet, undated", verdict: "Equipped former bar in Inman Square, but $60 a sq ft plus NNN needs about $1.8M in sales and the building may be redeveloped; pass unless the rent drops.", risk: "Needs about $1.78M of sales at 8%; possible redevelopment." },
+    { id: "huron361", order: 26, tile: "WCA", addr: "361 Huron Ave", area: "West Cambridge", kind: "lease", status: "stale", fit: 7, pts: [2,1,3,1,0], held: [0,1,0,0,0], size: "2,358", sizeN: 2358, rent: "on request", rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Second-generation cafe space (listing)", tags: ["SNIP 2026-05"], seen: "CommercialCafe update 2026-05-12", rReason: "Rent on request", verdict: "Second-generation cafe space on a quiet West Cambridge strip, but the listing is six months old, the rent is unpublished and the building may be sold.", risk: "NNN, and the quoted rate excludes utilities and building services." },
+    { id: "belmont687", order: 27, tile: "BEL", addr: "687 Belmont St", area: "Belmont, Waverley Sq", kind: "lease", status: "stale", fit: 7, pts: [2,2,2,1,0], held: [0,0,0,0,0], size: "1,300", sizeN: 1300, rent: "$23.08", rentN: 23.08, year: "$30,000", yearN: 30000, needed: "$375K", neededN: 375000, k: "likely", kText: "Listed as a restaurant", tags: ["SNIP undated"], seen: "LoopNet shows it no longer advertised", verdict: "Cheap and the right size, but the listing looks dead and nothing confirms the space is still free; a quick call at most.", risk: "Undated listing that LoopNet says is no longer advertised." },
+    { id: "beacon1630", order: 28, tile: "BRK", addr: "1630 Beacon St", area: "Brookline, Washington Sq", kind: "lease", status: "stale", fit: 6, pts: [2,1,1,2,0], held: [0,1,1,0,0], size: "2,008", sizeN: 2008, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "unknown", kText: "No kitchen evidence", tags: ["SNIP 2026-03"], seen: "Listing updated 2026-03-30", rReason: "NNN lease; rent not published", verdict: "A good-size storefront on a busy Brookline food block, but nothing shows a kitchen and the listing is seven months old.", risk: "Full build-out and a new license needed." },
+    { id: "medford", order: 29, tile: "MED", addr: "Medford breakfast and lunch restaurant", area: "Medford", kind: "sale", status: "stale", fit: 7, pts: [2,1,3,1,0], held: [0,0,0,0,0], size: "~2,000", sizeN: 2000, rent: "$23.70 incl. NNN", rentN: 23.7, year: "$47,400", yearN: 47400, needed: "$593K", neededN: 592500, k: "confirmed", kText: "Operating restaurant with kitchen", tags: ["SNIP undated"], seen: "BizBuySell snippet, not re-found 2026-11-07", rReason: "Rent about 12% of sales; earnings not stated",
+      deal: { ask: "$80,000", sales: "~$390,000 ($7,500 a week x 52)", sde: NS, mSales: 0.21, worth: NS, lease: "$3,950 a month incl. NNN (about 12% of sales); 5 years + one 5-year option", read: "Strong takeover terms, but it could not be re-found on Nov 7." },
+      verdict: "Cheap rent, a 5+5-year lease and a working kitchen at a token price would make this a strong takeover, but it could not be re-found.", risk: "Not re-found on 2026-11-07." },
+    { id: "harvsale", order: 30, tile: "HSQ", addr: "Harvard Square-area cafe", area: "Cambridge, Harvard Sq area", kind: "sale", status: "stale", fit: 7, pts: [1,1,3,2,0], held: [1,1,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating cafe and specialty food shop", tags: ["SNIP undated"], seen: "BizBuySell snippet, not re-found 2026-11-07", rReason: "No sales or earnings shared",
+      deal: { ask: "$290,000", sales: NS, sde: NS, worth: NS, lease: "Not stated; may be the cafe with 11 years left", read: "Could not be re-found; ask the broker which cafe it is." },
+      verdict: "A Harvard Square cafe that may come with a long lease, but the $290,000 listing could not be re-found.", risk: "Not re-found; financials missing." },
+    { id: "winchester", order: 31, tile: "WIN", addr: "Winchester coffee shop and bakery", area: "Winchester", kind: "sale", status: "stale", fit: 6, pts: [1,1,3,1,0], held: [1,0,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating coffee shop and bakery", tags: ["SNIP undated"], seen: "BizBuySell snippet, not re-found 2026-11-07", rReason: "Ask about 3.1x earnings",
+      deal: { ask: "$250,000", sales: NS, sde: "$80,000 cash flow", mSde: 3.13, worth: "$175K-217K", lease: "Not stated", read: "About 3.1x earnings; confirm it exists before spending time." },
+      verdict: "Could be a good small bakery buy at about 3x earnings, but no live listing page could be found.", risk: "Not re-found by two searches." },
+    { id: "watertown", order: 32, tile: "WAT", addr: "Watertown breakfast and lunch cafe", area: "Watertown", kind: "sale", status: "stale", fit: 6, pts: [1,1,3,1,0], held: [1,1,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating cafe", tags: ["SNIP undated"], seen: "BizBuySell snippet, not re-found 2026-11-07", rReason: "Ask about 0.38x sales; earnings not stated",
+      deal: { ask: "$199,999", sales: "~$520,000 ($10,000 a week x 52)", sde: NS, mSales: 0.38, worth: NS, lease: "Possible match: $3,850 a month", read: "Cheap relative to sales; the listing could not be re-found." },
+      verdict: "Cheap relative to sales with room to add hours, but the listing could not be re-found.", risk: "Not re-found; the possible match conflicts on details." },
+    { id: "maverick", order: 33, tile: "EBO", addr: "Coffee and pastry shop by Maverick station", area: "East Boston, Maverick Sq", kind: "sale", status: "stale", fit: 5, pts: [1,0,3,1,0], held: [1,0,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Operating coffee and pastry shop", tags: ["SNIP undated"], seen: "Listing likely from 2025", rReason: "Ask 7.5x EBITDA",
+      deal: { ask: "$315,000 incl. $126,000 FF&E", sales: "$573,000", sde: "EBITDA $42,000", mSales: 0.55, worth: NS, lease: "Not disclosed", read: "Thin earnings for the price; part of the income is money transfer." },
+      verdict: "A busy spot by the Blue Line, but the stated earnings make $315,000 expensive, and part of the income is money transfer.", risk: "Thin stated earnings; the listing likely dates from 2025." },
+    { id: "river1260", order: 34, tile: "HPK", addr: "1260-1270 River St", area: "Hyde Park, Cleary Sq", kind: "lease", status: "taken", fit: 8, pts: [2,2,3,1,0], held: [0,0,0,0,0], size: "1,934", sizeN: 1934, rent: "$28", rentN: 28, year: "$54,152", yearN: 54152, needed: "$677K", neededN: 676900, k: "confirmed", kText: "Former Papa Gino's", tags: ["READ BRT 10-14"], seen: "Sunrise Cafe open per BRT, 2026-10-14", verdict: "Taken: Sunrise Cafe Bagels and Diner opened in this former Papa Gino's space in October 2026.", risk: "Taken." },
+    { id: "wash1385", order: 35, tile: "NEW", addr: "1385 Washington St", area: "West Newton", kind: "lease", status: "taken", fit: 8, pts: [2,2,3,1,0], held: [0,0,0,0,0], size: "1,200", sizeN: 1200, rent: "$40", rentN: 40, year: "$48,000", yearN: 48000, needed: "$600K", neededN: 600000, k: "confirmed", kText: "Former Shogun, turnkey", tags: ["READ BRT 05-05"], seen: "Crunch & Boba open per BRT, 2026-05-05", verdict: "Gone: Crunch & Boba opened in this former Shogun space in May 2026.", risk: "Taken." },
+    { id: "beacon912", order: 36, tile: "FEN", addr: "912 Beacon St", area: "Fenway / Kenmore", kind: "lease", status: "taken", fit: 7, pts: [2,1,3,1,0], held: [0,1,0,0,0], size: "1,000", sizeN: 1000, rent: "on request", rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Bubble-tea shop on city record", tags: ["CITY 11-07"], seen: "City license data, 2026-11-07", rReason: "Rent on request", verdict: "Appears gone: a new bubble-tea operator now holds a city license for this exact space.", risk: "Taken." },
+    { id: "shunt23", order: 37, tile: "JP", addr: "23 South Huntington Ave", area: "JP / Mission Hill", kind: "lease", status: "taken", fit: 7, pts: [2,1,3,1,0], held: [0,1,0,0,0], size: "1,274", sizeN: 1274, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Hood and grease trap on city record", tags: ["CITY 10-16"], seen: "New restaurant licensed 2026-10-16", rReason: "Rent not published", verdict: "Taken: an Indian restaurant was licensed for this space in October 2026 and is renovating.", risk: "Taken." },
+    { id: "college177", order: 38, tile: "MED", addr: "177 College Ave", area: "Medford, Tufts", kind: "lease", status: "taken", fit: 7, pts: [2,1,3,1,0], held: [0,1,0,0,0], size: "1,300", sizeN: 1300, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Former Starbucks", tags: ["READ BRT 08-06"], seen: "Pavement lease reported 2026-08-06", rReason: "Rent not published", verdict: "Taken: Pavement Coffeehouse is moving into the former Starbucks.", risk: "Taken." },
+    { id: "cam1629", order: 39, tile: "INM", addr: "1629 Cambridge St (sale listing)", area: "Mid-Cambridge", kind: "sale", status: "taken", fit: 6, pts: [1,1,3,1,0], held: [1,1,0,0,0], size: NS, sizeN: -1, rent: NS, rentN: -1, year: NS, yearN: -1, needed: NS, neededN: -1, k: "confirmed", kText: "Former Darwin's; now Asaro Bakery & Cafe", tags: ["READ BRT 2024-06"], seen: "Asaro Bakery & Cafe open since 2024-06", rReason: "No sales or earnings shared",
+      deal: { ask: "$325,000", sales: NS, sde: NS, worth: NS, lease: "Not stated", read: "Stale: Asaro Bakery & Cafe has operated here since June 2024." },
+      verdict: "Stale: the former Darwin's has been Asaro Bakery & Cafe since June 2024, so this listing is almost certainly the old sale.", risk: "Taken." }
+  ];
+  var BY_ID = {};
+  SITES.forEach(function (s) { BY_ID[s.id] = s; });
+
+  var TILES = [
+    ["LEX", "Lexington", 0, 0, ""], ["ARL", "Arlington", 1, 0, ""], ["WIN", "Winchester", 2, 0, ""], ["MED", "Medford", 3, 0, ""],
+    ["BEL", "Belmont", 0, 1, ""], ["WCA", "West Cambridge", 1, 1, ""], ["DAV", "Davis Sq", 2, 1, "B"], ["USQ", "Union Sq", 3, 1, "B"], ["CHA", "Charlestown", 4, 1, ""], ["EBO", "East Boston", 5, 1, "C"],
+    ["WAT", "Watertown", 0, 2, ""], ["HSQ", "Harvard Sq", 1, 2, ""], ["INM", "Inman, Mid-Cambridge", 2, 2, ""], ["KEN", "Kendall", 3, 2, ""], ["NEN", "North End", 4, 2, ""],
+    ["NEW", "Newton", 0, 3, ""], ["ALL", "Allston, Brighton", 1, 3, ""], ["CSQ", "Central Sq", 2, 3, ""], ["BBY", "Back Bay", 3, 3, "A"], ["DTN", "Downtown", 4, 3, "B"], ["SEA", "Seaport", 5, 3, "A"],
+    ["NEE", "Needham", 0, 4, ""], ["BRK", "Brookline", 1, 4, "B"], ["FEN", "Fenway, Symphony", 2, 4, ""], ["SEN", "South End", 3, 4, ""], ["SBO", "South Boston", 4, 4, "B"],
+    ["WRX", "West Roxbury", 0, 5, ""], ["JP", "Jamaica Plain", 1, 5, "C"], ["EGL", "Egleston Sq", 2, 5, ""], ["DOR", "Dorchester", 3, 5, "C"], ["QCY", "Quincy", 5, 5, ""],
+    ["ROS", "Roslindale", 1, 6, "C"], ["HPK", "Hyde Park", 2, 6, ""], ["MAT", "Mattapan", 3, 6, ""]
+  ];
+  var TILE_NAME = {};
+  TILES.forEach(function (t) { TILE_NAME[t[0]] = t[1]; });
+
+  var QUESTIONS = [
+    "Is the lease gross or NNN, and what are the charges per sq ft?",
+    "Hood make, length and make-up air; was it inspected recently?",
+    "Grease trap location, size and condition",
+    "Gas service and electric capacity (amps) for a deck or rack oven",
+    "Can a Common Victualler license transfer, or is a new one needed?",
+    "Is bakery with takeout allowed as of right under the zoning?",
+    "Tenant-improvement allowance and free-rent months",
+    "Term, renewal options, signage and allowed hours"
+  ];
+  var VISIT_ITEMS = [
+    ["Hood and make-up air", "Make, length and age; is there make-up air? Look for the last cleaning sticker."],
+    ["Grease trap", "Location, size and last pump-out; any leaks or drain problems?"],
+    ["Gas and electric", "Gas line size and panel amps for a deck or rack oven."],
+    ["Equipment that stays", "What stays, what works, and who owns it."],
+    ["Smell and cleanliness", "Odors in walls, floors and drains; get a deep-clean estimate."],
+    ["License transfer", "Can a Common Victualler license carry over, or is a new one needed?"],
+    ["Zoning", "Is a bakery with takeout allowed as of right?"],
+    ["Lease terms", "Gross or NNN, charges per sq ft, term, options and tenant-improvement allowance."],
+    ["Signs, hours and frontage", "Sign rights, allowed hours, window line and morning light."]
+  ];
+  var SALES_PRESETS = [["Counter bakery $600K", 600000], ["Counter bakery $800K", 800000], ["Bakery-cafe $1.2M", 1200000], ["Bakery-cafe $1.7M", 1700000]];
+  var STAGES = ["To call", "Contacted", "Toured", "Negotiating", "Passed", "Signed"];
+
+  // ---------- storage (this browser only) ----------
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem("bsf:" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem("bsf:" + k, JSON.stringify(v)); } catch (e) { /* storage unavailable: keep in memory */ } }
+  };
+  function defaultFilters() { return { types: { lease: true, sale: true }, status: { active: true, likely: true, stale: false, taken: false }, minFit: 0, confirmedOnly: false, sort: "fit", query: "" }; }
+  var state = {
+    filters: Object.assign(defaultFilters(), store.get("filters", {})),
+    open: null,
+    compare: store.get("compare", ["wash3089", "centre349", "mass1105"]),
+    stages: store.get("stages", {}),
+    calls: store.get("calls", {}),
+    asked: store.get("asked", {}),
+    visit: store.get("visit", {}),
+    variant: {},
+    math: {},
+    sales: 600000,
+    onlyDiff: false,
+    atlas: { sel: null, showOld: false, tiers: true },
+    saleStale: true,
+    visitTab: "check",
+    visitOpen: 0,
+    photos: {},
+    lastVisit: "wash3089"
+  };
+  state.filters.query = "";
+  state.compare = state.compare.filter(function (id) { return BY_ID[id]; }).slice(0, 3);
+
+  // ---------- helpers ----------
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function short(n) { return n >= 1000000 ? "$" + (n / 1000000).toFixed(2) + "M" : "$" + Math.round(n / 1000) + "K"; }
+  function last(n) { return n < 0 ? 1e12 : n; }
+  function stageOf(id) { return state.stages[id] || "To call"; }
+  function kindLabel(s) { return s.kind === "sale" ? "Business for sale" : "Lease"; }
+  function chip(s) { return '<span class="chip ' + s.status + '">' + STATUS[s.status] + "</span>"; }
+  function tagHtml(t) {
+    var cls = t.indexOf("SNIP") === 0 ? " snip" : (t.indexOf("CONFLICT") === 0 ? " conflict" : "");
+    return '<span class="tag' + cls + '">' + esc(t) + "</span>";
+  }
+  function ruler(s, size) {
+    var html = "", words = [];
+    for (var i = 0; i < 5; i++) {
+      html += '<span class="g">';
+      for (var j = 0; j < GROUPS[i].max; j++) {
+        var cls = j < s.pts[i] ? " e" : (s.held[i] ? " h" : "");
+        html += '<span class="tick' + cls + '"></span>';
+      }
+      html += "</span>";
+      words.push(GROUPS[i].name.toLowerCase() + " " + s.pts[i] + " of " + GROUPS[i].max + (s.held[i] && s.pts[i] < GROUPS[i].max ? ", held back by a missing or conflicting fact" : ""));
+    }
+    return '<span class="ruler' + (size ? " " + size : "") + '" role="img" aria-label="' + esc("Fit " + s.fit + " of 10: " + words.join("; ")) + '">' + html + "</span>";
+  }
+  function reasons(s) {
+    if (s.reasons) return s.reasons;
+    var size = s.sizeN < 0 ? "Size not stated" : s.size + " sq ft" + (s.pts[0] === 2 ? ", in the 1,000-2,800 range" : ", outside the 1,000-2,800 range");
+    var rent = s.rReason || (s.rentN < 0 ? "Rent not published" : (s.pts[1] === 2 ? s.rent + " a sq ft, at or under $55" : s.rent + " a sq ft, above $55"));
+    var food = { confirmed: "Food use on record or in the listing: ", likely: "Former food use; kitchen may be gone: ", unknown: "No kitchen evidence yet: ", no: "No food use on record: " }[s.k] + s.kText;
+    var loc = s.traffic || (s.pts[3] === 2 ? "Busy square or destination traffic" : (s.pts[3] === 1 ? "Neighborhood or mixed traffic" : "Location unknown"));
+    var avail = { active: "Live on 2026-11-07", likely: "Likely still available", stale: "Not re-found or unconfirmed", taken: "Taken" }[s.status];
+    return [size, rent, food, loc, avail];
+  }
+  function marker(s, big) { return '<span class="marker ' + s.status + (s.kind === "sale" ? " sale" : "") + (big ? " lg" : "") + '" aria-hidden="true">' + s.fit + "</span>"; }
+  function saveVisit() { store.set("visit", state.visit); }
+  function visitOf(id) { if (!state.visit[id]) state.visit[id] = { status: {}, notes: {}, tallies: [], count: 0 }; return state.visit[id]; }
+
+  // ---------- desk ----------
+  function filteredSites() {
+    var f = state.filters, q = (f.query || "").toLowerCase();
+    var list = SITES.filter(function (s) {
+      if (!f.types[s.kind] || !f.status[s.status] || s.fit < f.minFit) return false;
+      if (f.confirmedOnly && s.k !== "confirmed") return false;
+      if (q && (s.addr + " " + s.area + " " + s.kText + " " + s.verdict).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    list.sort(function (a, b) {
+      if (f.sort === "needed") return last(a.neededN) - last(b.neededN);
+      if (f.sort === "rent") return last(a.rentN) - last(b.rentN);
+      if (f.sort === "size") return last(a.sizeN) - last(b.sizeN);
+      return (b.fit - a.fit) || (a.order - b.order);
+    });
+    return list;
+  }
+  function renderPicks() {
+    var money3 = { wash3089: "1,490 sq ft · $29/sq ft · needs $540K in sales", centre349: "1,200 sq ft section · $39.50/sq ft · needs $593K", mass1105: "~2,500 sq ft · $35/sq ft (2024) · needs $1.09M" };
+    document.getElementById("picks").innerHTML = SITES.filter(function (s) { return s.pick; }).sort(function (a, b) { return a.pick - b.pick; }).map(function (s) {
+      return '<article class="pick">' +
+        '<div class="top"><span class="callno">' + s.pick + '</span><div><h3>' + esc(s.addr) + '</h3><p class="small sub">' + esc(s.area) + " · Lease · " + esc(stageOf(s.id)) + "</p></div>" + chip(s) + "</div>" +
+        '<div style="display: flex; align-items: center; gap: 10px">' + ruler(s, "md") + '<span class="fitnum" style="font-size: 15px">' + s.fit + " of 10</span></div>" +
+        '<p class="mono" style="font-size: 13px">' + money3[s.id] + "</p>" +
+        '<p class="small sub">' + esc(s.kText) + "</p>" +
+        '<div class="btns"><a class="btn btn-primary" href="#site-' + s.id + '">Open dossier</a><a class="btn btn-outline" href="#visit-' + s.id + '">Visit kit</a></div>' +
+        "</article>";
+    }).join("");
+  }
+  function countBy(field, value) { var n = 0; SITES.forEach(function (s) { if (s[field] === value) n++; }); return n; }
+  function renderFilters() {
+    var f = state.filters;
+    function pressed(on) { return ' aria-pressed="' + (on ? "true" : "false") + '"'; }
+    var html = '<fieldset><legend class="legend">Type</legend><div class="btns">' +
+      [["lease", "Lease"], ["sale", "Business for sale"]].map(function (t) { return '<button class="btn" type="button" data-action="type" data-value="' + t[0] + '"' + pressed(f.types[t[0]]) + "><span>" + t[1] + '</span><span class="n">' + countBy("kind", t[0]) + "</span></button>"; }).join("") +
+      '</div></fieldset><fieldset><legend class="legend">Status</legend><div class="btns">' +
+      [["active", "Live"], ["likely", "Likely live"], ["stale", "Stale"], ["taken", "Taken"]].map(function (t) { return '<button class="btn" type="button" data-action="status" data-value="' + t[0] + '"' + pressed(f.status[t[0]]) + '><span class="swatch ' + t[0] + '" aria-hidden="true"></span><span>' + t[1] + '</span><span class="n">' + countBy("status", t[0]) + "</span></button>"; }).join("") +
+      '</div></fieldset><fieldset><legend class="legend">Minimum fit</legend><div class="seg">' +
+      [[0, "Any"], [6, "6+"], [7, "7+"], [8, "8+"], [9, "9"]].map(function (t) { return '<button class="btn" type="button" data-action="minfit" data-value="' + t[0] + '"' + pressed(f.minFit === t[0]) + ">" + t[1] + "</button>"; }).join("") +
+      '</div></fieldset><label class="check"><input id="desk-confirmed" type="checkbox"' + (f.confirmedOnly ? " checked" : "") + "> Food use confirmed only</label>" +
+      '<div class="field push"><label for="desk-sort">Sort by</label><select id="desk-sort">' +
+      [["fit", "Fit, then report order"], ["needed", "Sales needed, lowest first"], ["rent", "Rent per sq ft, lowest first"], ["size", "Size, smallest first"]].map(function (o) { return '<option value="' + o[0] + '"' + (f.sort === o[0] ? " selected" : "") + ">" + o[1] + "</option>"; }).join("") +
+      "</select></div>";
+    document.getElementById("filters").innerHTML = html;
+  }
+  function renderDeskRows() {
+    var list = filteredSites();
+    var sortText = { fit: "sorted by fit, then report order", needed: "sorted by sales needed", rent: "sorted by rent per sq ft", size: "sorted by size" }[state.filters.sort];
+    document.getElementById("table-count").textContent = "· showing " + list.length + " of 39 · " + sortText;
+    if (!list.length) {
+      document.getElementById("desk-rows").innerHTML = '<tr><td colspan="11" style="padding: 24px 16px"><div class="btns" style="align-items: center"><p>No site matches these filters.</p><button class="btn btn-outline" type="button" data-action="reset">Reset filters</button></div></td></tr>';
+      return;
+    }
+    document.getElementById("desk-rows").innerHTML = list.map(function (s, i) {
+      var open = state.open === s.id;
+      var row = '<tr class="row' + (open ? " open" : "") + '">' +
+        '<td class="mono sub">' + (i + 1) + "</td>" +
+        '<td style="white-space: nowrap">' + ruler(s) + ' <span class="fitnum">' + s.fit + "</span></td>" +
+        '<td><div class="btns" style="gap: 6px; align-items: center"><a class="site-name" href="#site-' + s.id + '">' + esc(s.addr) + "</a>" + (s.pick ? '<span class="callno">Call #' + s.pick + "</span>" : "") + '</div><div class="site-sub">' + esc(s.area) + " · " + kindLabel(s) + "</div></td>" +
+        "<td>" + chip(s) + '<span class="stage">' + esc(stageOf(s.id)) + "</span></td>" +
+        '<td class="num' + (s.sizeN < 0 ? " muted" : "") + '">' + esc(s.size) + "</td>" +
+        '<td class="num' + (s.rentN < 0 ? " muted" : "") + '">' + esc(s.rent) + (s.conflict ? '<div class="cell-tag"><span class="tag conflict">CONFLICT</span></div>' : "") + "</td>" +
+        '<td class="num' + (s.yearN < 0 ? " muted" : "") + '">' + esc(s.year) + "</td>" +
+        '<td class="num' + (s.neededN < 0 ? " muted" : "") + '" style="font-weight: 600">' + esc(s.needed) + "</td>" +
+        '<td><span class="kit ' + s.k + '">' + KIT[s.k] + '</span><div class="small sub" style="margin-top: 3px">' + esc(s.kText) + "</div></td>" +
+        '<td><div class="tags">' + s.tags.map(tagHtml).join("") + "</div></td>" +
+        '<td><button class="btn btn-icon" type="button" data-action="row" data-value="' + s.id + '" aria-expanded="' + (open ? "true" : "false") + '" aria-label="' + (open ? "Hide" : "Show") + " details for " + esc(s.addr) + '"><svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"></path></svg></button></td>' +
+        "</tr>";
+      if (!open) return row;
+      var r = reasons(s);
+      var inCmp = state.compare.indexOf(s.id) >= 0;
+      return row + '<tr class="detail"><td colspan="11"><div class="detail-grid">' +
+        '<div><h3>Verdict</h3><p>' + esc(s.verdict) + '</p><h3 style="margin-top: 10px">Main risk</h3><p>' + esc(s.risk) + "</p>" + (s.deal ? '<p class="mono" style="margin-top: 10px">Asking ' + esc(s.deal.ask) + "</p>" : "") + "</div>" +
+        "<div><h3>Why " + s.fit + ' of 10</h3><ul class="parts">' + GROUPS.map(function (g, gi) {
+          var held = s.held[gi] && s.pts[gi] < g.max;
+          return '<li><span style="font-weight: 500">' + g.name + '</span><span class="mono">' + s.pts[gi] + "/" + g.max + '</span><span class="sub">' + esc(r[gi]) + (held ? ' <span class="tag ask">held back</span>' : "") + "</span></li>";
+        }).join("") + "</ul></div>" +
+        '<div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start"><h3>Seen</h3><p class="mono small sub">' + esc(s.seen) + '</p><div class="btns"><a class="btn btn-primary" href="#site-' + s.id + '">Open dossier</a><button class="btn btn-outline" type="button" data-action="compare" data-value="' + s.id + '" aria-pressed="' + (inCmp ? "true" : "false") + '">' + (inCmp ? "In compare" : "Add to compare") + '</button><a class="btn" href="#visit-' + s.id + '">Visit kit</a></div></div>' +
+        "</div></td></tr>";
+    }).join("");
+  }
+  function renderDesk() { renderPicks(); renderFilters(); renderDeskRows(); document.getElementById("desk-search").value = state.filters.query; }
+
+  // ---------- site dossier ----------
+  function mathFor(s) {
+    if (!state.math[s.id]) {
+      var v = s.variants ? s.variants[state.variant[s.id] || 0] : null;
+      state.math[s.id] = { size: v ? v.sizeN : (s.sizeN > 0 ? s.sizeN : ""), rent: v ? v.rentN : (s.rentN > 0 ? s.rentN : ""), type: s.nnnLease ? "nnn" : "unknown", nnn: "", sales: 600000 };
+    }
+    return state.math[s.id];
+  }
+  function mathOutputs(s) {
+    var m = mathFor(s), size = Number(m.size) || 0, rent = Number(m.rent) || 0, nnn = m.type === "nnn" ? (Number(m.nnn) || 0) : 0, sales = Number(m.sales) || 1;
+    var known = size > 0 && rent > 0, yearly = size * (rent + nnn), share = yearly / sales, over = share > 0.08;
+    return {
+      known: known, yearly: known ? money(yearly) : "—", monthly: known ? money(yearly / 12) : "—", needed: known ? short(yearly / 0.08) : "—",
+      share: known ? (share * 100).toFixed(1) + "%" + (over ? " · over 8%" : "") : "—", over: known && over,
+      width: known ? Math.min(share / 0.2, 1) * 100 : 0, salesText: money(sales),
+      label: known ? "Rent is " + (share * 100).toFixed(1) + "% of " + money(sales) + " in sales; the target is 8% or less" : "Enter a size and rent to see the share"
+    };
+  }
+  function updateMath(s) {
+    var o = mathOutputs(s), m = mathFor(s);
+    var root = document.getElementById("view-site");
+    function set(sel, txt) { var el = root.querySelector(sel); if (el) el.textContent = txt; }
+    set("#m-out-year", o.yearly); set("#m-out-month", o.monthly); set("#m-out-need", o.needed); set("#m-out-share", o.share); set("#m-sales-text", o.salesText);
+    var sh = root.querySelector("#m-out-share"); if (sh) sh.classList.toggle("over", o.over);
+    var fill = root.querySelector("#m-fill"); if (fill) { fill.style.width = o.width + "%"; fill.classList.toggle("over", o.over); }
+    var bar = root.querySelector("#m-bar"); if (bar) bar.setAttribute("aria-label", o.label);
+    var nn = root.querySelector("#m-nnn-note"); if (nn) nn.hidden = m.type !== "unknown";
+    var unk = root.querySelector("#m-unknown"); if (unk) unk.hidden = o.known;
+    root.querySelectorAll("[data-action='preset']").forEach(function (b) { b.setAttribute("aria-pressed", Number(b.dataset.value) === Number(m.sales) ? "true" : "false"); });
+  }
+  function renderSite(id) {
+    var s = BY_ID[id], m = mathFor(s), r = reasons(s), inCmp = state.compare.indexOf(id) >= 0;
+    var kitchen = s.kitchen || [["Kitchen evidence", s.kText, s.tags[0]]];
+    var kitchenRows = kitchen.map(function (k) { return "<li><span style=\"font-weight: 500\">" + esc(k[0]) + "</span><span>" + esc(k[1]) + "</span>" + tagHtml(k[2]) + "</li>"; }).join("") +
+      '<li><span style="font-weight: 500">License transfer</span><span class="muted">Not stated. Ask whether a Common Victualler license can carry over or a new one is needed.</span><span class="tag ask">ASK</span></li>' +
+      '<li><span style="font-weight: 500">Zoning for a bakery</span>' + (s.zoning ? "<span>" + esc(s.zoning) + "</span>" + tagHtml("READ 11-07") : '<span class="muted">Not stated. Ask whether bakery with takeout is allowed as of right, which avoids a 3-6 month zoning appeal.</span><span class="tag ask">ASK</span>') + "</li>";
+    var evidence = (s.evidence || [[s.tags.join(" + "), "Where this came from", s.seen]]).map(function (e) { return '<li><span style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap">' + tagHtml(e[0]) + '<span style="font-weight: 500">' + esc(e[1]) + '</span></span><span class="small sub">' + esc(e[2]) + "</span></li>"; }).join("");
+    var risks = (s.risks || [s.risk]).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
+    var asked = state.asked[id] || {}, doneQ = 0;
+    var qs = QUESTIONS.map(function (q, i) { if (asked[i]) doneQ++; return '<li><input id="q-' + i + '" type="checkbox" data-q="' + i + '"' + (asked[i] ? " checked" : "") + '><label for="q-' + i + '">' + esc(q) + "</label></li>"; }).join("");
+    var calls = state.calls[id] || [];
+    var nearby = SITES.filter(function (x) { return x.tile && x.tile === s.tile && x.id !== s.id; });
+    var variants = s.variants ? '<div class="field"><span class="legend" id="var-label">Which listing figure</span><div class="seg" role="group" aria-labelledby="var-label">' + s.variants.map(function (v, i) { return '<button class="btn" type="button" data-action="variant" data-value="' + i + '" aria-pressed="' + ((state.variant[id] || 0) === i ? "true" : "false") + '" style="font-family: var(--font-sans)">' + esc(v.label) + "</button>"; }).join("") + "</div></div>" : "";
+    var html =
+      '<nav aria-label="Breadcrumb" class="small sub"><a href="#desk">Desk</a> / ' + (s.tile ? '<a href="#atlas" data-action="atlas-tile" data-value="' + s.tile + '">' + esc(TILE_NAME[s.tile]) + "</a> / " : "") + '<span style="color: var(--ink)">' + esc(s.addr) + "</span></nav>" +
+      '<section class="card pad-lg" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px">' +
+        '<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 8px">' +
+          '<div class="btns" style="gap: 8px; align-items: center">' + (s.pick ? '<span class="callno">Call #' + s.pick + "</span>" : "") + chip(s) + '<span class="tag" style="font-family: var(--font-sans)">' + kindLabel(s) + "</span></div>" +
+          '<h1 id="site-h" style="font-size: 28px; line-height: 36px; font-weight: 600">' + esc(s.addr) + "</h1>" +
+          '<p class="sub">' + esc(s.area) + " · " + esc(s.seen) + "</p>" +
+          '<p style="font-size: 15px; line-height: 22px; max-width: 72ch">' + esc(s.verdict) + "</p>" +
+        "</div>" +
+        '<div style="flex: 1 1 280px; max-width: 380px; display: flex; flex-direction: column; gap: 10px">' +
+          '<div class="field"><label for="site-stage">Outreach stage</label><select id="site-stage">' + STAGES.map(function (st) { return "<option" + (stageOf(id) === st ? " selected" : "") + ">" + st + "</option>"; }).join("") + "</select></div>" +
+          '<div class="btns"><button class="btn btn-outline" type="button" data-action="compare" data-value="' + id + '" aria-pressed="' + (inCmp ? "true" : "false") + '">' + (inCmp ? "In compare" : "Add to compare") + '</button><a class="btn btn-outline" href="#visit-' + id + '">Visit kit</a>' + (s.url ? '<a class="btn" href="' + esc(s.url) + '" target="_blank" rel="noopener">Open listing <span class="sr">(opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5.5 2.5h-3v9h9v-3M8 2h4v4M12 2L6.5 7.5" stroke="currentColor" stroke-width="1.5"></path></svg></a>' : "") + "</div>" +
+        "</div>" +
+      "</section>" +
+      '<div class="split"><div class="main">' +
+        '<section class="card pad-lg" aria-labelledby="why-h" style="display: flex; flex-direction: column; gap: 16px">' +
+          '<div class="btns" style="align-items: center; gap: 16px"><h2 class="big" id="why-h">Why it scores ' + s.fit + " of 10</h2>" + ruler(s, "lg") + "</div>" +
+          '<div class="table-box"><table class="score-table" style="min-width: 520px"><thead><tr><th scope="col">Part</th><th scope="col">Points</th><th scope="col">Why</th></tr></thead><tbody>' +
+          GROUPS.map(function (g, gi) { var held = s.held[gi] && s.pts[gi] < g.max; return '<tr><th scope="row">' + g.name + '</th><td class="mono">' + s.pts[gi] + " / " + g.max + "</td><td>" + esc(r[gi]) + (held ? ' <span class="tag ask">held back: a call could win it</span>' : "") + "</td></tr>"; }).join("") +
+          "</tbody></table></div>" +
+          '<p class="small sub">Points follow the scan rubric. Location points are what remains of the total after the other four parts.</p>' +
+        "</section>" +
+        '<section class="card pad-lg" aria-labelledby="math-h" style="display: flex; flex-direction: column; gap: 16px">' +
+          '<div class="section-head"><h2 class="big" id="math-h">Rent math</h2><button class="btn" type="button" data-action="math-reset">Reset to the listing</button></div>' +
+          variants +
+          '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 12px 16px">' +
+            '<div class="field"><label for="m-size">Size, sq ft</label><input id="m-size" type="number" min="0" step="10" value="' + esc(m.size) + '" data-math="size" placeholder="Not stated"></div>' +
+            '<div class="field"><label for="m-rent">Base rent, $ per sq ft a year</label><input id="m-rent" type="number" min="0" step="0.5" value="' + esc(m.rent) + '" data-math="rent" placeholder="Broker quote"></div>' +
+            '<div class="field"><label for="m-type">Lease type</label><select id="m-type" data-math="type"><option value="unknown"' + (m.type === "unknown" ? " selected" : "") + '>Not stated</option><option value="gross"' + (m.type === "gross" ? " selected" : "") + '>Gross</option><option value="nnn"' + (m.type === "nnn" ? " selected" : "") + ">NNN (charges on top)</option></select></div>" +
+            '<div class="field"><label for="m-nnn">NNN charges, $ per sq ft a year</label><input id="m-nnn" type="number" min="0" step="0.5" value="' + esc(m.nnn) + '" data-math="nnn" placeholder="Broker quote"></div>' +
+          "</div>" +
+          '<div class="field"><label for="m-sales">Your expected yearly sales: <span class="mono" style="color: var(--ink); font-size: 14px" id="m-sales-text"></span></label><input id="m-sales" type="range" min="300000" max="2000000" step="10000" value="' + m.sales + '" data-math="sales">' +
+            '<div class="btns" role="group" aria-label="Sales presets from the market report">' + SALES_PRESETS.map(function (p) { return '<button class="btn" type="button" data-action="preset" data-value="' + p[1] + '" aria-pressed="false" style="font-size: 13px">' + p[0] + "</button>"; }).join("") + "</div></div>" +
+          '<dl class="dl" style="padding-top: 16px; border-top: 1px solid var(--rule)"><div><dt>Rent a year</dt><dd id="m-out-year"></dd></div><div><dt>Rent a month</dt><dd id="m-out-month"></dd></div><div><dt>Sales needed to keep rent at 8%</dt><dd id="m-out-need"></dd></div><div><dt>Rent as a share of your sales</dt><dd id="m-out-share"></dd></div></dl>' +
+          '<p class="note" id="m-unknown" hidden>Rent or size is not stated in the listing. Enter the broker quote to see the math.</p>' +
+          '<div style="display: flex; flex-direction: column; gap: 6px"><div class="share" id="m-bar" role="img"><span class="band"></span><span class="fill" id="m-fill"></span><span class="eight"></span></div>' +
+          '<div class="scale"><span style="left: 0">0%</span><span style="left: 25%">5%</span><span style="left: 40%; color: var(--ink); font-weight: 600">8%</span><span style="left: 50%">10%</span><span style="left: 100%">20%+</span></div>' +
+          '<p class="small sub">Shaded band: 5-10% of sales, the usual range for a bakery\'s occupancy cost. Above 10%, the location is too expensive for the sales.</p></div>' +
+          '<p class="note" id="m-nnn-note">The listing does not say whether this is a gross or NNN lease. If building charges come on top, enter the broker\'s estimate to see the real cost.</p>' +
+        "</section>" +
+        '<section class="card pad-lg" aria-labelledby="kitchen-h"><h2 class="big" id="kitchen-h" style="margin-bottom: 8px">Kitchen, license and zoning</h2><ul class="kitchen-list">' + kitchenRows + "</ul></section>" +
+        '<section class="card pad-lg" aria-labelledby="risks-h"><h2 class="big" id="risks-h" style="margin-bottom: 8px">Risks</h2><ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px">' + risks + "</ul></section>" +
+      "</div>" +
+      '<aside class="side" aria-label="Place, sources and outreach">' +
+        '<section class="card pad" aria-labelledby="near-h" style="display: flex; flex-direction: column; gap: 10px"><div class="section-head"><h2 id="near-h">Same area</h2><a href="#atlas" class="small" data-action="atlas-tile" data-value="' + (s.tile || "") + '">Open atlas</a></div>' +
+          (s.tile ? (nearby.length ? '<ul class="atlas-list" style="max-height: none">' + nearby.map(function (x) { return "<li>" + marker(x, true) + '<span style="min-width: 0"><a href="#site-' + x.id + '" style="font-weight: 600">' + esc(x.addr) + '</a><span class="small sub" style="display: block">' + kindLabel(x) + " · " + STATUS[x.status] + "</span></span><span></span></li>"; }).join("") + "</ul>" : '<p class="small sub">No other verified site in ' + esc(TILE_NAME[s.tile]) + ".</p>") : '<p class="small sub">The listing names no town, so it is not placed on the atlas.</p>') +
+        "</section>" +
+        '<section class="card pad" aria-labelledby="ev-h" style="display: flex; flex-direction: column; gap: 10px"><h2 id="ev-h">Evidence</h2><ul class="evidence-list">' + evidence + '</ul><p class="small sub">Not checked yet: broker, landlord, lease document, kitchen in person.</p></section>' +
+        '<section class="card pad" aria-labelledby="ask-h" style="display: flex; flex-direction: column; gap: 10px"><div class="section-head"><h2 id="ask-h">Ask the broker</h2><span class="mono small sub" id="asked-count" aria-live="polite">' + doneQ + " of " + QUESTIONS.length + " answered</span></div><ul class=\"qs\">" + qs + "</ul></section>" +
+        '<section class="card pad" aria-labelledby="log-h" style="display: flex; flex-direction: column; gap: 10px"><h2 id="log-h">Call log</h2>' +
+          (calls.length ? '<ul class="log">' + calls.map(function (c) { return '<li><span class="mono small sub">' + esc(c.date) + " · " + esc(c.outcome) + "</span><span>" + esc(c.note) + "</span></li>"; }).join("") + "</ul>" : '<p class="muted">No calls logged yet.</p>') +
+          '<form id="call-form" style="display: flex; flex-direction: column; gap: 10px"><div class="field"><label for="call-outcome">Outcome</label><select id="call-outcome"><option>No answer</option><option>Left message</option><option>Spoke</option><option>Tour booked</option></select></div>' +
+          '<div class="field"><label for="call-note">Note</label><textarea id="call-note" rows="3" placeholder="What did they say?"></textarea></div><button class="btn btn-primary" type="submit" style="align-self: flex-start">Log call</button></form>' +
+        "</section>" +
+      "</aside></div>";
+    var root = document.getElementById("view-site");
+    root.innerHTML = html;
+    root.setAttribute("aria-labelledby", "site-h");
+    updateMath(s);
+  }
+
+  // ---------- atlas ----------
+  function renderAtlas() {
+    var a = state.atlas;
+    var visible = SITES.filter(function (x) { return x.tile && (a.showOld || x.status === "active" || x.status === "likely"); });
+    document.getElementById("atlas-grid").innerHTML = TILES.map(function (t) {
+      var here = visible.filter(function (x) { return x.tile === t[0]; }).sort(function (p, q) { return q.fit - p.fit; });
+      var on = a.sel === t[0];
+      var label = t[1] + ": " + (here.length ? here.length + " site" + (here.length > 1 ? "s" : "") + " (" + here.map(function (x) { return kindLabel(x).toLowerCase() + " fit " + x.fit + " " + STATUS[x.status].toLowerCase(); }).join(", ") + ")" : "no verified site") + (a.tiers && t[4] ? ", rent tier " + t[4] : "");
+      return '<button type="button" class="tile' + (here.length ? "" : " empty") + '" data-action="tile" data-value="' + t[0] + '" aria-pressed="' + (on ? "true" : "false") + '" aria-label="' + esc(label) + '" style="grid-column: ' + (t[2] + 1) + "; grid-row: " + (t[3] + 1) + '">' +
+        '<span class="code"><span>' + t[0] + "</span>" + (a.tiers && t[4] ? '<span class="tier">' + t[4] + "</span>" : "") + '</span><span class="nm">' + esc(t[1]) + '</span><span class="marks">' + here.slice(0, 6).map(function (x) { return marker(x); }).join("") + "</span></button>";
+    }).join("");
+    var list = visible.filter(function (x) { return !a.sel || x.tile === a.sel; }).sort(function (p, q) { return (q.fit - p.fit) || (p.order - q.order); });
+    document.getElementById("atlas-list-h").textContent = a.sel ? TILE_NAME[a.sel] + ": " + list.length + " site" + (list.length === 1 ? "" : "s") : "All areas: " + list.length + " sites";
+    document.getElementById("atlas-note").textContent = a.showOld ? "Including stale and taken listings." : "Live and likely-live sites only. Turn on stale and taken to see what was lost.";
+    document.getElementById("atlas-clear").hidden = !a.sel;
+    document.getElementById("atlas-old").checked = a.showOld;
+    document.getElementById("atlas-tiers").checked = a.tiers;
+    document.getElementById("atlas-list").innerHTML = list.length ? list.map(function (x) {
+      var m = x.deal ? "Asking " + x.deal.ask : [x.size !== NS ? x.size + " sq ft" : "", x.rent !== NS ? x.rent : "rent not stated", x.neededN > 0 ? "needs " + x.needed : ""].filter(Boolean).join(" · ");
+      return "<li>" + marker(x, true) + '<span style="min-width: 0; display: flex; flex-direction: column; gap: 2px"><span class="btns" style="gap: 6px; align-items: center"><a href="#site-' + x.id + '" style="font-weight: 600">' + esc(x.addr) + "</a>" + (x.pick ? '<span class="callno">Call #' + x.pick + "</span>" : "") + '</span><span class="small sub">' + esc(TILE_NAME[x.tile]) + " · " + kindLabel(x) + " · " + STATUS[x.status] + '</span><span class="mono small">' + esc(m) + "</span></span><span></span></li>";
+    }).join("") : '<li style="display: block" class="sub">No verified site in this area. The sweep notes list unverified leads; none passed the first cut here.</li>';
+  }
+
+  // ---------- compare ----------
+  function cmpYear(s) { if (s.variants) return s.variants[state.variant[s.id] || 0].yearN; return s.yearN; }
+  function renderCompare() {
+    var ids = state.compare.filter(function (id) { return BY_ID[id]; });
+    document.getElementById("cmp-sales-text").textContent = money(state.sales);
+    document.getElementById("cmp-sales").value = state.sales;
+    document.getElementById("cmp-diff").checked = state.onlyDiff;
+    document.getElementById("cmp-presets").innerHTML = SALES_PRESETS.slice(0, 3).map(function (p) { return '<button class="btn" type="button" data-action="cmp-preset" data-value="' + p[1] + '" aria-pressed="' + (state.sales === p[1] ? "true" : "false") + '" style="font-size: 13px">' + p[0] + "</button>"; }).join("");
+    document.getElementById("compare-lede").textContent = ids.length ? ids.length + " site" + (ids.length > 1 ? "s" : "") + " side by side under one sales figure. Lowest money values are tagged in words." : "Pick up to three sites from the desk or a dossier to compare them here.";
+    var cols = ids.map(function (id) { return BY_ID[id]; });
+    while (cols.length < 3) cols.push(null);
+    function cell(c, fn) { return c ? fn(c) : '<div class="muted small">Empty slot. Add a site from the desk.</div>'; }
+    var years = cols.map(function (c) { return c ? cmpYear(c) : -1; });
+    var known = years.filter(function (y) { return y > 0; });
+    var low = known.length > 1 ? Math.min.apply(null, known) : -1;
+    var html = '<div class="cmp"><div class="cmp-row cmp-head"><div class="small sub" style="align-self: end">Rent figures are asking rents.</div>' + cols.map(function (c) {
+      return "<div>" + cell(c, function (s) {
+        return '<div class="btns" style="gap: 8px; align-items: center">' + (s.pick ? '<span class="callno">' + s.pick + "</span>" : "") + chip(s) + '</div><h2><a href="#site-' + s.id + '">' + esc(s.addr) + '</a></h2><p class="small sub">' + esc(s.area) + " · " + kindLabel(s) + '</p><span style="display: flex; align-items: center; gap: 8px">' + ruler(s, "md") + '<span class="fitnum">' + s.fit + " of 10</span></span>" +
+          (s.variants ? '<div class="seg" role="group" aria-label="Which listing figure for ' + esc(s.addr) + '">' + s.variants.map(function (v, i) { return '<button class="btn" type="button" data-action="cmp-variant" data-site="' + s.id + '" data-value="' + i + '" aria-pressed="' + ((state.variant[s.id] || 0) === i ? "true" : "false") + '" style="font-family: var(--font-sans); min-height: 36px">' + esc(v.label) + "</button>"; }).join("") + "</div>" : "") +
+          '<button class="btn" type="button" data-action="compare" data-value="' + s.id + '" style="align-self: flex-start; min-height: 36px">Remove</button>';
+      }) + "</div>";
+    }).join("") + "</div>";
+    html += '<div class="cmp-row hl"><div style="font-weight: 600">Rent at your sales</div>' + cols.map(function (c, i) {
+      return "<div>" + cell(c, function (s) {
+        var y = years[i];
+        if (!(y > 0)) return '<span class="muted">Rent not stated: no math</span>';
+        var sh = y / state.sales, over = sh > 0.08;
+        return '<span class="mono' + (over ? " over" : "") + '" style="font-size: 18px; line-height: 24px; font-weight: 600">' + (sh * 100).toFixed(1) + "%" + (over ? " · over 8%" : "") + '</span><div class="share sm" role="img" aria-label="' + esc("Rent " + money(y) + " a year is " + (sh * 100).toFixed(1) + "% of " + money(state.sales)) + '" style="margin-top: 6px"><span class="band"></span><span class="fill' + (over ? " over" : "") + '" style="width: ' + Math.min(sh / 0.2, 1) * 100 + '%"></span><span class="eight"></span></div><span class="small sub">' + (s.dated ? "Based on the 2024 asking rent" : "Based on the current asking rent") + "</span>";
+      }) + "</div>";
+    }).join("") + "</div>";
+    function v(text, tag) { var muted = /^(not stated|Not stated)/.test(String(text)); return '<span class="' + (muted ? "muted" : "") + '">' + esc(text) + "</span>" + (tag ? '<div class="cell-tag">' + tag + "</div>" : ""); }
+    var sections = [
+      ["MONEY", [
+        ["Size, sq ft", function (s) { return s.variants ? v(s.variants[state.variant[s.id] || 0].sizeN.toLocaleString("en-US")) : v(s.size); }, false],
+        ["Asking rent, $/sq ft/yr", function (s) { var r = s.variants ? "$" + s.variants[state.variant[s.id] || 0].rentN : s.rent; return v(r, s.dated ? '<span class="tag snip">from 2024</span>' : (s.conflict ? '<span class="tag conflict">CONFLICT</span>' : "")); }, false],
+        ["Rent a year", function (s, i) { var y = years[i]; return y > 0 ? v(money(y), y === low && !s.dated ? '<span class="tag">lowest</span>' : (s.dated ? '<span class="tag snip">from 2024</span>' : "")) : v(NS); }, false],
+        ["Sales needed at 8%", function (s, i) { var y = years[i]; return y > 0 ? v(short(y / 0.08), y === low && !s.dated ? '<span class="tag">lowest</span>' : "") : v(NS); }, false],
+        ["Asking price", function (s) { return s.deal ? v(s.deal.ask) : v("n/a for a lease"); }, true]
+      ]],
+      ["KITCHEN AND LICENSE", [
+        ["Kitchen evidence", function (s) { return v(s.kText, '<span class="kit ' + s.k + '">' + KIT[s.k] + "</span>"); }, false],
+        ["Zoning for food", function (s) { return s.zoning ? v(s.zoning) : v("Not stated", '<span class="tag ask">ask</span>'); }, false],
+        ["License to inherit", function () { return v("Not stated", '<span class="tag ask">ask</span>'); }, true]
+      ]],
+      ["LOCATION", [["Traffic", function (s) { return v(s.traffic || "Not stated"); }, false]]],
+      ["EVIDENCE", [["Sources", function (s) { return v(s.seen, '<div class="tags">' + s.tags.map(tagHtml).join("") + "</div>"); }, false]]],
+      ["RISKS AND NEXT STEP", [
+        ["Main risk", function (s) { return v(s.risk); }, false],
+        ["First question", function (s) { return v(s.firstQ || "Confirm it is available, the rent and the lease type."); }, false],
+        ["Outreach stage", function (s) { return v(stageOf(s.id)); }, true]
+      ]]
+    ];
+    sections.forEach(function (sec) {
+      var rows = sec[1].filter(function (row) {
+        if (!state.onlyDiff) return true;
+        var texts = cols.filter(Boolean).map(function (s, i) { return row[1](s, cols.indexOf(s)); });
+        return texts.some(function (t) { return t !== texts[0]; });
+      });
+      if (!rows.length) return;
+      html += '<div class="cmp-sec">' + sec[0] + "</div>";
+      rows.forEach(function (row) { html += '<div class="cmp-row"><div style="font-weight: 500">' + row[0] + "</div>" + cols.map(function (c, i) { return "<div>" + cell(c, function (s) { return row[1](s, i); }) + "</div>"; }).join("") + "</div>"; });
+    });
+    html += "</div>";
+    document.getElementById("cmp-table").innerHTML = html;
+  }
+
+  // ---------- for sale ----------
+  function pct(x, max) { return Math.max(0, Math.min(x / max, 1)) * 100; }
+  function lanes(list, field, altField, max) {
+    var rows = list.filter(function (s) { return s.deal && s.deal[field] != null; });
+    if (!rows.length) return '<p class="sub">No listing with these figures matches the filter.</p>';
+    return rows.map(function (s) {
+      var d = s.deal, val = d[field], alt = altField ? d[altField] : null, hasAlt = alt != null;
+      var stale = s.status === "stale" || s.status === "taken";
+      var lo = hasAlt ? Math.min(val, alt) : val, hi = hasAlt ? Math.max(val, alt) : val;
+      var label = s.addr + ": " + val.toFixed(2) + "x" + (hasAlt ? ", or " + alt.toFixed(2) + "x at the other asking price" : "") + (stale ? ", stale listing" : "");
+      return '<div class="lane" role="listitem"><span class="small">' + esc(s.addr) + '</span><span class="track" role="img" aria-label="' + esc(label) + '">' +
+        '<span class="ask" style="left: ' + pct(ASK_BAND[field][0], max) + "%; width: " + (pct(ASK_BAND[field][1], max) - pct(ASK_BAND[field][0], max)) + '%"></span>' +
+        '<span class="sold" style="left: ' + pct(SOLD_BAND[field][0], max) + "%; width: " + (pct(SOLD_BAND[field][1], max) - pct(SOLD_BAND[field][0], max)) + '%"></span>' +
+        '<span class="med" style="left: ' + pct(MEDIAN[field], max) + '%"></span>' +
+        (hasAlt ? '<span class="link" style="left: ' + pct(lo, max) + "%; width: " + (pct(hi, max) - pct(lo, max)) + '%"></span><span class="dot alt" style="left: ' + pct(alt, max) + '%"></span>' : "") +
+        '<span class="dot' + (stale ? " stale" : "") + '" style="left: ' + pct(val, max) + '%"></span></span><span class="mono small" style="font-weight: 600">' + val.toFixed(2) + "x" + (hasAlt ? " / " + alt.toFixed(2) + "x" : "") + "</span></div>";
+    }).join("");
+  }
+  var ASK_BAND = { mSde: [1.96, 3.55], mSales: [0.37, 0.75] };
+  var SOLD_BAND = { mSde: [2.0, 2.27], mSales: [0.42, 0.48] };
+  var MEDIAN = { mSde: 2.71, mSales: 0.51 };
+  function scale(ticks, max, fmt) { return '<div class="lane" aria-hidden="true"><span></span><span class="scale">' + ticks.map(function (t) { return '<span style="left: ' + pct(t, max) + '%">' + fmt(t) + "</span>"; }).join("") + "</span><span></span></div>"; }
+  function renderSale() {
+    var list = SITES.filter(function (s) { return s.kind === "sale" && (state.saleStale || (s.status !== "stale" && s.status !== "taken")); }).sort(function (a, b) { return a.order - b.order; });
+    document.getElementById("sale-stale").checked = state.saleStale;
+    var legend = '<div class="legend-row"><span class="item"><span aria-hidden="true" style="display: block; width: 16px; height: 10px; background: var(--blue-pale)"></span>Sold band</span><span class="item"><span aria-hidden="true" style="display: block; width: 16px; height: 10px; background: var(--field); border-left: 1px solid var(--rule2); border-right: 1px solid var(--rule2)"></span>Asking range, with median line</span><span class="item"><span aria-hidden="true" style="display: block; width: 12px; height: 12px; border-radius: 50%; background: var(--blue)"></span>Ask</span><span class="item"><span aria-hidden="true" style="display: block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--blue)"></span>Second ask seen</span><span class="item"><span aria-hidden="true" style="display: block; width: 12px; height: 12px; border-radius: 50%; border: 2px dashed var(--signal)"></span>Stale listing</span></div>';
+    document.getElementById("sale-charts").innerHTML =
+      '<section class="card pad" style="display: flex; flex-direction: column; gap: 10px"><h2 style="font-size: 15px">Price ÷ owner earnings (SDE)</h2><p class="small sub">Scale 0-5x. Five listings state earnings; the rest cannot be judged this way yet.</p><div class="lanes" role="list">' + lanes(list, "mSde", "mSdeAlt", 5) + "</div>" + scale([0, 1, 2, 3, 4, 5], 5, function (t) { return t + "x"; }) + legend + "</section>" +
+      '<section class="card pad" style="display: flex; flex-direction: column; gap: 10px"><h2 style="font-size: 15px">Price ÷ yearly sales</h2><p class="small sub">Scale 0-1.0x. Weekly sales are annualized x52, as the table notes.</p><div class="lanes" role="list">' + lanes(list, "mSales", "mSalesAlt", 1) + "</div>" + scale([0, 0.25, 0.5, 0.75, 1], 1, function (t) { return t.toFixed(2) + "x"; }) + legend + "</section>";
+    document.getElementById("deals-count").textContent = "· " + list.length + " shown";
+    document.getElementById("deals-rows").innerHTML = list.map(function (s) {
+      var d = s.deal;
+      function m(x, alt) { return x != null ? x.toFixed(2) + "x" + (alt != null ? " / " + alt.toFixed(2) + "x" : "") : "can't compare"; }
+      function muted(t) { return /^(not stated|Not stated|Not disclosed|Rent and term not|can't)/.test(t) ? " muted" : ""; }
+      var mSde = m(d.mSde, d.mSdeAlt), mSales = m(d.mSales, d.mSalesAlt);
+      return '<tr><th scope="row" style="max-width: 220px"><a href="#site-' + s.id + '">' + esc(s.addr) + '</a><span class="small sub" style="display: block; font-weight: 400">' + esc(s.area) + "</span></th>" +
+        "<td>" + chip(s) + '</td><td class="num" style="font-weight: 600">' + s.fit + '</td><td class="num">' + esc(d.ask) + '</td><td class="num' + muted(d.sales) + '">' + esc(d.sales) + '</td><td class="num' + muted(d.sde) + '">' + esc(d.sde) + "</td>" +
+        '<td class="num' + muted(mSde) + (d.mSde > 2.71 ? " over" : "") + '" style="font-weight: 600">' + mSde + '</td><td class="num' + muted(mSales) + '">' + mSales + '</td><td class="num' + muted(d.worth) + '">' + esc(d.worth) + '</td><td class="' + muted(d.lease).trim() + '" style="max-width: 220px">' + esc(d.lease) + '</td><td style="max-width: 280px">' + esc(d.read) + "</td></tr>";
+    }).join("");
+  }
+
+  // ---------- visit kit ----------
+  function visitRecord(s, i) {
+    if (s.visit && s.visit[i]) return s.visit[i];
+    if ((i === 0 || i === 3) && (s.k === "confirmed" || s.k === "likely")) return s.kText + ".";
+    if (i === 7 && s.rentN > 0) return "Asking " + s.rent + " a sq ft a year; lease type " + (s.nnnLease ? "NNN" : "not stated") + ".";
+    if (i === 8 && s.traffic) return s.traffic + ".";
+    return "";
+  }
+  function renderVisit(id) {
+    var s = BY_ID[id], v = visitOf(id), done = 0;
+    VISIT_ITEMS.forEach(function (it, i) { if (v.status[i]) done++; });
+    var PILL = { "": ["Not checked", ""], ok: ["Looks OK", "ok"], issue: ["Problem", "issue"], ask: ["Ask again", "ask"] };
+    var items = VISIT_ITEMS.map(function (it, i) {
+      var st = v.status[i] || "", open = state.visitOpen === i, rec = visitRecord(s, i), photos = state.photos[id + ":" + i] || [];
+      return '<li class="item"><button class="item-head" type="button" data-action="visit-open" data-value="' + i + '" aria-expanded="' + (open ? "true" : "false") + '"><span class="n">' + (i + 1) + '</span><span class="t">' + it[0] + '</span><span class="pill ' + PILL[st][1] + '">' + PILL[st][0] + "</span></button>" +
+        (open ? '<div class="item-body"><div class="record"><span class="small sub">From the record</span><p style="margin-top: 4px" class="' + (rec ? "" : "muted") + '">' + esc(rec || "Not documented in any source.") + "</p></div>" +
+          '<p style="font-size: 15px; line-height: 22px"><b style="font-weight: 600">Check: </b>' + esc(it[1]) + "</p>" +
+          '<div class="choices" role="group" aria-label="Result for ' + esc(it[0]) + '">' + [["ok", "Looks OK"], ["issue", "Problem"], ["ask", "Ask again"]].map(function (c) { return '<button class="btn" type="button" data-action="visit-status" data-item="' + i + '" data-choice="' + c[0] + '" aria-pressed="' + (st === c[0] ? "true" : "false") + '">' + c[1] + "</button>"; }).join("") + "</div>" +
+          '<div class="field"><label for="vn-' + i + '">Notes</label><textarea id="vn-' + i + '" rows="2" data-visit-note="' + i + '" placeholder="Type what you see or hear">' + esc(v.notes[i] || "") + "</textarea></div>" +
+          '<div class="btns" style="align-items: center"><label class="photo-btn"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 5.5h3l1.5-2h4l1.5 2h3v9h-13z" stroke="currentColor" stroke-width="1.5"></path><circle cx="9" cy="9.75" r="2.75" stroke="currentColor" stroke-width="1.5"></circle></svg>Add photo<input type="file" accept="image/*" data-photo="' + i + '" multiple></label><span class="small muted">' + (photos.length ? photos.length + " photo" + (photos.length > 1 ? "s" : "") + " this session" : "No photos yet") + "</span></div>" +
+          (photos.length ? '<div class="thumbs">' + photos.map(function (u, pi) { return '<img src="' + u + '" alt="Photo ' + (pi + 1) + " for " + esc(it[0]) + '">'; }).join("") + "</div>" : "") +
+          "</div>" : "") + "</li>";
+    }).join("");
+    var check = state.visitTab === "check";
+    var html = '<div class="site-pick"><label for="visit-site" class="small sub" style="font-weight: 600">Site</label><select id="visit-site">' + SITES.filter(function (x) { return x.status !== "taken"; }).map(function (x) { return '<option value="' + x.id + '"' + (x.id === id ? " selected" : "") + ">" + esc(x.addr) + " (fit " + x.fit + ")</option>"; }).join("") + "</select></div>" +
+      '<div class="phone">' +
+        '<div class="phone-head"><div class="btns" style="gap: 8px; align-items: center">' + (s.pick ? '<span class="callno">Call #' + s.pick + "</span>" : "") + chip(s) + '<span class="small sub">Stage: ' + esc(stageOf(id)) + '</span></div><h1 id="visit-h">' + esc(s.addr) + '</h1><p class="mono small sub">' + esc([s.size !== NS ? s.size + " sq ft" : "", s.rent !== NS ? s.rent + "/sq ft" : "", s.neededN > 0 ? "needs " + s.needed + " in sales" : ""].filter(Boolean).join(" · ") || s.area) + "</p>" +
+          '<div style="display: flex; align-items: center; gap: 10px"><div class="progress" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="9" aria-valuenow="' + done + '"><span style="width: ' + (done / 9 * 100) + '%"></span></div><span class="mono small">' + done + " of 9</span></div></div>" +
+        '<div class="tabs" role="tablist" aria-label="Visit sections"><button type="button" role="tab" data-action="visit-tab" data-value="check" aria-selected="' + (check ? "true" : "false") + '">Checklist</button><button type="button" role="tab" data-action="visit-tab" data-value="traffic" aria-selected="' + (check ? "false" : "true") + '">Foot traffic</button></div>' +
+        '<div class="phone-body">' + (check ? '<ol class="items">' + items + "</ol>" :
+          '<div style="display: flex; flex-direction: column; gap: 14px"><p style="font-size: 15px; line-height: 22px" class="sub">Count people walking past the door for 15 minutes at the times you would sell the most: weekday 7-9 am and Saturday morning.</p>' +
+          '<div class="tally"><span class="big" aria-live="polite">' + v.count + '</span><span class="small sub">people counted</span><button class="plus" type="button" data-action="tally-plus">+1 person</button><div class="btns" style="width: 100%"><button class="btn" type="button" data-action="tally-reset" style="flex: 1; min-height: 48px">Reset</button><button class="btn btn-outline" type="button" data-action="tally-save" style="flex: 1; min-height: 48px">Save tally</button></div></div>' +
+          '<h2 style="font-size: 16px">Saved tallies</h2>' + (v.tallies.length ? '<ul class="log">' + v.tallies.map(function (t) { return '<li class="mono">' + esc(t) + "</li>"; }).join("") + "</ul>" : '<p class="muted">None yet.</p>') + "</div>") +
+        "</div>" +
+        '<div class="phone-foot"><span aria-live="polite">' + (stageOf(id) === "Toured" ? "Marked toured. Next: negotiate or pass." : done + " of 9 checked") + '</span><button class="btn btn-primary" type="button" data-action="toured" style="min-height: 48px">' + (stageOf(id) === "Toured" ? "Toured" : "Mark toured") + "</button></div>" +
+      "</div>";
+    var root = document.getElementById("view-visit");
+    root.innerHTML = html;
+    root.setAttribute("aria-labelledby", "visit-h");
+  }
+
+  // ---------- routing ----------
+  var VIEWS = ["desk", "site", "atlas", "compare", "for-sale", "visit"];
+  var current = { view: null, id: null };
+  function parse() {
+    var h = decodeURIComponent(location.hash.replace(/^#/, "")) || "desk", view = h, id = null;
+    if (h.indexOf("site-") === 0) { view = "site"; id = h.slice(5); }
+    else if (h.indexOf("visit-") === 0) { view = "visit"; id = h.slice(6); }
+    if (VIEWS.indexOf(view) < 0 || ((view === "site" || view === "visit") && !BY_ID[id])) { view = "desk"; id = null; }
+    return { view: view, id: id };
+  }
+  function render(view, id) {
+    if (view === "desk") renderDesk();
+    else if (view === "site") renderSite(id);
+    else if (view === "atlas") renderAtlas();
+    else if (view === "compare") renderCompare();
+    else if (view === "for-sale") renderSale();
+    else if (view === "visit") { state.lastVisit = id; renderVisit(id); }
+  }
+  function route() {
+    var r = parse(), changed = r.view !== current.view || r.id !== current.id;
+    current = r;
+    VIEWS.forEach(function (v) { document.getElementById("view-" + v).hidden = v !== r.view; });
+    document.querySelectorAll(".nav a").forEach(function (a) {
+      var target = a.dataset.nav, on = target === r.view || (target === "desk" && r.view === "site");
+      if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    document.getElementById("nav-visit").setAttribute("href", "#visit-" + state.lastVisit);
+    render(r.view, r.id);
+    if (r.view === "visit") document.getElementById("nav-visit").setAttribute("href", "#visit-" + r.id);
+    if (changed) window.scrollTo(0, 0);
+  }
+  function refreshCount() { document.getElementById("compare-count").textContent = state.compare.length; }
+
+  // ---------- events ----------
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-action]");
+    if (!el) return;
+    var a = el.dataset.action, val = el.dataset.value, f = state.filters;
+    if (a === "type") { f.types[val] = !f.types[val]; store.set("filters", f); renderFilters(); renderDeskRows(); }
+    else if (a === "status") { f.status[val] = !f.status[val]; store.set("filters", f); renderFilters(); renderDeskRows(); }
+    else if (a === "minfit") { f.minFit = Number(val); store.set("filters", f); renderFilters(); renderDeskRows(); }
+    else if (a === "reset") { state.filters = defaultFilters(); store.set("filters", state.filters); renderDesk(); }
+    else if (a === "row") { state.open = state.open === val ? null : val; renderDeskRows(); }
+    else if (a === "compare") {
+      var i = state.compare.indexOf(val);
+      if (i >= 0) state.compare.splice(i, 1); else { if (state.compare.length >= 3) state.compare.shift(); state.compare.push(val); }
+      store.set("compare", state.compare); refreshCount(); render(current.view, current.id);
+    }
+    else if (a === "variant") { state.variant[current.id] = Number(val); delete state.math[current.id]; renderSite(current.id); }
+    else if (a === "cmp-variant") { state.variant[el.dataset.site] = Number(val); delete state.math[el.dataset.site]; renderCompare(); }
+    else if (a === "preset") { var s = BY_ID[current.id]; mathFor(s).sales = Number(val); var rng = document.getElementById("m-sales"); if (rng) rng.value = val; updateMath(s); }
+    else if (a === "math-reset") { delete state.math[current.id]; renderSite(current.id); }
+    else if (a === "cmp-preset") { state.sales = Number(val); renderCompare(); }
+    else if (a === "tile") { state.atlas.sel = state.atlas.sel === val ? null : val; renderAtlas(); }
+    else if (a === "atlas-tile") { if (val) state.atlas.sel = val; }
+    else if (a === "visit-open") { state.visitOpen = state.visitOpen === Number(val) ? -1 : Number(val); renderVisit(current.id); }
+    else if (a === "visit-status") { var v = visitOf(current.id), it = el.dataset.item, ch = el.dataset.choice; v.status[it] = v.status[it] === ch ? "" : ch; saveVisit(); renderVisit(current.id); }
+    else if (a === "visit-tab") { state.visitTab = val; renderVisit(current.id); }
+    else if (a === "tally-plus") { visitOf(current.id).count++; saveVisit(); renderVisit(current.id); }
+    else if (a === "tally-reset") { visitOf(current.id).count = 0; saveVisit(); renderVisit(current.id); }
+    else if (a === "tally-save") {
+      var vv = visitOf(current.id), d = new Date(), days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      vv.tallies.unshift(vv.count + " people · " + days[d.getDay()] + " " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"));
+      vv.count = 0; saveVisit(); renderVisit(current.id);
+    }
+    else if (a === "toured") { state.stages[current.id] = stageOf(current.id) === "Toured" ? "To call" : "Toured"; store.set("stages", state.stages); renderVisit(current.id); }
+  });
+  document.addEventListener("input", function (e) {
+    var t = e.target;
+    if (t.id === "desk-search") { state.filters.query = t.value; renderDeskRows(); }
+    else if (t.dataset && t.dataset.math) { var s = BY_ID[current.id]; mathFor(s)[t.dataset.math] = t.dataset.math === "sales" ? Number(t.value) : t.value; if (t.dataset.math === "nnn" && t.value) { mathFor(s).type = "nnn"; var sel = document.getElementById("m-type"); if (sel) sel.value = "nnn"; } updateMath(s); }
+    else if (t.id === "cmp-sales") { state.sales = Number(t.value); renderCompare(); var r = document.getElementById("cmp-sales"); if (r) r.focus(); }
+    else if (t.dataset && t.dataset.visitNote != null) { visitOf(current.id).notes[t.dataset.visitNote] = t.value; saveVisit(); }
+  });
+  document.addEventListener("change", function (e) {
+    var t = e.target;
+    if (t.id === "desk-confirmed") { state.filters.confirmedOnly = t.checked; store.set("filters", state.filters); renderDeskRows(); }
+    else if (t.id === "desk-sort") { state.filters.sort = t.value; store.set("filters", state.filters); renderDeskRows(); }
+    else if (t.id === "site-stage") { state.stages[current.id] = t.value; store.set("stages", state.stages); }
+    else if (t.dataset && t.dataset.q != null) { var a = state.asked[current.id] || {}; a[t.dataset.q] = t.checked; state.asked[current.id] = a; store.set("asked", state.asked); var n = 0; Object.keys(a).forEach(function (k) { if (a[k]) n++; }); document.getElementById("asked-count").textContent = n + " of " + QUESTIONS.length + " answered"; }
+    else if (t.id === "m-type") { var s = BY_ID[current.id]; mathFor(s).type = t.value; updateMath(s); }
+    else if (t.id === "atlas-old") { state.atlas.showOld = t.checked; renderAtlas(); }
+    else if (t.id === "atlas-tiers") { state.atlas.tiers = t.checked; renderAtlas(); }
+    else if (t.id === "cmp-diff") { state.onlyDiff = t.checked; renderCompare(); }
+    else if (t.id === "sale-stale") { state.saleStale = t.checked; renderSale(); }
+    else if (t.id === "visit-site") { location.hash = "visit-" + t.value; }
+    else if (t.dataset && t.dataset.photo != null && t.files) {
+      var key = current.id + ":" + t.dataset.photo, list = state.photos[key] || [];
+      Array.prototype.forEach.call(t.files, function (file) { list.push(URL.createObjectURL(file)); });
+      state.photos[key] = list; renderVisit(current.id);
+    }
+  });
+  document.addEventListener("submit", function (e) {
+    if (e.target.id !== "call-form") return;
+    e.preventDefault();
+    var outcome = document.getElementById("call-outcome").value, note = document.getElementById("call-note").value.trim();
+    var log = state.calls[current.id] || [];
+    log.unshift({ date: new Date().toISOString().slice(0, 10), outcome: outcome, note: note || "No note" });
+    state.calls[current.id] = log; store.set("calls", state.calls);
+    if (stageOf(current.id) === "To call" && outcome !== "No answer") { state.stages[current.id] = "Contacted"; store.set("stages", state.stages); }
+    renderSite(current.id);
+  });
+  document.getElementById("atlas-clear").addEventListener("click", function () { state.atlas.sel = null; renderAtlas(); });
+  window.addEventListener("hashchange", route);
+  refreshCount();
+  route();
+})();
+</script>
