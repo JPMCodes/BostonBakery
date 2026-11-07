@@ -1,4 +1,4 @@
-# Retail pricing: approved products
+# Retail pricing
 
 Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come from the Boston market research in [`reports/Boston bakery market matrix.md`](../reports/Boston%20bakery%20market%20matrix.md) (counter prices mostly seen Nov 5, 2026) and its notes. Ingredient costs come from [`costing.md`](costing.md).
 
@@ -6,8 +6,11 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 |---|---|---|---|---|---|
 | Cinnamon Roll (4 oz, buttermilk glaze) | **$4.75** | $0.29–$0.64 | $0.34–$0.47 | 13–23% | $3.64–$4.12 (77–87%) |
 | Blueberry Scone, 95 g (pending test) | **$4.50** | $0.53–$0.98 | $0.05–$0.09 | 13–24% | $3.43–$3.92 (76–87%) |
+| Mini Vanilla Scone, 31 g (pending test) | **$2.25** | $0.13–$0.20 | $0.02–$0.07 | 7–12% | $1.98–$2.10 (88–93%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
+| Fennel Herb Salad Bowl, 382 g (draft) | **$13.50** | $2.44–$5.39 | $0.28–$0.63 | 20–45% | $7.48–$10.78 (55–80%) |
+| Cilantro Lime Quinoa Salad, 450 g (draft) | **$12.50** | $1.87–$3.52 | $0.28–$0.63 | 17–33% | $8.35–$10.35 (67–83%) |
 
 The cost range runs from the distributor estimate to the retail estimate. Packaging is costed for to-go orders; served on a plate for here, it drops out. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.
 
@@ -18,10 +21,13 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Cinnamon Roll | 4×4×4 in kraft window box, dry-wax square under the roll, kraft napkin | $0.34–$0.47 |
 | Both breakfast sandwiches | Insulated foil wrap, printed label, #6 kraft bag, kraft napkin | $0.12–$0.25 |
 | Blueberry Scone | #6 kraft bag, kraft napkin | $0.05–$0.09 |
+| Mini Vanilla Scone | 1/2 lb glassine bag, kraft napkin; three or more go in a #6 kraft bag | $0.02–$0.07 |
+| Both salads | Clear 32 oz PET bowl and lid, 2 oz dressing cup and lid, wooden fork, kraft napkin, grab-and-go label | $0.28–$0.63 |
 
 - **Box only what needs it:** glazed, frosted or fragile items, multi-packs and gifts. Sturdy, dry pastries go in a bag. Each box swapped for a bag saves about $0.28; at 100 pastries a day that's about $10,000 a year.
 - **The roll's box is its biggest cost.** At distributor prices the box ($0.32) costs more than the roll's food ($0.29), and packaging is over half the roll's cost. A 6×6 sugarcane-fiber clamshell (about $0.15 at WebstaurantStore) would halve the packaging, at some cost to presentation.
 - **The sandwich label does a job:** the two sandwiches look alike once wrapped, so the label names which is which and seals the wrap.
+- **Salads go in clear PET** so the bowl sells itself from the cold case. A kraft bowl with a clear lid (Solia, about $0.62) looks more upscale but nearly triples the $0.22 bowl, and was out of stock when checked. The label isn't optional: food packed on site for self-service generally needs its name, ingredients, allergens and a date under the Food Code.
 - **Not costed:** a box for the 4-pack, and bags for multi-item orders.
 
 ## Cinnamon Roll: $4.75
@@ -55,6 +61,21 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Dried blueberries are the biggest ingredient line,** at $0.16–$0.31 a scone.
 - **Packaging is a kraft bag, not a box:** a scone is sturdy and unglazed, so the bag ($0.05–$0.09 with a napkin) does the job of the $0.34–$0.47 window box and saves about $0.29–$0.38 a scone.
 
+## Mini Vanilla Scone: $2.25
+
+| Comparable | Price | Note |
+|---|---|---|
+| Boston grocery minis | $0.43–$0.72 | Mini croissants, from the research |
+| Starbucks Petite Vanilla Bean Scone | about $1.75–$2.95 | National listings; Starbucks prices by store |
+| Starbucks Vanilla Bean Scone, full size | $4.25 | Menu aggregator, August 2026 |
+| Our Blueberry Scone, 95 g | $4.50 | |
+
+- **Half the price of the full scone for a third of the dough** (31 g against 95 g). That sits inside the Starbucks petite range, not at the grocery-mini tier, because it's a bakery-made cream scone with real vanilla bean.
+- **Sold as an add-on:** a mini with a drip coffee rings up at $5.75, with a latte at $7.00.
+- **Option:** 3 for $6.00 in a #6 kraft bag.
+- **Cheapest item on the menu to make:** about $0.15 at distributor prices, 7% of the price. Vanilla bean paste is the biggest line at about $0.03 a scone, ahead of butter and cream at about $0.02 each.
+- **Glassine bag, not kraft:** it's grease-resistant, so the butter and glaze don't mark it. With the napkin it costs $0.02.
+
 ## Breakfast Sandwiches: $8.50, or $10.25 with fennel sausage
 
 | Boston comparable | Counter price | Build |
@@ -69,6 +90,24 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Ticket:** with a latte ($4.50 at Flour, $4.85 at Tatte) the check is about $13, near Flour's $14.50 egg-sandwich-plus-latte check.
 - **Fennel sausage SKU at $10.25:** $1.75 above the base sandwich. With meat on it, it joins the $9.50–$11.00 band: a quarter above Flour's $10.00 ham-or-bacon egg sandwich and $0.75 under La Saison's $11.00 Egg Bun. The extra quarter over $10.00 is pure margin, and with Boston's 7% meals tax it still rings up under $11 ($10.97). The 2 oz patty costs $0.36–$0.69. One reviewer reported paying $3 extra for sausage at Pavement, the high end of add-on pricing.
 - **Why it matters:** breakfast sandwiches are Tatte's two most-liked DoorDash items, and in the one Boston bakery-café sales mix the research found, pastry and desserts were only 27% of sales.
+
+## Salad bowls: $13.50 and $12.50 (draft)
+
+| Boston comparable | Counter price | Note |
+|---|---|---|
+| Tatte pita | $12.50–$13.00 | Chicken pita $13.00 |
+| Mamaleh's nova lox | $13.75–$15.00 | |
+| Sofra pita | $14.00 | |
+| Tatte salad | $14.50–$15.00 | Copley runs $0.50 above Wellesley |
+| Flour BLT | $16.00 | Flour's signature lunch sandwich |
+
+- **Under Tatte's salads, at its pita price:** both bowls are meatless grab-and-go, so they sit $1.00–$2.50 under Tatte's $14.50–$15.00 salads. The research puts Boston bakery-café lunch at $13–$16 and names it the lever that lifts the check past a coffee and a pastry.
+- **Fennel Herb Salad Bowl at $13.50:** a dollar over the quinoa salad. It has the dearer ingredients (arugula, Parmesan, citrus, three fresh herbs), the most knife work, and it sells the same day only, so its cost carries a 10% waste allowance for bowls discarded at close.
+- **Cilantro Lime Quinoa Salad at $12.50:** bigger (450 g) and cheaper to make, and it holds 2 days because it has no greens. Made without wheat, but not certified gluten-free, since the kitchen handles flour.
+- **Labor sets these prices, not food cost:** at distributor prices, food and packaging are 17–20% of the price. Salads are knife work, so the margin pays for prep time. A protein add-on would be the natural upsell; not costed.
+- **Buy produce wholesale:** at grocery prices the fennel bowl's food cost more than doubles ($2.44 to $5.39), because arugula and clamshell herbs cost 2–6 times the distributor price. The biggest lines at distributor prices are arugula ($0.55) in the fennel bowl and cherry tomatoes ($0.44) in the quinoa salad.
+- **Dressing on the side** keeps the bowls crisp through lunch and makes the quinoa salad's 2-day hold possible. The cup and lid cost $0.02.
+- **Pepitas, not nuts:** pumpkin seeds give the crunch without adding tree nuts to a menu that has none so far.
 
 ## Drinks
 
@@ -95,7 +134,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher ($5.70, $10.20 and $12.30) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, sandwiches $10.20 and $12.30, salads $16.20 and $15.00) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
@@ -107,5 +146,9 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - [Flour Boston Common ordering page](https://order.flourbakery.com/menu/flour-bakery-cafe-tbd-1b-charles-street-boston-common): latte, iced latte, chai latte, matcha latte and espresso prices.
 - [Toast: chai lattes in Boston](https://www.toasttab.com/local/boston-ma-restaurants/dish/chai-lattes) and [Tatte South End on Toast](https://toasttab.com/local/order/tatte-south-end/r-e14b0c20-4650-4326-b837-0938a1d4e868): Tatte chai and iced latte prices.
 - WebstaurantStore food packaging: [Baker's Lane 4×4×4 kraft window box](https://www.webstaurantstore.com/bakers-lane-4-x-4-x-4-kraft-window-cupcake-bakery-box-case/245444WBKBL.html), [Choice 10 3/4 × 14 in insulated foil wrap](https://www.webstaurantstore.com/choice-10-3-4-x-14-insulated-foil-sandwich-wrap-sheets-case/612W45.html), [12×12 kraft luncheon napkin](https://www.webstaurantstore.com/12-x-12-natural-kraft-1-4-fold-luncheon-napkin-case/5001N200KRA.html) and [Greenprint 6×6 sugarcane clamshell](https://www.webstaurantstore.com/greenprint-6-x-6-compostable-sugarcane-fiber-clamshell-take-out-container-case/485HTO661W.html).
+- Starbucks petite scone: [Tasting Table](https://tastingtable.com/1808434/cheapest-vs-most-expensive-food-starbucks-menu) (about $1.75, up to $2.95 in some areas) and [Chowhound](https://www.chowhound.com/1977466/cheapest-food-item-starbucks/) ($2.65; $1.95 at some stores); full-size scone from [Six Storeys](https://sixstoreys.com/?p=31718) (August 2026 menu aggregator). All undated or aggregated national prices.
+- Mini scone inputs: [Kari-Out 1/2 lb glassine bag, 1,000/case](https://www.webstaurantstore.com/kari-out-company-1-2-lb-square-glassine-bag-case/1500100.html) (WebstaurantStore); Nielsen-Massey 32 oz vanilla bean paste at [Walmart](https://www.walmart.com/ip/38442217) ($106.48) and [Restaurantware](https://www.restaurantware.com/products/nielsen-massey-32-0-oz-pure-vanilla-paste-1-count-box) ($134.83).
+- [`reports/Boston bakery market matrix.md`](../reports/Boston%20bakery%20market%20matrix.md), lunch row of the price matrix: Tatte pita, salad and chicken pita; Mamaleh's; Sofra pita; Flour BLT; the $13–$16 lunch band.
+- WebstaurantStore salad packaging: [Choice 32 oz clear salad bowl with lid, 150/case](https://www.webstaurantstore.com/choice-32-oz-clear-plastic-salad-bowl-with-lid-case/127SB32COMBO.html), [Choice 2 oz clear portion cup, 2,500/case](https://www.webstaurantstore.com/choice-2-oz-clear-plastic-souffle-cup-portion-cup-case/127P2C.html), [Choice PET lid for 1.5–2.5 oz cups](https://www.webstaurantstore.com/choice-pet-plastic-1-5-to-2-5-oz-souffle-cup-portion-cup-lid-pack/999PL2.html) and [Solia 33.8 oz kraft salad container](https://www.webstaurantstore.com/solia-es32300-large-33-8-oz-kraft-salad-container-with-clear-plastic-lid-case/708ES32300.html). The salad ingredients, fork and label are estimates.
 - [WebstaurantStore: New Roots 12 oz double-wall compostable hot cup](https://www.webstaurantstore.com/new-roots-12-oz-smooth-double-wall-kraft-compostable-paper-hot-cup-case/50012NRDWKFT.html): hot cup case price.
 - [Sucafina market report](https://sucafina.com/na/lp/market-report) (arabica near $3/lb, March 2026) and [Viricha wholesale matcha guide](https://viricha.pages.dev/guides/wholesale-price-2026) (vendor guide, low reliability): coffee and matcha price context.

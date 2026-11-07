@@ -1,0 +1,33 @@
+id: glaze_vanilla_bean
+name: Vanilla Bean Glaze
+kind: glaze
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [mini_vanilla_scone]
+yield:
+  grams: 170
+  description: "24 mini scones at about 7.1 g"
+
+ingredients:
+  - {item: sugar_powdered, qty: 139, unit: g}
+  - {item: milk_whole, qty: 21.3, unit: g, note: "1 tbsp + 1 1/2 tsp"}
+  - {item: cream_heavy, qty: 3.40, unit: g, note: "3/4 tsp"}
+  - {item: syrup_glucose, qty: 4.25, unit: g, note: "the recipe card says light corn syrup; the house glucose syrup does the same job"}
+  - {item: honey, qty: 0.77, unit: g, note: "1/8 tsp; 0.01 g scale"}
+  - {item: vanilla_bean_paste, qty: 1.36, unit: g, note: "1/4 tsp"}
+  - {item: salt_fine, qty: 0.22, unit: g, note: "a smidgen (1/32 tsp); 0.01 g scale"}
+  - {item: citric_acid, qty: 0.07, unit: g, note: "pre-blend into the powdered sugar"}
+
+method:
+  - "Blend the citric acid into the powdered sugar so it spreads evenly."
+  - "Whisk in the milk, cream, glucose syrup, honey, vanilla paste and salt until smooth."
+  - "Glaze the cooled scones at about 7.1 g each and let the glaze set before packing."
+
+notes:
+  - "The honey, salt and citric acid are too small to weigh on a 0.1 g bench scale at this size. A 4× batch (681 g, for 96 scones) brings them to about 3.1 g, 0.9 g and 0.3 g."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Recipe as received, 170 g for 24 mini scones, with the house glucose syrup in place of light corn syrup. Pending a test."

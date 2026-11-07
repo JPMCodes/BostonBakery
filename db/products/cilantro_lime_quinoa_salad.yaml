@@ -1,0 +1,54 @@
+id: cilantro_lime_quinoa_salad
+name: Cilantro Lime Quinoa Salad
+category: salad
+status: draft
+version: "1.0"
+approved_on: null
+description: "Quinoa with black beans, roasted corn, cherry tomatoes, red pepper, red onion and cilantro, topped with cotija and toasted pepitas; cilantro-lime vinaigrette on the side. Made without wheat."
+batch_units: 10
+waste_pct: 5
+
+build:
+  - {item: quinoa_cooked, qty: 140, unit: g}
+  - {item: black_beans, qty: 70, unit: g, note: "rinsed and drained"}
+  - {item: corn_frozen, qty: 50, unit: g, note: "roasted"}
+  - {item: tomato_cherry, qty: 60, unit: g, note: "halved"}
+  - {item: bell_pepper_red, qty: 40, unit: g, note: "diced"}
+  - {item: onion_red, qty: 15, unit: g, note: "finely diced"}
+  - {item: cilantro, qty: 8, unit: g, note: "chopped"}
+  - {item: cotija, qty: 15, unit: g, note: "crumbled"}
+  - {item: pepitas, qty: 12, unit: g, note: "toasted"}
+  - {item: dressing_cilantro_lime, qty: 40, unit: g, note: "on the side"}
+  - {item: bowl_salad_32oz, qty: 1, unit: each}
+  - {item: cup_portion_2oz, qty: 1, unit: each}
+  - {item: lid_portion_2oz, qty: 1, unit: each}
+  - {item: fork_wood, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  prep:
+    - "Roast the corn on a sheet pan at 425°F until lightly charred, about 12 minutes; cool."
+    - "Rinse and drain the beans. Halve the tomatoes, dice the pepper and onion, chop the cilantro. Toast the pepitas at 325°F for 8–10 minutes."
+  build:
+    - "Toss the quinoa, beans, corn, tomatoes, pepper, onion and cilantro, and bowl it."
+    - "Top with the cotija and pepitas. Dressing goes in a lidded 2 oz cup on the side."
+  hold: "Keep at 41°F or below. Sell within 2 days of assembly. Date the label from the oldest component: no more than 7 days from the quinoa's cook day, counting that day."
+  packaging: "Clear 32 oz bowl and lid, labeled with name, ingredients, allergens and date; fork and napkin."
+
+allergens_declared: [milk]
+
+pricing:
+  suggested_retail_usd: 12.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Kitchen test: portion sizes, dressing amount, and texture on day 2."
+    - "Made without wheat, but not certified gluten-free: the kitchen also handles flour."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted at a suggested $12.50."

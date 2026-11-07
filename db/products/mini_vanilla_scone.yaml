@@ -1,0 +1,37 @@
+id: mini_vanilla_scone
+name: Mini Vanilla Scone
+category: pastry
+status: pending_test
+version: "1.0"
+approved_on: null
+description: "Bite-size vanilla bean cream scone with a little lemon zest, topped with vanilla bean glaze. 31 g of dough and about 7 g of glaze; 24 to a batch."
+batch_units: 24
+waste_pct: 3
+
+build:
+  - {item: dough_vanilla_scone, qty: 31, unit: g}
+  - {item: glaze_vanilla_bean, qty: 7.09, unit: g}
+  - {item: bag_glassine_half_lb, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  bake: "Default until confirmed: 400°F for 12–15 minutes, until golden at the edges and about 200°F inside."
+  glaze: "Cool completely, then glaze each top with about 7.1 g. Let it set before bagging."
+  packaging: "To go: a 1/2 lb glassine bag and a napkin. Three or more go in a #6 kraft bag. For here: serve on a plate."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 2.25
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "First test bake at 31 g; confirm the bake time and temperature."
+    - "Check that the glaze sets firm enough to bag without smudging."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Added from the recipe cards (744 g dough and 170 g glaze for 24) at a suggested $2.25."

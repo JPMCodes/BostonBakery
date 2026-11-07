@@ -46,3 +46,39 @@ lemon_zest,Lemon zest,produce,,"Finely grated zest; one lemon gives about 6 g",6
 sugar_brown_light,Light brown sugar,sugar,,"Light brown sugar, packed",,,,
 sour_cream,Sour cream (full fat),dairy,milk,"Cultured sour cream, full fat (at least 18% milkfat)",,,,
 creme_fraiche,Crème fraîche,dairy,milk,"Cultured cream, about 36% fat (for example Vermont Creamery)",,,,"Replaced by sour cream in the scone; kept for cost comparison"
+farro,Farro (semi-pearled),grain,wheat,"Semi-pearled farro (emmer wheat)",,,,
+quinoa,Quinoa (white),grain,,"White quinoa, rinsed before cooking",,,,
+arugula,Baby arugula,produce,,"Washed baby arugula",,,,
+fennel_bulb,Fennel bulb,produce,,"Fresh fennel; about 320 g of usable shaved fennel per bulb",320,,,"Costed per bulb; save the fronds for garnish"
+orange_navel,Navel orange,produce,,"About 140 g of segments per orange",140,,,"Costed per orange; segments only"
+parsley_flat,Flat-leaf parsley,herb,,"About 60 g of usable leaves and tender stems per bunch",60,,,
+dill,Dill,herb,,"Fresh dill, fronds only",,,,
+mint,Mint,herb,,"Fresh mint leaves",,,,
+cilantro,Cilantro,herb,,"About 60 g of usable leaves and tender stems per bunch",60,,,
+parmesan,Parmesan (block),dairy,milk,"Domestic Parmesan, shaved",,,,
+pepitas,Pepitas (shelled pumpkin seeds),seed,,"Shelled pumpkin seeds, toasted in house; not a major allergen",,,,
+olive_oil_ev,Extra-virgin olive oil,fat,,"Extra-virgin olive oil",,0.92,,
+lemon_juice,Lemon juice (fresh),produce,,"Fresh-squeezed; one lemon gives about 40 g",40,,lemon,"Costed as one whole lemon per 40 g of juice"
+lime,Lime,produce,,"Fresh lime, about 67 g",67,,,
+lime_juice,Lime juice (fresh),produce,,"Fresh-squeezed; one lime gives about 30 g",30,,lime,"Costed as one whole lime per 30 g of juice"
+dijon,Dijon mustard,condiment,,"Smooth Dijon mustard",,,,"Mustard is not a US major allergen, but it is in Canada and the EU"
+shallot,Shallot,produce,,"Peeled shallot, minced",,,,
+black_pepper,Black pepper (ground),spice,,"Freshly ground black pepper",,,,
+black_beans,Black beans (canned),legume,,"Canned black beans, rinsed; priced by drained weight",,,,
+corn_frozen,Sweet corn (frozen),produce,,"Frozen sweet corn kernels, roasted in house",,,,
+tomato_cherry,Cherry tomatoes,produce,,"Cherry or grape tomatoes, halved",,,,
+bell_pepper_red,Red bell pepper,produce,,"Red bell pepper, diced; priced by usable weight",,,,
+onion_red,Red onion,produce,,"Red onion, finely diced",,,,
+cotija,Cotija cheese,dairy,milk,"Crumbled cotija",,,,
+garlic,Garlic (peeled),produce,,"Peeled garlic cloves",,,,
+cumin_ground,Ground cumin,spice,,"Ground cumin",,,,
+bowl_salad_32oz,Salad bowl 32 oz with lid,packaging,,"Clear PET 32 oz round bowl with lid; shows the salad in the case",,,,
+cup_portion_2oz,Portion cup 2 oz,packaging,,"Clear 2 oz cup for dressing on the side",,,,
+lid_portion_2oz,Portion cup lid 2 oz,packaging,,"PET lid for the 2 oz cup",,,,
+fork_wood,Wooden fork,packaging,,"Disposable wooden fork",,,,
+label_grab_and_go,Grab-and-go label,packaging,,"Printed label with name, ingredients, allergens and date; the Food Code generally requires these on food packaged on site for self-service",,,,"Label printer not costed"
+cream_heavy,Heavy cream,dairy,milk,"Heavy cream, 36–40% fat",,1.0,,
+vanilla_bean_paste,Vanilla bean paste,flavor,,"Pure vanilla bean paste with seeds (for example Nielsen-Massey Madagascar Bourbon)",,1.17,,"Density taken from the recipe card's spoon conversions"
+honey,Honey,sugar,,"Mild clover or wildflower honey",,,,"A trace amount in the vanilla glaze"
+citric_acid,Citric acid,acid,,"Food-grade citric acid, anhydrous, fine",,,,
+bag_glassine_half_lb,Glassine bag 1/2 lb,packaging,,"Square-bottom glassine bag, 3 × 1 1/2 × 6 3/4 in; grease-resistant, holds one or two mini scones",,,,

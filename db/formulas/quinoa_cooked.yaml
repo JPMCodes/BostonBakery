@@ -1,0 +1,26 @@
+id: quinoa_cooked
+name: Cooked Quinoa
+kind: grain
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [cilantro_lime_quinoa_salad]
+yield:
+  grams: 1550
+  description: "about 3.1 times the dry weight; 11 salads at 140 g"
+
+ingredients:
+  - {item: quinoa, qty: 500, unit: g, note: "rinsed"}
+  - {item: water_filtered, qty: 1100, unit: g}
+  - {item: salt_fine, qty: 6, unit: g}
+
+method:
+  - "Rinse the quinoa well. Bring it to a boil with the water and salt, cover, and simmer 15 minutes."
+  - "Rest 5 minutes off the heat, still covered, then fluff with a fork."
+  - "Spread on a sheet pan to cool fast: below 70°F within 2 hours, and below 41°F within 4 more."
+  - "Refrigerate covered and dated; use within 4 days, so a salad built on the last day still sells inside the 7-day limit."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted for the Cilantro Lime Quinoa Salad."

@@ -10,8 +10,11 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 |---|---|---|---|---|---|---|---|---|
 | Blueberry Scone | pastry | pending_test | $4.50 | $1.07 | $0.58 | $0.09 / $0.05 | 24% / 13% | egg, milk, wheat |
 | Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
+| Mini Vanilla Scone | pastry | pending_test | $2.25 | $0.27 | $0.15 | $0.07 / $0.02 | 12% / 7% | egg, milk, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
+| Cilantro Lime Quinoa Salad | salad | draft | $12.50 | $4.15 | $2.15 | $0.63 / $0.28 | 33% / 17% | milk |
+| Fennel Herb Salad Bowl | salad | draft | $13.50 | $6.02 | $2.72 | $0.63 / $0.28 | 45% / 20% | milk, wheat |
 | Chai Latte (12 oz) | drink | pending_test | $4.75 | $2.64 | $1.58 | $0.42 / $0.25 | 56% / 33% | milk |
 | Drip Coffee (12 oz) | drink | pending_test | $3.50 | $2.05 | $1.04 | $0.42 / $0.25 | 59% / 30% | none |
 | Espresso (double) | drink | pending_test | $3.50 | $1.47 | $0.71 | $0.18 / $0.10 | 42% / 20% | none |
@@ -50,6 +53,19 @@ Batch of 12: Blueberry Scone Dough (formula) 1,140 g, Blueberry Scone Crumb Topp
 
 Batch of 12: Signature Milk Dough (formula) 1,080 g, Cinnamon Filling (formula) 264 g, Cooked Buttermilk Glaze (formula) 168 g, Bakery box 4×4×4 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
 
+### Mini Vanilla Scone (`mini_vanilla_scone`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Vanilla Bean Scone Dough (formula) | 31 g | $0.17 | $0.10 |
+| Vanilla Bean Glaze (formula) | 7.1 g | $0.03 | $0.02 |
+| Glassine bag 1/2 lb | 1 each | $0.06 | $0.02 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Waste allowance (food only) | 3% | $0.01 | <$0.01 |
+| **Unit cost** | | **$0.27** | **$0.15** |
+
+Batch of 24: Vanilla Bean Scone Dough (formula) 744 g, Vanilla Bean Glaze (formula) 170.2 g, Glassine bag 1/2 lb 24 each, Napkin (kraft luncheon) 24 each.
+
 ### Breakfast Sandwich (`breakfast_sandwich`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -86,6 +102,56 @@ Batch of 12: Sandwich Roll (formula) 12 each, Unsalted butter 60 g, Egg (large) 
 | **Unit cost** | | **$2.41** | **$1.20** |
 
 Batch of 12: Sandwich Roll (formula) 12 each, Fennel pork sausage (bulk) 684 g, Unsalted butter 60 g, Egg (large) 12 each, Cheddar cheese (sliced) 252 g, Harissa sauce 180 g, Insulated foil sandwich wrap 12 each, Sandwich label 12 each, Kraft paper bag #6 12 each, Napkin (kraft luncheon) 12 each.
+
+### Cilantro Lime Quinoa Salad (`cilantro_lime_quinoa_salad`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Cooked Quinoa (formula) | 140 g | $0.40 | $0.22 |
+| Black beans (canned) | 70 g | $0.38 | $0.24 |
+| Sweet corn (frozen) | 50 g | $0.25 | $0.15 |
+| Cherry tomatoes | 60 g | $0.74 | $0.44 |
+| Red bell pepper | 40 g | $0.44 | $0.18 |
+| Red onion | 15 g | $0.07 | $0.03 |
+| Cilantro | 8 g | $0.13 | $0.07 |
+| Cotija cheese | 15 g | $0.26 | $0.15 |
+| Pepitas (shelled pumpkin seeds) | 12 g | $0.25 | $0.15 |
+| Cilantro-Lime Vinaigrette (formula) | 40 g | $0.44 | $0.17 |
+| Salad bowl 32 oz with lid | 1 each | $0.44 | $0.22 |
+| Portion cup 2 oz | 1 each | $0.05 | $0.01 |
+| Portion cup lid 2 oz | 1 each | $0.04 | $0.01 |
+| Wooden fork | 1 each | $0.06 | $0.03 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 5% | $0.17 | $0.09 |
+| **Unit cost** | | **$4.15** | **$2.15** |
+
+Batch of 10: Cooked Quinoa (formula) 1,400 g, Black beans (canned) 700 g, Sweet corn (frozen) 500 g, Cherry tomatoes 600 g, Red bell pepper 400 g, Red onion 150 g, Cilantro 80 g, Cotija cheese 150 g, Pepitas (shelled pumpkin seeds) 120 g, Cilantro-Lime Vinaigrette (formula) 400 g, Salad bowl 32 oz with lid 10 each, Portion cup 2 oz 10 each, Portion cup lid 2 oz 10 each, Wooden fork 10 each, Napkin (kraft luncheon) 10 each, Grab-and-go label 10 each.
+
+### Fennel Herb Salad Bowl (`fennel_herb_bowl`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Cooked Farro (formula) | 130 g | $0.52 | $0.28 |
+| Baby arugula | 45 g | $1.27 | $0.55 |
+| Fennel bulb | 70 g | $0.65 | $0.32 |
+| Navel orange | 60 g | $0.43 | $0.19 |
+| Flat-leaf parsley | 6 g | $0.15 | $0.06 |
+| Dill | 3 g | $0.35 | $0.06 |
+| Mint | 3 g | $0.35 | $0.07 |
+| Parmesan (block) | 15 g | $0.40 | $0.21 |
+| Pepitas (shelled pumpkin seeds) | 15 g | $0.31 | $0.19 |
+| Lemon-Dijon Vinaigrette (formula) | 35 g | $0.48 | $0.29 |
+| Salad bowl 32 oz with lid | 1 each | $0.44 | $0.22 |
+| Portion cup 2 oz | 1 each | $0.05 | $0.01 |
+| Portion cup lid 2 oz | 1 each | $0.04 | $0.01 |
+| Wooden fork | 1 each | $0.06 | $0.03 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 10% | $0.49 | $0.22 |
+| **Unit cost** | | **$6.02** | **$2.72** |
+
+Batch of 10: Cooked Farro (formula) 1,300 g, Baby arugula 450 g, Fennel bulb 700 g, Navel orange 600 g, Flat-leaf parsley 60 g, Dill 30 g, Mint 30 g, Parmesan (block) 150 g, Pepitas (shelled pumpkin seeds) 150 g, Lemon-Dijon Vinaigrette (formula) 350 g, Salad bowl 32 oz with lid 10 each, Portion cup 2 oz 10 each, Portion cup lid 2 oz 10 each, Wooden fork 10 each, Napkin (kraft luncheon) 10 each, Grab-and-go label 10 each.
 
 ### Chai Latte (12 oz) (`chai_latte`), per unit
 
@@ -242,6 +308,58 @@ Cost per kg of yield: $8.96 retail est., $4.84 distributor est.
 
 Cost per kg of yield: $4.47 retail est., $1.73 distributor est.
 
+### Vanilla Bean Scone Dough (`dough_vanilla_scone`), pending_test
+
+| Item | Qty | Baker's % | Retail est. | Distributor est. |
+|---|---|---|---|---|
+| All-purpose flour | 300 g | 89.0% | $0.79 | $0.29 |
+| Pastry flour (unbleached) | 37 g | 11.0% | $0.16 | $0.05 |
+| Unsalted butter | 94.3 g | 28.0% | $0.83 | $0.50 |
+| Granulated sugar | 84.2 g | 25.0% | $0.16 | $0.13 |
+| Egg (large) | 21.6 g | 6.4% | $0.08 | $0.07 |
+| Egg yolk (large) | 16.8 g | 5.0% | $0.18 | $0.15 |
+| Heavy cream | 111 g | 32.9% | $0.62 | $0.47 |
+| Whole milk | 53.2 g | 15.8% | $0.06 | $0.05 |
+| Baking powder (double-acting) | 11.8 g | 3.5% | $0.12 | $0.05 |
+| Fine salt | 4.7 g | 1.4% | $0.01 | <$0.01 |
+| Vanilla bean paste | 5 g | 1.5% | $0.62 | $0.49 |
+| Pure vanilla extract | 3.4 g | 1.0% | $0.22 | $0.14 |
+| Lemon zest | 1.2 g | 0.4% | $0.14 | $0.06 |
+| **Batch** | **744 g in, 744 g out** | | **$3.99** | **$2.44** |
+
+Cost per kg of yield: $5.37 retail est., $3.28 distributor est.
+
+### Cilantro-Lime Vinaigrette (`dressing_cilantro_lime`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| High-oleic sunflower oil | 250 g | $2.04 | $0.71 |
+| Lime juice (fresh) | 120 g | $2.00 | $0.80 |
+| Cilantro | 40 g | $0.66 | $0.33 |
+| Garlic (peeled) | 8 g | $0.11 | $0.06 |
+| Ground cumin | 2 g | $0.16 | $0.04 |
+| Granulated sugar | 12 g | $0.02 | $0.02 |
+| Fine salt | 7 g | $0.01 | $0.01 |
+| Filtered water | 30 g | $0.00 | $0.00 |
+| **Batch** | **469 g in, 460 g out** | **$5.00** | **$1.97** |
+
+Cost per kg of yield: $10.88 retail est., $4.29 distributor est.
+
+### Lemon-Dijon Vinaigrette (`dressing_lemon_dijon`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Extra-virgin olive oil | 270 g | $3.81 | $2.64 |
+| Lemon juice (fresh) | 90 g | $1.55 | $0.74 |
+| Dijon mustard | 30 g | $0.35 | $0.17 |
+| Shallot | 30 g | $0.31 | $0.16 |
+| Filtered water | 20 g | $0.00 | $0.00 |
+| Fine salt | 6 g | $0.01 | $0.01 |
+| Black pepper (ground) | 1.5 g | $0.07 | $0.03 |
+| **Batch** | **448 g in, 445 g out** | **$6.11** | **$3.74** |
+
+Cost per kg of yield: $13.73 retail est., $8.41 distributor est.
+
 ### Double Espresso (`espresso_double`), pending_test
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -251,6 +369,18 @@ Cost per kg of yield: $4.47 retail est., $1.73 distributor est.
 | **Batch** | **76 g in, 36 g out** | **$1.26** | **$0.60** |
 
 Cost per kg of yield: $35.03 retail est., $16.72 distributor est. Per unit: $1.26 / $0.60.
+
+### Cooked Farro (`farro_cooked`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Farro (semi-pearled) | 500 g | $5.00 | $2.65 |
+| Filtered water | 2,500 g | $0.00 | $0.00 |
+| Fine salt | 15 g | $0.03 | $0.01 |
+| Extra-virgin olive oil | 10 g | $0.14 | $0.10 |
+| **Batch** | **3,025 g in, 1,300 g out** | **$5.17** | **$2.76** |
+
+Cost per kg of yield: $3.98 retail est., $2.12 distributor est.
 
 ### Cinnamon Filling (`filling_cinnamon`), approved
 
@@ -282,6 +412,33 @@ Cost per kg of yield: $5.75 retail est., $3.40 distributor est.
 | **Batch** | | **274 g in, 229 g out** | **$1.29** | **$0.73** |
 
 Cost per kg of yield: $5.62 retail est., $3.20 distributor est.
+
+### Vanilla Bean Glaze (`glaze_vanilla_bean`), pending_test
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Powdered sugar (10x) | 139 g | $0.46 | $0.28 |
+| Whole milk | 21.3 g | $0.03 | $0.02 |
+| Heavy cream | 3.4 g | $0.02 | $0.01 |
+| Glucose syrup | 4.2 g | $0.05 | $0.02 |
+| Honey | 0.8 g | $0.01 | $0.01 |
+| Vanilla bean paste | 1.4 g | $0.17 | $0.13 |
+| Fine salt | 0.2 g | <$0.01 | <$0.01 |
+| Citric acid | 0.1 g | <$0.01 | <$0.01 |
+| **Batch** | **170 g in, 170 g out** | **$0.74** | **$0.47** |
+
+Cost per kg of yield: $4.33 retail est., $2.77 distributor est.
+
+### Cooked Quinoa (`quinoa_cooked`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Quinoa (white) | 500 g | $4.40 | $2.43 |
+| Filtered water | 1,100 g | $0.00 | $0.00 |
+| Fine salt | 6 g | $0.01 | $0.01 |
+| **Batch** | **1,606 g in, 1,550 g out** | **$4.41** | **$2.43** |
+
+Cost per kg of yield: $2.85 retail est., $1.57 distributor est.
 
 ### Sandwich Roll (`sandwich_roll`), approved
 
@@ -345,6 +502,42 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Light brown sugar | `sugar_brown_light` | $3.08 | $1.76 |  |
 | Sour cream (full fat) | `sour_cream` | $6.59 | $4.85 |  |
 | Crème fraîche | `creme_fraiche` | $26.41 | $30.47 |  |
+| Farro (semi-pearled) | `farro` | $10.00 | $5.29 |  |
+| Quinoa (white) | `quinoa` | $8.81 | $4.85 |  |
+| Baby arugula | `arugula` | $28.15 | $12.13 |  |
+| Fennel bulb | `fennel_bulb` | $9.34 | $4.56 | $2.99 / $1.46 |
+| Navel orange | `orange_navel` | $7.14 | $3.25 | $1.00 / $0.45 |
+| Flat-leaf parsley | `parsley_flat` | $24.83 | $10.00 | $1.49 / $0.60 |
+| Dill | `dill` | $117.11 | $19.84 |  |
+| Mint | `mint` | $117.11 | $22.05 |  |
+| Cilantro | `cilantro` | $16.50 | $8.33 | $0.99 / $0.50 |
+| Parmesan (block) | `parmesan` | $26.43 | $14.33 |  |
+| Pepitas (shelled pumpkin seeds) | `pepitas` | $20.55 | $12.35 |  |
+| Extra-virgin olive oil | `olive_oil_ev` | $14.12 | $9.78 |  |
+| Lemon juice (fresh) | `lemon_juice` | $17.25 | $8.26 | $0.69 / $0.33 |
+| Lime | `lime` | $7.46 | $2.99 | $0.50 / $0.20 |
+| Lime juice (fresh) | `lime_juice` | $16.67 | $6.67 | $0.50 / $0.20 |
+| Dijon mustard | `dijon` | $11.73 | $5.51 |  |
+| Shallot | `shallot` | $10.35 | $5.19 |  |
+| Black pepper (ground) | `black_pepper` | $46.91 | $22.05 |  |
+| Black beans (canned) | `black_beans` | $5.38 | $3.42 |  |
+| Sweet corn (frozen) | `corn_frozen` | $5.05 | $2.94 |  |
+| Cherry tomatoes | `tomato_cherry` | $12.31 | $7.35 |  |
+| Red bell pepper | `bell_pepper_red` | $11.00 | $4.41 |  |
+| Red onion | `onion_red` | $4.38 | $1.76 |  |
+| Cotija cheese | `cotija` | $17.60 | $9.70 |  |
+| Garlic (peeled) | `garlic` | $13.21 | $7.94 |  |
+| Ground cumin | `cumin_ground` | $82.07 | $22.05 |  |
+| Salad bowl 32 oz with lid | `bowl_salad_32oz` | n/a | n/a |  |
+| Portion cup 2 oz | `cup_portion_2oz` | n/a | n/a |  |
+| Portion cup lid 2 oz | `lid_portion_2oz` | n/a | n/a |  |
+| Wooden fork | `fork_wood` | n/a | n/a |  |
+| Grab-and-go label | `label_grab_and_go` | n/a | n/a |  |
+| Heavy cream | `cream_heavy` | $5.59 | $4.23 |  |
+| Vanilla bean paste | `vanilla_bean_paste` | $122.76 | $96.17 |  |
+| Honey | `honey` | $16.14 | $9.70 |  |
+| Citric acid | `citric_acid` | $25.82 | $17.64 |  |
+| Glassine bag 1/2 lb | `bag_glassine_half_lb` | n/a | n/a |  |
 
 ## Warnings
 

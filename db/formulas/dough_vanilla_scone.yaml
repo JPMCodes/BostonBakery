@@ -1,0 +1,43 @@
+id: dough_vanilla_scone
+name: Vanilla Bean Scone Dough
+kind: dough
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [mini_vanilla_scone]
+yield:
+  grams: 744
+  description: "24 mini scones at 31 g"
+
+ingredients:
+  - {item: flour_ap, qty: 300, unit: g, note: "unbleached"}
+  - {item: flour_pastry, qty: 37.0, unit: g, note: "unbleached"}
+  - {item: butter_unsalted, qty: 94.3, unit: g, note: "cold"}
+  - {item: sugar_granulated, qty: 84.2, unit: g}
+  - {item: egg_large, qty: 21.6, unit: g, note: "about 0.4 large egg"}
+  - {item: egg_yolk, qty: 16.8, unit: g, note: "about 0.9 large yolk"}
+  - {item: cream_heavy, qty: 111, unit: g, note: "cold"}
+  - {item: milk_whole, qty: 53.2, unit: g, note: "3 tbsp + 2 tsp"}
+  - {item: baking_powder, qty: 11.8, unit: g, note: "1 tbsp"}
+  - {item: salt_fine, qty: 4.69, unit: g, note: "fine sea salt, 3/4 tsp"}
+  - {item: vanilla_bean_paste, qty: 5.05, unit: g, note: "3/4 + 1/8 tsp"}
+  - {item: vanilla_extract, qty: 3.37, unit: g, note: "3/4 tsp"}
+  - {item: lemon_zest, qty: 1.18, unit: g, note: "1/2 + 1/8 tsp, finely grated"}
+
+method:
+  - "Whisk the flours, sugar, baking powder and salt. Rub in the lemon zest."
+  - "Cut in the cold butter until the pieces are pea-size."
+  - "Whisk the cream, milk, egg, yolk, vanilla paste and extract. Add to the dry ingredients and mix just until the dough comes together."
+  - "Shape and cut 24 pieces of 31 g. Chill at least 30 minutes before baking."
+
+specs:
+  flour_total_g: 337
+  portion_g: 31
+
+notes:
+  - "The method is a default; replace it with the house method once confirmed."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Recipe as received: 744 g for 24 mini scones at 31 g. Pending a test bake."

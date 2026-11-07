@@ -1,0 +1,29 @@
+id: dressing_lemon_dijon
+name: Lemon-Dijon Vinaigrette
+kind: dressing
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [fennel_herb_bowl]
+yield:
+  grams: 445
+  description: "about 445 g; 12 bowls at 35 g"
+
+ingredients:
+  - {item: olive_oil_ev, qty: 270, unit: g}
+  - {item: lemon_juice, qty: 90, unit: g, note: "about 2 1/4 lemons"}
+  - {item: dijon, qty: 30, unit: g}
+  - {item: shallot, qty: 30, unit: g, note: "minced"}
+  - {item: water_filtered, qty: 20, unit: g}
+  - {item: salt_fine, qty: 6, unit: g}
+  - {item: black_pepper, qty: 1.5, unit: g}
+
+method:
+  - "Whisk the lemon juice, Dijon, shallot, water, salt and pepper. Let it sit 10 minutes to soften the shallot."
+  - "Whisk in the olive oil in a slow stream until it emulsifies."
+  - "Refrigerate in a squeeze bottle, dated; use within 7 days. Shake before portioning."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted for the Fennel Herb Salad Bowl."

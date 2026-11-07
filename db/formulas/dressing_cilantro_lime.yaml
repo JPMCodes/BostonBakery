@@ -1,0 +1,30 @@
+id: dressing_cilantro_lime
+name: Cilantro-Lime Vinaigrette
+kind: dressing
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [cilantro_lime_quinoa_salad]
+yield:
+  grams: 460
+  description: "about 460 g; 11 salads at 40 g"
+
+ingredients:
+  - {item: oil_high_oleic_sunflower, qty: 250, unit: g, note: "neutral, so the cilantro leads"}
+  - {item: lime_juice, qty: 120, unit: g, note: "about 4 limes"}
+  - {item: cilantro, qty: 40, unit: g, note: "leaves and tender stems"}
+  - {item: garlic, qty: 8, unit: g}
+  - {item: cumin_ground, qty: 2, unit: g}
+  - {item: sugar_granulated, qty: 12, unit: g}
+  - {item: salt_fine, qty: 7, unit: g}
+  - {item: water_filtered, qty: 30, unit: g}
+
+method:
+  - "Blend everything except the oil until smooth."
+  - "With the blender running, stream in the oil until it emulsifies."
+  - "Refrigerate in a squeeze bottle, dated; use within 4 days, before the cilantro dulls. Shake before portioning."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted for the Cilantro Lime Quinoa Salad."

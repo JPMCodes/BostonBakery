@@ -1,0 +1,53 @@
+id: fennel_herb_bowl
+name: Fennel Herb Salad Bowl
+category: salad
+status: draft
+version: "1.0"
+approved_on: null
+description: "Farro, arugula and shaved fennel with orange, parsley, dill and mint, shaved Parmesan and toasted pepitas; lemon-Dijon vinaigrette on the side."
+batch_units: 10
+waste_pct: 10  # same-day sale: covers unsold bowls discarded at close
+
+build:
+  - {item: farro_cooked, qty: 130, unit: g}
+  - {item: arugula, qty: 45, unit: g}
+  - {item: fennel_bulb, qty: 70, unit: g, note: "shaved thin"}
+  - {item: orange_navel, qty: 60, unit: g, note: "segments"}
+  - {item: parsley_flat, qty: 6, unit: g}
+  - {item: dill, qty: 3, unit: g}
+  - {item: mint, qty: 3, unit: g}
+  - {item: parmesan, qty: 15, unit: g, note: "shaved"}
+  - {item: pepitas, qty: 15, unit: g, note: "toasted"}
+  - {item: dressing_lemon_dijon, qty: 35, unit: g, note: "on the side"}
+  - {item: bowl_salad_32oz, qty: 1, unit: each}
+  - {item: cup_portion_2oz, qty: 1, unit: each}
+  - {item: lid_portion_2oz, qty: 1, unit: each}
+  - {item: fork_wood, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  prep:
+    - "Shave the fennel thin on a mandoline and hold it in cold water with a squeeze of lemon; spin dry before building."
+    - "Segment the oranges. Pick the herbs. Toast the pepitas at 325°F for 8–10 minutes and cool."
+  build:
+    - "Arugula in the bowl, then the farro, fennel and orange segments."
+    - "Top with the herbs, Parmesan and pepitas. Dressing goes in a lidded 2 oz cup on the side."
+  hold: "Keep at 41°F or below. Build the day of sale and sell the same day."
+  packaging: "Clear 32 oz bowl and lid, labeled with name, ingredients, allergens and date; fork and napkin."
+
+allergens_declared: [milk, wheat]
+
+pricing:
+  suggested_retail_usd: 13.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Kitchen test: portion sizes, dressing amount, and how the arugula holds through lunch."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted at a suggested $13.50."

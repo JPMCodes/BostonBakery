@@ -1,0 +1,26 @@
+id: farro_cooked
+name: Cooked Farro
+kind: grain
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [fennel_herb_bowl]
+yield:
+  grams: 1300
+  description: "about 2.6 times the dry weight; 10 bowls at 130 g"
+
+ingredients:
+  - {item: farro, qty: 500, unit: g}
+  - {item: water_filtered, qty: 2500, unit: g, note: "boil like pasta, then drain"}
+  - {item: salt_fine, qty: 15, unit: g}
+  - {item: olive_oil_ev, qty: 10, unit: g, note: "toss after draining"}
+
+method:
+  - "Boil the farro in the salted water for 20–25 minutes, until tender but still chewy. Drain well."
+  - "Spread on a sheet pan and toss with the olive oil. Cool fast: below 70°F within 2 hours, and below 41°F within 4 more."
+  - "Refrigerate covered and dated; use within 5 days."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted for the Fennel Herb Salad Bowl."
