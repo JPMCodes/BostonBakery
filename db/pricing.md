@@ -42,6 +42,29 @@ The cost range runs from the distributor estimate to the retail estimate. The $0
 - **Fennel sausage SKU at $10.25:** $1.75 above the base sandwich. With meat on it, it joins the $9.50–$11.00 band: a quarter above Flour's $10.00 ham-or-bacon egg sandwich and $0.75 under La Saison's $11.00 Egg Bun. The extra quarter over $10.00 is pure margin, and with Boston's 7% meals tax it still rings up under $11 ($10.97). The 2 oz patty costs $0.36–$0.69. One reviewer reported paying $3 extra for sausage at Pavement, the high end of add-on pricing.
 - **Why it matters:** breakfast sandwiches are Tatte's two most-liked DoorDash items, and in the one Boston bakery-café sales mix the research found, pastry and desserts were only 27% of sales.
 
+## Drinks
+
+Specialty beans from a Boston-area roaster, double-wall compostable hot cups (no sleeve), clear PET cold cups with strawless lids. Drink costs include the cup and lid; the range runs distributor to retail estimate.
+
+| Drink | Our price | Unit cost | Cost % of price | Flour | Tatte | Others |
+|---|---|---|---|---|---|---|
+| Drip Coffee, 12 oz | **$3.50** | $1.04–$2.05 | 30–59% | $3.50 house blend | $3.35 | |
+| Iced Coffee, 16 oz cold brew | **$4.00** | $0.94–$1.82 | 23–46% | $3.75 iced coffee | | |
+| Espresso, double | **$3.50** | $0.71–$1.47 | 20–42% | $4.00 | | |
+| Latte, 12 oz | **$4.75** | $1.15–$2.07 | 24–44% | $4.50 | $4.85 | Bakey $5.55, La Saison $6.00 |
+| Iced Latte, 16 oz | **$5.00** | $1.02–$1.83 | 20–37% | $4.50 | $4.85 | Starbucks grande $5.95 (national, undated) |
+| Matcha Latte, 12 oz | **$5.25** | $1.06–$1.67 | 20–32% | $5.00 | not found | |
+| Chai Latte, 12 oz | **$4.75** | $1.58–$2.64 | 33–56% | $4.75 | $3.75–$4.75 (large $5.25) | |
+
+Flour's drink prices are from its Boston Common ordering page and its drip and iced coffee from the market research; Flour doesn't state cup sizes. Tatte's chai prices are from Toast listings.
+
+- **Match the market on drinks:** the research found Boston's premium lives in the bake, not the cup: lattes overlap from the chains to the top independents ($3.89–$6.00). So these sit at Flour and Tatte's level, a quarter up where our cup is bigger (iced latte) or the matcha is premium.
+- **Quality shows in the cost, not the price:** at distributor prices, drinks cost 20–33% of their price, against 6–21% for the bakery items. The coffee is the biggest line: about $13–$14 a pound wholesale for specialty beans.
+- **Weakest margin is the chai:** 33% at distributor prices, because a premium concentrate costs about $1.12 a drink. A house chai of black tea, whole spices and sugar, like Tatte's, would cut that by more than half.
+- **Drip assumes dumping 15% of every batch** at the 60-minute hold. Selling through faster lowers the cost.
+- **Espresso is costed to go.** For here, in ceramic, it's about $0.10 cheaper.
+- **Not costed yet:** alternative milks and syrups.
+
 ## Rules carried over from the research
 
 - Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher ($5.70, $10.20 and $12.30) and stay on the lowest-commission plan.
@@ -53,3 +76,7 @@ The cost range runs from the distributor estimate to the retail estimate. The $0
 - [`reports/Boston bakery market matrix.md`](../reports/Boston%20bakery%20market%20matrix.md): price matrix (hero buns, breakfast sandwiches, lattes), price tiers, cost benchmarks, delivery markups, input-price trend.
 - [`research_notes/Boston bakery market matrix/premium_artisan_bakery_cafes.md`](../research_notes/Boston%20bakery%20market%20matrix/premium_artisan_bakery_cafes.md): Flour sticky bun single and 4-pack prices; Michette in-store estimate.
 - [`research_notes/Boston bakery market matrix/gapfill_premium_prices_menus.md`](../research_notes/Boston%20bakery%20market%20matrix/gapfill_premium_prices_menus.md): Flour breakfast and kids' egg sandwiches, Tatte halloumi sandwich, La Saison Egg Bun, breakfast-sandwich band, constructed checks.
+- [Flour Boston Common ordering page](https://order.flourbakery.com/menu/flour-bakery-cafe-tbd-1b-charles-street-boston-common): latte, iced latte, chai latte, matcha latte and espresso prices.
+- [Toast: chai lattes in Boston](https://www.toasttab.com/local/boston-ma-restaurants/dish/chai-lattes) and [Tatte South End on Toast](https://toasttab.com/local/order/tatte-south-end/r-e14b0c20-4650-4326-b837-0938a1d4e868): Tatte chai and iced latte prices.
+- [WebstaurantStore: New Roots 12 oz double-wall compostable hot cup](https://www.webstaurantstore.com/new-roots-12-oz-smooth-double-wall-kraft-compostable-paper-hot-cup-case/50012NRDWKFT.html): hot cup case price.
+- [Sucafina market report](https://sucafina.com/na/lp/market-report) (arabica near $3/lb, March 2026) and [Viricha wholesale matcha guide](https://viricha.pages.dev/guides/wholesale-price-2026) (vendor guide, low reliability): coffee and matcha price context.

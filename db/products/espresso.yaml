@@ -1,0 +1,33 @@
+id: espresso
+name: Espresso (double)
+category: drink
+status: pending_test
+version: "1.0"
+approved_on: null
+description: "A double shot. Costed to go; for here it's served in ceramic and the cup cost drops out."
+waste_pct: 2
+
+build:
+  - {item: espresso_double, qty: 1, unit: each}
+  - {item: cup_hot_4oz, qty: 1, unit: each}
+  - {item: lid_hot_4oz, qty: 1, unit: each}
+
+production:
+  build:
+    - "Pull a double shot (18 g in, 36 g out) straight into a preheated cup."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 3.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Choose the roaster and grinder, and dial in."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Added with a suggested $3.50."

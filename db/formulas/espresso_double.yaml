@@ -1,0 +1,28 @@
+id: espresso_double
+name: Double Espresso
+kind: coffee
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [espresso, latte, iced_latte]
+yield:
+  units: 1
+  grams: 36
+  description: "1 double shot, 36 g in the cup"
+
+ingredients:
+  - {item: coffee_espresso, qty: 19.5, unit: g, note: "18 g dose plus 1.5 g allowance for dial-in shots and grinder purges"}
+  - {item: water_filtered, qty: 56, unit: g, note: "through the puck; about 20 g stays in the spent coffee"}
+
+method:
+  - "18 g dose, 36 g out (1:2) in 25–32 seconds, at about 200°F and 9 bar."
+  - "Dial in every morning and after every bean change; purge the grinder after changes."
+
+specs:
+  dose_g: 18
+  yield_g: 36
+  shot_time_s: "25–32"
+
+history:
+  - date: 2026-11-07
+    change: "Formulated; dial in once the roaster and grinder are chosen."

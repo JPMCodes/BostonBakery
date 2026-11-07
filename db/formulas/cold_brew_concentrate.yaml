@@ -1,0 +1,28 @@
+id: cold_brew_concentrate
+name: Cold Brew Concentrate
+kind: coffee
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [iced_coffee]
+yield:
+  grams: 2600
+  description: "about 2,720 g filters out; allow about 5% for end-of-week discard"
+
+ingredients:
+  - {item: coffee_drip, qty: 454, unit: g, note: "coarse grind"}
+  - {item: water_filtered, qty: 3632, unit: g, note: "cold"}
+
+method:
+  - "Combine coarse-ground coffee and cold filtered water at 1:8. Stir to wet all the grounds."
+  - "Steep refrigerated for 16–18 hours, then filter through paper."
+  - "Keep refrigerated in a covered container; use within 7 days."
+  - "Serve 1:1 with cold filtered water over ice."
+
+specs:
+  ratio: "1:8 concentrate, served 1:1 with water (about 1:16 in the cup)"
+  shelf_life_days: 7
+
+history:
+  - date: 2026-11-07
+    change: "Formulated; dial in once the roaster is chosen."

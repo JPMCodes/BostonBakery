@@ -1,0 +1,35 @@
+id: iced_coffee
+name: Iced Coffee (16 oz cold brew)
+category: drink
+status: pending_test
+version: "1.0"
+approved_on: null
+description: "House cold brew over ice, 16 oz."
+waste_pct: 2
+
+build:
+  - {item: cold_brew_concentrate, qty: 150, unit: g}
+  - {item: water_filtered, qty: 150, unit: g, note: "cold"}
+  - {item: ice, qty: 150, unit: g}
+  - {item: cup_cold_16oz, qty: 1, unit: each}
+  - {item: lid_cold_sip, qty: 1, unit: each}
+
+production:
+  build:
+    - "Fill the cup with ice, add 150 g concentrate and 150 g cold filtered water, and stir."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 4.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Choose the roaster and dial in the cold brew."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Added with a suggested $4.00."

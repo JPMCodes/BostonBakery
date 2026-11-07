@@ -1,0 +1,36 @@
+id: matcha_latte
+name: Matcha Latte (12 oz)
+category: drink
+status: pending_test
+version: "1.0"
+approved_on: null
+description: "Premium latte-grade matcha whisked with hot water and topped with steamed whole milk, 12 oz. Unsweetened; syrup on request."
+waste_pct: 2
+
+build:
+  - {item: matcha, qty: 3, unit: g, note: "sifted"}
+  - {item: water_filtered, qty: 60, unit: g, note: "175°F"}
+  - {item: milk_whole, qty: 270, unit: g, note: "includes pitcher waste"}
+  - {item: cup_hot_12oz, qty: 1, unit: each}
+  - {item: lid_hot, qty: 1, unit: each}
+
+production:
+  build:
+    - "Sift 3 g matcha into the cup or a bowl and whisk with 60 g water at 175°F until smooth and frothy."
+    - "Steam the milk to 140–150°F and pour over the matcha."
+
+allergens_declared: [milk]
+
+pricing:
+  suggested_retail_usd: 5.25
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Choose the matcha supplier and confirm the 3 g dose against flavor and color."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Added with a suggested $5.25."

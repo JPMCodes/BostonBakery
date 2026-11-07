@@ -2,15 +2,22 @@
 
 The bakery's source of truth for ingredients, prices, formulas and approved products. Data lives in CSV and YAML so it can be edited in any text editor or on GitHub. `tools/costing.py` checks it and regenerates the cost report.
 
-## Approved products
+## Products
 
-| Product | Suggested price | Notes |
-|---|---|---|
-| [Cinnamon Roll](products/cinnamon_roll.yaml) | $4.75 | 4 oz finished. Approved 2026-11-06; the cooked buttermilk glaze is still pending its first test bake |
-| [Breakfast Sandwich](products/breakfast_sandwich.yaml) | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
-| [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
+| Product | Status | Suggested price | Notes |
+|---|---|---|---|
+| [Cinnamon Roll](products/cinnamon_roll.yaml) | approved | $4.75 | 4 oz finished. Approved 2026-11-06; the cooked buttermilk glaze is still pending its first test bake |
+| [Breakfast Sandwich](products/breakfast_sandwich.yaml) | approved | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
+| [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | approved | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
+| [Drip Coffee (12 oz)](products/drip_coffee.yaml) | pending_test | $3.50 | Specialty filter coffee from the batch brewer |
+| [Iced Coffee (16 oz cold brew)](products/iced_coffee.yaml) | pending_test | $4.00 | House cold brew, 1:1 with water over ice |
+| [Espresso (double)](products/espresso.yaml) | pending_test | $3.50 | 18 g in, 36 g out |
+| [Latte (12 oz)](products/latte.yaml) | pending_test | $4.75 | Double espresso and steamed whole milk |
+| [Iced Latte (16 oz)](products/iced_latte.yaml) | pending_test | $5.00 | Double espresso over cold milk and ice |
+| [Matcha Latte (12 oz)](products/matcha_latte.yaml) | pending_test | $5.25 | 3 g premium latte-grade matcha, unsweetened |
+| [Chai Latte (12 oz)](products/chai_latte.yaml) | pending_test | $4.75 | Premium chai concentrate 1:1 with milk |
 
-Costs are in [`costing.md`](costing.md); the reasoning behind the prices is in [`pricing.md`](pricing.md).
+The drinks stay `pending_test` until the roaster, matcha and chai suppliers are chosen and the espresso is dialed in. Costs are in [`costing.md`](costing.md); the reasoning behind the prices is in [`pricing.md`](pricing.md).
 
 ## Layout
 
@@ -47,6 +54,8 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 - **Ids:** lowercase `snake_case`. Ingredients and formulas share one namespace, so a product or formula line can point at either. Never rename an id that's in use; retire it and add a new one.
 - **Quantities:** formula and product lines use grams (`g`) or counts (`each`).
 - **Price packs:** `pack_unit` can be `g`, `kg`, `oz`, `lb`, `ml`, `l`, `fl_oz`, `qt`, `gal` or `each`. Volume packs need `density_g_per_ml`; count packs need `each_g`.
+- **Product categories:** every product has a `category` of `pastry`, `sandwich` or `drink`, which sets its place in the cost report.
+- **Packaging:** cups, lids and other packaging are ingredients with `category` `packaging`, priced per `each`. The report shows them separately, and a product's `waste_pct` applies to its food lines only, not its packaging. Food products don't list packaging yet.
 - **`price_ref`:** costs an item as one unit of another. An egg yolk costs one whole egg, and its white goes to egg wash.
 - **Allergens:** semicolon-separated, using US major-allergen names (milk, egg, wheat, soy, peanuts, tree nuts, fish, shellfish, sesame). Every product must list `allergens_declared`, and it must match its ingredients.
 - **Status:** `draft` → `pending_test` → `approved` → `retired`. Approve a formula only after a test bake, and say what was tested in `history`.

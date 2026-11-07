@@ -1,0 +1,33 @@
+id: drip_coffee
+name: Drip Coffee (12 oz)
+category: drink
+status: pending_test
+version: "1.0"
+approved_on: null
+description: "House filter coffee from the batch brewer, 12 oz."
+waste_pct: 2
+
+build:
+  - {item: batch_brew_coffee, qty: 340, unit: g, note: "about 11.5 oz, room for milk"}
+  - {item: cup_hot_12oz, qty: 1, unit: each}
+  - {item: lid_hot, qty: 1, unit: each}
+
+production:
+  build:
+    - "Pour 340 g from an airpot brewed within the last 60 minutes. Leave room for milk; milk and sugar are self-serve."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 3.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Choose the roaster and dial in the batch brew."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Added with a suggested $3.50."

@@ -1,0 +1,28 @@
+id: batch_brew_coffee
+name: Batch Brew Coffee
+kind: coffee
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [drip_coffee]
+yield:
+  grams: 750
+  description: "about 880 g brews; plan on dumping about 15% when the airpot passes 60 minutes, leaving about 750 g sold"
+
+ingredients:
+  - {item: coffee_drip, qty: 60, unit: g, note: "medium-coarse grind"}
+  - {item: water_filtered, qty: 1000, unit: g, note: "198–205°F"}
+
+method:
+  - "Batch brewer at 60 g coffee per liter of water (about 1:16.7), medium-coarse grind, 198–205°F, 4–6 minute brew."
+  - "Hold in an airpot, never on a hot plate. Dump and rebrew after 60 minutes."
+  - "Grind right before brewing."
+
+specs:
+  ratio: "1:16.7 coffee to water"
+  strength_target: "1.30–1.45% TDS"
+  hold_limit_minutes: 60
+
+history:
+  - date: 2026-11-07
+    change: "Formulated; dial in once the roaster is chosen."

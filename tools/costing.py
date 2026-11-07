@@ -35,6 +35,8 @@ VOLUME_ML = {
 }
 USE_UNITS = {"g", "each"}
 STATUSES = {"draft", "pending_test", "approved", "retired"}
+# Product categories, in report order.
+CATEGORY_ORDER = ("pastry", "sandwich", "drink")
 
 
 class DBError(Exception):
@@ -88,8 +90,6 @@ def load_prices(ingredients: dict) -> dict[tuple[str, str], dict]:
             raise DBError(f"{where}: unknown pack_unit {unit!r}")
         if unit in VOLUME_ML and not ingredients[iid]["density_g_per_ml"]:
             raise DBError(f"{where}: {iid} is priced by volume but has no density")
-        if unit == "each" and not ingredients[iid]["each_g"]:
-            raise DBError(f"{where}: {iid} is priced by count but has no each_g")
         row.update(
             pack_unit=unit,
             pack_size=float(row["pack_size"]),
@@ -119,7 +119,14 @@ class Book:
         self.ingredients = load_ingredients()
         self.prices = load_prices(self.ingredients)
         self.formulas = load_yaml_dir("formulas")
-        self.products = load_yaml_dir("products")
+        products = load_yaml_dir("products")
+        order = {name: rank for rank, name in enumerate(CATEGORY_ORDER)}
+        self.products = dict(
+            sorted(
+                products.items(),
+                key=lambda kv: (order.get(kv[1].get("category"), len(order)), kv[1].get("name", "")),
+            )
+        )
         clash = set(self.formulas) & set(self.ingredients)
         if clash:
             raise DBError(f"ids used for both a formula and an ingredient: {sorted(clash)}")
@@ -159,7 +166,7 @@ class Book:
         size, unit, price = row["pack_size"], row["pack_unit"], row["price_usd"]
         if unit == "each":
             per_each = price / size
-            return per_each / ing["each_g"], per_each
+            return (per_each / ing["each_g"] if ing["each_g"] else None), per_each
         if unit in WEIGHT_G:
             grams = size * WEIGHT_G[unit]
         else:
@@ -205,15 +212,32 @@ class Book:
         self._formula_costs[key] = total
         return total
 
-    def product_cost(self, pid: str, channel: str) -> float | None:
+    def is_packaging(self, item: str) -> bool:
+        return item in self.ingredients and self.ingredients[item]["category"] == "packaging"
+
+    def product_cost_parts(self, pid: str, channel: str) -> tuple[float, float] | None:
+        """Return (food cost including waste, packaging cost) for one unit.
+
+        The waste allowance applies to food lines only, not packaging.
+        """
         product = self.products[pid]
-        total = 0.0
+        food = packaging = 0.0
         for line in product["build"]:
             cost = self.line_cost(line, channel)
             if cost is None:
                 return None
-            total += cost
-        return total * (1 + product.get("waste_pct", 0) / 100)
+            if self.is_packaging(line["item"]):
+                packaging += cost
+            else:
+                food += cost
+        return food * (1 + product.get("waste_pct", 0) / 100), packaging
+
+    def product_cost(self, pid: str, channel: str) -> float | None:
+        parts = self.product_cost_parts(pid, channel)
+        return None if parts is None else sum(parts)
+
+    def has_packaging(self, pid: str) -> bool:
+        return any(self.is_packaging(line["item"]) for line in self.products[pid]["build"])
 
     def allergens(self, item: str) -> set[str]:
         if item in self.ingredients:
@@ -250,11 +274,14 @@ class Book:
                     continue
                 if item in self.formulas and unit == "each" and not self.formulas[item]["yield"].get("units"):
                     errors.append(f"{where}: used by count but the formula has no yield.units")
-                if item in self.ingredients and unit == "each" and not self.ingredients[item]["each_g"]:
-                    errors.append(f"{where}: used by count but has no each_g")
+                if item not in self.ingredients:
+                    continue
                 for channel, label in CHANNELS.items():
-                    if item in self.ingredients and self.unit_costs(item, channel) == (None, None):
+                    per_g, per_each = self.unit_costs(item, channel)
+                    if (per_g, per_each) == (None, None):
                         warnings.append(f"{where}: no {label} price")
+                    elif (per_g if unit == "g" else per_each) is None:
+                        errors.append(f"{where}: its {label} price can't be converted to '{unit}'; add each_g")
 
         for fid, doc in self.formulas.items():
             for field in ("name", "kind", "status", "version", "yield", "ingredients"):
@@ -271,11 +298,13 @@ class Book:
                 errors.append(f"{doc['_path']}: yield ({doc['yield']['grams']} g) exceeds inputs ({sum(grams):g} g)")
 
         for pid, doc in self.products.items():
-            for field in ("name", "status", "version", "batch_units", "build", "pricing"):
+            for field in ("name", "status", "version", "build", "pricing"):
                 if field not in doc:
                     errors.append(f"{doc['_path']}: missing '{field}'")
             if doc.get("status") not in STATUSES:
                 errors.append(f"{doc['_path']}: status must be one of {sorted(STATUSES)}")
+            if doc.get("category") not in CATEGORY_ORDER:
+                errors.append(f"{doc['_path']}: category must be one of {list(CATEGORY_ORDER)}")
             check_lines(doc, "build")
             if errors:
                 continue
@@ -326,23 +355,37 @@ def render(book: Book, warnings: list[str]) -> str:
         "Generated by `tools/costing.py` from the files in `db/`. Do not edit by hand; "
         "change the data and rerun the script.",
         "",
-        f"Prices as of {as_of}. **Retail est.** = US grocery estimates; **Distributor est.** = "
-        "foodservice estimates. Both are estimates until replaced with real quotes in "
-        "`db/ingredient_prices.csv`. Costs are ingredients only: no packaging, labor or energy.",
+        f"Prices as of {as_of}. **Retail est.** = US grocery or small-pack estimates; "
+        "**Distributor est.** = foodservice and wholesale estimates. Both are estimates until "
+        "replaced with real quotes in `db/ingredient_prices.csv`. Unit costs cover ingredients "
+        "plus any packaging listed in the build; labor and energy are not included.",
         "",
         "## Products",
         "",
-        f"| Product | Status | {labels[0]} | {labels[1]} | Suggested retail | Ingredient cost % of price (retail / distributor) | Allergens |",
-        "|---|---|---|---|---|---|---|",
+        f"| Product | Category | Status | Price | Unit cost, {labels[0].lower()} | "
+        f"Unit cost, {labels[1].lower()} | Packaging in unit cost | Cost % of price | Allergens |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for pid, doc in book.products.items():
         costs = [book.product_cost(pid, ch) for ch in CHANNELS]
         price = doc["pricing"].get("suggested_retail_usd")
         pct = " / ".join("n/a" if c is None or not price else f"{100 * c / price:.0f}%" for c in costs)
+        if book.has_packaging(pid):
+            parts = [book.product_cost_parts(pid, ch) for ch in CHANNELS]
+            pack = " / ".join(money(None if p is None else p[1]) for p in parts)
+        else:
+            pack = "not specified*"
         out.append(
-            f"| {doc['name']} | {doc['status']} | {money(costs[0])} | {money(costs[1])} | "
-            f"{money(price)} | {pct} | {', '.join(sorted(book.allergens(pid)))} |"
+            f"| {doc['name']} | {doc.get('category', '')} | {doc['status']} | {money(price)} | "
+            f"{money(costs[0])} | {money(costs[1])} | {pack} | {pct} | "
+            f"{', '.join(sorted(book.allergens(pid))) or 'none'} |"
         )
+    if not all(book.has_packaging(pid) for pid in book.products):
+        out += [
+            "",
+            "Packaging and cost % are shown retail est. / distributor est. *Food packaging isn't "
+            "in the builds yet; `pricing.md` assumes $0.25 per item.",
+        ]
 
     for pid, doc in book.products.items():
         out += [
@@ -352,27 +395,29 @@ def render(book: Book, warnings: list[str]) -> str:
             f"| Item | Qty | {labels[0]} | {labels[1]} |",
             "|---|---|---|---|",
         ]
-        subtotals = [0.0 for _ in CHANNELS]
+        food = [0.0 for _ in CHANNELS]
         for line in doc["build"]:
             costs = [book.line_cost(line, ch) for ch in CHANNELS]
-            subtotals = [s + (c or 0) for s, c in zip(subtotals, costs)]
+            if not book.is_packaging(line["item"]):
+                food = [s + (c or 0) for s, c in zip(food, costs)]
             out.append(
                 f"| {item_name(book, line['item'])} | {qty(float(line['qty']), line['unit'])} | "
                 f"{money(costs[0])} | {money(costs[1])} |"
             )
         waste = doc.get("waste_pct", 0)
         out.append(
-            f"| Waste allowance | {waste:g}% | {money(subtotals[0] * waste / 100)} | "
-            f"{money(subtotals[1] * waste / 100)} |"
+            f"| Waste allowance (food only) | {waste:g}% | {money(food[0] * waste / 100)} | "
+            f"{money(food[1] * waste / 100)} |"
         )
         totals = [book.product_cost(pid, ch) for ch in CHANNELS]
         out.append(f"| **Unit cost** | | **{money(totals[0])}** | **{money(totals[1])}** |")
-        n = doc["batch_units"]
-        needs = ", ".join(
-            f"{item_name(book, line['item'])} {qty(float(line['qty']) * n, line['unit'])}"
-            for line in doc["build"]
-        )
-        out += ["", f"Batch of {n}: {needs}."]
+        n = doc.get("batch_units") or 1
+        if n > 1:
+            needs = ", ".join(
+                f"{item_name(book, line['item'])} {qty(float(line['qty']) * n, line['unit'])}"
+                for line in doc["build"]
+            )
+            out += ["", f"Batch of {n}: {needs}."]
 
     out += ["", "## Formulas"]
     for fid, doc in book.formulas.items():

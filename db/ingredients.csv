@@ -19,3 +19,15 @@ cheese_cheddar_sliced,Cheddar cheese (sliced),dairy,milk,"Sliced cheddar, about 
 harissa_sauce,Harissa sauce,condiment,,"Jarred harissa sauce; brand not yet specified",,,,"Check the chosen brand's label for allergens before release"
 gelatin_unflavored,Unflavored gelatin,stabilizer,,"Knox powdered gelatin, 7 g envelopes",7,,,"Optional glaze stabilizer; not in the current glaze formula"
 sausage_fennel,Fennel pork sausage (bulk),meat,,"Bulk sweet Italian pork sausage with fennel; brand or house recipe not yet chosen",,,,"Some brands contain milk or soy; check the label. Cook patties to 160°F."
+coffee_espresso,Espresso blend (whole bean),coffee,,"Specialty-grade espresso blend from a Boston-area roaster (for example George Howell, Gracenote or Barrington); use 4–21 days off roast",,,,"Roaster not yet chosen; ask for a wholesale price sheet"
+coffee_drip,Filter coffee (whole bean),coffee,,"Specialty-grade coffee roasted for filter, from the same roaster as the espresso",,,,"Also used for the cold brew"
+matcha,Matcha (latte grade),tea,,"Premium latte-grade matcha from Uji or Nishio, Japan; vivid green, not culinary grade",,,,"Supplier not yet chosen"
+chai_concentrate,Chai concentrate,tea,,"Premium black-tea and whole-spice concentrate, mixed 1:1 with milk (Flour uses Boston Chai Party)",,1.05,,"Brand not yet chosen; check the label, some contain honey or milk. A house-made chai would cost far less"
+ice,Ice,water,,"From the house ice machine",,,,"Costed for water, power and machine wear"
+water_filtered,Filtered water,water,,"From the house filtration system",,1.0,,"Costed at zero"
+cup_hot_12oz,Hot cup 12 oz (double wall),packaging,,"Double-wall insulated paper cup with a compostable lining; no sleeve needed",,,,
+lid_hot,Hot cup sip lid,packaging,,"Sip lid matched to the 12 oz double-wall cup",,,,
+cup_hot_4oz,Espresso cup 4 oz (to go),packaging,,"Double-wall 4 oz paper cup; espresso for here goes in ceramic",,,,
+lid_hot_4oz,Espresso cup lid,packaging,,"Lid matched to the 4 oz cup",,,,
+cup_cold_16oz,Cold cup 16 oz (PET),packaging,,"Clear, sturdy recyclable PET cold cup",,,,
+lid_cold_sip,Cold cup strawless sip lid,packaging,,"Strawless sip lid matched to the 16 oz cold cup",,,,

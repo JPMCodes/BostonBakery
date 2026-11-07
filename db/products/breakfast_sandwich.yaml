@@ -1,5 +1,6 @@
 id: breakfast_sandwich
 name: Breakfast Sandwich
+category: sandwich
 status: approved
 version: "1.0"
 approved_on: 2026-11-06

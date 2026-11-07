@@ -1,0 +1,35 @@
+id: latte
+name: Latte (12 oz)
+category: drink
+status: pending_test
+version: "1.0"
+approved_on: null
+description: "Double espresso with steamed whole milk, 12 oz."
+waste_pct: 2
+
+build:
+  - {item: espresso_double, qty: 1, unit: each}
+  - {item: milk_whole, qty: 300, unit: g, note: "about 270 g in the cup plus pitcher waste"}
+  - {item: cup_hot_12oz, qty: 1, unit: each}
+  - {item: lid_hot, qty: 1, unit: each}
+
+production:
+  build:
+    - "Pull a double shot into the cup."
+    - "Steam the milk to 140–150°F with fine microfoam and pour."
+
+allergens_declared: [milk]
+
+pricing:
+  suggested_retail_usd: 4.75
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Choose the roaster and dial in."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Added with a suggested $4.75."
