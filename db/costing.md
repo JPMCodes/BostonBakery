@@ -15,8 +15,8 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
 | Cilantro Lime Quinoa Salad | salad | draft | $12.50 | $4.15 | $2.15 | $0.63 / $0.28 | 33% / 17% | milk |
 | Fennel Herb Salad Bowl | salad | draft | $13.50 | $6.02 | $2.72 | $0.63 / $0.28 | 45% / 20% | milk, wheat |
-| Chicken Salad Scoop | add-on | draft | $3.50 | $1.32 | $0.81 | $0.14 / $0.04 | 38% / 23% | egg |
-| Tuna Salad Scoop | add-on | draft | $3.50 | $1.94 | $1.34 | $0.14 / $0.04 | 56% / 38% | egg, fish |
+| Chicken Salad Scoop | add-on | draft | $4.50 | $1.32 | $0.81 | $0.14 / $0.04 | 29% / 18% | egg |
+| Tuna Salad Scoop | add-on | draft | $4.50 | $1.94 | $1.34 | $0.14 / $0.04 | 43% / 30% | egg, fish |
 | Chai Latte (12 oz) | drink | pending_test | $4.75 | $2.64 | $1.58 | $0.42 / $0.25 | 56% / 33% | milk |
 | Drip Coffee (12 oz) | drink | pending_test | $3.50 | $2.05 | $1.04 | $0.42 / $0.25 | 59% / 30% | none |
 | Espresso (double) | drink | pending_test | $3.50 | $1.47 | $0.71 | $0.18 / $0.10 | 42% / 20% | none |

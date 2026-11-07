@@ -13,8 +13,8 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | approved | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
 | [Fennel Herb Salad Bowl](products/fennel_herb_bowl.yaml) | draft | $13.50 | Farro, arugula, shaved fennel, orange, parsley, dill and mint, Parmesan and pepitas; lemon-Dijon vinaigrette on the side. Same-day sale |
 | [Cilantro Lime Quinoa Salad](products/cilantro_lime_quinoa_salad.yaml) | draft | $12.50 | Quinoa, black beans, roasted corn, tomatoes, red pepper, cotija and pepitas; cilantro-lime vinaigrette on the side. Holds 2 days; made without wheat |
-| [Chicken Salad Scoop](products/add_chicken_salad.yaml) | draft | $3.50 | Add-on for either salad: 100 g of lemon-herb chicken salad in its own lidded, labeled cup |
-| [Tuna Salad Scoop](products/add_tuna_salad.yaml) | draft | $3.50 | Add-on for either salad: 100 g of albacore tuna salad in its own lidded, labeled cup |
+| [Chicken Salad Scoop](products/add_chicken_salad.yaml) | draft | $4.50 | Add-on for either salad: 100 g of lemon-herb chicken salad in its own lidded, labeled cup |
+| [Tuna Salad Scoop](products/add_tuna_salad.yaml) | draft | $4.50 | Add-on for either salad: 100 g of albacore tuna salad in its own lidded, labeled cup |
 | [Drip Coffee (12 oz)](products/drip_coffee.yaml) | pending_test | $3.50 | Specialty filter coffee from the batch brewer |
 | [Iced Coffee (16 oz cold brew)](products/iced_coffee.yaml) | pending_test | $4.00 | House cold brew, 1:1 with water over ice |
 | [Espresso (double)](products/espresso.yaml) | pending_test | $3.50 | 18 g in, 36 g out |

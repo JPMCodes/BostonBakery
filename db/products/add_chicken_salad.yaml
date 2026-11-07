@@ -2,7 +2,7 @@ id: add_chicken_salad
 name: Chicken Salad Scoop
 category: add-on
 status: draft
-version: "1.0"
+version: "1.1"
 approved_on: null
 description: "Add-on for either salad bowl: 100 g of lemon-herb chicken salad in its own lidded, labeled cup."
 batch_units: 10
@@ -22,7 +22,7 @@ production:
 allergens_declared: [egg]
 
 pricing:
-  suggested_retail_usd: 3.50
+  suggested_retail_usd: 4.50
   rationale: "See db/pricing.md"
 
 validation:
@@ -34,3 +34,6 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Drafted at a suggested $3.50."
+  - date: 2026-11-07
+    version: "1.1"
+    change: "Price raised to $4.50 for margin; at $3.50 the tuna scoop cost 38% of its price at distributor prices."

@@ -11,8 +11,8 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 | Fennel Herb Salad Bowl, 382 g (draft) | **$13.50** | $2.44–$5.39 | $0.28–$0.63 | 20–45% | $7.48–$10.78 (55–80%) |
 | Cilantro Lime Quinoa Salad, 450 g (draft) | **$12.50** | $1.87–$3.52 | $0.28–$0.63 | 17–33% | $8.35–$10.35 (67–83%) |
-| Chicken Salad Scoop, 100 g add-on (draft) | **$3.50** | $0.77–$1.18 | $0.04–$0.14 | 23–38% | $2.18–$2.69 (62–77%) |
-| Tuna Salad Scoop, 100 g add-on (draft) | **$3.50** | $1.30–$1.80 | $0.04–$0.14 | 38–56% | $1.56–$2.16 (44–62%) |
+| Chicken Salad Scoop, 100 g add-on (draft) | **$4.50** | $0.77–$1.18 | $0.04–$0.14 | 18–29% | $3.18–$3.69 (71–82%) |
+| Tuna Salad Scoop, 100 g add-on (draft) | **$4.50** | $1.30–$1.80 | $0.04–$0.14 | 30–43% | $2.56–$3.16 (57–70%) |
 
 The cost range runs from the distributor estimate to the retail estimate. Packaging is costed for to-go orders; served on a plate for here, it drops out. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.
 
@@ -112,14 +112,14 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Dressing on the side** keeps the bowls crisp through lunch and makes the quinoa salad's 2-day hold possible. The cup and lid cost $0.02.
 - **Pepitas, not nuts:** pumpkin seeds give the crunch without adding tree nuts to a menu that has none so far.
 
-## Salad add-ons: chicken or tuna salad, $3.50 (draft)
+## Salad add-ons: chicken or tuna salad, $4.50 (draft)
 
 | Bowl with a 100 g scoop | Price | Cost, distributor–retail | Cost % of price |
 |---|---|---|---|
-| Fennel Herb + chicken salad | $17.00 | $3.54–$7.35 | 21–43% |
-| Fennel Herb + tuna salad | $17.00 | $4.06–$7.97 | 24–47% |
-| Cilantro Lime Quinoa + chicken salad | $16.00 | $2.97–$5.47 | 19–34% |
-| Cilantro Lime Quinoa + tuna salad | $16.00 | $3.49–$6.09 | 22–38% |
+| Fennel Herb + chicken salad | $18.00 | $3.54–$7.35 | 20–41% |
+| Fennel Herb + tuna salad | $18.00 | $4.06–$7.97 | 23–44% |
+| Cilantro Lime Quinoa + chicken salad | $17.00 | $2.97–$5.47 | 17–32% |
+| Cilantro Lime Quinoa + tuna salad | $17.00 | $3.49–$6.09 | 21–36% |
 
 | Boston comparable | Price | Note |
 |---|---|---|
@@ -129,9 +129,9 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Tatte salads, Copley and Wellesley | $14.50–$15.00 | Market research, November 2026 |
 | Flour BLT | $16.00 | |
 
-- **One price for both scoops:** $3.50 is Tatte's last published $3.00 chicken add-on plus inflation. Tuna costs more to make ($1.34 against $0.81 at distributor prices, 38% of its price), but customers don't expect tuna to cost more than chicken, and one price keeps the register simple. In a bowl, tuna is still only 22–24% of the combined price.
+- **$4.50 for margin, one price for both:** at $3.50 the tuna scoop cost 38% of its price at distributor prices, the thinnest margin on the menu. At $4.50 tuna is 30% and chicken 18%, in line with the drinks. Tuna costs more to make ($1.34 against $0.81), but customers don't expect tuna to cost more than chicken, and one price keeps the register simple. The nearest comparable is Tatte's last published chicken add-on, $3.00 on its 2022–23 menus.
 - **The scoop goes in its own cup, not in the bowl:** the bowls are sealed and labeled. Chicken salad adds egg, and tuna salad adds fish and egg, so scooping either into a bowl would make the bowl's allergen label wrong. The cup also keeps mayonnaise off the arugula, and lets the scoops sit in the case beside the bowls. Cup, lid and label cost $0.04.
-- **Watch the total:** with a scoop, a bowl comes to $16.00–$17.00, at or above Flour's $16 BLT, the top of the research's $13–$16 lunch band. Undated Toast listings show Tatte salads with chicken at $12.75–$13.50, though the research's current Copley prices are $14.50–$15.00. If protein bowls should land at $15–$16, cut each bowl by $1.00 (fennel $12.50, quinoa $11.50); food and packaging would still be only about 19–22% of the price.
+- **Watch the total:** with a scoop, a bowl comes to $17.00–$18.00, $1–$2 above Flour's $16 BLT, the top of the research's $13–$16 lunch band. Undated Toast listings show Tatte salads with chicken at $12.75–$13.50, though the research's current Copley prices are $14.50–$15.00. Cutting each bowl by $1.00 (fennel $12.50, quinoa $11.50) would bring protein bowls back to $16–$17 and keep the margin in the scoop; the meatless bowls' food and packaging would still be only about 19–22% of the price.
 - **Few new ingredients:** the chicken salad uses the parsley, dill, shallot, lemon and Dijon already bought for the fennel bowl, and the tuna salad uses the quinoa salad's red onion. Only chicken, tuna, mayonnaise and celery are new.
 - **No wheat added:** neither scoop contains wheat, so the quinoa salad stays wheat-free with either.
 
@@ -160,7 +160,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, sandwiches $10.20 and $12.30, salads $16.20 and $15.00, salad add-ons $4.20) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, sandwiches $10.20 and $12.30, salads $16.20 and $15.00, salad add-ons $5.40) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
