@@ -37,3 +37,12 @@ napkin_kraft,Napkin (kraft luncheon),packaging,,"12×12 in natural kraft, 1-ply,
 wrap_foil_insulated,Insulated foil sandwich wrap,packaging,,"Honeycomb-insulated foil sheet, 10 3/4 × 14 in; keeps the sandwich hot",,,,
 bag_kraft_6lb,Kraft paper bag #6,packaging,,"Natural kraft bag, about 6 × 3 5/8 × 11 in",,,,
 label_sandwich,Sandwich label,packaging,,"Printed 2 in round label; seals the wrap and names the sandwich, since two look alike once wrapped",,,,
+flour_pastry,Pastry flour (unbleached),flour,wheat,"Unbleached pastry flour, about 8–9% protein",,,,
+baking_powder,Baking powder (double-acting),leavening,,"Double-acting, aluminum-free preferred",,,,
+blueberries_dried,Dried blueberries (sweetened),fruit,,"Sweetened dried blueberries",,,,
+blueberries_fresh,Blueberries (fresh),fruit,,"Fresh cultivated blueberries, smaller berries preferred; keep cold",,,,"Price swings with the season"
+lemon,Lemon,produce,,"Fresh lemon, about 100 g",100,,,
+lemon_zest,Lemon zest,produce,,"Finely grated zest; one lemon gives about 6 g",6,,lemon,"Costed as one whole lemon per 6 g of zest; the juice is a by-product"
+sugar_brown_light,Light brown sugar,sugar,,"Light brown sugar, packed",,,,
+sour_cream,Sour cream (full fat),dairy,milk,"Cultured sour cream, full fat (at least 18% milkfat)",,,,
+creme_fraiche,Crème fraîche,dairy,milk,"Cultured cream, about 36% fat (for example Vermont Creamery)",,,,"Replaced by sour cream in the scone; kept for cost comparison"

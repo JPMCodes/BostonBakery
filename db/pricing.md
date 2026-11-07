@@ -5,6 +5,7 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Product | Suggested price | Food cost | To-go packaging | Total cost, % of price | Margin per unit after food and packaging |
 |---|---|---|---|---|---|
 | Cinnamon Roll (4 oz, buttermilk glaze) | **$4.75** | $0.29–$0.64 | $0.34–$0.47 | 13–23% | $3.64–$4.12 (77–87%) |
+| Blueberry Scone (pending test) | **$4.50** | $0.55–$1.03 | $0.34–$0.47 | 20–33% | $3.00–$3.61 (67–80%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 
@@ -37,6 +38,19 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Over the croissant and the chain buns:** a quarter above the $4.50 plain croissant at Flour and Tatte, for a bigger 4 oz item, and above the $3.35–$4.40 chain buns.
 - **Option:** a 4-pack box at $18 for pre-orders and gifting. That's $4.50 a roll, about 5% off four singles and $4 under Flour's 4-pack.
 - **Later:** move to $5.00 if it sells out daily, or at a prime-rent site. The research shows Tatte prices by location.
+
+## Blueberry Scone: $4.50
+
+| Boston comparable | Counter price |
+|---|---|
+| Flour scones | $4.50–$4.75 |
+| Flour muffins | $4.50–$5.00 |
+
+- **At par with Flour's scones,** and a quarter under the cinnamon roll, which stays the hero.
+- **Sour cream instead of crème fraîche saves $0.21–$0.28 a scone** ($2.45–$3.26 a batch). Crème fraîche runs about $26–$30/kg even by the case; sour cream about $5–$7/kg. Adding 25 g butter and taking out 25 g buttermilk keeps fat and liquid within about 2 g of the crème fraîche version. Total cost drops from 26–38% of the price to 20–33%.
+- **Fresh blueberries cost about $0.07–$0.12 a scone** across the dough and the topping, and more out of season.
+- **Dried blueberries are the biggest ingredient line,** at $0.17–$0.32 a scone.
+- **Packaging** is the same window box as the cinnamon roll; check that the baked scone fits.
 
 ## Breakfast Sandwiches: $8.50, or $10.25 with fennel sausage
 

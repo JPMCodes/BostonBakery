@@ -8,6 +8,7 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 
 | Product | Category | Status | Price | Unit cost, retail est. | Unit cost, distributor est. | Packaging in unit cost | Cost % of price | Allergens |
 |---|---|---|---|---|---|---|---|---|
+| Blueberry Scone | pastry | pending_test | $4.50 | $1.50 | $0.89 | $0.47 / $0.34 | 33% / 20% | egg, milk, wheat |
 | Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
@@ -18,6 +19,22 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 | Iced Latte (16 oz) | drink | pending_test | $5.00 | $1.83 | $1.02 | $0.23 / $0.15 | 37% / 20% | milk |
 | Latte (12 oz) | drink | pending_test | $4.75 | $2.07 | $1.15 | $0.42 / $0.25 | 44% / 24% | milk |
 | Matcha Latte (12 oz) | drink | pending_test | $5.25 | $1.67 | $1.06 | $0.42 / $0.25 | 32% / 20% | milk |
+
+### Blueberry Scone (`blueberry_scone`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Blueberry Scone Dough (formula) | 100 g | $0.90 | $0.48 |
+| Blueberry Scone Crumb Topping (formula) | 8 g | $0.04 | $0.02 |
+| Blueberries (fresh) | 4 g | $0.06 | $0.03 |
+| Egg (large) | 1 g | <$0.01 | <$0.01 |
+| Bakery box 4×4×4 in (kraft window) | 1 each | $0.44 | $0.32 |
+| Dry-wax paper square | 1 each | $0.02 | $0.01 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Waste allowance (food only) | 3% | $0.03 | $0.02 |
+| **Unit cost** | | **$1.50** | **$0.89** |
+
+Batch of 12: Blueberry Scone Dough (formula) 1,200 g, Blueberry Scone Crumb Topping (formula) 96 g, Blueberries (fresh) 48 g, Egg (large) 12 g, Bakery box 4×4×4 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
 
 ### Cinnamon Roll (`cinnamon_roll`), per unit
 
@@ -171,6 +188,42 @@ Cost per kg of yield: $4.70 retail est., $2.29 distributor est.
 
 Cost per kg of yield: $10.27 retail est., $5.00 distributor est.
 
+### Blueberry Scone Crumb Topping (`crumb_blueberry_scone`), pending_test
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| All-purpose flour | 47.5 g | $0.13 | $0.05 |
+| Granulated sugar | 12.4 g | $0.02 | $0.02 |
+| Light brown sugar | 12.4 g | $0.04 | $0.02 |
+| Unsalted butter | 27.6 g | $0.24 | $0.15 |
+| Pure vanilla extract | 0.4 g | $0.03 | $0.02 |
+| Fine salt | 0.5 g | <$0.01 | <$0.01 |
+| **Batch** | **101 g in, 97 g out** | **$0.46** | **$0.25** |
+
+Cost per kg of yield: $4.71 retail est., $2.58 distributor est.
+
+### Blueberry Scone Dough (`dough_blueberry_scone`), pending_test
+
+| Stage | Item | Qty | Baker's % | Retail est. | Distributor est. |
+|---|---|---|---|---|---|
+| Dry | All-purpose flour | 290 g | 64.0% | $0.77 | $0.28 |
+| Dry | Pastry flour (unbleached) | 163 g | 36.0% | $0.71 | $0.20 |
+| Dry | Granulated sugar | 109 g | 24.1% | $0.21 | $0.17 |
+| Dry | Baking powder (double-acting) | 13.8 g | 3.0% | $0.14 | $0.05 |
+| Dry | Baking soda | 1.6 g | 0.3% | <$0.01 | <$0.01 |
+| Dry | Fine salt | 6.4 g | 1.4% | $0.01 | $0.01 |
+| Fat and fruit | Unsalted butter | 170 g | 37.5% | $1.50 | $0.90 |
+| Fat and fruit | Dried blueberries (sweetened) | 96.7 g | 21.3% | $3.85 | $2.05 |
+| Fat and fruit | Lemon zest | 7.6 g | 1.7% | $0.87 | $0.42 |
+| Wet | Cultured buttermilk | 65 g | 14.3% | $0.19 | $0.08 |
+| Wet | Sour cream (full fat) | 131 g | 28.9% | $0.86 | $0.63 |
+| Wet | Egg (large) | 72.6 g | 16.0% | $0.27 | $0.23 |
+| Wet | Pure vanilla extract | 7.2 g | 1.6% | $0.48 | $0.30 |
+| Last | Blueberries (fresh) | 54 g | 11.9% | $0.78 | $0.42 |
+| **Batch** | | **1,188 g in, 1,188 g out** | | **$10.65** | **$5.74** |
+
+Cost per kg of yield: $8.96 retail est., $4.84 distributor est.
+
 ### Signature Milk Dough (`dough_signature`), approved
 
 | Stage | Item | Qty | Baker's % | Retail est. | Distributor est. |
@@ -284,6 +337,15 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Insulated foil sandwich wrap | `wrap_foil_insulated` | n/a | n/a |  |
 | Kraft paper bag #6 | `bag_kraft_6lb` | n/a | n/a |  |
 | Sandwich label | `label_sandwich` | n/a | n/a |  |
+| Pastry flour (unbleached) | `flour_pastry` | $4.37 | $1.23 |  |
+| Baking powder (double-acting) | `baking_powder` | $9.97 | $3.97 |  |
+| Dried blueberries (sweetened) | `blueberries_dried` | $39.86 | $21.16 |  |
+| Blueberries (fresh) | `blueberries_fresh` | $14.40 | $7.72 |  |
+| Lemon | `lemon` | $6.90 | $3.30 | $0.69 / $0.33 |
+| Lemon zest | `lemon_zest` | $115.00 | $55.07 | $0.69 / $0.33 |
+| Light brown sugar | `sugar_brown_light` | $3.08 | $1.76 |  |
+| Sour cream (full fat) | `sour_cream` | $6.59 | $4.85 |  |
+| Crème fraîche | `creme_fraiche` | $26.41 | $30.47 |  |
 
 ## Warnings
 

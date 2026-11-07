@@ -1,0 +1,28 @@
+id: crumb_blueberry_scone
+name: Blueberry Scone Crumb Topping
+kind: topping
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [blueberry_scone]
+yield:
+  grams: 97
+  description: "about 101 g in; browning the butter cooks off about 4 g of water, leaving about 97 g, enough for 12 scones at 8 g"
+
+ingredients:
+  - {item: flour_ap, qty: 47.5, unit: g}
+  - {item: sugar_granulated, qty: 12.4, unit: g, note: "1 tbsp"}
+  - {item: sugar_brown_light, qty: 12.4, unit: g, note: "2 3/4 tsp"}
+  - {item: butter_unsalted, qty: 27.6, unit: g, note: "weighed raw, then browned; 2 tbsp"}
+  - {item: vanilla_extract, qty: 0.39, unit: g, note: "a pinch; needs a 0.01 g scale"}
+  - {item: salt_fine, qty: 0.48, unit: g, note: "a pinch; needs a 0.01 g scale"}
+
+method:
+  - "Brown the butter until it smells nutty and the solids are deep golden. Cool for 10 minutes."
+  - "Mix the flour, both sugars and salt. Add the browned butter and vanilla and rub together into clumps."
+  - "Chill until firm, then break into pea-size crumbs."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Recipe as received."

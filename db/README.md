@@ -7,6 +7,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | Product | Status | Suggested price | Notes |
 |---|---|---|---|
 | [Cinnamon Roll](products/cinnamon_roll.yaml) | approved | $4.75 | 4 oz finished. Approved 2026-11-06; the cooked buttermilk glaze is still pending its first test bake |
+| [Blueberry Scone](products/blueberry_scone.yaml) | pending_test | $4.50 | Fresh and dried blueberries, lemon, brown-butter crumb; sour cream in place of crème fraîche, pending a test bake |
 | [Breakfast Sandwich](products/breakfast_sandwich.yaml) | approved | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
 | [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | approved | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
 | [Drip Coffee (12 oz)](products/drip_coffee.yaml) | pending_test | $3.50 | Specialty filter coffee from the batch brewer |
