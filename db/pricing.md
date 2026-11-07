@@ -5,7 +5,7 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Product | Suggested price | Food cost | To-go packaging | Total cost, % of price | Margin per unit after food and packaging |
 |---|---|---|---|---|---|
 | Cinnamon Roll (4 oz, buttermilk glaze) | **$4.75** | $0.29–$0.64 | $0.34–$0.47 | 13–23% | $3.64–$4.12 (77–87%) |
-| Blueberry Scone, 95 g (pending test) | **$4.50** | $0.53–$0.98 | $0.34–$0.47 | 19–32% | $3.05–$3.63 (68–81%) |
+| Blueberry Scone, 95 g (pending test) | **$4.50** | $0.53–$0.98 | $0.05–$0.09 | 13–24% | $3.43–$3.92 (76–87%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 
@@ -17,7 +17,9 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 |---|---|---|
 | Cinnamon Roll | 4×4×4 in kraft window box, dry-wax square under the roll, kraft napkin | $0.34–$0.47 |
 | Both breakfast sandwiches | Insulated foil wrap, printed label, #6 kraft bag, kraft napkin | $0.12–$0.25 |
+| Blueberry Scone | #6 kraft bag, kraft napkin | $0.05–$0.09 |
 
+- **Box only what needs it:** glazed, frosted or fragile items, multi-packs and gifts. Sturdy, dry pastries go in a bag. Each box swapped for a bag saves about $0.28; at 100 pastries a day that's about $10,000 a year.
 - **The roll's box is its biggest cost.** At distributor prices the box ($0.32) costs more than the roll's food ($0.29), and packaging is over half the roll's cost. A 6×6 sugarcane-fiber clamshell (about $0.15 at WebstaurantStore) would halve the packaging, at some cost to presentation.
 - **The sandwich label does a job:** the two sandwiches look alike once wrapped, so the label names which is which and seals the wrap.
 - **Not costed:** a box for the 4-pack, and bags for multi-item orders.
@@ -51,7 +53,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **95 g portion (decided):** saves another $0.02–$0.05 a scone against 100 g. The batch is scaled to 1,152 g so it makes exactly 12.
 - **Fresh blueberries cost about $0.06–$0.12 a scone** across the dough and the topping, and more out of season.
 - **Dried blueberries are the biggest ingredient line,** at $0.16–$0.31 a scone.
-- **Packaging** is the same window box as the cinnamon roll; check that the baked scone fits.
+- **Packaging is a kraft bag, not a box:** a scone is sturdy and unglazed, so the bag ($0.05–$0.09 with a napkin) does the job of the $0.34–$0.47 window box and saves about $0.29–$0.38 a scone.
 
 ## Breakfast Sandwiches: $8.50, or $10.25 with fennel sausage
 

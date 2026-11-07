@@ -2,7 +2,7 @@ id: blueberry_scone
 name: Blueberry Scone
 category: pastry
 status: pending_test
-version: "1.1"
+version: "1.2"
 approved_on: null
 description: "Lemon-blueberry scone with dried and fresh blueberries, topped with fresh berries and a brown-butter crumb."
 batch_units: 12
@@ -13,8 +13,7 @@ build:
   - {item: crumb_blueberry_scone, qty: 8, unit: g}
   - {item: blueberries_fresh, qty: 4, unit: g, note: "pressed into the top; replaces frozen wild blueberries"}
   - {item: egg_large, qty: 1, unit: g, note: "egg wash"}
-  - {item: box_pastry_4x4, qty: 1, unit: each, note: "to go; for here, plate it"}
-  - {item: paper_wax_square, qty: 1, unit: each, note: "under the scone"}
+  - {item: bag_kraft_6lb, qty: 1, unit: each, note: "to go; for here, plate it"}
   - {item: napkin_kraft, qty: 1, unit: each}
 
 production:
@@ -22,7 +21,7 @@ production:
     - "Brush each chilled 95 g scone with egg wash (about 1 g)."
     - "Press 4 g of fresh blueberries into the top, then scatter 8 g of crumb over them."
   bake: "Default until confirmed: 400°F for 20–24 minutes, until deep golden and about 200°F inside."
-  packaging: "To go: set the scone on a wax square in a 4×4×4 window box and add a napkin; check the baked scone fits, or move to a 4 1/2-inch box. For here: serve it on a plate."
+  packaging: "To go: slide the scone into a #6 kraft bag, crumb side up, and add a napkin. For here: serve it on a plate."
 
 allergens_declared: [egg, milk, wheat]
 
@@ -35,7 +34,7 @@ validation:
   pending:
     - "First test bake of the sour cream dough at 95 g."
     - "Check that the fresh blueberries hold their shape through mixing and baking."
-    - "Confirm the bake time and temperature, and that the baked scone fits the 4×4×4 box."
+    - "Confirm the bake time and temperature."
 
 history:
   - date: 2026-11-07
@@ -44,3 +43,6 @@ history:
   - date: 2026-11-07
     version: "1.1"
     change: "Sour cream confirmed; dough portion cut from 100 g to 95 g."
+  - date: 2026-11-07
+    version: "1.2"
+    change: "To-go packaging changed from the window box to a kraft bag; a scone is sturdy and unglazed."

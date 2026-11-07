@@ -8,7 +8,7 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 
 | Product | Category | Status | Price | Unit cost, retail est. | Unit cost, distributor est. | Packaging in unit cost | Cost % of price | Allergens |
 |---|---|---|---|---|---|---|---|---|
-| Blueberry Scone | pastry | pending_test | $4.50 | $1.45 | $0.87 | $0.47 / $0.34 | 32% / 19% | egg, milk, wheat |
+| Blueberry Scone | pastry | pending_test | $4.50 | $1.07 | $0.58 | $0.09 / $0.05 | 24% / 13% | egg, milk, wheat |
 | Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
@@ -28,13 +28,12 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 | Blueberry Scone Crumb Topping (formula) | 8 g | $0.04 | $0.02 |
 | Blueberries (fresh) | 4 g | $0.06 | $0.03 |
 | Egg (large) | 1 g | <$0.01 | <$0.01 |
-| Bakery box 4×4×4 in (kraft window) | 1 each | $0.44 | $0.32 |
-| Dry-wax paper square | 1 each | $0.02 | $0.01 |
+| Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
 | Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
 | Waste allowance (food only) | 3% | $0.03 | $0.02 |
-| **Unit cost** | | **$1.45** | **$0.87** |
+| **Unit cost** | | **$1.07** | **$0.58** |
 
-Batch of 12: Blueberry Scone Dough (formula) 1,140 g, Blueberry Scone Crumb Topping (formula) 96 g, Blueberries (fresh) 48 g, Egg (large) 12 g, Bakery box 4×4×4 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
+Batch of 12: Blueberry Scone Dough (formula) 1,140 g, Blueberry Scone Crumb Topping (formula) 96 g, Blueberries (fresh) 48 g, Egg (large) 12 g, Kraft paper bag #6 12 each, Napkin (kraft luncheon) 12 each.
 
 ### Cinnamon Roll (`cinnamon_roll`), per unit
 
