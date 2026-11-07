@@ -4,7 +4,7 @@ kind: roll
 status: approved
 version: "1.0"
 approved_on: 2026-11-06
-used_by: [breakfast_sandwich]
+used_by: [breakfast_sandwich, breakfast_sandwich_fennel_sausage]
 yield:
   units: 1
   grams: 81

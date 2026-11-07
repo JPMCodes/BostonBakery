@@ -34,3 +34,5 @@ vanilla_extract,distributor_est,1,gal,150.00,2026-11-06,"Estimate: pure vanilla 
 baking_soda,distributor_est,5,lb,6.00,2026-11-06,"Estimate: foodservice, 5 lb"
 cheese_cheddar_sliced,distributor_est,5,lb,18.40,2026-11-06,"Estimate: foodservice sliced cheddar, 5 lb"
 harissa_sauce,distributor_est,1,kg,12.00,2026-11-06,"Estimate: foodservice harissa"
+sausage_fennel,retail_est,1,lb,5.49,2026-11-07,"Estimate: US grocery bulk Italian sausage, 1 lb"
+sausage_fennel,distributor_est,10,lb,28.90,2026-11-07,"Estimate: foodservice bulk Italian sausage, 10 lb at $2.89/lb"
