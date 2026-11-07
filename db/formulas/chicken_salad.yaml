@@ -1,0 +1,32 @@
+id: chicken_salad
+name: Lemon-Herb Chicken Salad
+kind: protein salad
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [add_chicken_salad]
+yield:
+  grams: 1000
+  description: "10 scoops at 100 g"
+
+ingredients:
+  - {item: chicken_roasted, qty: 650, unit: g, note: "diced 1/2 inch"}
+  - {item: mayonnaise, qty: 180, unit: g}
+  - {item: celery, qty: 100, unit: g, note: "small dice"}
+  - {item: shallot, qty: 25, unit: g, note: "minced"}
+  - {item: lemon_juice, qty: 16, unit: g}
+  - {item: dijon, qty: 12, unit: g}
+  - {item: parsley_flat, qty: 10, unit: g, note: "chopped"}
+  - {item: dill, qty: 4, unit: g, note: "chopped"}
+  - {item: salt_fine, qty: 2, unit: g}
+  - {item: black_pepper, qty: 1.5, unit: g}
+
+method:
+  - "Whisk the mayonnaise, lemon juice, Dijon, salt and pepper."
+  - "Fold in the chicken, celery, shallot, parsley and dill."
+  - "Refrigerate covered and dated at 41°F or below; use within 3 days."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted as a salad add-on. Shares the parsley, dill, shallot, lemon and Dijon with the fennel bowl and its dressing."

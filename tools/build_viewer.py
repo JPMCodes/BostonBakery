@@ -215,6 +215,7 @@ PAGE = r"""<title>BostonBakery Formula Book</title>
   --pastry: #8a4b1f;
   --sandwich: #b0452b;
   --salad: #2c6e73;
+  --add-on: #4a5a8a;
   --drink: #4e6e3a;
   --ok: #2f6b45;
   --ok-bg: #e2eedd;
@@ -273,6 +274,7 @@ main { padding-block: 18px 40px; display: flex; flex-direction: column; gap: 22p
 .cat-pastry { color: var(--pastry); border-color: currentColor; }
 .cat-sandwich { color: var(--sandwich); border-color: currentColor; }
 .cat-salad { color: var(--salad); border-color: currentColor; }
+.cat-add-on { color: var(--add-on); border-color: currentColor; }
 .cat-drink { color: var(--drink); border-color: currentColor; }
 .pill { padding: 2px 8px; border-radius: 4px; font: 600 12px/1.4 var(--font-display); letter-spacing: .06em; text-transform: uppercase; }
 .pill.approved { background: var(--ok-bg); color: var(--ok); }
@@ -373,7 +375,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     { id: "formulas", label: "Formulas", count: DATA.formulas.length },
     { id: "ingredients", label: "Ingredients", count: DATA.ingredients.length }
   ];
-  const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["salad", "Salads"], ["drink", "Drinks"]];
+  const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["salad", "Salads"], ["add-on", "Add-ons"], ["drink", "Drinks"]];
   const STATUS = { approved: "Approved", pending_test: "Pending test", draft: "Draft", retired: "Retired" };
   const state = { view: "products", channel: "distributor_est", query: "", open: new Set(), cat: "all" };
   try { const saved = localStorage.getItem("fb-channel"); if (saved && CH.includes(saved)) state.channel = saved; } catch (e) {}

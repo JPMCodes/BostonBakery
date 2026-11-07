@@ -1,0 +1,27 @@
+id: chicken_roasted
+name: Roasted Chicken Breast
+kind: protein
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [chicken_salad]
+yield:
+  grams: 730
+  description: "about 73% of the raw weight after roasting"
+
+ingredients:
+  - {item: chicken_breast, qty: 1000, unit: g, note: "boneless, skinless"}
+  - {item: oil_high_oleic_sunflower, qty: 10, unit: g}
+  - {item: salt_fine, qty: 10, unit: g}
+  - {item: black_pepper, qty: 2, unit: g}
+
+method:
+  - "Pat the breasts dry, season with the salt and pepper, and toss with the oil."
+  - "Roast on a sheet pan at 425°F until 165°F in the thickest part, about 20–25 minutes."
+  - "Cool fast: below 70°F within 2 hours, and below 41°F within 4 more. Dice 1/2 inch."
+  - "Refrigerate covered and dated; mix into chicken salad within 2 days."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted for the chicken salad add-on."

@@ -15,6 +15,8 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
 | Cilantro Lime Quinoa Salad | salad | draft | $12.50 | $4.15 | $2.15 | $0.63 / $0.28 | 33% / 17% | milk |
 | Fennel Herb Salad Bowl | salad | draft | $13.50 | $6.02 | $2.72 | $0.63 / $0.28 | 45% / 20% | milk, wheat |
+| Chicken Salad Scoop | add-on | draft | $3.50 | $1.32 | $0.81 | $0.14 / $0.04 | 38% / 23% | egg |
+| Tuna Salad Scoop | add-on | draft | $3.50 | $1.94 | $1.34 | $0.14 / $0.04 | 56% / 38% | egg, fish |
 | Chai Latte (12 oz) | drink | pending_test | $4.75 | $2.64 | $1.58 | $0.42 / $0.25 | 56% / 33% | milk |
 | Drip Coffee (12 oz) | drink | pending_test | $3.50 | $2.05 | $1.04 | $0.42 / $0.25 | 59% / 30% | none |
 | Espresso (double) | drink | pending_test | $3.50 | $1.47 | $0.71 | $0.18 / $0.10 | 42% / 20% | none |
@@ -153,6 +155,32 @@ Batch of 10: Cooked Quinoa (formula) 1,400 g, Black beans (canned) 700 g, Sweet 
 
 Batch of 10: Cooked Farro (formula) 1,300 g, Baby arugula 450 g, Fennel bulb 700 g, Navel orange 600 g, Flat-leaf parsley 60 g, Dill 30 g, Mint 30 g, Parmesan (block) 150 g, Pepitas (shelled pumpkin seeds) 150 g, Lemon-Dijon Vinaigrette (formula) 350 g, Salad bowl 32 oz with lid 10 each, Portion cup 2 oz 10 each, Portion cup lid 2 oz 10 each, Wooden fork 10 each, Napkin (kraft luncheon) 10 each, Grab-and-go label 10 each.
 
+### Chicken Salad Scoop (`add_chicken_salad`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Lemon-Herb Chicken Salad (formula) | 100 g | $1.13 | $0.74 |
+| Portion cup 4 oz | 1 each | $0.06 | $0.01 |
+| Portion cup lid 4 oz | 1 each | $0.05 | $0.01 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 5% | $0.06 | $0.04 |
+| **Unit cost** | | **$1.32** | **$0.81** |
+
+Batch of 10: Lemon-Herb Chicken Salad (formula) 1,000 g, Portion cup 4 oz 10 each, Portion cup lid 4 oz 10 each, Grab-and-go label 10 each.
+
+### Tuna Salad Scoop (`add_tuna_salad`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Tuna Salad (formula) | 100 g | $1.72 | $1.23 |
+| Portion cup 4 oz | 1 each | $0.06 | $0.01 |
+| Portion cup lid 4 oz | 1 each | $0.05 | $0.01 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 5% | $0.09 | $0.06 |
+| **Unit cost** | | **$1.94** | **$1.34** |
+
+Batch of 10: Tuna Salad (formula) 1,000 g, Portion cup 4 oz 10 each, Portion cup lid 4 oz 10 each, Grab-and-go label 10 each.
+
 ### Chai Latte (12 oz) (`chai_latte`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -242,6 +270,36 @@ Batch of 10: Cooked Farro (formula) 1,300 g, Baby arugula 450 g, Fennel bulb 700
 | **Batch** | **1,060 g in, 750 g out** | **$3.53** | **$1.72** |
 
 Cost per kg of yield: $4.70 retail est., $2.29 distributor est.
+
+### Roasted Chicken Breast (`chicken_roasted`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Chicken breast (boneless skinless) | 1,000 g | $8.73 | $6.06 |
+| High-oleic sunflower oil | 10 g | $0.08 | $0.03 |
+| Fine salt | 10 g | $0.02 | $0.01 |
+| Black pepper (ground) | 2 g | $0.09 | $0.04 |
+| **Batch** | **1,022 g in, 730 g out** | **$8.92** | **$6.14** |
+
+Cost per kg of yield: $12.22 retail est., $8.42 distributor est.
+
+### Lemon-Herb Chicken Salad (`chicken_salad`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Roasted Chicken Breast (formula) | 650 g | $7.95 | $5.47 |
+| Mayonnaise | 180 g | $1.32 | $1.04 |
+| Celery | 100 g | $0.55 | $0.32 |
+| Shallot | 25 g | $0.26 | $0.13 |
+| Lemon juice (fresh) | 16 g | $0.28 | $0.13 |
+| Dijon mustard | 12 g | $0.14 | $0.07 |
+| Flat-leaf parsley | 10 g | $0.25 | $0.10 |
+| Dill | 4 g | $0.47 | $0.08 |
+| Fine salt | 2 g | <$0.01 | <$0.01 |
+| Black pepper (ground) | 1.5 g | $0.07 | $0.03 |
+| **Batch** | **1,000 g in, 1,000 g out** | **$11.28** | **$7.37** |
+
+Cost per kg of yield: $11.28 retail est., $7.37 distributor est.
 
 ### Cold Brew Concentrate (`cold_brew_concentrate`), pending_test
 
@@ -449,6 +507,22 @@ Cost per kg of yield: $2.85 retail est., $1.57 distributor est.
 
 Cost per kg of yield: $4.97 retail est., $1.92 distributor est. Per unit: $0.40 / $0.16.
 
+### Tuna Salad (`tuna_salad`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Albacore tuna (in water) | 660 g | $14.49 | $10.64 |
+| Mayonnaise | 170 g | $1.25 | $0.98 |
+| Celery | 90 g | $0.49 | $0.29 |
+| Red onion | 40 g | $0.18 | $0.07 |
+| Lemon juice (fresh) | 20 g | $0.34 | $0.17 |
+| Dijon mustard | 10 g | $0.12 | $0.06 |
+| Flat-leaf parsley | 10 g | $0.25 | $0.10 |
+| Black pepper (ground) | 1.5 g | $0.07 | $0.03 |
+| **Batch** | **1,002 g in, 1,000 g out** | **$17.19** | **$12.33** |
+
+Cost per kg of yield: $17.19 retail est., $12.33 distributor est.
+
 ## Ingredient prices
 
 Latest price per ingredient and channel. Sources are in `db/ingredient_prices.csv`.
@@ -538,6 +612,12 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Honey | `honey` | $16.14 | $9.70 |  |
 | Citric acid | `citric_acid` | $25.82 | $17.64 |  |
 | Glassine bag 1/2 lb | `bag_glassine_half_lb` | n/a | n/a |  |
+| Chicken breast (boneless skinless) | `chicken_breast` | $8.73 | $6.06 |  |
+| Mayonnaise | `mayonnaise` | $7.34 | $5.78 |  |
+| Celery | `celery` | $5.48 | $3.22 |  |
+| Albacore tuna (in water) | `tuna_albacore` | $21.96 | $16.12 |  |
+| Portion cup 4 oz | `cup_portion_4oz` | n/a | n/a |  |
+| Portion cup lid 4 oz | `lid_portion_4oz` | n/a | n/a |  |
 
 ## Warnings
 

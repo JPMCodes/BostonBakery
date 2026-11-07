@@ -1,0 +1,36 @@
+id: add_tuna_salad
+name: Tuna Salad Scoop
+category: add-on
+status: draft
+version: "1.0"
+approved_on: null
+description: "Add-on for either salad bowl: 100 g of albacore tuna salad in its own lidded, labeled cup."
+batch_units: 10
+waste_pct: 5
+
+build:
+  - {item: tuna_salad, qty: 100, unit: g}
+  - {item: cup_portion_4oz, qty: 1, unit: each}
+  - {item: lid_portion_4oz, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Scoop 100 g into a 4 oz cup, lid it, and label it with the name, ingredients, allergens and date."
+  serve: "Sell it beside the bowl, not in it. Tuna salad adds fish and egg, so scooping it into a sealed bowl would make the bowl's allergen label wrong, and the mayonnaise would wilt the greens."
+  hold: "Keep at 41°F or below. Use within 3 days of mixing."
+
+allergens_declared: [egg, fish]
+
+pricing:
+  suggested_retail_usd: 3.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Kitchen test: seasoning, drained yield of the pouch tuna, and how the scoop eats on each bowl."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted at a suggested $3.50."
