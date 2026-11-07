@@ -29,7 +29,9 @@ The drinks stay `pending_test` until the roaster, matcha and chai suppliers are 
 | `products/*.yaml` | What we sell: build per unit, production steps, QA checks, declared allergens, price, what's tested and what's pending |
 | `costing.md` | Generated cost report. Do not edit by hand |
 | `pricing.md` | Retail price recommendations and their market basis |
+| `viewer.html` | Generated Formula Book viewer: products, formulas and ingredients with costs, prices and methods. Open it in any browser. Do not edit by hand |
 | `../tools/costing.py` | Validates everything and regenerates `costing.md` |
+| `../tools/build_viewer.py` | Regenerates `viewer.html` from the same data |
 
 ## Run the checks
 
@@ -46,6 +48,12 @@ python3 tools/costing.py --check
 ```
 
 The first command validates and rewrites `costing.md`. `--check` validates only and exits non-zero on any error. Run it after every change and commit the regenerated report with the data.
+
+```bash
+python3 tools/build_viewer.py
+```
+
+This rebuilds `viewer.html`, a single self-contained page with the data built in. It works offline, with a switch between retail and distributor costs, search, and tabs for products, formulas and ingredients. Rebuild it after every data change too.
 
 The script stops on unknown items, bad units, a yield larger than its inputs, formula cycles, missing pack weights or densities, and declared allergens that don't match the ingredients. It warns, without failing, when an approved product uses a formula that isn't approved yet, or when an ingredient has no price in a channel.
 
