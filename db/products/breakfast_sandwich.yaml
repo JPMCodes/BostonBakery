@@ -2,7 +2,7 @@ id: breakfast_sandwich
 name: Breakfast Sandwich
 category: sandwich
 status: approved
-version: "1.0"
+version: "1.1"
 approved_on: 2026-11-06
 description: "Fried egg, sliced cheddar and harissa sauce on the house sandwich roll."
 batch_units: 12
@@ -14,12 +14,17 @@ build:
   - {item: egg_large, qty: 1, unit: each}
   - {item: cheese_cheddar_sliced, qty: 21, unit: g, note: "1 slice, 3/4 oz"}
   - {item: harissa_sauce, qty: 15, unit: g, note: "1 tablespoon"}
+  - {item: wrap_foil_insulated, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: label_sandwich, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
 
 production:
   build:
     - "Split the roll and toast the cut sides in the butter."
     - "Fry the egg in the same pan. Lay the cheddar on the egg and cover for about 30 seconds to melt."
     - "Spread the harissa on the top half. Stack: bottom roll, egg and cheese, top roll."
+  packaging: "To go: wrap in insulated foil, seal with the sandwich label, and bag with a napkin. For here: serve it on a plate."
 
 allergens_declared: [egg, milk, wheat]
 
@@ -38,3 +43,6 @@ history:
   - date: 2026-11-06
     version: "1.0"
     change: "Approved at a suggested $8.50."
+  - date: 2026-11-07
+    version: "1.1"
+    change: "Costed to-go packaging: insulated foil wrap, label, kraft bag and napkin."

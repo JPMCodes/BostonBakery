@@ -2,7 +2,7 @@ id: breakfast_sandwich_fennel_sausage
 name: Fennel Sausage Breakfast Sandwich
 category: sandwich
 status: approved
-version: "1.1"
+version: "1.2"
 approved_on: 2026-11-07
 description: "The breakfast sandwich plus a fennel pork sausage patty: sausage, fried egg, sliced cheddar and harissa sauce on the house sandwich roll."
 batch_units: 12
@@ -15,6 +15,10 @@ build:
   - {item: egg_large, qty: 1, unit: each}
   - {item: cheese_cheddar_sliced, qty: 21, unit: g, note: "1 slice, 3/4 oz"}
   - {item: harissa_sauce, qty: 15, unit: g, note: "1 tablespoon"}
+  - {item: wrap_foil_insulated, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: label_sandwich, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
 
 production:
   prep:
@@ -24,6 +28,7 @@ production:
     - "Split the roll and toast the cut sides in the butter."
     - "Fry the egg in the same pan. Lay the cheddar on the egg and cover for about 30 seconds to melt."
     - "Spread the harissa on the top half. Stack: bottom roll, sausage, egg and cheese, top roll."
+  packaging: "To go: wrap in insulated foil, seal with the sandwich label, and bag with a napkin. For here: serve it on a plate."
 
 qa:
   - "Sausage patty at 160°F inside before it goes on the sandwich."
@@ -48,3 +53,6 @@ history:
   - date: 2026-11-07
     version: "1.1"
     change: "Suggested retail raised to $10.25 for margin; still mid-band for Boston breakfast sandwiches."
+  - date: 2026-11-07
+    version: "1.2"
+    change: "Costed to-go packaging: insulated foil wrap, label, kraft bag and napkin."

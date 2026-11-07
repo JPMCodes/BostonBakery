@@ -63,7 +63,7 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 - **Quantities:** formula and product lines use grams (`g`) or counts (`each`).
 - **Price packs:** `pack_unit` can be `g`, `kg`, `oz`, `lb`, `ml`, `l`, `fl_oz`, `qt`, `gal` or `each`. Volume packs need `density_g_per_ml`; count packs need `each_g`.
 - **Product categories:** every product has a `category` of `pastry`, `sandwich` or `drink`, which sets its place in the cost report.
-- **Packaging:** cups, lids and other packaging are ingredients with `category` `packaging`, priced per `each`. The report shows them separately, and a product's `waste_pct` applies to its food lines only, not its packaging. Food products don't list packaging yet.
+- **Packaging:** cups, lids and other packaging are ingredients with `category` `packaging`, priced per `each`. The report shows them separately, and a product's `waste_pct` applies to its food lines only, not its packaging. Food products are costed with their to-go packaging; for-here orders on a plate skip it.
 - **`price_ref`:** costs an item as one unit of another. An egg yolk costs one whole egg, and its white goes to egg wash.
 - **Allergens:** semicolon-separated, using US major-allergen names (milk, egg, wheat, soy, peanuts, tree nuts, fish, shellfish, sesame). Every product must list `allergens_declared`, and it must match its ingredients.
 - **Status:** `draft` → `pending_test` → `approved` → `retired`. Approve a formula only after a test bake, and say what was tested in `history`.

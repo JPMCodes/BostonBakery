@@ -2,13 +2,24 @@
 
 Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come from the Boston market research in [`reports/Boston bakery market matrix.md`](../reports/Boston%20bakery%20market%20matrix.md) (counter prices mostly seen Nov 5, 2026) and its notes. Ingredient costs come from [`costing.md`](costing.md).
 
-| Product | Suggested price | Ingredient cost | Ingredients plus $0.25 packaging, as % of price | Margin per unit after ingredients and packaging |
-|---|---|---|---|---|
-| Cinnamon Roll (4 oz, buttermilk glaze) | **$4.75** | $0.29–$0.64 | 11–19% | $3.86–$4.21 (81–89%) |
-| Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | 11–20% | $6.81–$7.54 (80–89%) |
-| Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | 13–24% | $7.84–$8.91 (76–87%) |
+| Product | Suggested price | Food cost | To-go packaging | Total cost, % of price | Margin per unit after food and packaging |
+|---|---|---|---|---|---|
+| Cinnamon Roll (4 oz, buttermilk glaze) | **$4.75** | $0.29–$0.64 | $0.34–$0.47 | 13–23% | $3.64–$4.12 (77–87%) |
+| Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
+| Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 
-The cost range runs from the distributor estimate to the retail estimate. The $0.25 packaging figure is the one the research uses in its channel economics. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.
+The cost range runs from the distributor estimate to the retail estimate. Packaging is costed for to-go orders; served on a plate for here, it drops out. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.
+
+## Food packaging
+
+| Product | To-go packaging | Per unit |
+|---|---|---|
+| Cinnamon Roll | 4×4×4 in kraft window box, dry-wax square under the roll, kraft napkin | $0.34–$0.47 |
+| Both breakfast sandwiches | Insulated foil wrap, printed label, #6 kraft bag, kraft napkin | $0.12–$0.25 |
+
+- **The roll's box is its biggest cost.** At distributor prices the box ($0.32) costs more than the roll's food ($0.29), and packaging is over half the roll's cost. A 6×6 sugarcane-fiber clamshell (about $0.15 at WebstaurantStore) would halve the packaging, at some cost to presentation.
+- **The sandwich label does a job:** the two sandwiches look alike once wrapped, so the label names which is which and seals the wrap.
+- **Not costed:** a box for the 4-pack, and bags for multi-item orders.
 
 ## Cinnamon Roll: $4.75
 
@@ -59,7 +70,7 @@ Specialty beans from a Boston-area roaster, double-wall compostable hot cups (no
 Flour's drink prices are from its Boston Common ordering page and its drip and iced coffee from the market research; Flour doesn't state cup sizes. Tatte's chai prices are from Toast listings.
 
 - **Match the market on drinks:** the research found Boston's premium lives in the bake, not the cup: lattes overlap from the chains to the top independents ($3.89–$6.00). So these sit at Flour and Tatte's level, a quarter up where our cup is bigger (iced latte) or the matcha is premium.
-- **Quality shows in the cost, not the price:** at distributor prices, drinks cost 20–33% of their price, against 6–21% for the bakery items. The coffee is the biggest line: about $13–$14 a pound wholesale for specialty beans.
+- **Quality shows in the cost, not the price:** at distributor prices, drinks cost 20–33% of their price, against 10–13% for the bakery items with their packaging. The coffee is the biggest line: about $13–$14 a pound wholesale for specialty beans.
 - **Weakest margin is the chai:** 33% at distributor prices, because a premium concentrate costs about $1.12 a drink. A house chai of black tea, whole spices and sugar, like Tatte's, would cut that by more than half.
 - **Drip assumes dumping 15% of every batch** at the 60-minute hold. Selling through faster lowers the cost.
 - **Espresso is costed to go.** For here, in ceramic, it's about $0.10 cheaper.
@@ -78,5 +89,6 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - [`research_notes/Boston bakery market matrix/gapfill_premium_prices_menus.md`](../research_notes/Boston%20bakery%20market%20matrix/gapfill_premium_prices_menus.md): Flour breakfast and kids' egg sandwiches, Tatte halloumi sandwich, La Saison Egg Bun, breakfast-sandwich band, constructed checks.
 - [Flour Boston Common ordering page](https://order.flourbakery.com/menu/flour-bakery-cafe-tbd-1b-charles-street-boston-common): latte, iced latte, chai latte, matcha latte and espresso prices.
 - [Toast: chai lattes in Boston](https://www.toasttab.com/local/boston-ma-restaurants/dish/chai-lattes) and [Tatte South End on Toast](https://toasttab.com/local/order/tatte-south-end/r-e14b0c20-4650-4326-b837-0938a1d4e868): Tatte chai and iced latte prices.
+- WebstaurantStore food packaging: [Baker's Lane 4×4×4 kraft window box](https://www.webstaurantstore.com/bakers-lane-4-x-4-x-4-kraft-window-cupcake-bakery-box-case/245444WBKBL.html), [Choice 10 3/4 × 14 in insulated foil wrap](https://www.webstaurantstore.com/choice-10-3-4-x-14-insulated-foil-sandwich-wrap-sheets-case/612W45.html), [12×12 kraft luncheon napkin](https://www.webstaurantstore.com/12-x-12-natural-kraft-1-4-fold-luncheon-napkin-case/5001N200KRA.html) and [Greenprint 6×6 sugarcane clamshell](https://www.webstaurantstore.com/greenprint-6-x-6-compostable-sugarcane-fiber-clamshell-take-out-container-case/485HTO661W.html).
 - [WebstaurantStore: New Roots 12 oz double-wall compostable hot cup](https://www.webstaurantstore.com/new-roots-12-oz-smooth-double-wall-kraft-compostable-paper-hot-cup-case/50012NRDWKFT.html): hot cup case price.
 - [Sucafina market report](https://sucafina.com/na/lp/market-report) (arabica near $3/lb, March 2026) and [Viricha wholesale matcha guide](https://viricha.pages.dev/guides/wholesale-price-2026) (vendor guide, low reliability): coffee and matcha price context.

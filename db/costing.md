@@ -8,9 +8,9 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 
 | Product | Category | Status | Price | Unit cost, retail est. | Unit cost, distributor est. | Packaging in unit cost | Cost % of price | Allergens |
 |---|---|---|---|---|---|---|---|---|
-| Cinnamon Roll | pastry | approved | $4.75 | $0.64 | $0.29 | not specified* | 13% / 6% | egg, milk, wheat |
-| Breakfast Sandwich | sandwich | approved | $8.50 | $1.44 | $0.71 | not specified* | 17% / 8% | egg, milk, wheat |
-| Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.16 | $1.09 | not specified* | 21% / 11% | egg, milk, wheat |
+| Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
+| Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
+| Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
 | Chai Latte (12 oz) | drink | pending_test | $4.75 | $2.64 | $1.58 | $0.42 / $0.25 | 56% / 33% | milk |
 | Drip Coffee (12 oz) | drink | pending_test | $3.50 | $2.05 | $1.04 | $0.42 / $0.25 | 59% / 30% | none |
 | Espresso (double) | drink | pending_test | $3.50 | $1.47 | $0.71 | $0.18 / $0.10 | 42% / 20% | none |
@@ -19,8 +19,6 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 | Latte (12 oz) | drink | pending_test | $4.75 | $2.07 | $1.15 | $0.42 / $0.25 | 44% / 24% | milk |
 | Matcha Latte (12 oz) | drink | pending_test | $5.25 | $1.67 | $1.06 | $0.42 / $0.25 | 32% / 20% | milk |
 
-Packaging and cost % are shown retail est. / distributor est. *Food packaging isn't in the builds yet; `pricing.md` assumes $0.25 per item.
-
 ### Cinnamon Roll (`cinnamon_roll`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -28,10 +26,13 @@ Packaging and cost % are shown retail est. / distributor est. *Food packaging is
 | Signature Milk Dough (formula) | 90 g | $0.40 | $0.16 |
 | Cinnamon Filling (formula) | 22 g | $0.13 | $0.07 |
 | Cooked Buttermilk Glaze (formula) | 14 g | $0.08 | $0.04 |
+| Bakery box 4×4×4 in (kraft window) | 1 each | $0.44 | $0.32 |
+| Dry-wax paper square | 1 each | $0.02 | $0.01 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
 | Waste allowance (food only) | 5% | $0.03 | $0.01 |
-| **Unit cost** | | **$0.64** | **$0.29** |
+| **Unit cost** | | **$1.11** | **$0.63** |
 
-Batch of 12: Signature Milk Dough (formula) 1,080 g, Cinnamon Filling (formula) 264 g, Cooked Buttermilk Glaze (formula) 168 g.
+Batch of 12: Signature Milk Dough (formula) 1,080 g, Cinnamon Filling (formula) 264 g, Cooked Buttermilk Glaze (formula) 168 g, Bakery box 4×4×4 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
 
 ### Breakfast Sandwich (`breakfast_sandwich`), per unit
 
@@ -42,10 +43,14 @@ Batch of 12: Signature Milk Dough (formula) 1,080 g, Cinnamon Filling (formula) 
 | Egg (large) | 1 each | $0.19 | $0.16 |
 | Cheddar cheese (sliced) | 21 g | $0.40 | $0.17 |
 | Harissa sauce | 15 g | $0.37 | $0.18 |
+| Insulated foil sandwich wrap | 1 each | $0.10 | $0.04 |
+| Sandwich label | 1 each | $0.06 | $0.03 |
+| Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
 | Waste allowance (food only) | 3% | $0.04 | $0.02 |
-| **Unit cost** | | **$1.44** | **$0.71** |
+| **Unit cost** | | **$1.70** | **$0.83** |
 
-Batch of 12: Sandwich Roll (formula) 12 each, Unsalted butter 60 g, Egg (large) 12 each, Cheddar cheese (sliced) 252 g, Harissa sauce 180 g.
+Batch of 12: Sandwich Roll (formula) 12 each, Unsalted butter 60 g, Egg (large) 12 each, Cheddar cheese (sliced) 252 g, Harissa sauce 180 g, Insulated foil sandwich wrap 12 each, Sandwich label 12 each, Kraft paper bag #6 12 each, Napkin (kraft luncheon) 12 each.
 
 ### Fennel Sausage Breakfast Sandwich (`breakfast_sandwich_fennel_sausage`), per unit
 
@@ -57,10 +62,14 @@ Batch of 12: Sandwich Roll (formula) 12 each, Unsalted butter 60 g, Egg (large) 
 | Egg (large) | 1 each | $0.19 | $0.16 |
 | Cheddar cheese (sliced) | 21 g | $0.40 | $0.17 |
 | Harissa sauce | 15 g | $0.37 | $0.18 |
+| Insulated foil sandwich wrap | 1 each | $0.10 | $0.04 |
+| Sandwich label | 1 each | $0.06 | $0.03 |
+| Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
 | Waste allowance (food only) | 3% | $0.06 | $0.03 |
-| **Unit cost** | | **$2.16** | **$1.09** |
+| **Unit cost** | | **$2.41** | **$1.20** |
 
-Batch of 12: Sandwich Roll (formula) 12 each, Fennel pork sausage (bulk) 684 g, Unsalted butter 60 g, Egg (large) 12 each, Cheddar cheese (sliced) 252 g, Harissa sauce 180 g.
+Batch of 12: Sandwich Roll (formula) 12 each, Fennel pork sausage (bulk) 684 g, Unsalted butter 60 g, Egg (large) 12 each, Cheddar cheese (sliced) 252 g, Harissa sauce 180 g, Insulated foil sandwich wrap 12 each, Sandwich label 12 each, Kraft paper bag #6 12 each, Napkin (kraft luncheon) 12 each.
 
 ### Chai Latte (12 oz) (`chai_latte`), per unit
 
@@ -269,6 +278,12 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Espresso cup lid | `lid_hot_4oz` | n/a | n/a |  |
 | Cold cup 16 oz (PET) | `cup_cold_16oz` | n/a | n/a |  |
 | Cold cup strawless sip lid | `lid_cold_sip` | n/a | n/a |  |
+| Bakery box 4×4×4 in (kraft window) | `box_pastry_4x4` | n/a | n/a |  |
+| Dry-wax paper square | `paper_wax_square` | n/a | n/a |  |
+| Napkin (kraft luncheon) | `napkin_kraft` | n/a | n/a |  |
+| Insulated foil sandwich wrap | `wrap_foil_insulated` | n/a | n/a |  |
+| Kraft paper bag #6 | `bag_kraft_6lb` | n/a | n/a |  |
+| Sandwich label | `label_sandwich` | n/a | n/a |  |
 
 ## Warnings
 

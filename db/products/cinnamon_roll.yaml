@@ -2,7 +2,7 @@ id: cinnamon_roll
 name: Cinnamon Roll
 category: pastry
 status: approved
-version: "1.1"
+version: "1.2"
 approved_on: 2026-11-06
 description: "Tangzhong milk-dough cinnamon roll with a white-sugar cinnamon filling and a cooked buttermilk glaze. 4 oz finished."
 batch_units: 12
@@ -12,6 +12,9 @@ build:
   - {item: dough_signature, qty: 90, unit: g}
   - {item: filling_cinnamon, qty: 22, unit: g}
   - {item: glaze_buttermilk, qty: 14, unit: g}
+  - {item: box_pastry_4x4, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: paper_wax_square, qty: 1, unit: each, note: "under the roll"}
+  - {item: napkin_kraft, qty: 1, unit: each}
 
 targets:
   raw_weight_g: 112
@@ -28,6 +31,7 @@ production:
   proof: "Covered at 78–82°F for 45–75 minutes, until about doubled, a poke springs back slowly and a center roll reads at least 75°F."
   bake: "Pull at 190°F in the center roll (probe the bread, not the sugar). Tent with foil if the tops brown before then."
   glaze: "Glaze at 95–100°F roll temperature, 14 g each. Set uncovered 20–30 minutes."
+  packaging: "To go: set the roll on a wax square in a 4×4×4 window box and add a napkin. For here: serve it on a plate."
   hold:
     - "Seal airtight once the glaze sets. Hold at 68–76°F; never refrigerate. Keep rolls together until serving."
     - "0–12 hours: serve as is."
@@ -59,3 +63,6 @@ history:
   - date: 2026-11-07
     version: "1.1"
     change: "Suggested retail lowered to $4.75 so the roll sits under Flour's $5.25 caramel-pecan sticky bun, a richer item."
+  - date: 2026-11-07
+    version: "1.2"
+    change: "Costed to-go packaging: 4×4×4 kraft window box, wax square and napkin."
