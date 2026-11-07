@@ -6,7 +6,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 
 | Product | Suggested price | Notes |
 |---|---|---|
-| [Cinnamon Roll](products/cinnamon_roll.yaml) | $5.50 | 4 oz finished. Approved 2026-11-06; the cooked buttermilk glaze is still pending its first test bake |
+| [Cinnamon Roll](products/cinnamon_roll.yaml) | $4.75 | 4 oz finished. Approved 2026-11-06; the cooked buttermilk glaze is still pending its first test bake |
 | [Breakfast Sandwich](products/breakfast_sandwich.yaml) | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
 
 Costs are in [`costing.md`](costing.md); the reasoning behind the prices is in [`pricing.md`](pricing.md).

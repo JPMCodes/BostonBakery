@@ -32,3 +32,8 @@ validation:
   pending:
     - "Pick the harissa sauce brand and check its label for allergens."
     - "Set a standard egg doneness (for example, over-medium) and confirm the sauce and cheese portions."
+
+history:
+  - date: 2026-11-06
+    version: "1.0"
+    change: "Approved at a suggested $8.50."

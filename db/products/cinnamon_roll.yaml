@@ -1,7 +1,7 @@
 id: cinnamon_roll
 name: Cinnamon Roll
 status: approved
-version: "1.0"
+version: "1.1"
 approved_on: 2026-11-06
 description: "Tangzhong milk-dough cinnamon roll with a white-sugar cinnamon filling and a cooked buttermilk glaze. 4 oz finished."
 batch_units: 12
@@ -40,7 +40,7 @@ qa:
 allergens_declared: [egg, milk, wheat]
 
 pricing:
-  suggested_retail_usd: 5.50
+  suggested_retail_usd: 4.75
   rationale: "See db/pricing.md"
 
 validation:
@@ -50,3 +50,11 @@ validation:
     - "First batch of the cooked buttermilk glaze, including the 12 and 24 hour hold check."
     - "Glucose syrup in place of honey in the filling."
     - "4 oz finished weight in a 9×13 or jumbo tin; confirm the 10% bake loss."
+
+history:
+  - date: 2026-11-06
+    version: "1.0"
+    change: "Approved at a suggested $5.50."
+  - date: 2026-11-07
+    version: "1.1"
+    change: "Suggested retail lowered to $4.75 so the roll sits under Flour's $5.25 caramel-pecan sticky bun, a richer item."

@@ -9,7 +9,7 @@ Prices as of 2026-11-06. **Retail est.** = US grocery estimates; **Distributor e
 | Product | Status | Retail est. | Distributor est. | Suggested retail | Ingredient cost % of price (retail / distributor) | Allergens |
 |---|---|---|---|---|---|---|
 | Breakfast Sandwich | approved | $1.44 | $0.71 | $8.50 | 17% / 8% | egg, milk, wheat |
-| Cinnamon Roll | approved | $0.64 | $0.29 | $5.50 | 12% / 5% | egg, milk, wheat |
+| Cinnamon Roll | approved | $0.64 | $0.29 | $4.75 | 13% / 6% | egg, milk, wheat |
 
 ### Breakfast Sandwich (`breakfast_sandwich`), per unit
 
