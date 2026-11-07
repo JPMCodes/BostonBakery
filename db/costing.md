@@ -8,7 +8,7 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 
 | Product | Category | Status | Price | Unit cost, retail est. | Unit cost, distributor est. | Packaging in unit cost | Cost % of price | Allergens |
 |---|---|---|---|---|---|---|---|---|
-| Blueberry Scone | pastry | pending_test | $4.50 | $1.50 | $0.89 | $0.47 / $0.34 | 33% / 20% | egg, milk, wheat |
+| Blueberry Scone | pastry | pending_test | $4.50 | $1.45 | $0.87 | $0.47 / $0.34 | 32% / 19% | egg, milk, wheat |
 | Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
@@ -24,7 +24,7 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 
 | Item | Qty | Retail est. | Distributor est. |
 |---|---|---|---|
-| Blueberry Scone Dough (formula) | 100 g | $0.90 | $0.48 |
+| Blueberry Scone Dough (formula) | 95 g | $0.85 | $0.46 |
 | Blueberry Scone Crumb Topping (formula) | 8 g | $0.04 | $0.02 |
 | Blueberries (fresh) | 4 g | $0.06 | $0.03 |
 | Egg (large) | 1 g | <$0.01 | <$0.01 |
@@ -32,9 +32,9 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 | Dry-wax paper square | 1 each | $0.02 | $0.01 |
 | Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
 | Waste allowance (food only) | 3% | $0.03 | $0.02 |
-| **Unit cost** | | **$1.50** | **$0.89** |
+| **Unit cost** | | **$1.45** | **$0.87** |
 
-Batch of 12: Blueberry Scone Dough (formula) 1,200 g, Blueberry Scone Crumb Topping (formula) 96 g, Blueberries (fresh) 48 g, Egg (large) 12 g, Bakery box 4×4×4 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
+Batch of 12: Blueberry Scone Dough (formula) 1,140 g, Blueberry Scone Crumb Topping (formula) 96 g, Blueberries (fresh) 48 g, Egg (large) 12 g, Bakery box 4×4×4 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
 
 ### Cinnamon Roll (`cinnamon_roll`), per unit
 
@@ -206,21 +206,21 @@ Cost per kg of yield: $4.71 retail est., $2.58 distributor est.
 
 | Stage | Item | Qty | Baker's % | Retail est. | Distributor est. |
 |---|---|---|---|---|---|
-| Dry | All-purpose flour | 290 g | 64.0% | $0.77 | $0.28 |
-| Dry | Pastry flour (unbleached) | 163 g | 36.0% | $0.71 | $0.20 |
-| Dry | Granulated sugar | 109 g | 24.1% | $0.21 | $0.17 |
-| Dry | Baking powder (double-acting) | 13.8 g | 3.0% | $0.14 | $0.05 |
-| Dry | Baking soda | 1.6 g | 0.3% | <$0.01 | <$0.01 |
-| Dry | Fine salt | 6.4 g | 1.4% | $0.01 | $0.01 |
-| Fat and fruit | Unsalted butter | 170 g | 37.5% | $1.50 | $0.90 |
-| Fat and fruit | Dried blueberries (sweetened) | 96.7 g | 21.3% | $3.85 | $2.05 |
-| Fat and fruit | Lemon zest | 7.6 g | 1.7% | $0.87 | $0.42 |
-| Wet | Cultured buttermilk | 65 g | 14.3% | $0.19 | $0.08 |
-| Wet | Sour cream (full fat) | 131 g | 28.9% | $0.86 | $0.63 |
-| Wet | Egg (large) | 72.6 g | 16.0% | $0.27 | $0.23 |
-| Wet | Pure vanilla extract | 7.2 g | 1.6% | $0.48 | $0.30 |
-| Last | Blueberries (fresh) | 54 g | 11.9% | $0.78 | $0.42 |
-| **Batch** | | **1,188 g in, 1,188 g out** | | **$10.65** | **$5.74** |
+| Dry | All-purpose flour | 281.3 g | 64.0% | $0.74 | $0.27 |
+| Dry | Pastry flour (unbleached) | 158.1 g | 36.0% | $0.69 | $0.20 |
+| Dry | Granulated sugar | 105.7 g | 24.1% | $0.20 | $0.16 |
+| Dry | Baking powder (double-acting) | 13.4 g | 3.0% | $0.13 | $0.05 |
+| Dry | Baking soda | 1.5 g | 0.3% | <$0.01 | <$0.01 |
+| Dry | Fine salt | 6.2 g | 1.4% | $0.01 | $0.01 |
+| Fat and fruit | Unsalted butter | 164.9 g | 37.5% | $1.45 | $0.87 |
+| Fat and fruit | Dried blueberries (sweetened) | 93.8 g | 21.3% | $3.74 | $1.99 |
+| Fat and fruit | Lemon zest | 7.3 g | 1.7% | $0.85 | $0.40 |
+| Wet | Cultured buttermilk | 63 g | 14.3% | $0.18 | $0.08 |
+| Wet | Sour cream (full fat) | 127.1 g | 28.9% | $0.84 | $0.62 |
+| Wet | Egg (large) | 70.4 g | 16.0% | $0.27 | $0.22 |
+| Wet | Pure vanilla extract | 7 g | 1.6% | $0.47 | $0.29 |
+| Last | Blueberries (fresh) | 52.4 g | 11.9% | $0.75 | $0.40 |
+| **Batch** | | **1,152 g in, 1,152 g out** | | **$10.33** | **$5.57** |
 
 Cost per kg of yield: $8.96 retail est., $4.84 distributor est.
 

@@ -2,14 +2,14 @@ id: blueberry_scone
 name: Blueberry Scone
 category: pastry
 status: pending_test
-version: "1.0"
+version: "1.1"
 approved_on: null
 description: "Lemon-blueberry scone with dried and fresh blueberries, topped with fresh berries and a brown-butter crumb."
 batch_units: 12
 waste_pct: 3
 
 build:
-  - {item: dough_blueberry_scone, qty: 100, unit: g}
+  - {item: dough_blueberry_scone, qty: 95, unit: g}
   - {item: crumb_blueberry_scone, qty: 8, unit: g}
   - {item: blueberries_fresh, qty: 4, unit: g, note: "pressed into the top; replaces frozen wild blueberries"}
   - {item: egg_large, qty: 1, unit: g, note: "egg wash"}
@@ -19,7 +19,7 @@ build:
 
 production:
   assemble:
-    - "Brush each chilled 100 g scone with egg wash (about 1 g)."
+    - "Brush each chilled 95 g scone with egg wash (about 1 g)."
     - "Press 4 g of fresh blueberries into the top, then scatter 8 g of crumb over them."
   bake: "Default until confirmed: 400°F for 20–24 minutes, until deep golden and about 200°F inside."
   packaging: "To go: set the scone on a wax square in a 4×4×4 window box and add a napkin; check the baked scone fits, or move to a 4 1/2-inch box. For here: serve it on a plate."
@@ -33,7 +33,7 @@ pricing:
 validation:
   tested: []
   pending:
-    - "Test-bake the sour cream version against the crème fraîche version."
+    - "First test bake of the sour cream dough at 95 g."
     - "Check that the fresh blueberries hold their shape through mixing and baking."
     - "Confirm the bake time and temperature, and that the baked scone fits the 4×4×4 box."
 
@@ -41,3 +41,6 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Added with fresh blueberries and sour cream at a suggested $4.50."
+  - date: 2026-11-07
+    version: "1.1"
+    change: "Sour cream confirmed; dough portion cut from 100 g to 95 g."

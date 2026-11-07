@@ -2,49 +2,52 @@ id: dough_blueberry_scone
 name: Blueberry Scone Dough
 kind: dough
 status: pending_test
-version: "1.1"
+version: "1.2"
 approved_on: null
 used_by: [blueberry_scone]
 yield:
-  grams: 1188
-  description: "about 1,188 g; 12 g short of 12 scones at 100 g, so scale by 1.02 or portion at 99 g"
+  grams: 1152
+  description: "12 scones at 95 g, plus about 12 g left on the bowl"
 
 ingredients:
-  - {stage: Dry, item: flour_ap, qty: 290, unit: g}
-  - {stage: Dry, item: flour_pastry, qty: 163, unit: g}
-  - {stage: Dry, item: sugar_granulated, qty: 109, unit: g}
-  - {stage: Dry, item: baking_powder, qty: 13.8, unit: g, note: "1 tbsp + 1/2 tsp"}
-  - {stage: Dry, item: baking_soda, qty: 1.56, unit: g, note: "1/4 tsp"}
-  - {stage: Dry, item: salt_fine, qty: 6.36, unit: g, note: "fine sea salt, 1 tsp"}
-  - {stage: Fat and fruit, item: butter_unsalted, qty: 170, unit: g, note: "cold, 1/2-inch cubes; 145 g in the crème fraîche version"}
-  - {stage: Fat and fruit, item: blueberries_dried, qty: 96.7, unit: g}
-  - {stage: Fat and fruit, item: lemon_zest, qty: 7.58, unit: g, note: "1 tbsp + 1 tsp, finely grated"}
-  - {stage: Wet, item: buttermilk_cultured, qty: 65, unit: g, note: "cold; 90 g in the crème fraîche version"}
-  - {stage: Wet, item: sour_cream, qty: 131, unit: g, note: "full fat; replaces 131 g crème fraîche"}
-  - {stage: Wet, item: egg_large, qty: 72.6, unit: g, note: "about 1.5 large eggs"}
-  - {stage: Wet, item: vanilla_extract, qty: 7.22, unit: g, note: "1 3/4 tsp"}
-  - {stage: Last, item: blueberries_fresh, qty: 54, unit: g, note: "cold; replaces frozen wild blueberries"}
+  - {stage: Dry, item: flour_ap, qty: 281.3, unit: g}
+  - {stage: Dry, item: flour_pastry, qty: 158.1, unit: g}
+  - {stage: Dry, item: sugar_granulated, qty: 105.7, unit: g}
+  - {stage: Dry, item: baking_powder, qty: 13.38, unit: g, note: "about 1 tbsp + 1/4 tsp"}
+  - {stage: Dry, item: baking_soda, qty: 1.51, unit: g, note: "1/4 tsp"}
+  - {stage: Dry, item: salt_fine, qty: 6.17, unit: g, note: "fine sea salt, about 1 tsp"}
+  - {stage: Fat and fruit, item: butter_unsalted, qty: 164.9, unit: g, note: "cold, 1/2-inch cubes"}
+  - {stage: Fat and fruit, item: blueberries_dried, qty: 93.8, unit: g}
+  - {stage: Fat and fruit, item: lemon_zest, qty: 7.35, unit: g, note: "about 1 tbsp + 1 tsp, finely grated"}
+  - {stage: Wet, item: buttermilk_cultured, qty: 63.0, unit: g, note: "cold"}
+  - {stage: Wet, item: sour_cream, qty: 127.1, unit: g, note: "full fat"}
+  - {stage: Wet, item: egg_large, qty: 70.4, unit: g, note: "about 1.4 large eggs"}
+  - {stage: Wet, item: vanilla_extract, qty: 7.00, unit: g, note: "about 1 3/4 tsp"}
+  - {stage: Last, item: blueberries_fresh, qty: 52.4, unit: g, note: "cold"}
 
 method:
   - "Whisk the flours, sugar, baking powder, baking soda and salt."
   - "Cut in the cold butter until the pieces are pea-size. Toss in the dried blueberries and lemon zest."
   - "Whisk the buttermilk, sour cream, eggs and vanilla. Add to the dry ingredients and mix just until shaggy."
   - "Fold in the cold fresh blueberries last, with 2–3 turns, so they stay whole and don't streak the dough."
-  - "Portion at 100 g and chill at least 30 minutes before topping and baking."
+  - "Portion at 95 g and chill at least 30 minutes before topping and baking."
 
 specs:
-  flour_total_g: 453
+  flour_total_g: 439.4
+  portion_g: 95
   bakers_percent: "all-purpose 64%, pastry 36%, sugar 24%, butter 37.5%, sour cream 28.9%, buttermilk 14.3%, egg 16%, dried blueberries 21.3%, fresh blueberries 11.9%"
 
 notes:
-  - "Sour cream version: crème fraîche is about 36% fat and sour cream about 20%, so the swap adds 25 g butter (for the lost fat) and removes 25 g buttermilk (for the extra water). Fat and liquid match the crème fraîche version within about 2 g."
-  - "Crème fraîche version, for comparison: butter 145 g, buttermilk 90 g, crème fraîche 131 g, everything else the same."
+  - "Sour cream replaces crème fraîche for cost. Crème fraîche is about 36% fat and sour cream about 20%, so the dough carries more butter and less buttermilk than the original; fat and liquid match the crème fraîche version within about 2 g."
   - "The method is a default; replace it with the house method once confirmed."
 
 history:
   - date: 2026-11-07
     version: "1.0"
-    change: "Recipe as received: crème fraîche, with frozen wild blueberries."
+    change: "Recipe as received, 1,188 g: crème fraîche 131 g, butter 145 g, buttermilk 90 g, frozen wild blueberries."
   - date: 2026-11-07
     version: "1.1"
-    change: "Fresh blueberries replace frozen wild blueberries for looks; sour cream replaces crème fraîche for cost, with butter and buttermilk adjusted. Pending a test bake."
+    change: "Fresh blueberries replace frozen wild blueberries for looks; sour cream replaces crème fraîche, with 25 g more butter and 25 g less buttermilk."
+  - date: 2026-11-07
+    version: "1.2"
+    change: "Sour cream version confirmed. Portion cut from 100 g to 95 g, and the batch scaled to 1,152 g (×0.97) so it makes exactly 12. Pending a test bake."
