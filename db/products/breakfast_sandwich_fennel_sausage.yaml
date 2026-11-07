@@ -1,7 +1,7 @@
 id: breakfast_sandwich_fennel_sausage
 name: Fennel Sausage Breakfast Sandwich
 status: approved
-version: "1.0"
+version: "1.1"
 approved_on: 2026-11-07
 description: "The breakfast sandwich plus a fennel pork sausage patty: sausage, fried egg, sliced cheddar and harissa sauce on the house sandwich roll."
 batch_units: 12
@@ -30,7 +30,7 @@ qa:
 allergens_declared: [egg, milk, wheat]
 
 pricing:
-  suggested_retail_usd: 10.00
+  suggested_retail_usd: 10.25
   rationale: "See db/pricing.md"
 
 validation:
@@ -44,3 +44,6 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Added as the second sandwich SKU at $10.00, $1.50 above the base Breakfast Sandwich."
+  - date: 2026-11-07
+    version: "1.1"
+    change: "Suggested retail raised to $10.25 for margin; still mid-band for Boston breakfast sandwiches."

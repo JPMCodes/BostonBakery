@@ -8,7 +8,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 |---|---|---|
 | [Cinnamon Roll](products/cinnamon_roll.yaml) | $4.75 | 4 oz finished. Approved 2026-11-06; the cooked buttermilk glaze is still pending its first test bake |
 | [Breakfast Sandwich](products/breakfast_sandwich.yaml) | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
-| [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | $10.00 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
+| [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
 
 Costs are in [`costing.md`](costing.md); the reasoning behind the prices is in [`pricing.md`](pricing.md).
 
