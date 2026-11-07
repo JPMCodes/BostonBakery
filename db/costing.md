@@ -13,10 +13,10 @@ Prices as of 2026-11-07. **Retail est.** = US grocery or small-pack estimates; *
 | Mini Vanilla Scone | pastry | pending_test | $2.25 | $0.27 | $0.15 | $0.07 / $0.02 | 12% / 7% | egg, milk, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
-| Cilantro Lime Quinoa Salad | salad | draft | $12.50 | $4.15 | $2.15 | $0.63 / $0.28 | 33% / 17% | milk |
-| Fennel Herb Salad Bowl | salad | draft | $13.50 | $6.02 | $2.72 | $0.63 / $0.28 | 45% / 20% | milk, wheat |
+| Cilantro Lime Quinoa Salad | salad | draft | $11.50 | $4.15 | $2.15 | $0.63 / $0.28 | 36% / 19% | milk |
+| Fennel Herb Salad Bowl | salad | draft | $12.50 | $6.02 | $2.72 | $0.63 / $0.28 | 48% / 22% | milk, wheat |
 | Chicken Salad Scoop | add-on | draft | $4.50 | $1.32 | $0.81 | $0.14 / $0.04 | 29% / 18% | egg |
-| Tuna Salad Scoop | add-on | draft | $4.50 | $1.94 | $1.34 | $0.14 / $0.04 | 43% / 30% | egg, fish |
+| Hummus Scoop | add-on | draft | $3.50 | $1.11 | $0.59 | $0.14 / $0.04 | 32% / 17% | sesame |
 | Chai Latte (12 oz) | drink | pending_test | $4.75 | $2.64 | $1.58 | $0.42 / $0.25 | 56% / 33% | milk |
 | Drip Coffee (12 oz) | drink | pending_test | $3.50 | $2.05 | $1.04 | $0.42 / $0.25 | 59% / 30% | none |
 | Espresso (double) | drink | pending_test | $3.50 | $1.47 | $0.71 | $0.18 / $0.10 | 42% / 20% | none |
@@ -168,18 +168,19 @@ Batch of 10: Cooked Farro (formula) 1,300 g, Baby arugula 450 g, Fennel bulb 700
 
 Batch of 10: Lemon-Herb Chicken Salad (formula) 1,000 g, Portion cup 4 oz 10 each, Portion cup lid 4 oz 10 each, Grab-and-go label 10 each.
 
-### Tuna Salad Scoop (`add_tuna_salad`), per unit
+### Hummus Scoop (`add_hummus`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
 |---|---|---|---|
-| Tuna Salad (formula) | 100 g | $1.72 | $1.23 |
+| House Hummus (formula) | 100 g | $0.85 | $0.47 |
+| Extra-virgin olive oil | 5 g | $0.07 | $0.05 |
 | Portion cup 4 oz | 1 each | $0.06 | $0.01 |
 | Portion cup lid 4 oz | 1 each | $0.05 | $0.01 |
 | Grab-and-go label | 1 each | $0.03 | $0.01 |
-| Waste allowance (food only) | 5% | $0.09 | $0.06 |
-| **Unit cost** | | **$1.94** | **$1.34** |
+| Waste allowance (food only) | 5% | $0.05 | $0.03 |
+| **Unit cost** | | **$1.11** | **$0.59** |
 
-Batch of 10: Tuna Salad (formula) 1,000 g, Portion cup 4 oz 10 each, Portion cup lid 4 oz 10 each, Grab-and-go label 10 each.
+Batch of 10: House Hummus (formula) 1,000 g, Extra-virgin olive oil 50 g, Portion cup 4 oz 10 each, Portion cup lid 4 oz 10 each, Grab-and-go label 10 each.
 
 ### Chai Latte (12 oz) (`chai_latte`), per unit
 
@@ -487,6 +488,22 @@ Cost per kg of yield: $5.62 retail est., $3.20 distributor est.
 
 Cost per kg of yield: $4.33 retail est., $2.77 distributor est.
 
+### House Hummus (`hummus`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Chickpeas (canned) | 560 g | $3.01 | $1.72 |
+| Tahini | 200 g | $3.52 | $1.95 |
+| Lemon juice (fresh) | 70 g | $1.21 | $0.58 |
+| Garlic (peeled) | 8 g | $0.11 | $0.06 |
+| Fine salt | 9 g | $0.02 | $0.01 |
+| Ground cumin | 2 g | $0.16 | $0.04 |
+| Filtered water | 120 g | $0.00 | $0.00 |
+| Extra-virgin olive oil | 30 g | $0.42 | $0.29 |
+| **Batch** | **999 g in, 990 g out** | **$8.45** | **$4.66** |
+
+Cost per kg of yield: $8.53 retail est., $4.70 distributor est.
+
 ### Cooked Quinoa (`quinoa_cooked`), draft
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -506,22 +523,6 @@ Cost per kg of yield: $2.85 retail est., $1.57 distributor est.
 | **Batch** | **90 g in, 81 g out** | **$0.40** | **$0.16** |
 
 Cost per kg of yield: $4.97 retail est., $1.92 distributor est. Per unit: $0.40 / $0.16.
-
-### Tuna Salad (`tuna_salad`), draft
-
-| Item | Qty | Retail est. | Distributor est. |
-|---|---|---|---|
-| Albacore tuna (in water) | 660 g | $14.49 | $10.64 |
-| Mayonnaise | 170 g | $1.25 | $0.98 |
-| Celery | 90 g | $0.49 | $0.29 |
-| Red onion | 40 g | $0.18 | $0.07 |
-| Lemon juice (fresh) | 20 g | $0.34 | $0.17 |
-| Dijon mustard | 10 g | $0.12 | $0.06 |
-| Flat-leaf parsley | 10 g | $0.25 | $0.10 |
-| Black pepper (ground) | 1.5 g | $0.07 | $0.03 |
-| **Batch** | **1,002 g in, 1,000 g out** | **$17.19** | **$12.33** |
-
-Cost per kg of yield: $17.19 retail est., $12.33 distributor est.
 
 ## Ingredient prices
 
@@ -615,9 +616,10 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Chicken breast (boneless skinless) | `chicken_breast` | $8.73 | $6.06 |  |
 | Mayonnaise | `mayonnaise` | $7.34 | $5.78 |  |
 | Celery | `celery` | $5.48 | $3.22 |  |
-| Albacore tuna (in water) | `tuna_albacore` | $21.96 | $16.12 |  |
 | Portion cup 4 oz | `cup_portion_4oz` | n/a | n/a |  |
 | Portion cup lid 4 oz | `lid_portion_4oz` | n/a | n/a |  |
+| Chickpeas (canned) | `chickpeas_canned` | $5.38 | $3.08 |  |
+| Tahini | `tahini` | $17.61 | $9.74 |  |
 
 ## Warnings
 

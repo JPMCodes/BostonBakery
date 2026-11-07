@@ -1,0 +1,34 @@
+id: hummus
+name: House Hummus
+kind: dip
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [add_hummus]
+yield:
+  grams: 990
+  description: "about 10 scoops at 100 g"
+
+ingredients:
+  - {item: chickpeas_canned, qty: 560, unit: g, note: "drained and rinsed"}
+  - {item: tahini, qty: 200, unit: g, note: "stirred well"}
+  - {item: lemon_juice, qty: 70, unit: g, note: "about 1 3/4 lemons"}
+  - {item: garlic, qty: 8, unit: g}
+  - {item: salt_fine, qty: 9, unit: g}
+  - {item: cumin_ground, qty: 2, unit: g}
+  - {item: water_filtered, qty: 120, unit: g, note: "ice-cold"}
+  - {item: olive_oil_ev, qty: 30, unit: g}
+
+method:
+  - "Blend the tahini, lemon juice, garlic, salt and cumin until thick. With the motor running, add the ice water until the mix turns pale and smooth."
+  - "Add the chickpeas and olive oil and blend 3–4 minutes, until very smooth. Taste for salt and lemon."
+  - "Refrigerate covered and dated at 41°F or below; use within 5 days."
+
+notes:
+  - "Canned chickpeas keep a batch to about 20 minutes of work, with no soaking or cooking."
+  - "Tahini brings sesame, a major allergen, into the kitchen. Wash the food processor after each hummus batch."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted as a salad add-on, replacing the tuna salad."

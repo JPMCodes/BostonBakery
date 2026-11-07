@@ -2,7 +2,7 @@ id: cilantro_lime_quinoa_salad
 name: Cilantro Lime Quinoa Salad
 category: salad
 status: draft
-version: "1.0"
+version: "1.1"
 approved_on: null
 description: "Quinoa with black beans, roasted corn, cherry tomatoes, red pepper, red onion and cilantro, topped with cotija and toasted pepitas; cilantro-lime vinaigrette on the side. Made without wheat."
 batch_units: 10
@@ -39,7 +39,7 @@ production:
 allergens_declared: [milk]
 
 pricing:
-  suggested_retail_usd: 12.50
+  suggested_retail_usd: 11.50
   rationale: "See db/pricing.md"
 
 validation:
@@ -52,3 +52,6 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Drafted at a suggested $12.50."
+  - date: 2026-11-07
+    version: "1.1"
+    change: "Price cut by $1.00 to $11.50, so the salad with a protein scoop lands at $15.00–$16.00."

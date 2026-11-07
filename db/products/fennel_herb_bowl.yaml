@@ -2,7 +2,7 @@ id: fennel_herb_bowl
 name: Fennel Herb Salad Bowl
 category: salad
 status: draft
-version: "1.0"
+version: "1.1"
 approved_on: null
 description: "Farro, arugula and shaved fennel with orange, parsley, dill and mint, shaved Parmesan and toasted pepitas; lemon-Dijon vinaigrette on the side."
 batch_units: 10
@@ -39,7 +39,7 @@ production:
 allergens_declared: [milk, wheat]
 
 pricing:
-  suggested_retail_usd: 13.50
+  suggested_retail_usd: 12.50
   rationale: "See db/pricing.md"
 
 validation:
@@ -51,3 +51,6 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Drafted at a suggested $13.50."
+  - date: 2026-11-07
+    version: "1.1"
+    change: "Price cut by $1.00 to $12.50, so the bowl with a protein scoop lands at $16.00–$17.00."

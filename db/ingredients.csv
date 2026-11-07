@@ -85,6 +85,7 @@ bag_glassine_half_lb,Glassine bag 1/2 lb,packaging,,"Square-bottom glassine bag,
 chicken_breast,Chicken breast (boneless skinless),meat,,"Fresh boneless skinless breast, raw; priced by raw weight",,,,"Cook to 165°F"
 mayonnaise,Mayonnaise,condiment,egg,"Full-fat real mayonnaise (for example Hellmann's)",,0.92,,"Usually made with soybean oil; highly refined soybean oil is exempt from US allergen labeling, but check the label"
 celery,Celery,produce,,"Celery stalks, small dice; priced by usable weight",,,,
-tuna_albacore,Albacore tuna (in water),seafood,fish,"Chunk or solid white albacore packed in water; priced by drained weight",,,,"Chunk light tuna is cheaper but softer and darker; not costed"
-cup_portion_4oz,Portion cup 4 oz,packaging,,"Clear 4 oz cup for a scoop of chicken or tuna salad",,,,
+cup_portion_4oz,Portion cup 4 oz,packaging,,"Clear 4 oz cup for a scoop of chicken salad or hummus",,,,
 lid_portion_4oz,Portion cup lid 4 oz,packaging,,"PET lid that fits 3.25–5.5 oz cups",,,,
+chickpeas_canned,Chickpeas (canned),legume,,"Canned chickpeas (garbanzo beans), drained and rinsed; priced by drained weight",,,,"Dried chickpeas would save about $0.08 a hummus scoop but need an overnight soak and an hour's simmer"
+tahini,Tahini,seed,sesame,"Pure ground sesame paste; stir well before measuring",,,,"Sesame is a US major allergen"

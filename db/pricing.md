@@ -9,10 +9,10 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Mini Vanilla Scone, 31 g (pending test) | **$2.25** | $0.13–$0.20 | $0.02–$0.07 | 7–12% | $1.98–$2.10 (88–93%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
-| Fennel Herb Salad Bowl, 382 g (draft) | **$13.50** | $2.44–$5.39 | $0.28–$0.63 | 20–45% | $7.48–$10.78 (55–80%) |
-| Cilantro Lime Quinoa Salad, 450 g (draft) | **$12.50** | $1.87–$3.52 | $0.28–$0.63 | 17–33% | $8.35–$10.35 (67–83%) |
+| Fennel Herb Salad Bowl, 382 g (draft) | **$12.50** | $2.44–$5.39 | $0.28–$0.63 | 22–48% | $6.48–$9.78 (52–78%) |
+| Cilantro Lime Quinoa Salad, 450 g (draft) | **$11.50** | $1.87–$3.52 | $0.28–$0.63 | 19–36% | $7.35–$9.35 (64–81%) |
 | Chicken Salad Scoop, 100 g add-on (draft) | **$4.50** | $0.77–$1.18 | $0.04–$0.14 | 18–29% | $3.18–$3.69 (71–82%) |
-| Tuna Salad Scoop, 100 g add-on (draft) | **$4.50** | $1.30–$1.80 | $0.04–$0.14 | 30–43% | $2.56–$3.16 (57–70%) |
+| Hummus Scoop, 100 g add-on (draft) | **$3.50** | $0.55–$0.97 | $0.04–$0.14 | 17–32% | $2.39–$2.91 (68–83%) |
 
 The cost range runs from the distributor estimate to the retail estimate. Packaging is costed for to-go orders; served on a plate for here, it drops out. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.
 
@@ -25,7 +25,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Blueberry Scone | #6 kraft bag, kraft napkin | $0.05–$0.09 |
 | Mini Vanilla Scone | 1/2 lb glassine bag, kraft napkin; three or more go in a #6 kraft bag | $0.02–$0.07 |
 | Both salads | Clear 32 oz PET bowl and lid, 2 oz dressing cup and lid, wooden fork, kraft napkin, grab-and-go label | $0.28–$0.63 |
-| Chicken and tuna salad scoops | 4 oz cup and lid, grab-and-go label | $0.04–$0.14 |
+| Chicken salad and hummus scoops | 4 oz cup and lid, grab-and-go label | $0.04–$0.14 |
 
 - **Box only what needs it:** glazed, frosted or fragile items, multi-packs and gifts. Sturdy, dry pastries go in a bag. Each box swapped for a bag saves about $0.28; at 100 pastries a day that's about $10,000 a year.
 - **The roll's box is its biggest cost.** At distributor prices the box ($0.32) costs more than the roll's food ($0.29), and packaging is over half the roll's cost. A 6×6 sugarcane-fiber clamshell (about $0.15 at WebstaurantStore) would halve the packaging, at some cost to presentation.
@@ -94,7 +94,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Fennel sausage SKU at $10.25:** $1.75 above the base sandwich. With meat on it, it joins the $9.50–$11.00 band: a quarter above Flour's $10.00 ham-or-bacon egg sandwich and $0.75 under La Saison's $11.00 Egg Bun. The extra quarter over $10.00 is pure margin, and with Boston's 7% meals tax it still rings up under $11 ($10.97). The 2 oz patty costs $0.36–$0.69. One reviewer reported paying $3 extra for sausage at Pavement, the high end of add-on pricing.
 - **Why it matters:** breakfast sandwiches are Tatte's two most-liked DoorDash items, and in the one Boston bakery-café sales mix the research found, pastry and desserts were only 27% of sales.
 
-## Salad bowls: $13.50 and $12.50 (draft)
+## Salad bowls: $12.50 and $11.50 (draft)
 
 | Boston comparable | Counter price | Note |
 |---|---|---|
@@ -104,35 +104,39 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Tatte salad | $14.50–$15.00 | Copley runs $0.50 above Wellesley |
 | Flour BLT | $16.00 | Flour's signature lunch sandwich |
 
-- **Under Tatte's salads, at its pita price:** both bowls are meatless grab-and-go, so they sit $1.00–$2.50 under Tatte's $14.50–$15.00 salads. The research puts Boston bakery-café lunch at $13–$16 and names it the lever that lifts the check past a coffee and a pastry.
-- **Fennel Herb Salad Bowl at $13.50:** a dollar over the quinoa salad. It has the dearer ingredients (arugula, Parmesan, citrus, three fresh herbs), the most knife work, and it sells the same day only, so its cost carries a 10% waste allowance for bowls discarded at close.
-- **Cilantro Lime Quinoa Salad at $12.50:** bigger (450 g) and cheaper to make, and it holds 2 days because it has no greens. Made without wheat, but not certified gluten-free, since the kitchen handles flour.
-- **Labor sets these prices, not food cost:** at distributor prices, food and packaging are 17–20% of the price. Salads are knife work, so the margin pays for prep time. A protein add-on would be the natural upsell; not costed.
+- **Under Tatte's salads and pitas:** both bowls are meatless grab-and-go, so they sit $2.00–$3.50 under Tatte's $14.50–$15.00 salads and at or under its $12.50–$13.00 pitas. Each was cut by $1.00 on 2026-11-07 so a bowl with a scoop of chicken salad or hummus lands at $15.00–$17.00. The research puts Boston bakery-café lunch at $13–$16 and names it the lever that lifts the check past a coffee and a pastry.
+- **Fennel Herb Salad Bowl at $12.50:** a dollar over the quinoa salad. It has the dearer ingredients (arugula, Parmesan, citrus, three fresh herbs), the most knife work, and it sells the same day only, so its cost carries a 10% waste allowance for bowls discarded at close.
+- **Cilantro Lime Quinoa Salad at $11.50:** bigger (450 g) and cheaper to make, and it holds 2 days because it has no greens. Made without wheat, but not certified gluten-free, since the kitchen handles flour.
+- **Labor sets these prices, not food cost:** at distributor prices, food and packaging are 19–22% of the price. Salads are knife work. Rough estimates, not yet timed, put prep at 6–8 minutes a fennel bowl and about 6 a quinoa salad in batches of 10: about $2.10–$2.80 a bowl at $21 an hour (the research's $18.54 BLS baker wage plus payroll costs). Food, packaging and prep together come to about 37–44% of the price. The fennel bowl's labor is in the orange segments, the shaved fennel and the three picked herbs; those are the places to cut if prep runs long.
 - **Buy produce wholesale:** at grocery prices the fennel bowl's food cost more than doubles ($2.44 to $5.39), because arugula and clamshell herbs cost 2–6 times the distributor price. The biggest lines at distributor prices are arugula ($0.55) in the fennel bowl and cherry tomatoes ($0.44) in the quinoa salad.
 - **Dressing on the side** keeps the bowls crisp through lunch and makes the quinoa salad's 2-day hold possible. The cup and lid cost $0.02.
 - **Pepitas, not nuts:** pumpkin seeds give the crunch without adding tree nuts to a menu that has none so far.
 
-## Salad add-ons: chicken or tuna salad, $4.50 (draft)
+## Salad add-ons: chicken salad $4.50, hummus $3.50 (draft)
 
 | Bowl with a 100 g scoop | Price | Cost, distributor–retail | Cost % of price |
 |---|---|---|---|
-| Fennel Herb + chicken salad | $18.00 | $3.54–$7.35 | 20–41% |
-| Fennel Herb + tuna salad | $18.00 | $4.06–$7.97 | 23–44% |
-| Cilantro Lime Quinoa + chicken salad | $17.00 | $2.97–$5.47 | 17–32% |
-| Cilantro Lime Quinoa + tuna salad | $17.00 | $3.49–$6.09 | 21–36% |
+| Fennel Herb + chicken salad | $17.00 | $3.54–$7.35 | 21–43% |
+| Fennel Herb + hummus | $16.00 | $3.31–$7.13 | 21–45% |
+| Cilantro Lime Quinoa + chicken salad | $16.00 | $2.97–$5.47 | 19–34% |
+| Cilantro Lime Quinoa + hummus | $15.00 | $2.74–$5.26 | 18–35% |
 
-| Boston comparable | Price | Note |
+| Comparable | Price | Note |
 |---|---|---|
 | Tatte "add chicken" to a salad | $3.00 | 2022 Boston and 2023 DC gluten-friendly menus; newer menus list calories, not a price |
+| Cava side of hummus | $2.99–$3.05 | National menu aggregators, 2026; one says metro stores run 10–15% higher |
 | Tatte Maple, Squash & Chicken Salad | $12.75–$13.50 | Charlestown and Cambridge Toast listings, undated |
 | Tatte Tuna Niçoise Salad | $14.85 | South End Toast listing, undated |
 | Tatte salads, Copley and Wellesley | $14.50–$15.00 | Market research, November 2026 |
 | Flour BLT | $16.00 | |
 
-- **$4.50 for margin, one price for both:** at $3.50 the tuna scoop cost 38% of its price at distributor prices, the thinnest margin on the menu. At $4.50 tuna is 30% and chicken 18%, in line with the drinks. Tuna costs more to make ($1.34 against $0.81), but customers don't expect tuna to cost more than chicken, and one price keeps the register simple. The nearest comparable is Tatte's last published chicken add-on, $3.00 on its 2022–23 menus.
-- **The scoop goes in its own cup, not in the bowl:** the bowls are sealed and labeled. Chicken salad adds egg, and tuna salad adds fish and egg, so scooping either into a bowl would make the bowl's allergen label wrong. The cup also keeps mayonnaise off the arugula, and lets the scoops sit in the case beside the bowls. Cup, lid and label cost $0.04.
-- **Watch the total:** with a scoop, a bowl comes to $17.00–$18.00, $1–$2 above Flour's $16 BLT, the top of the research's $13–$16 lunch band. Undated Toast listings show Tatte salads with chicken at $12.75–$13.50, though the research's current Copley prices are $14.50–$15.00. Cutting each bowl by $1.00 (fennel $12.50, quinoa $11.50) would bring protein bowls back to $16–$17 and keep the margin in the scoop; the meatless bowls' food and packaging would still be only about 19–22% of the price.
-- **Few new ingredients:** the chicken salad uses the parsley, dill, shallot, lemon and Dijon already bought for the fennel bowl, and the tuna salad uses the quinoa salad's red onion. Only chicken, tuna, mayonnaise and celery are new.
+- **Chicken salad at $4.50:** 18% of its price at distributor prices. The nearest comparable is Tatte's last published chicken add-on, $3.00 on its 2022–23 menus.
+- **Hummus at $3.50 replaced tuna (2026-11-07):** a scoop costs $0.59 at distributor prices, 17% of its price and less than half the tuna's $1.34. It keeps 5 days against the tuna salad's 3, gives the menu a meat-free add-on, and suits the Mediterranean fennel bowl. $3.50 sits about where a Boston-metro Cava side of hummus would. Per scoop it earns about $0.25 less than tuna did at $4.50 ($2.91 against $3.16), but at a dollar less to the customer it should sell more often.
+- **Canned chickpeas keep the labor down:** a 10-scoop batch is about 20 minutes of work (drain, blend, portion), roughly 2 minutes a scoop, against about 4 for the chicken salad, which has to be roasted, cooled and diced. Dried chickpeas would save about $0.08 a scoop but need an overnight soak and an hour's simmer.
+- **The scoop goes in its own cup, not in the bowl:** the bowls are sealed and labeled. Chicken salad adds egg and hummus adds sesame, so scooping either into a bowl would make the bowl's allergen label wrong. The cup also keeps mayonnaise off the arugula, and lets the scoops sit in the case beside the bowls. Cup, lid and label cost $0.04.
+- **Sesame is new to the kitchen** with the tahini. Wash the food processor after each hummus batch and add sesame to the staff allergen list.
+- **Totals:** with a scoop, a bowl comes to $15.00–$17.00. Only the fennel bowl with chicken salad tops Flour's $16 BLT, the top of the research's $13–$16 lunch band.
+- **Few new ingredients:** the chicken salad uses the parsley, dill, shallot, lemon and Dijon already bought for the fennel bowl, and the hummus uses the lemon, garlic, cumin and olive oil already on hand. Only chicken, mayonnaise, celery, canned chickpeas and tahini are new.
 - **No wheat added:** neither scoop contains wheat, so the quinoa salad stays wheat-free with either.
 
 ## Drinks
@@ -160,7 +164,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, sandwiches $10.20 and $12.30, salads $16.20 and $15.00, salad add-ons $5.40) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, sandwiches $10.20 and $12.30, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
@@ -175,7 +179,9 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - Starbucks petite scone: [Tasting Table](https://tastingtable.com/1808434/cheapest-vs-most-expensive-food-starbucks-menu) (about $1.75, up to $2.95 in some areas) and [Chowhound](https://www.chowhound.com/1977466/cheapest-food-item-starbucks/) ($2.65; $1.95 at some stores); full-size scone from [Six Storeys](https://sixstoreys.com/?p=31718) (August 2026 menu aggregator). All undated or aggregated national prices.
 - Mini scone inputs: [Kari-Out 1/2 lb glassine bag, 1,000/case](https://www.webstaurantstore.com/kari-out-company-1-2-lb-square-glassine-bag-case/1500100.html) (WebstaurantStore); Nielsen-Massey 32 oz vanilla bean paste at [Walmart](https://www.walmart.com/ip/38442217) ($106.48) and [Restaurantware](https://www.restaurantware.com/products/nielsen-massey-32-0-oz-pure-vanilla-paste-1-count-box) ($134.83).
 - Tatte add-on and salad prices: [2022 Boston gluten-friendly menu](https://tattebakery.com/wp-content/uploads/2022/03/BOS_Spring2022_GF_22822.pdf), [2023 DC gluten-friendly menu](https://tattebakery.com/dc_spring2023_gf_022423), [Tatte Charlestown on Toast](https://www.toasttab.com/tatte-charlestown/v3) and [Tatte South End on Toast](https://www.toasttab.com/tatte-south-end).
-- Protein inputs: [BLS boneless chicken breast, Northeast urban, via FRED](https://fred.stlouisfed.org/series/APU0100FF1101) ($3.96/lb, September 2026); [S&P Global Platts jumbo boneless breast](https://www.spglobal.com/energy/en/news-research/latest-news/agriculture/021126-us-jumbo-boneless-skinless-chicken-breast-prices-mark-their-first-decline-in-2026) ($1.45/lb, February 2026); [Hellmann's 4 × 1 gal mayonnaise](https://www.webstaurantstore.com/hellmanns-1-gallon-real-mayonnaise-case/125HLMN5308.html) (WebstaurantStore); [StarKist Blue Harbor albacore, 6 × 43 oz](https://foodservicedirect.com/kist-blue-harbor-chunk-white-albacore-tuna-in-water-43-ounce-pouch-6-per-case-23019461.html) (FoodServiceDirect); [Choice 4 oz portion cup](https://www.webstaurantstore.com/choice-4-oz-clear-plastic-souffle-cup-portion-cup-case/127P400C.html) (WebstaurantStore). The distributor chicken price and the celery are estimates.
+- Protein inputs: [BLS boneless chicken breast, Northeast urban, via FRED](https://fred.stlouisfed.org/series/APU0100FF1101) ($3.96/lb, September 2026); [S&P Global Platts jumbo boneless breast](https://www.spglobal.com/energy/en/news-research/latest-news/agriculture/021126-us-jumbo-boneless-skinless-chicken-breast-prices-mark-their-first-decline-in-2026) ($1.45/lb, February 2026); [Hellmann's 4 × 1 gal mayonnaise](https://www.webstaurantstore.com/hellmanns-1-gallon-real-mayonnaise-case/125HLMN5308.html) (WebstaurantStore); [Choice 4 oz portion cup](https://www.webstaurantstore.com/choice-4-oz-clear-plastic-souffle-cup-portion-cup-case/127P400C.html) (WebstaurantStore). The distributor chicken price and the celery are estimates.
+- Hummus: Cava side prices from [Six Storeys](https://sixstoreys.com/?p=31949) and [The Pricer](https://www.thepricer.org/cava-menu-prices/) (menu aggregators); [tahini 12 × 16 oz](https://www.webstaurantstore.com/sesame-king-16-oz-tahini-paste-case/106990337.html) and [40 lb pail](https://www.webstaurantstore.com/seeds-n-snacks-premium-tahini-paste-pail-40-lb/125TAHNPSTE.html) (WebstaurantStore); [Jack Rabbit dried chickpeas, 25 lb](https://www.foodservicedirect.com/jack-rabbit-garbanzo-beans-25-lb-package-1-package-per-case-114091.html) ($42.95, FoodServiceDirect) for the dried-versus-canned comparison. The canned chickpea price is an estimate.
+- Labor rate: [`research_notes/Boston bakery market matrix/gapfill_boston_costs.md`](../research_notes/Boston%20bakery%20market%20matrix/gapfill_boston_costs.md) (BLS bakers $18.54 an hour, May 2025). Prep times are estimates, not timed.
 - [`reports/Boston bakery market matrix.md`](../reports/Boston%20bakery%20market%20matrix.md), lunch row of the price matrix: Tatte pita, salad and chicken pita; Mamaleh's; Sofra pita; Flour BLT; the $13–$16 lunch band.
 - WebstaurantStore salad packaging: [Choice 32 oz clear salad bowl with lid, 150/case](https://www.webstaurantstore.com/choice-32-oz-clear-plastic-salad-bowl-with-lid-case/127SB32COMBO.html), [Choice 2 oz clear portion cup, 2,500/case](https://www.webstaurantstore.com/choice-2-oz-clear-plastic-souffle-cup-portion-cup-case/127P2C.html), [Choice PET lid for 1.5–2.5 oz cups](https://www.webstaurantstore.com/choice-pet-plastic-1-5-to-2-5-oz-souffle-cup-portion-cup-lid-pack/999PL2.html) and [Solia 33.8 oz kraft salad container](https://www.webstaurantstore.com/solia-es32300-large-33-8-oz-kraft-salad-container-with-clear-plastic-lid-case/708ES32300.html). The salad ingredients, fork and label are estimates.
 - [WebstaurantStore: New Roots 12 oz double-wall compostable hot cup](https://www.webstaurantstore.com/new-roots-12-oz-smooth-double-wall-kraft-compostable-paper-hot-cup-case/50012NRDWKFT.html): hot cup case price.

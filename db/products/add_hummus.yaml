@@ -1,0 +1,37 @@
+id: add_hummus
+name: Hummus Scoop
+category: add-on
+status: draft
+version: "1.0"
+approved_on: null
+description: "Add-on for either salad bowl: 100 g of house hummus with an olive oil drizzle, in its own lidded, labeled cup."
+batch_units: 10
+waste_pct: 5
+
+build:
+  - {item: hummus, qty: 100, unit: g}
+  - {item: olive_oil_ev, qty: 5, unit: g, note: "drizzled on top"}
+  - {item: cup_portion_4oz, qty: 1, unit: each}
+  - {item: lid_portion_4oz, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Scoop 100 g into a 4 oz cup, drizzle with 5 g of olive oil, lid it, and label it with the name, ingredients, allergens and date."
+  serve: "Sell it beside the bowl, not in it. Hummus adds sesame, so scooping it into a sealed bowl would make the bowl's allergen label wrong."
+  hold: "Keep at 41°F or below. Use within 5 days of blending."
+
+allergens_declared: [sesame]
+
+pricing:
+  suggested_retail_usd: 3.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Kitchen test: texture from canned chickpeas, seasoning, and how it eats with each bowl."
+
+history:
+  - date: 2026-11-07
+    version: "1.0"
+    change: "Drafted at a suggested $3.50, replacing the tuna salad scoop."
