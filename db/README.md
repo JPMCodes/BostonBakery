@@ -109,7 +109,7 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 
 `tools/proforma.py` adds up each product's price times its `par_daily` to get the menu's steady-state day, with its food-and-packaging cost at distributor prices. Each site in `proforma.yaml` has a `format` (`cafe` or `counter`, which sets its crew, space program and equipment) and a `sales_index`, the share of that day it should reach once it's established. Each scenario scales sales again. From those the script builds three years of P&L (Year 1 ramps up month by month), the startup cost and its financing, break-even and payback.
 
-- **Add a site:** copy a site block in `proforma.yaml`, set its size, seats, rent, NNN, build-out cost per sq ft, `months_to_open` (rent is paid from lease signing) and `sales_index`, and say in `rent_basis` and `source` where the numbers came from. Raw space with no kitchen can raise its `soft_costs_pct`.
+- **Add a site:** copy a site block in `proforma.yaml`, set its size, seats, rent, NNN, build-out cost per sq ft, `months_to_open` (rent is paid from lease signing) and `sales_index`, and say in `rent_basis` and `source` where the numbers came from. A space that needs its kitchen rebuilt can raise its `soft_costs_pct`.
 - **Change the crew:** edit the roles under `labor.formats`. The crew is sized for the format's `design_index` share of the par day, and `fixed_share` of its hours don't flex with sales.
 - **Treat the outputs as estimates:** the sales indexes are judgment calls, and no site's rent or condition has been confirmed with a broker.
 
