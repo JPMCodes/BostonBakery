@@ -1,0 +1,211 @@
+# Pro forma inputs, read by tools/proforma.py (report: db/proforma.md; viewer: Pro forma tab).
+#
+# Sales, food cost and prep hours come from the menu database itself: the planning
+# pars (par_daily) in db/products give the menu's steady-state day, and each site's
+# sales_index scales that day to the site. Everything else is set here.
+#
+# Dollar figures are 2026 estimates unless a source is given. Sites, sizes and rents
+# come from reports/Boston bakery site scan.md (checked 2026-11-07); none has been
+# confirmed with a broker.
+
+as_of: 2026-11-08
+
+operating:
+  days_per_year: 360            # open daily; closed five holidays
+  hours: "6:30 am to 3:00 pm, seven days"
+  # Year-1 sales as % of the site's steady state, month by month.
+  ramp_year1_pct: [55, 60, 65, 70, 75, 80, 85, 88, 91, 94, 97, 100]
+  price_growth_pct: 3           # Year 3 sales over Year 2, from menu price increases
+  cost_inflation_pct: 3         # yearly rise in wages, rent and fixed costs
+  # Points added to the menu's food-and-packaging cost for comps, staff meals,
+  # spoilage beyond the waste allowances and price drift before real invoices.
+  cogs_buffer_pts: 3
+
+variable_costs_pct_of_sales:
+  card_processing: 2.6          # about 90% of sales on cards at about 2.9%
+  repairs_maintenance: 1.5
+  supplies_cleaning: 1.5        # cleaning, smallwares replacement, non-food supplies
+  marketing: 2.0
+  delivery_net: 0.5             # app commissions after the 20% app price markup
+  miscellaneous: 1.0
+
+fixed_costs_per_year:           # Year-1 dollars
+  insurance: 8500               # general liability, property, umbrella; workers' comp is in the payroll burden
+  software_pos: 5000            # point of sale, online ordering, scheduling
+  accounting_payroll_legal: 9000
+  licenses_music: 2500          # Common Victualler and health permit renewals, music licensing
+  waste_pest: 7200
+  linens_uniforms: 2400
+  internet_phone: 2400
+
+utilities_per_sqft_year: 10     # gas, electric and water for ovens, refrigeration and the bar
+
+labor:
+  burden_pct: 12                # FICA, FUTA, MA UI, training fund, workers' comp (research: statutory 8.5–9% plus workers' comp 1–3%)
+  fixed_share: 0.6              # share of scheduled hours that doesn't flex with sales
+  manager:
+    title: General manager
+    salary: 60000               # if the owner runs the shop instead, add this back: see owner's earnings
+  # Scheduled hourly crew per day at each format's design volume. Wages from the
+  # research's Boston medians: bakers $18.54, food prep $19.07, counter $17.45,
+  # MA minimum $15.00; counter and bar staff also share tips.
+  formats:
+    cafe:
+      label: "Bakery-café: full menu with lunch, about 24 seats"
+      design_index: 1.0         # staffed for the menu's full par day
+      roles:
+        - {role: Lead baker, hours: 8.5, wage: 25.00, note: "4:30 am start: mixes, shapes and bakes"}
+        - {role: Baker and prep, hours: 8, wage: 20.00, note: "pastry, glazes, cookie and brownie batches, salad prep"}
+        - {role: Line cook, hours: 8, wage: 19.50, note: "breakfast and lunch sandwiches, soup, catering boxes"}
+        - {role: Baristas, hours: 14, wage: 16.50, note: "two at the morning peak, one after; plus tips"}
+        - {role: Counter, hours: 10, wage: 15.50, note: "register, pastry case, grab-and-go; plus tips"}
+        - {role: Dish and porter, hours: 5, wage: 15.50, note: "late morning to close"}
+    counter:
+      label: "Counter bakery: pastry, coffee and breakfast sandwiches, about 10 seats"
+      design_index: 0.5         # staffed for half the menu's par day
+      roles:
+        - {role: Lead baker, hours: 8.5, wage: 25.00, note: "4:30 am start"}
+        - {role: Baker and prep, hours: 6, wage: 20.00, note: "pastry and grab-and-go"}
+        - {role: Baristas, hours: 11, wage: 16.50, note: "one all day, a second at the peak; plus tips"}
+        - {role: Counter, hours: 7, wage: 15.50, note: "plus tips"}
+        - {role: Dish and porter, hours: 3, wage: 15.50, note: ""}
+
+# What the menu needs, zone by zone. Seats at about 15 sq ft each.
+space_program:
+  cafe:
+    - {zone: "Bakery production: mixers, bench, double-stack oven, proofer, speed racks", sqft: 650}
+    - {zone: "Hot line under a Type 1 hood: griddle, range for soup and glaze", sqft: 120}
+    - {zone: "Cold and dry storage: walk-in, freezer, shelving", sqft: 220}
+    - {zone: "Dish and sanitation: 3-bay sink, dishwasher, mop sink", sqft: 120}
+    - {zone: "Coffee bar, pastry and grab-and-go cases, register, pickup shelf", sqft: 300}
+    - {zone: "Seating, 24 seats", sqft: 360}
+    - {zone: "Restroom, office, staff lockers", sqft: 160}
+    - {zone: "Entry, queue and circulation", sqft: 300}
+  counter:
+    - {zone: "Bakery production: mixer, bench, double-stack oven, proofer, speed racks", sqft: 450}
+    - {zone: "Hot line under a Type 1 hood: griddle", sqft: 80}
+    - {zone: "Cold and dry storage: reach-ins, freezer, shelving", sqft: 150}
+    - {zone: "Dish and sanitation", sqft: 90}
+    - {zone: "Coffee bar, pastry case, register", sqft: 250}
+    - {zone: "Seating, 10 seats", sqft: 150}
+    - {zone: "Restroom and office", sqft: 110}
+    - {zone: "Entry, queue and circulation", sqft: 200}
+
+# Equipment by format: estimates at new dealer prices before delivery and install.
+# Research anchors: double rack oven $55.6–57.0K, mixer $3–15K, proofing $5–10K,
+# hood $6–25K (gapfill_model_economics.md). A double-stack convection oven replaces
+# the rack oven at this volume.
+equipment:
+  cafe:
+    - {item: "Double-stack convection oven, gas", cost: 22000}
+    - {item: "40-qt planetary mixer (production.md's biggest labor saver)", cost: 16000}
+    - {item: "20-qt planetary mixer for glazes, fillings and small batches", cost: 6000}
+    - {item: "Proofer-retarder cabinet", cost: 9000}
+    - {item: "Griddle and two-burner range", cost: 6500}
+    - {item: "Walk-in cooler, about 8 × 10 ft", cost: 16000}
+    - {item: "Reach-in freezer and two undercounter refrigerators", cost: 14000}
+    - {item: "Two-group espresso machine and two grinders", cost: 23000}
+    - {item: "Batch brewer, hot water, cold brew system, water filtration", cost: 7000}
+    - {item: "Refrigerated and dry pastry cases", cost: 14000}
+    - {item: "Open grab-and-go cold case", cost: 9000}
+    - {item: "Sinks, stainless tables, shelving", cost: 14000}
+    - {item: "Undercounter dishwasher", cost: 7000}
+    - {item: "Speed racks, sheet pans, smallwares", cost: 9000}
+    - {item: "Food processor, blenders, scales, juicer", cost: 4500}
+    - {item: "Point-of-sale hardware and kitchen screen", cost: 4000}
+  counter:
+    - {item: "Double-stack convection oven, gas", cost: 22000}
+    - {item: "20-qt heavy-duty planetary mixer", cost: 8000}
+    - {item: "Proofer-retarder cabinet", cost: 9000}
+    - {item: "Griddle and two-burner range", cost: 4500}
+    - {item: "Two reach-in refrigerators and a reach-in freezer", cost: 14000}
+    - {item: "Two-group espresso machine and two grinders", cost: 23000}
+    - {item: "Batch brewer, hot water, cold brew system, water filtration", cost: 7000}
+    - {item: "Pastry case", cost: 12000}
+    - {item: "Small grab-and-go case", cost: 6000}
+    - {item: "Sinks, stainless tables, shelving", cost: 11000}
+    - {item: "Undercounter dishwasher", cost: 7000}
+    - {item: "Speed racks, sheet pans, smallwares", cost: 7000}
+    - {item: "Food processor, blender, scales", cost: 3500}
+    - {item: "Point-of-sale hardware", cost: 3000}
+
+startup:
+  soft_costs_pct_of_buildout: 15   # design, engineering, permits, legal (research: soft costs run 30–40% of a full restaurant build; less on a second-generation space)
+  furniture_per_seat: 450
+  furniture_base: 6000
+  signage: 12000
+  preopening_payroll_weeks: 3      # training and test bakes, at 60% of the scheduled crew
+  manager_preopening_weeks: 6      # the general manager starts early to hire, train and set up
+  opening_inventory: 10000
+  launch_marketing: 12000
+  deposit_months: 3                # research: landlords often want 2–3 months' rent up front
+  working_capital_months: 2        # of rent, payroll and fixed costs
+  contingency_pct: 10              # of build-out and equipment
+
+financing:
+  loan_share_pct: 70               # SBA 7(a)-style loan; the rest is owner equity
+  rate_pct: 10.5                   # estimate: prime plus about 2.75 points
+  term_years: 10
+
+scenarios:
+  - {id: conservative, name: Conservative, sales_factor: 0.8}
+  - {id: base, name: Base, sales_factor: 1.0}
+  - {id: upside, name: Upside, sales_factor: 1.2}
+
+# sales_index scales the menu's par day (about $3,630) to the site's steady state.
+# These are judgment calls from the site scan's traffic notes and the market
+# research's format benchmarks (a 2,500 sq ft café needs about $1.2–1.4M on cheaper
+# streets; a 1,200 sq ft counter about $0.6–0.8M), not measured sales.
+sites:
+  - id: cambridge
+    name: "1105 Massachusetts Ave, Cambridge"
+    short: Cambridge
+    area: "East edge of Harvard Square"
+    format: cafe
+    sqft: 2500
+    seats: 24
+    rent_psf: 37.00
+    nnn_psf: 12.00
+    escalation_pct: 3
+    buildout_psf: 100
+    equipment_credit: 16000
+    equipment_credit_note: "the diner's walk-in coolers stay, so no new walk-in"
+    sales_index: 0.9
+    kitchen: "Former diner with a very large hood, two walk-in coolers, storage room and counter (2024 listing)"
+    rent_basis: "$35 a sq ft in the 2024 listing, raised 3% a year to $37; NNN charges not stated, $12 assumed"
+    risks: "Rent is two years old; two operators closed here in two years; needs bakery-café sales"
+    source: "Site scan lease #3; LoopNet 33223782 (2024, snippet); for-lease sign reported July 2026"
+  - id: jamaica_plain
+    name: "349 Centre St, Jamaica Plain"
+    short: Jamaica Plain
+    area: "Centre St between Jackson Square and Hyde Square"
+    format: cafe
+    sqft: 2380
+    seats: 24
+    rent_psf: 30.00
+    nnn_psf: 8.00
+    escalation_pct: 3
+    buildout_psf: 160
+    equipment_credit: 0
+    sales_index: 0.75
+    kitchen: "Restaurants about 2011–2022 with a hood, wall exhaust and grease trap on record; since renovated as flex space, so the hood and trap probably need reinstalling"
+    rent_basis: "Whole space at $5,950 a month ($30 a sq ft) in a live boston.com listing; lease type not stated, $8 NNN assumed"
+    risks: "Kitchen likely removed; lease type not stated; the listing also offers a 1,200 sq ft section"
+    source: "Site scan lease #2; boston.com 73578246, live 2026-11-07"
+  - id: egleston
+    name: "3089-3091 Washington St, Boston"
+    short: Egleston Square
+    area: "Egleston Square, Roxbury and Jamaica Plain"
+    format: counter
+    sqft: 1490
+    seats: 10
+    rent_psf: 29.00
+    nnn_psf: 6.00
+    escalation_pct: 3
+    buildout_psf: 110
+    equipment_credit: 0
+    sales_index: 0.5
+    kitchen: "Hood (Feb 2025) and grease trap (Feb 2026) on the city's inspection record for the former fish market; listing includes restaurant equipment"
+    rent_basis: "$43,210 a year ($29 a sq ft) in a live boston.com listing; lease type not stated, $6 NNN assumed"
+    risks: "Former fish market: deep clean and odors; hood and trap condition unknown; local trade with no weekend draw named"
+    source: "Site scan lease #1; boston.com 73497894, live 2026-11-07"

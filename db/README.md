@@ -38,7 +38,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Cookie & Brownie Box (12)](products/cookie_brownie_box.yaml) | draft | $50.00 | Catering: 6 cookies and 6 brownies |
 | [Coffee Traveler (96 oz)](products/coffee_traveler.yaml) | draft | $40.00 | Catering: house drip with cups, lids, milk and a sugar kit |
 
-The drinks stay `pending_test` until the roaster, matcha and chai suppliers are chosen and the espresso is dialed in. Items marked `draft` are written and costed but not yet made in the kitchen. Costs are in [`costing.md`](costing.md), the reasoning behind the prices in [`pricing.md`](pricing.md), and the production plan and labor in [`production.md`](production.md).
+The drinks stay `pending_test` until the roaster, matcha and chai suppliers are chosen and the espresso is dialed in. Items marked `draft` are written and costed but not yet made in the kitchen. Costs are in [`costing.md`](costing.md), the reasoning behind the prices in [`pricing.md`](pricing.md), and the production plan and labor in [`production.md`](production.md). The pro forma, with space needs, startup cost and three years of P&L for three candidate sites, is in [`proforma.md`](proforma.md).
 
 ## Layout
 
@@ -52,8 +52,11 @@ The drinks stay `pending_test` until the roaster, matcha and chai suppliers are 
 | `pricing.md` | Retail price recommendations and their market basis |
 | `production.md` | Production plan, prep-labor summary and where items share work |
 | `settings.yaml` | Shared settings: the hourly labor rate |
-| `viewer.html` | Generated Formula Book viewer: products, formulas and ingredients with costs, prices and methods. Open it in any browser. Do not edit by hand |
+| `proforma.yaml` | Pro forma inputs: candidate sites, staffing, space program, equipment, operating costs, startup costs, financing and sales scenarios |
+| `proforma.md` | Generated pro forma report. Do not edit by hand |
+| `viewer.html` | Generated Formula Book viewer: products, formulas, ingredients, labor and the pro forma. Open it in any browser. Do not edit by hand |
 | `../tools/costing.py` | Validates everything and regenerates `costing.md` |
+| `../tools/proforma.py` | Runs the pro forma and regenerates `proforma.md` |
 | `../tools/build_viewer.py` | Regenerates `viewer.html` from the same data |
 
 ## Run the checks
@@ -73,10 +76,16 @@ python3 tools/costing.py --check
 The first command validates and rewrites `costing.md`. `--check` validates only and exits non-zero on any error. Run it after every change and commit the regenerated report with the data.
 
 ```bash
+python3 tools/proforma.py
+```
+
+This reruns the pro forma and rewrites `proforma.md`. Its sales and food cost come from the products, so rerun it after any price, cost or `par_daily` change as well as after editing `proforma.yaml`.
+
+```bash
 python3 tools/build_viewer.py
 ```
 
-This rebuilds `viewer.html`, a single self-contained page with the data built in. It works offline, with a switch between retail and distributor costs, search, and tabs for products, formulas, ingredients and labor. Rebuild it after every data change too.
+This rebuilds `viewer.html`, a single self-contained page with the data built in. It works offline, with a switch between retail and distributor costs, search, and tabs for products, formulas, ingredients, labor and the pro forma. Rebuild it after every data change too.
 
 The script stops on unknown items, bad units, a yield larger than its inputs, formula cycles, missing pack weights or densities, and declared allergens that don't match the ingredients. It warns, without failing, when an approved product uses a formula that isn't approved yet, or when an ingredient has no price in a channel.
 
@@ -95,6 +104,14 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 - **Prep labor:** every formula has `labor.batch_min`, the hands-on minutes for one production run, and `labor.production_batches`, how many batches that run makes. Every product has `labor.unit_min`, the hands-on minutes for its own steps (shaping, finishing, assembly, building a drink), and `par_daily`, its planned daily sales. Don't count oven, proof, brew or steep time, taking orders or bagging. The report adds each product's share of its sub-recipes and its waste allowance, and prices the minutes at the rate in `settings.yaml`.
 - **Bundles:** a product line can point at another product (unit `each`), as the catering boxes do. The bundle takes the inner product's food cost and labor but not its packaging or waste allowance.
 - **Credit lines:** `credit: true` on a product line subtracts that ingredient's cost and ignores its allergens. The milk swaps use it to cost oat or almond milk net of the whole milk they replace.
+
+## Pro forma
+
+`tools/proforma.py` adds up each product's price times its `par_daily` to get the menu's steady-state day, with its food-and-packaging cost at distributor prices. Each site in `proforma.yaml` has a `format` (`cafe` or `counter`, which sets its crew, space program and equipment) and a `sales_index`, the share of that day it should reach once it's established. Each scenario scales sales again. From those the script builds three years of P&L (Year 1 ramps up month by month), the startup cost and its financing, break-even and payback.
+
+- **Add a site:** copy a site block in `proforma.yaml`, set its size, seats, rent, NNN, build-out cost per sq ft and `sales_index`, and say in `rent_basis` and `source` where the numbers came from.
+- **Change the crew:** edit the roles under `labor.formats`. The crew is sized for the format's `design_index` share of the par day, and `fixed_share` of its hours don't flex with sales.
+- **Treat the outputs as estimates:** the sales indexes are judgment calls, and no site's rent or condition has been confirmed with a broker.
 
 ## Updating prices
 

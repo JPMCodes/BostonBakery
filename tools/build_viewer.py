@@ -8,6 +8,7 @@ Usage:
 
 db/viewer.html opens in any browser with no server. It reads nothing at run
 time: rerun this script (after tools/costing.py) whenever the data changes.
+The Pro forma tab comes from db/proforma.yaml through tools/proforma.py.
 """
 
 from __future__ import annotations
@@ -19,6 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import proforma  # noqa: E402
 from costing import CHANNELS, DB, ROOT, Book, DBError  # noqa: E402
 
 OUT = DB / "viewer.html"
@@ -45,6 +47,30 @@ def line_kind(book: Book, item: str) -> str:
 
 def per_channel(fn) -> dict:
     return {ch: fn(ch) for ch in CHANNELS}
+
+
+def proforma_data(book: Book) -> dict:
+    """The pro forma as tools/proforma.py builds it; keys keep the model's snake_case names."""
+    pf = proforma.build(book)
+    cfg = pf["config"]
+    return {
+        "asOf": str(cfg.get("as_of", "")),
+        "days": pf["days"],
+        "menu": pf["menu"],
+        "operating": cfg["operating"],
+        "variable": cfg["variable_costs_pct_of_sales"],
+        "fixed": cfg["fixed_costs_per_year"],
+        "utilitiesPsf": cfg["utilities_per_sqft_year"],
+        "labor": cfg["labor"],
+        "crews": pf["crews"],
+        "space": cfg["space_program"],
+        "equipment": cfg["equipment"],
+        "startup": cfg["startup"],
+        "financing": cfg["financing"],
+        "scenarios": cfg["scenarios"],
+        "sites": cfg["sites"],
+        "results": pf["results"],
+    }
 
 
 def build_data(book: Book) -> dict:
@@ -215,6 +241,7 @@ def build_data(book: Book) -> dict:
         "products": products,
         "formulas": formulas,
         "ingredients": ingredients,
+        "proforma": proforma_data(book),
     }
 
 
@@ -251,11 +278,16 @@ PAGE = r"""<title>BostonBakery Formula Book</title>
   --ok-bg: #e2eedd;
   --warn: #8a5a00;
   --warn-bg: #f6e7c6;
-  /* Price-split parts, checked with the dataviz palette validator (light surface #fffdf8). */
+  /* Price-split parts, checked with the dataviz palette validator (light surface #fffdf8).
+     The pro forma's cost split reuses them (food, labor, rent, EBITDA) plus --opex; the five
+     were validated together. */
   --cost: #8c2f3f;
   --pack: #c98500;
   --labor: #2a78d6;
   --margin: #ecd7d9;
+  --opex: #1b8a6b;
+  --bad: #8c2f3f;
+  --bad-bg: #f6e1e3;
   --font-display: "Barlow Semi Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -332,7 +364,7 @@ main { padding-block: 18px 40px; display: flex; flex-direction: column; gap: 22p
 .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); }
 .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
 .legend .k-cost { background: var(--cost); } .legend .k-pack { background: var(--pack); } .legend .k-labor { background: var(--labor); } .legend .k-margin { background: var(--margin); }
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 12px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 165px), 1fr)); gap: 12px; }
 .tile { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
 .tile .t-label { font-size: 13px; color: var(--ink-2); }
 .tile .t-value { font: 600 26px/1.1 var(--font-body); color: var(--ink); }
@@ -376,9 +408,33 @@ tr.detail td { background: var(--bg); }
 .filters button { border: 1px solid var(--rule); background: var(--surface); border-radius: 999px; padding: 4px 10px; cursor: pointer; font-size: 13px; color: var(--ink-2); }
 .filters button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
 @media (max-width: 560px) { .hide-sm { display: none; } }
+.controls[hidden] { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.pf h4 { margin: 0 0 6px; font: 700 13px var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+.pf p { margin: 0; max-width: 80ch; }
+.stack { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.pf-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ctl-label { font: 700 12px var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+.tile .t-sub { font-size: 12px; color: var(--ink-2); }
+.neg { color: var(--bad); }
+.pbar { position: relative; padding-block: 3px; margin-bottom: 6px; }
+.pbar .bar { height: 12px; }
+.pbar .tick { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--ink); }
+.bar .s-opex { background: var(--opex); }
+.legend .k-opex { background: var(--opex); }
+.legend .k-tick { width: 2px; background: var(--ink); }
+.pill.ok { background: var(--ok-bg); color: var(--ok); }
+.pill.warn { background: var(--warn-bg); color: var(--warn); }
+.pill.bad { background: var(--bad-bg); color: var(--bad); }
+tr.cur td { background: var(--surface-2); }
+tr.cur td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.zone { display: flex; align-items: center; min-width: 90px; }
+.zone span { display: block; height: 8px; background: var(--ink-2); border-radius: 0 3px 3px 0; }
 .empty { padding: 24px; text-align: center; color: var(--ink-2); border: 1px dashed var(--rule); border-radius: 8px; }
 footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
 @media (max-width: 560px) {
+  .pf th, .pf td { padding-inline: 7px; }
+  .pf th { white-space: normal; }
   .brand h1 { font-size: 24px; }
   .search { width: 100%; }
   .controls { width: 100%; }
@@ -418,11 +474,14 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     { id: "products", label: "Products", count: DATA.products.length },
     { id: "formulas", label: "Formulas", count: DATA.formulas.length },
     { id: "ingredients", label: "Ingredients", count: DATA.ingredients.length },
-    { id: "labor", label: "Labor", count: Math.round(DATA.products.reduce((s, p) => s + p.laborHoursDay, 0)) + " h/day" }
+    { id: "labor", label: "Labor", count: Math.round(DATA.products.reduce((s, p) => s + p.laborHoursDay, 0)) + " h/day" },
+    { id: "proforma", label: "Pro forma", count: DATA.proforma.sites.length + " sites" }
   ];
   const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["salad", "Salads"], ["soup", "Soups"], ["add-on", "Add-ons"], ["drink", "Drinks"], ["catering", "Pre-order & catering"]];
   const STATUS = { approved: "Approved", pending_test: "Pending test", draft: "Draft", retired: "Retired" };
-  const state = { view: "products", channel: "distributor_est", query: "", open: new Set(), cat: "all", lcat: "all" };
+  const PF = DATA.proforma;
+  const state = { view: "products", channel: "distributor_est", query: "", open: new Set(), cat: "all", lcat: "all",
+    site: PF.sites[0].id, scen: PF.scenarios.some((s) => s.id === "base") ? "base" : PF.scenarios[0].id };
   try { const saved = localStorage.getItem("fb-channel"); if (saved && CH.includes(saved)) state.channel = saved; } catch (e) {}
 
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -431,7 +490,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
   const unitCost = (p, ch) => p.food[ch] == null ? null : p.food[ch] + (p.hasPackaging ? (p.packagingCost[ch] || 0) : 0);
   const num = (q) => Number(q).toLocaleString("en-US", { maximumFractionDigits: 1 });
   const qty = (q, unit) => unit === "each" ? num(q) + " each" : num(q) + " g";
-  const pct = (a, b) => (a == null || !b) ? "n/a" : Math.round((100 * a) / b) + "%";
+  const pct = (a, b) => (a == null || !b) ? "n/a" : String(Math.round((100 * a) / b)).replace("-", "−") + "%";
   const UNITS = { g: "g", f: "°F", s: "s", usd: "$", pct: "%", days: "days", minutes: "min" };
   const human = (k) => {
     const parts = String(k).split("_");
@@ -450,6 +509,12 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       `<button type="button" data-channel="${ch}" aria-pressed="${ch === state.channel}">${chLabel(ch)}</button>`).join("");
     document.getElementById("tabs").innerHTML = VIEWS.map((v) =>
       `<button type="button" role="tab" data-view="${v.id}" aria-selected="${v.id === state.view}">${v.label}<span class="count">${v.count}</span></button>`).join("");
+    document.querySelector(".controls").hidden = state.view === "proforma";
+    const nav = document.getElementById("tabs"), sel = nav.querySelector('[aria-selected="true"]');
+    if (sel) {
+      const left = sel.offsetLeft - nav.offsetLeft, right = left + sel.offsetWidth;
+      if (left < nav.scrollLeft || right > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = Math.max(0, right - nav.clientWidth + 16);
+    }
   }
 
   function costCells(cost) {
@@ -643,10 +708,192 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     return `<div class="summary"><span>Hands-on prep and bar minutes at <strong>$${DATA.laborRate.toFixed(2)}/hr</strong>, including each sub-recipe's share of its production run. Proofing, baking and brewing time, taking orders and bagging aren't counted. Daily figures use each product's planning par; prime cost uses <strong>${chLabel(ch).toLowerCase()}</strong> prices. Tap a row to see where the minutes go.</span></div>${tiles}${filters}${items.length ? table : `<div class="empty">No products match.</div>`}`;
   }
 
+  // Pro forma: dollars in whole dollars, $K for tables and $M or $K for tiles.
+  const dollars = (v) => v == null ? "n/a" : (v < 0 ? "−$" : "$") + Math.round(Math.abs(v)).toLocaleString("en-US");
+  const kd = (v) => v == null ? "n/a" : (Math.round(v / 1000) < 0 ? "−$" : "$") + Math.abs(Math.round(v / 1000)).toLocaleString("en-US") + "K";
+  const big = (v) => v != null && Math.abs(v) >= 999500 ? (v < 0 ? "−$" : "$") + (Math.abs(v) / 1e6).toFixed(2) + "M" : kd(v);
+  const neg = (v) => v != null && Math.round(v) < 0 ? " neg" : "";
+  const fmtName = (fmt) => PF.labor.formats[fmt].label.split(":")[0];
+  const PF_LINES = [
+    ["cogs", "Food and packaging"],
+    ["hourly_labor", "Hourly crew, with payroll taxes"],
+    ["manager", "General manager, with payroll taxes"],
+    ["rent", "Base rent"],
+    ["nnn", "NNN charges"],
+    ["utilities", "Utilities"],
+    ["variable_opex", "Card fees, repairs, supplies, marketing"],
+    ["fixed_opex", "Insurance, software, accounting, other fixed"]
+  ];
+  const COST_WORDS = { card_processing: "card fees", repairs_maintenance: "repairs", supplies_cleaning: "supplies", delivery_net: "delivery apps, net", miscellaneous: "other",
+    software_pos: "point of sale and software", accounting_payroll_legal: "accounting, payroll and legal", licenses_music: "licenses and music", waste_pest: "trash and pest control", linens_uniforms: "linens and uniforms", internet_phone: "internet and phone" };
+  const costWord = (k) => COST_WORDS[k] || k.replace(/_/g, " ");
+  const tile = (label, value, sub, isNeg) => `<div class="tile"><span class="t-label">${esc(label)}</span><span class="t-value${isNeg ? " neg" : ""}">${value}</span>${sub ? `<span class="t-sub">${sub}</span>` : ""}</div>`;
+
+  function verdict(r) {
+    const y2 = r.years[1];
+    if (y2.ebitda <= 0) return ["bad", "Loses money"];
+    if (y2.cash_after_debt < 0) return ["bad", "Can't carry the loan"];
+    if (!r.reserve_covers_year1) return ["warn", "Year 1 needs more cash"];
+    return ["ok", "Pays its way"];
+  }
+
+  function costBar(y) {
+    const parts = [
+      ["cost", "Food and packaging", y.cogs],
+      ["labor", "Crew and manager", y.hourly_labor + y.manager],
+      ["pack", "Rent and NNN", y.rent + y.nnn],
+      ["opex", "Utilities and other costs", y.utilities + y.variable_opex + y.fixed_opex]
+    ];
+    const costs = parts.reduce((s, x) => s + x[2], 0);
+    const denom = Math.max(y.sales, costs);
+    const w = (v) => (100 * v / denom).toFixed(2);
+    const loss = y.ebitda < 0;
+    const segs = parts.map(([k, , v]) => `<span class="s-${k}" style="width:${w(v)}%"></span>`).join("") + (loss ? "" : `<span class="s-margin" style="width:${w(y.ebitda)}%"></span>`);
+    const items = parts.map(([k, label, v]) => [k, label, pct(v, y.sales)]).concat([loss ? ["tick", "Sales end at the line: loss", pct(y.ebitda, y.sales)] : ["margin", "EBITDA", pct(y.ebitda, y.sales)]]);
+    const aria = "Of Year-2 sales: " + items.map(([, l, v]) => `${l.toLowerCase()} ${v}`).join(", ");
+    return `<div class="pbar" role="img" aria-label="${esc(aria)}"><div class="bar">${segs}</div>${loss ? `<b class="tick" style="left:${w(y.sales)}%"></b>` : ""}</div>
+      <div class="legend">${items.map(([k, l, v]) => `<span><i class="k-${k}"></i>${esc(l)} ${v}</span>`).join("")}</div>`;
+  }
+
+  function renderProforma() {
+    const days = PF.days, menu = PF.menu, op = PF.operating, st = PF.startup, fin = PF.financing, lab = PF.labor;
+    const sc = state.scen, scen = PF.scenarios.find((s) => s.id === sc);
+    const site = PF.sites.find((s) => s.id === state.site) || PF.sites[0];
+    const r = PF.results[site.id][sc];
+    const ys = r.years, y1 = ys[0], y2 = ys[1], y3 = ys[2];
+    const ramp = op.ramp_year1_pct, rampAvg = ramp.reduce((a, b) => a + b, 0) / ramp.length;
+
+    // The menu's day and the space each format needs
+    const spaceTiles = Object.keys(PF.space).map((fmt) => {
+      const total = PF.space[fmt].reduce((s, z) => s + z.sqft, 0);
+      const label = PF.labor.formats[fmt].label, i = label.indexOf(":");
+      return tile(`Space, ${fmtName(fmt).toLowerCase()}`, `${total.toLocaleString("en-US")} sq ft`, esc(i < 0 ? "" : label.slice(i + 1).trim().replace(/^\w/, (c) => c.toUpperCase())));
+    }).join("");
+    const top = `<div class="summary"><span>Sales start from the menu's planning pars: each product's price times its daily par adds up to <strong>${dollars(menu.sales)} a day</strong>. A site's sales index scales that day to the site, and the scenario scales it again. Food cost is the menu's at distributor prices plus ${op.cogs_buffer_pts} points. Estimates as of ${esc(PF.asOf)}; no site has been confirmed with a broker.</span></div>
+      <div class="tiles">
+        ${tile("Menu sales a day at par", dollars(menu.sales), `${big(menu.sales * days)} a year over ${days} days`)}
+        ${tile("Food and packaging", `${menu.goods_pct.toFixed(0)}%`, `of sales at distributor prices, before the ${op.cogs_buffer_pts}-point buffer`)}
+        ${spaceTiles}
+      </div>`;
+
+    // Sites compared, in the chosen scenario
+    const scenChips = `<div class="pf-ctl"><span class="ctl-label" id="scen-label">Scenario</span><div class="filters" role="group" aria-labelledby="scen-label">${PF.scenarios.map((s) => `<button type="button" data-scen="${esc(s.id)}" aria-pressed="${s.id === sc}">${esc(s.name)}, ${Math.round(s.sales_factor * 100)}% of base sales</button>`).join("")}</div></div>`;
+    const cmpRows = PF.sites.map((s) => {
+      const q = PF.results[s.id][sc], q2 = q.years[1], [cls, text] = verdict(q);
+      return `<tr class="click${s.id === site.id ? " cur" : ""}" data-site="${esc(s.id)}" tabindex="0"${s.id === site.id ? ` aria-current="true"` : ""}>
+        <td>${esc(s.short || s.name)}<span class="note">${esc(fmtName(s.format))}, ${s.sqft.toLocaleString("en-US")} sq ft</span></td>
+        <td class="n">${big(q.steady_sales)}</td>
+        <td class="n hide-sm">${q.base_rent_pct_y2.toFixed(1)}% / ${q.rent_pct_y2.toFixed(1)}%</td>
+        <td class="n hide-sm">${kd(q.startup)}</td>
+        <td class="n${neg(q2.ebitda)}">${kd(q2.ebitda)}</td>
+        <td class="n hide-sm${neg(q2.cash_after_debt)}">${kd(q2.cash_after_debt)}</td>
+        <td class="n hide-sm">${dollars(q.breakeven_daily)}</td>
+        <td><span class="pill ${cls}">${text}</span></td></tr>`;
+    }).join("");
+    const compare = `<section class="group pf"><div class="group-head"><h2>Sites compared</h2><span class="count">${esc(scen.name)}</span></div>${scenChips}
+      <div class="tbl-wrap"><table><thead><tr><th>Site</th><th class="n">Sales a year</th><th class="n hide-sm">Rent / with NNN</th><th class="n hide-sm">Startup</th><th class="n">EBITDA</th><th class="n hide-sm">Cash after loan</th><th class="n hide-sm">Break-even a day</th><th>Verdict</th></tr></thead><tbody>${cmpRows}</tbody></table></div>
+      <p class="muted small">Sales, rent share, EBITDA and cash after loan payments are for Year 2, the first full year after the ramp. Rent is base rent and base rent plus NNN, as a share of sales; the site scan's test is base rent at or under 8%. Break-even is the daily sales at which Year-2 cash after loan payments is zero. Tap a site for its detail.</p></section>`;
+
+    // The chosen site
+    const siteChips = `<div class="pf-ctl"><span class="ctl-label" id="site-label">Site</span><div class="filters" role="group" aria-labelledby="site-label">${PF.sites.map((s) => `<button type="button" data-site="${esc(s.id)}" aria-pressed="${s.id === site.id}">${esc(s.short || s.name)}</button>`).join("")}</div></div>`;
+    const facts = [["Kitchen", site.kitchen], ["Rent", site.rent_basis], ["Risks", site.risks], ["Source", site.source]].filter(([, v]) => v);
+    const [vcls, vtext] = verdict(r);
+    const payback = r.payback_years ? `payback ${r.payback_years.toFixed(1)} years on Year-3 EBITDA` : "no payback at these sales";
+    const tiles = `<div class="tiles">
+      ${tile("Sales, Year 2", big(y2.sales), `${dollars(y2.daily_sales)} a day; Year 1 ${big(y1.sales)} while it ramps`)}
+      ${tile("EBITDA, Year 2", kd(y2.ebitda), `${pct(y2.ebitda, y2.sales)} of sales; Year 3 ${kd(y3.ebitda)}`, y2.ebitda < 0)}
+      ${tile("Cash after loan payments, Year 2", kd(y2.cash_after_debt), `after ${kd(r.debt_service)} a year of loan payments`, y2.cash_after_debt < 0)}
+      ${tile("If the owner manages, Year 2", kd(y2.owner_earnings), "EBITDA plus the manager's pay, before loan payments", y2.owner_earnings < 0)}
+      ${tile("Startup cost", big(r.startup), `${kd(r.equity)} owner equity; ${payback}`)}
+      ${tile("Break-even sales a day", dollars(r.breakeven_daily), `against ${dollars(r.steady_daily)} projected, after loan payments`, r.breakeven_daily > r.steady_daily)}
+    </div>`;
+
+    const plRow = (label, key, cls, note) => `<tr${cls ? ` class="${cls}"` : ""}><td>${esc(label)}${note ? `<span class="note">${esc(note)}</span>` : ""}</td>${ys.map((y, i) => `<td class="n${i === 2 ? " hide-sm" : ""}${neg(y[key])}">${kd(y[key])}</td>`).join("")}<td class="n${neg(y2[key])}">${key === "sales" ? "100%" : pct(y2[key], y2.sales)}</td></tr>`;
+    const pl = `<div class="tbl-wrap"><table><thead><tr><th>Line</th><th class="n">Year 1</th><th class="n">Year 2</th><th class="n hide-sm">Year 3</th><th class="n">Year 2 share</th></tr></thead><tbody>
+      ${plRow("Sales", "sales", "total", `Year 1 ramps from ${ramp[0]}% to ${ramp[ramp.length - 1]}% of steady sales; Year 3 adds ${op.price_growth_pct}% in prices`)}
+      ${PF_LINES.map(([k, label]) => plRow(label, k)).join("")}
+      ${plRow("EBITDA", "ebitda", "total")}
+      ${plRow("Loan payments", "debt_service")}
+      ${plRow("Cash after loan payments", "cash_after_debt", "total")}
+      ${plRow("If the owner manages", "owner_earnings", "", "EBITDA plus the manager's pay, before loan payments")}
+      <tr><td>Scheduled crew hours a day</td>${ys.map((y, i) => `<td class="n${i === 2 ? " hide-sm" : ""}">${y.hours_day.toFixed(0)}</td>`).join("")}<td></td></tr>
+    </tbody></table></div>
+    <p class="muted small" style="margin-top:6px">Prime cost (food, packaging, crew and manager) is ${pct(y2.cogs + y2.hourly_labor + y2.manager, y2.sales)} of Year-2 sales, with ${dollars(r.sales_per_labor_hour_y2)} of sales per scheduled crew hour. Each extra $100 a day of sales adds about ${dollars(r.per_extra_100_daily)} a year of EBITDA.</p>`;
+
+    const scRows = PF.scenarios.map((s) => {
+      const q = PF.results[site.id][s.id], q2 = q.years[1];
+      return `<tr class="click${s.id === sc ? " cur" : ""}" data-scen="${esc(s.id)}" tabindex="0"${s.id === sc ? ` aria-current="true"` : ""}><td>${esc(s.name)}<span class="note">${Math.round(s.sales_factor * 100)}% of base sales</span></td><td class="n">${dollars(q.steady_daily)}</td><td class="n${neg(q2.ebitda)}">${kd(q2.ebitda)}</td><td class="n${neg(q2.cash_after_debt)}">${kd(q2.cash_after_debt)}</td><td class="n hide-sm${neg(q2.owner_earnings)}">${kd(q2.owner_earnings)}</td></tr>`;
+    }).join("");
+    const scenTable = `<div class="tbl-wrap"><table><thead><tr><th>Scenario</th><th class="n">Sales a day</th><th class="n">EBITDA</th><th class="n">Cash after loan</th><th class="n hide-sm">If owner manages</th></tr></thead><tbody>${scRows}</tbody></table></div><p class="muted small" style="margin-top:6px">Year 2. Tap a scenario to switch the whole tab.</p>`;
+
+    const y1cash = y1.cash_after_debt >= 0
+      ? `Year 1 makes ${dollars(y1.cash_after_debt)} after loan payments, so the ${dollars(r.reserve)} working capital reserve stays untouched.`
+      : `Year 1 runs ${dollars(-y1.cash_after_debt)} short after loan payments, ${r.reserve_covers_year1 ? "inside" : "more than"} the ${dollars(r.reserve)} working capital reserve${r.reserve_covers_year1 ? "" : ": it needs more equity or a cheaper start"}.`;
+    const startup = `<div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="n">Cost</th></tr></thead><tbody>
+      ${Object.entries(r.startup_lines).map(([k, v]) => `<tr><td>${esc(k)}${k === "Equipment" && site.equipment_credit ? `<span class="note">Net of a ${dollars(site.equipment_credit)} credit: ${esc(site.equipment_credit_note || "equipment already in place")}</span>` : ""}</td><td class="n">${dollars(v)}</td></tr>`).join("")}
+      <tr class="total"><td>Total</td><td class="n">${dollars(r.startup)}</td></tr>
+    </tbody></table></div>
+    <p class="small" style="margin-top:6px">Financed ${fin.loan_share_pct}% with a ${fin.term_years}-year loan at ${fin.rate_pct}%: ${dollars(r.loan)}, paid at ${dollars(r.debt_service)} a year. Owner equity ${dollars(r.equity)}. ${y1cash}</p>`;
+
+    const zones = PF.space[site.format];
+    const ztotal = zones.reduce((s, z) => s + z.sqft, 0), zmax = Math.max(...zones.map((z) => z.sqft));
+    const spare = site.sqft - ztotal;
+    const space = `<div class="tbl-wrap"><table><thead><tr><th>Zone</th><th class="n">Sq ft</th><th class="hide-sm"><span class="sr-only">Size</span></th></tr></thead><tbody>
+      ${zones.map((z) => `<tr><td>${esc(z.zone)}</td><td class="n">${z.sqft.toLocaleString("en-US")}</td><td class="hide-sm"><div class="zone" aria-hidden="true"><span style="width:${Math.round((80 * z.sqft) / zmax)}px"></span></div></td></tr>`).join("")}
+      <tr class="total"><td>${esc(fmtName(site.format))} program</td><td class="n">${ztotal.toLocaleString("en-US")}</td><td class="hide-sm"></td></tr>
+      <tr><td>This site<span class="note">${spare >= 0 ? `${spare.toLocaleString("en-US")} sq ft to spare for seats, storage or catering` : `${(-spare).toLocaleString("en-US")} sq ft short: trim seats or storage`}</span></td><td class="n">${site.sqft.toLocaleString("en-US")}</td><td class="hide-sm"></td></tr>
+    </tbody></table></div>`;
+
+    const f = lab.formats[site.format], c = PF.crews[site.format];
+    const staff = `<div class="tbl-wrap"><table><thead><tr><th>Role</th><th class="n">Hours a day</th><th class="n">Wage</th><th class="hide-sm">Covers</th></tr></thead><tbody>
+      ${f.roles.map((x) => `<tr><td>${esc(x.role)}</td><td class="n">${x.hours}</td><td class="n">$${Number(x.wage).toFixed(2)}</td><td class="hide-sm small">${esc(x.note || "")}</td></tr>`).join("")}
+      <tr class="total"><td>Hourly crew</td><td class="n">${c.hours}</td><td class="n">$${c.avg_wage.toFixed(2)}</td><td class="hide-sm small">average wage</td></tr>
+    </tbody></table></div>
+    <p class="muted small" style="margin-top:6px">Scheduled for ${Math.round(f.design_index * 100)}% of the menu's par day. ${Math.round(lab.fixed_share * 100)}% of the hours stay fixed and the rest flex with sales. Plus a ${esc(lab.manager.title.toLowerCase())} at ${dollars(lab.manager.salary)}, and ${lab.burden_pct}% payroll taxes and workers' comp on all pay.</p>`;
+
+    const eq = PF.equipment[site.format], eqTotal = eq.reduce((s, e) => s + e.cost, 0);
+    const equipment = `<div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="n">Cost</th></tr></thead><tbody>
+      ${eq.map((e) => `<tr><td>${esc(e.item)}</td><td class="n">${dollars(e.cost)}</td></tr>`).join("")}
+      ${site.equipment_credit ? `<tr><td>Credit: ${esc(site.equipment_credit_note || "equipment already in place")}</td><td class="n neg">${dollars(-site.equipment_credit)}</td></tr>` : ""}
+      <tr class="total"><td>Equipment, before contingency</td><td class="n">${dollars(eqTotal - (site.equipment_credit || 0))}</td></tr>
+    </tbody></table></div>`;
+
+    const detail = `<section class="group pf"><div class="group-head"><h2>${esc(site.name)}</h2><span class="count">${esc(scen.name)}</span></div>${siteChips}
+      <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats} seats. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft plus about $${Number(site.nnn_psf).toFixed(2)} NNN. Sales index ${site.sales_index} of the menu's par day.</span></div>
+      ${facts.length ? `<dl class="specs small">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""}
+      ${tiles}
+      <div><h4>Where Year-2 sales go</h4>${costBar(y2)}</div>
+      <div><h4>Three years</h4>${pl}</div>
+      <div class="cols">
+        <div class="stack"><div><h4>Scenarios at this site</h4>${scenTable}</div><div><h4>Space</h4>${space}</div><div><h4>Staffing</h4>${staff}</div></div>
+        <div class="stack"><div><h4>Startup cost</h4>${startup}</div><div><h4>Equipment</h4>${equipment}</div></div>
+      </div>
+    </section>`;
+
+    const varTotal = Object.values(PF.variable).reduce((a, b) => a + b, 0);
+    const fixTotal = Object.values(PF.fixed).reduce((a, b) => a + b, 0);
+    const assumptions = [
+      `Open ${days} days a year, ${op.hours}.`,
+      `Year 1 ramps month by month from ${ramp[0]}% to ${ramp[ramp.length - 1]}% of steady sales, ${Math.round(rampAvg)}% on average. Year 3 adds ${op.price_growth_pct}% in menu prices.`,
+      `Wages, NNN charges and fixed costs rise ${op.cost_inflation_pct}% a year; base rent rises at each site's escalation.`,
+      `Food and packaging: the menu's cost at distributor prices, ${menu.goods_pct.toFixed(1)}% of sales, plus ${op.cogs_buffer_pts} points for comps, staff meals, spoilage and price drift.`,
+      `Crew: scheduled by format, ${Math.round(lab.fixed_share * 100)}% of hours fixed and the rest flexing with sales; ${lab.burden_pct}% payroll taxes and workers' comp; ${lab.manager.title.toLowerCase()} at ${dollars(lab.manager.salary)}.`,
+      `Variable costs, ${varTotal.toFixed(1)}% of sales: ${Object.entries(PF.variable).map(([k, v]) => `${costWord(k)} ${v}%`).join(", ")}.`,
+      `Fixed costs, ${dollars(fixTotal)} a year: ${Object.entries(PF.fixed).map(([k, v]) => `${costWord(k)} ${dollars(v)}`).join(", ")}.`,
+      `Utilities: $${PF.utilitiesPsf} a sq ft a year.`,
+      `Startup: soft costs ${st.soft_costs_pct_of_buildout}% of build-out; furniture $${st.furniture_per_seat} a seat plus ${dollars(st.furniture_base)}; signage ${dollars(st.signage)}; ${st.preopening_payroll_weeks} weeks of pre-opening payroll at 60% of the crew and ${st.manager_preopening_weeks || 0} weeks of the manager; opening inventory ${dollars(st.opening_inventory)}; launch marketing ${dollars(st.launch_marketing)}; a ${st.deposit_months}-month deposit; ${st.working_capital_months} months of working capital; ${st.contingency_pct}% contingency on build-out and equipment.`,
+      `Financing: ${fin.loan_share_pct}% from an SBA 7(a)-style loan at ${fin.rate_pct}% over ${fin.term_years} years; the rest is owner equity.`,
+      `Not included: income taxes, depreciation, owner's draw beyond the manager line, and any landlord build-out allowance or free rent, which would lower the startup cost.`,
+      `Sources: sites, sizes and rents from the site scan (reports/Boston bakery site scan.md); wages, payroll burden and format benchmarks from the market research; menu sales, food cost and prep hours from this database. Full report: db/proforma.md.`
+    ];
+    const notes = `<section class="group pf"><div class="group-head"><h2>Assumptions</h2></div>${list(assumptions)}</section>`;
+    return top + compare + detail + notes;
+  }
+
   function render() {
     renderControls();
     const view = document.getElementById("view");
-    view.innerHTML = state.view === "formulas" ? renderFormulas() : state.view === "ingredients" ? renderIngredients() : state.view === "labor" ? renderLabor() : renderProducts();
+    view.innerHTML = state.view === "formulas" ? renderFormulas() : state.view === "ingredients" ? renderIngredients() : state.view === "labor" ? renderLabor() : state.view === "proforma" ? renderProforma() : renderProducts();
     document.getElementById("foot").innerHTML = `Generated from the <span class="num">db/</span> folder of the BostonBakery repo. Prices as of ${esc(DATA.asOf)}. Rebuild with <span class="num">tools/build_viewer.py</span> after changing the data.`;
   }
 
@@ -654,12 +901,21 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
   function fromHash() { setView((location.hash || "").replace("#", "")); }
 
   document.addEventListener("click", (e) => {
-    const t = e.target.closest("[data-toggle],[data-view],[data-channel],[data-cat],[data-lcat]");
+    const t = e.target.closest("[data-toggle],[data-view],[data-channel],[data-cat],[data-lcat],[data-site],[data-scen]");
     if (!t) return;
     if (t.dataset.view) { if (location.hash !== "#" + t.dataset.view) location.hash = t.dataset.view; else setView(t.dataset.view); return; }
     if (t.dataset.channel) { state.channel = t.dataset.channel; try { localStorage.setItem("fb-channel", state.channel); } catch (err) {} render(); return; }
     if (t.dataset.cat) { state.cat = t.dataset.cat; render(); return; }
     if (t.dataset.lcat) { state.lcat = t.dataset.lcat; render(); return; }
+    if (t.dataset.site || t.dataset.scen) {
+      const attr = t.dataset.site ? "data-site" : "data-scen", val = t.dataset.site || t.dataset.scen;
+      if (t.dataset.site) state.site = val; else state.scen = val;
+      const tag = t.tagName.toLowerCase();
+      render();
+      const again = document.querySelector(`${tag}[${attr}="${CSS.escape(val)}"]`);
+      if (again) again.focus({ preventScroll: true });
+      return;
+    }
     const key = t.dataset.toggle;
     if (state.open.has(key)) state.open.delete(key); else state.open.add(key);
     render();
@@ -667,7 +923,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     if (again) again.focus({ preventScroll: true });
   });
   document.addEventListener("keydown", (e) => {
-    const row = e.target.closest && e.target.closest("tr[data-toggle]");
+    const row = e.target.closest && e.target.closest("tr[data-toggle],tr[data-site],tr[data-scen]");
     if (row && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); row.click(); }
   });
   document.getElementById("search").addEventListener("input", (e) => { state.query = e.target.value.trim(); render(); });
@@ -710,7 +966,11 @@ def main() -> int:
             print(f"error: {error}", file=sys.stderr)
         print("fix the errors above (python3 tools/costing.py --check) and rerun", file=sys.stderr)
         return 1
-    body = render_body(book)
+    try:
+        body = render_body(book)
+    except (DBError, KeyError, ValueError) as exc:
+        print(f"error: pro forma: {exc}", file=sys.stderr)
+        return 1
     OUT.write_text(STANDALONE.format(body=body), encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}")
     if args.body_only:
