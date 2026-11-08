@@ -15,7 +15,7 @@ Prices as of 2026-11-08. **Retail est.** = US grocery or small-pack estimates; *
 | Sour Cream Coffee Cake Slice | pastry | draft | $4.50 | $0.90 | $0.54 | $0.11 / $0.06 | 20% / 12% | egg, milk, tree nuts, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
-| Ham, Cheddar & Apple | sandwich | draft | $11.00 | $3.82 | $2.54 | $0.25 / $0.12 | 35% / 23% | egg, milk, wheat |
+| Ham, Cheddar & Olive Tapenade | sandwich | draft | $11.50 | $4.43 | $2.84 | $0.25 / $0.12 | 38% / 25% | egg, milk, wheat |
 | Harissa Chicken Sandwich | sandwich | draft | $12.50 | $3.01 | $1.63 | $0.25 / $0.12 | 24% / 13% | egg, milk, wheat |
 | Cilantro Lime Quinoa Salad | salad | draft | $11.50 | $4.15 | $2.15 | $0.63 / $0.28 | 36% / 19% | milk |
 | Fennel Herb Salad Bowl | salad | draft | $12.50 | $6.02 | $2.72 | $0.63 / $0.28 | 48% / 22% | milk, wheat |
@@ -136,23 +136,24 @@ Batch of 12: Sandwich Roll (formula) 12 each, Unsalted butter 60 g, Egg (large) 
 
 Batch of 12: Sandwich Roll (formula) 12 each, Fennel pork sausage (bulk) 684 g, Unsalted butter 60 g, Egg (large) 12 each, Cheddar cheese (sliced) 252 g, Harissa sauce 180 g, Insulated foil sandwich wrap 12 each, Sandwich label 12 each, Kraft paper bag #6 12 each, Napkin (kraft luncheon) 12 each.
 
-### Ham, Cheddar & Apple (`ham_cheddar_apple`), per unit
+### Ham, Cheddar & Olive Tapenade (`ham_cheddar_tapenade`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
 |---|---|---|---|
 | Lunch Roll, Cheddar-Crusted (formula) | 1 each | $0.73 | $0.29 |
-| Dijon Butter (formula) | 12 g | $0.11 | $0.06 |
+| Unsalted butter | 4 g | $0.04 | $0.02 |
 | Ham (hardwood-smoked) | 85 g | $1.68 | $1.59 |
 | Cheddar cheese (sliced) | 2 each | $0.79 | $0.34 |
-| Apple (crisp) | 25 g | $0.16 | $0.07 |
+| Olive Tapenade (formula) | 20 g | $0.54 | $0.28 |
+| Baby arugula | 10 g | $0.28 | $0.12 |
 | Insulated foil sandwich wrap | 1 each | $0.10 | $0.04 |
 | Sandwich label | 1 each | $0.06 | $0.03 |
 | Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
 | Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
-| Waste allowance (food only) | 3% | $0.10 | $0.07 |
-| **Unit cost** | | **$3.82** | **$2.54** |
+| Waste allowance (food only) | 3% | $0.12 | $0.08 |
+| **Unit cost** | | **$4.43** | **$2.84** |
 
-Batch of 6: Lunch Roll, Cheddar-Crusted (formula) 6 each, Dijon Butter (formula) 72 g, Ham (hardwood-smoked) 510 g, Cheddar cheese (sliced) 12 each, Apple (crisp) 150 g, Insulated foil sandwich wrap 6 each, Sandwich label 6 each, Kraft paper bag #6 6 each, Napkin (kraft luncheon) 6 each.
+Batch of 6: Lunch Roll, Cheddar-Crusted (formula) 6 each, Unsalted butter 24 g, Ham (hardwood-smoked) 510 g, Cheddar cheese (sliced) 12 each, Olive Tapenade (formula) 120 g, Baby arugula 60 g, Insulated foil sandwich wrap 6 each, Sandwich label 6 each, Kraft paper bag #6 6 each, Napkin (kraft luncheon) 6 each.
 
 ### Harissa Chicken Sandwich (`harissa_chicken_sandwich`), per unit
 
@@ -460,16 +461,6 @@ Cost per kg of yield: $10.27 retail est., $5.00 distributor est.
 
 Cost per kg of yield: $4.71 retail est., $2.58 distributor est.
 
-### Dijon Butter (`dijon_butter`), draft
-
-| Item | Qty | Retail est. | Distributor est. |
-|---|---|---|---|
-| Unsalted butter | 200 g | $1.76 | $1.06 |
-| Dijon mustard | 50 g | $0.59 | $0.28 |
-| **Batch** | **250 g in, 250 g out** | **$2.35** | **$1.33** |
-
-Cost per kg of yield: $9.38 retail est., $5.34 distributor est.
-
 ### Blueberry Scone Dough (`dough_blueberry_scone`), pending_test
 
 | Stage | Item | Qty | Baker's % | Retail est. | Distributor est. |
@@ -712,6 +703,22 @@ Cost per kg of yield: $6.13 retail est., $2.18 distributor est. Per unit: $0.67 
 
 Cost per kg of yield: $4.97 retail est., $1.92 distributor est. Per unit: $0.40 / $0.16.
 
+### Olive Tapenade (`tapenade_olive`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Kalamata olives (pitted) | 350 g | $9.24 | $4.90 |
+| Capers | 30 g | $1.85 | $0.71 |
+| Extra-virgin olive oil | 60 g | $0.85 | $0.59 |
+| Lemon juice (fresh) | 15 g | $0.26 | $0.12 |
+| Flat-leaf parsley | 8 g | $0.20 | $0.08 |
+| Garlic (peeled) | 6 g | $0.08 | $0.05 |
+| Lemon zest | 2 g | $0.23 | $0.11 |
+| Black pepper (ground) | 0.5 g | $0.02 | $0.01 |
+| **Batch** | **472 g in, 470 g out** | **$12.72** | **$6.57** |
+
+Cost per kg of yield: $27.07 retail est., $13.97 distributor est.
+
 ## Ingredient prices
 
 Latest price per ingredient and channel. Sources are in `db/ingredient_prices.csv`.
@@ -813,8 +820,9 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Tulip baking cup (large) | `liner_tulip_large` | n/a | n/a |  |
 | Red wine vinegar | `vinegar_red_wine` | $5.92 | $2.35 |  |
 | Ham (hardwood-smoked) | `ham_smoked` | $19.71 | $18.73 |  |
-| Apple (crisp) | `apple_crisp` | $6.24 | $2.83 |  |
 | Nigella seeds | `nigella_seeds` | $88.01 | $19.84 |  |
+| Kalamata olives (pitted) | `olives_kalamata` | $26.40 | $14.00 |  |
+| Capers | `capers` | $61.55 | $23.52 |  |
 
 ## Warnings
 

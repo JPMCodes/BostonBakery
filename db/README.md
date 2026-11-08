@@ -14,7 +14,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Breakfast Sandwich](products/breakfast_sandwich.yaml) | approved | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
 | [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | approved | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
 | [Harissa Chicken Sandwich](products/harissa_chicken_sandwich.yaml) | draft | $12.50 | Roast chicken, harissa mayo, arugula and pickled red onion on a nigella-seeded oval house roll |
-| [Ham, Cheddar & Apple](products/ham_cheddar_apple.yaml) | draft | $11.00 | Hardwood-smoked ham, melted cheddar, Dijon butter and crisp apple on a cheddar-crusted oval house roll |
+| [Ham, Cheddar & Olive Tapenade](products/ham_cheddar_tapenade.yaml) | draft | $11.50 | Hardwood-smoked ham, melted cheddar, house olive tapenade and arugula on a cheddar-crusted oval house roll |
 | [Fennel Herb Salad Bowl](products/fennel_herb_bowl.yaml) | draft | $12.50 | Farro, arugula, shaved fennel, orange, parsley, dill and mint, Parmesan and pepitas; lemon-Dijon vinaigrette on the side. Same-day sale |
 | [Cilantro Lime Quinoa Salad](products/cilantro_lime_quinoa_salad.yaml) | draft | $11.50 | Quinoa, black beans, roasted corn, tomatoes, red pepper, cotija and pepitas; cilantro-lime vinaigrette on the side. Holds 2 days; made without wheat |
 | [Chicken Salad Scoop](products/add_chicken_salad.yaml) | draft | $4.50 | Add-on for either salad: 100 g of lemon-herb chicken salad in its own lidded, labeled cup |

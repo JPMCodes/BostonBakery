@@ -4,7 +4,7 @@ kind: roll
 status: draft
 version: "1.0"
 approved_on: null
-used_by: [ham_cheddar_apple]
+used_by: [ham_cheddar_tapenade]
 yield:
   units: 1
   grams: 117

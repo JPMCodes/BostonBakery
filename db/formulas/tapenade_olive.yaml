@@ -1,0 +1,32 @@
+id: tapenade_olive
+name: Olive Tapenade
+kind: sauce
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [ham_cheddar_tapenade]
+yield:
+  grams: 470
+  description: "about 23 sandwiches at 20 g"
+
+ingredients:
+  - {item: olives_kalamata, qty: 350, unit: g, note: "pitted, drained"}
+  - {item: capers, qty: 30, unit: g, note: "drained"}
+  - {item: olive_oil_ev, qty: 60, unit: g}
+  - {item: lemon_juice, qty: 15, unit: g}
+  - {item: parsley_flat, qty: 8, unit: g}
+  - {item: garlic, qty: 6, unit: g}
+  - {item: lemon_zest, qty: 2, unit: g}
+  - {item: black_pepper, qty: 0.5, unit: g}
+
+method:
+  - "Pulse everything in the food processor to a coarse, spreadable paste; don't purée it smooth."
+  - "Refrigerate covered and dated; use within 2 weeks."
+
+notes:
+  - "Classic tapenade has anchovy. It's left out so the sandwich doesn't add fish to the allergen list, and the capers carry the brine."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted for the ham and cheddar sandwich."
