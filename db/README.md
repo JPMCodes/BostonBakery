@@ -38,7 +38,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Cookie & Brownie Box (12)](products/cookie_brownie_box.yaml) | draft | $50.00 | Catering: 6 cookies and 6 brownies |
 | [Coffee Traveler (96 oz)](products/coffee_traveler.yaml) | draft | $40.00 | Catering: house drip with cups, lids, milk and a sugar kit |
 
-The drinks stay `pending_test` until the roaster, matcha and chai suppliers are chosen and the espresso is dialed in. Items marked `draft` are written and costed but not yet made in the kitchen. Costs are in [`costing.md`](costing.md), the reasoning behind the prices in [`pricing.md`](pricing.md), and the production plan and labor in [`production.md`](production.md). The pro forma, with space needs, startup cost and three years of P&L for three candidate sites, is in [`proforma.md`](proforma.md).
+The drinks stay `pending_test` until the roaster, matcha and chai suppliers are chosen and the espresso is dialed in. Items marked `draft` are written and costed but not yet made in the kitchen. Costs are in [`costing.md`](costing.md), the reasoning behind the prices in [`pricing.md`](pricing.md), and the production plan and labor in [`production.md`](production.md). The pro forma, with space needs, startup cost and three years of P&L for each candidate site, is in [`proforma.md`](proforma.md).
 
 ## Layout
 
@@ -109,7 +109,7 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 
 `tools/proforma.py` adds up each product's price times its `par_daily` to get the menu's steady-state day, with its food-and-packaging cost at distributor prices. Each site in `proforma.yaml` has a `format` (`cafe` or `counter`, which sets its crew, space program and equipment) and a `sales_index`, the share of that day it should reach once it's established. Each scenario scales sales again. From those the script builds three years of P&L (Year 1 ramps up month by month), the startup cost and its financing, break-even and payback.
 
-- **Add a site:** copy a site block in `proforma.yaml`, set its size, seats, rent, NNN, build-out cost per sq ft and `sales_index`, and say in `rent_basis` and `source` where the numbers came from.
+- **Add a site:** copy a site block in `proforma.yaml`, set its size, seats, rent, NNN, build-out cost per sq ft, `months_to_open` (rent is paid from lease signing) and `sales_index`, and say in `rent_basis` and `source` where the numbers came from. Raw space with no kitchen can raise its `soft_costs_pct`.
 - **Change the crew:** edit the roles under `labor.formats`. The crew is sized for the format's `design_index` share of the par day, and `fixed_share` of its hours don't flex with sales.
 - **Treat the outputs as estimates:** the sales indexes are judgment calls, and no site's rent or condition has been confirmed with a broker.
 

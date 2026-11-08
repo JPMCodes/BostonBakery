@@ -52,6 +52,10 @@ def validate(cfg: dict) -> list[str]:
     ramp = cfg["operating"].get("ramp_year1_pct") or []
     if len(ramp) != 12:
         errors.append("proforma.yaml: operating.ramp_year1_pct needs 12 monthly values")
+    for site in cfg["sites"]:
+        for key in ("months_to_open", "soft_costs_pct", "equipment_credit"):
+            if key in site and (not isinstance(site[key], (int, float)) or site[key] < 0):
+                errors.append(f"proforma.yaml: site {site.get('id', '?')}: {key} must be a number of 0 or more")
     for sc in cfg["scenarios"]:
         if not isinstance(sc.get("sales_factor"), (int, float)) or sc["sales_factor"] <= 0:
             errors.append(f"proforma.yaml: scenario {sc.get('id', '?')} needs a positive sales_factor")
@@ -144,7 +148,7 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
     monthly_fixed = (y1["rent"] + y1["nnn"] + y1["hourly_labor"] + y1["manager"] + y1["utilities"] + y1["fixed_opex"]) / 12
     startup_lines = {
         "Build-out": buildout,
-        "Design, engineering, permits and legal": buildout * float(st["soft_costs_pct_of_buildout"]) / 100,
+        "Design, engineering, permits and legal": buildout * float(site.get("soft_costs_pct", st["soft_costs_pct_of_buildout"])) / 100,
         "Equipment": equipment,
         "Furniture and fixtures": float(site["seats"]) * float(st["furniture_per_seat"]) + float(st["furniture_base"]),
         "Signage": float(st["signage"]),
@@ -153,6 +157,7 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
         "Opening inventory": float(st["opening_inventory"]),
         "Launch marketing": float(st["launch_marketing"]),
         "Security deposit": occupancy_month * float(st["deposit_months"]),
+        "Rent and NNN before opening": occupancy_month * float(site.get("months_to_open", 0)),
         "Contingency": (buildout + equipment) * float(st["contingency_pct"]) / 100,
         "Working capital reserve": monthly_fixed * float(st["working_capital_months"]),
     }
@@ -331,6 +336,7 @@ def render(data: dict) -> str:
             "",
             f"- **Kitchen:** {s.get('kitchen', '')}",
             f"- **Rent:** {s.get('rent_basis', '')}",
+            f"- **Time to open:** about {s.get('months_to_open', 0):g} months from lease signing, paying rent throughout",
             *([f"- **Equipment credit:** {usd(float(s['equipment_credit']))}, "
                f"{s.get('equipment_credit_note', 'equipment already in place')}"] if s.get("equipment_credit") else []),
             f"- **Risks:** {s.get('risks', '')}",
@@ -423,6 +429,8 @@ def render(data: dict) -> str:
         f"- **Utilities:** ${cfg['utilities_per_sqft_year']} a sq ft a year.",
         f"- **Inflation:** wages, NNN and fixed costs rise {op['cost_inflation_pct']}% a year; base rent rises at "
         "each site's escalation.",
+        "- **Before opening:** rent and NNN are paid from lease signing to opening, for each site's months to open; "
+        "no free rent is assumed.",
         "- **Not included:** income taxes, depreciation, owner's draw beyond the manager line, and any "
         "landlord build-out allowance or free rent, which would lower the startup cost.",
         "",

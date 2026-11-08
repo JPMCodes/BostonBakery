@@ -412,6 +412,7 @@ tr.detail td { background: var(--bg); }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .pf h4 { margin: 0 0 6px; font: 700 13px var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
 .pf p { margin: 0; max-width: 80ch; }
+.pf th { white-space: normal; }
 .stack { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
 .pf-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .ctl-label { font: 700 12px var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
@@ -434,7 +435,6 @@ tr.cur td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
 @media (max-width: 560px) {
   .pf th, .pf td { padding-inline: 7px; }
-  .pf th { white-space: normal; }
   .brand h1 { font-size: 24px; }
   .search { width: 100%; }
   .controls { width: 100%; }
@@ -859,7 +859,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     </tbody></table></div>`;
 
     const detail = `<section class="group pf"><div class="group-head"><h2>${esc(site.name)}</h2><span class="count">${esc(scen.name)}</span></div>${siteChips}
-      <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats} seats. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft plus about $${Number(site.nnn_psf).toFixed(2)} NNN. Sales index ${site.sales_index} of the menu's par day.</span></div>
+      <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats} seats. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft plus about $${Number(site.nnn_psf).toFixed(2)} NNN. Sales index ${site.sales_index} of the menu's par day. About ${site.months_to_open || 0} months from lease to opening.</span></div>
       ${facts.length ? `<dl class="specs small">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""}
       ${tiles}
       <div><h4>Where Year-2 sales go</h4>${costBar(y2)}</div>
@@ -881,7 +881,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       `Variable costs, ${varTotal.toFixed(1)}% of sales: ${Object.entries(PF.variable).map(([k, v]) => `${costWord(k)} ${v}%`).join(", ")}.`,
       `Fixed costs, ${dollars(fixTotal)} a year: ${Object.entries(PF.fixed).map(([k, v]) => `${costWord(k)} ${dollars(v)}`).join(", ")}.`,
       `Utilities: $${PF.utilitiesPsf} a sq ft a year.`,
-      `Startup: soft costs ${st.soft_costs_pct_of_buildout}% of build-out; furniture $${st.furniture_per_seat} a seat plus ${dollars(st.furniture_base)}; signage ${dollars(st.signage)}; ${st.preopening_payroll_weeks} weeks of pre-opening payroll at 60% of the crew and ${st.manager_preopening_weeks || 0} weeks of the manager; opening inventory ${dollars(st.opening_inventory)}; launch marketing ${dollars(st.launch_marketing)}; a ${st.deposit_months}-month deposit; ${st.working_capital_months} months of working capital; ${st.contingency_pct}% contingency on build-out and equipment.`,
+      `Startup: soft costs ${st.soft_costs_pct_of_buildout}% of build-out (more for raw space); furniture $${st.furniture_per_seat} a seat plus ${dollars(st.furniture_base)}; signage ${dollars(st.signage)}; ${st.preopening_payroll_weeks} weeks of pre-opening payroll at 60% of the crew and ${st.manager_preopening_weeks || 0} weeks of the manager; opening inventory ${dollars(st.opening_inventory)}; launch marketing ${dollars(st.launch_marketing)}; a ${st.deposit_months}-month deposit; rent and NNN from lease signing to opening, with no free rent assumed; ${st.working_capital_months} months of working capital; ${st.contingency_pct}% contingency on build-out and equipment.`,
       `Financing: ${fin.loan_share_pct}% from an SBA 7(a)-style loan at ${fin.rate_pct}% over ${fin.term_years} years; the rest is owner equity.`,
       `Not included: income taxes, depreciation, owner's draw beyond the manager line, and any landlord build-out allowance or free rent, which would lower the startup cost.`,
       `Sources: sites, sizes and rents from the site scan (reports/Boston bakery site scan.md); wages, payroll burden and format benchmarks from the market research; menu sales, food cost and prep hours from this database. Full report: db/proforma.md.`

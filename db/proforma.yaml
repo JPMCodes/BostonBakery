@@ -130,7 +130,9 @@ equipment:
     - {item: "Point-of-sale hardware", cost: 3000}
 
 startup:
-  soft_costs_pct_of_buildout: 15   # design, engineering, permits, legal (research: soft costs run 30–40% of a full restaurant build; less on a second-generation space)
+  soft_costs_pct_of_buildout: 15   # design, engineering, permits, legal (research: soft costs run 30–40% of a full restaurant build; less on a second-generation space). A site can override it with soft_costs_pct.
+  # Rent and NNN are paid from lease signing to opening (each site's months_to_open).
+  # No free rent is assumed: none of the listings mentions free rent or a build-out allowance.
   furniture_per_seat: 450
   furniture_base: 6000
   signage: 12000
@@ -170,6 +172,7 @@ sites:
     buildout_psf: 100
     equipment_credit: 16000
     equipment_credit_note: "the diner's walk-in coolers stay, so no new walk-in"
+    months_to_open: 5             # working hood and walk-ins; licensing and refit
     sales_index: 0.9
     kitchen: "Former diner with a very large hood, two walk-in coolers, storage room and counter (2024 listing)"
     rent_basis: "$35 a sq ft in the 2024 listing, raised 3% a year to $37; NNN charges not stated, $12 assumed"
@@ -187,6 +190,7 @@ sites:
     escalation_pct: 3
     buildout_psf: 160
     equipment_credit: 0
+    months_to_open: 6             # hood, grease trap and gas probably reinstalled
     sales_index: 0.75
     kitchen: "Restaurants about 2011–2022 with a hood, wall exhaust and grease trap on record; since renovated as flex space, so the hood and trap probably need reinstalling"
     rent_basis: "Whole space at $5,950 a month ($30 a sq ft) in a live boston.com listing; lease type not stated, $8 NNN assumed"
@@ -204,8 +208,28 @@ sites:
     escalation_pct: 3
     buildout_psf: 110
     equipment_credit: 0
+    months_to_open: 4             # hood and trap on record; deep clean and refit
     sales_index: 0.5
     kitchen: "Hood (Feb 2025) and grease trap (Feb 2026) on the city's inspection record for the former fish market; listing includes restaurant equipment"
     rent_basis: "$43,210 a year ($29 a sq ft) in a live boston.com listing; lease type not stated, $6 NNN assumed"
     risks: "Former fish market: deep clean and odors; hood and trap condition unknown; local trade with no weekend draw named"
     source: "Site scan lease #1; boston.com 73497894, live 2026-11-07"
+  - id: davis_square
+    name: "51 Holland St, Somerville"
+    short: Davis Square
+    area: "A short walk from Davis Square and its Red Line station"
+    format: cafe
+    sqft: 1840
+    seats: 16
+    rent_psf: 37.50
+    nnn_psf: 8.00
+    escalation_pct: 3
+    buildout_psf: 200             # plain retail: a full kitchen, hood, grease trap, gas and plumbing (research: $200–555 a sq ft all-in for restaurants)
+    soft_costs_pct: 25            # architect and engineers for a new kitchen, plus permits
+    equipment_credit: 0
+    months_to_open: 9             # new kitchen and new licenses: 6–12 months in the site scan
+    sales_index: 0.85
+    kitchen: "None found: plain retail with no food history, so it needs a vented hood, grease trap, gas, plumbing and a new food permit"
+    rent_basis: "$5,750 a month ($37.50 a sq ft at 1,840 sq ft) in a BMN Boston listing (snippet); another listing shows 941 sq ft; lease type not stated, $8 NNN assumed"
+    risks: "Full kitchen build-out and new licenses; the size conflict (1,840 or 941 sq ft) needs settling; about 16 seats fit beside a full kitchen"
+    source: "Site scan near miss; BMN Boston 73521005 (snippet, undated), in search results 2026-11-07"
