@@ -13,10 +13,10 @@ Prices as of 2026-11-08. **Retail est.** = US grocery or small-pack estimates; *
 | Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
 | Mini Vanilla Scone | pastry | pending_test | $2.25 | $0.27 | $0.15 | $0.07 / $0.02 | 12% / 7% | egg, milk, wheat |
 | Sour Cream Coffee Cake Slice | pastry | draft | $4.50 | $0.90 | $0.54 | $0.11 / $0.06 | 20% / 12% | egg, milk, tree nuts, wheat |
-| BLT | sandwich | draft | $13.00 | $4.01 | $2.73 | $0.25 / $0.12 | 31% / 21% | egg, milk, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
-| Harissa Chicken Sandwich | sandwich | draft | $12.50 | $2.88 | $1.60 | $0.25 / $0.12 | 23% / 13% | egg, milk, wheat |
+| Ham, Cheddar & Apple | sandwich | draft | $11.00 | $3.82 | $2.54 | $0.25 / $0.12 | 35% / 23% | egg, milk, wheat |
+| Harissa Chicken Sandwich | sandwich | draft | $12.50 | $3.01 | $1.63 | $0.25 / $0.12 | 24% / 13% | egg, milk, wheat |
 | Cilantro Lime Quinoa Salad | salad | draft | $11.50 | $4.15 | $2.15 | $0.63 / $0.28 | 36% / 19% | milk |
 | Fennel Herb Salad Bowl | salad | draft | $12.50 | $6.02 | $2.72 | $0.63 / $0.28 | 48% / 22% | milk, wheat |
 | Chicken Salad Scoop | add-on | draft | $4.50 | $1.32 | $0.81 | $0.14 / $0.04 | 29% / 18% | egg |
@@ -99,25 +99,6 @@ Batch of 24: Vanilla Bean Scone Dough (formula) 744 g, Vanilla Bean Glaze (formu
 
 Batch of 16: Sour Cream Coffee Cake (12-cup bundt) (formula) 16 each, Dry-wax paper square 16 each, Kraft paper bag #6 16 each, Napkin (kraft luncheon) 16 each.
 
-### BLT (`blt_sandwich`), per unit
-
-| Item | Qty | Retail est. | Distributor est. |
-|---|---|---|---|
-| Lunch Sandwich Roll (formula) | 1 each | $0.54 | $0.21 |
-| Unsalted butter | 4 g | $0.04 | $0.02 |
-| Mayonnaise | 20 g | $0.15 | $0.12 |
-| Oven Bacon (formula) | 45 g | $2.15 | $1.82 |
-| Tomato (vine-ripened) | 80 g | $0.59 | $0.25 |
-| Romaine hearts | 25 g | $0.19 | $0.12 |
-| Insulated foil sandwich wrap | 1 each | $0.10 | $0.04 |
-| Sandwich label | 1 each | $0.06 | $0.03 |
-| Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
-| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
-| Waste allowance (food only) | 3% | $0.11 | $0.08 |
-| **Unit cost** | | **$4.01** | **$2.73** |
-
-Batch of 7: Lunch Sandwich Roll (formula) 7 each, Unsalted butter 28 g, Mayonnaise 140 g, Oven Bacon (formula) 315 g, Tomato (vine-ripened) 560 g, Romaine hearts 175 g, Insulated foil sandwich wrap 7 each, Sandwich label 7 each, Kraft paper bag #6 7 each, Napkin (kraft luncheon) 7 each.
-
 ### Breakfast Sandwich (`breakfast_sandwich`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -155,11 +136,29 @@ Batch of 12: Sandwich Roll (formula) 12 each, Unsalted butter 60 g, Egg (large) 
 
 Batch of 12: Sandwich Roll (formula) 12 each, Fennel pork sausage (bulk) 684 g, Unsalted butter 60 g, Egg (large) 12 each, Cheddar cheese (sliced) 252 g, Harissa sauce 180 g, Insulated foil sandwich wrap 12 each, Sandwich label 12 each, Kraft paper bag #6 12 each, Napkin (kraft luncheon) 12 each.
 
+### Ham, Cheddar & Apple (`ham_cheddar_apple`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Lunch Roll, Cheddar-Crusted (formula) | 1 each | $0.73 | $0.29 |
+| Dijon Butter (formula) | 12 g | $0.11 | $0.06 |
+| Ham (hardwood-smoked) | 85 g | $1.68 | $1.59 |
+| Cheddar cheese (sliced) | 2 each | $0.79 | $0.34 |
+| Apple (crisp) | 25 g | $0.16 | $0.07 |
+| Insulated foil sandwich wrap | 1 each | $0.10 | $0.04 |
+| Sandwich label | 1 each | $0.06 | $0.03 |
+| Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Waste allowance (food only) | 3% | $0.10 | $0.07 |
+| **Unit cost** | | **$3.82** | **$2.54** |
+
+Batch of 6: Lunch Roll, Cheddar-Crusted (formula) 6 each, Dijon Butter (formula) 72 g, Ham (hardwood-smoked) 510 g, Cheddar cheese (sliced) 12 each, Apple (crisp) 150 g, Insulated foil sandwich wrap 6 each, Sandwich label 6 each, Kraft paper bag #6 6 each, Napkin (kraft luncheon) 6 each.
+
 ### Harissa Chicken Sandwich (`harissa_chicken_sandwich`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
 |---|---|---|---|
-| Lunch Sandwich Roll (formula) | 1 each | $0.54 | $0.21 |
+| Lunch Roll, Nigella (formula) | 1 each | $0.67 | $0.24 |
 | Unsalted butter | 4 g | $0.04 | $0.02 |
 | Harissa Mayo (formula) | 20 g | $0.22 | $0.14 |
 | Roasted Chicken Breast (formula) | 100 g | $1.22 | $0.84 |
@@ -170,9 +169,9 @@ Batch of 12: Sandwich Roll (formula) 12 each, Fennel pork sausage (bulk) 684 g, 
 | Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
 | Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
 | Waste allowance (food only) | 3% | $0.08 | $0.04 |
-| **Unit cost** | | **$2.88** | **$1.60** |
+| **Unit cost** | | **$3.01** | **$1.63** |
 
-Batch of 7: Lunch Sandwich Roll (formula) 7 each, Unsalted butter 28 g, Harissa Mayo (formula) 140 g, Roasted Chicken Breast (formula) 700 g, Baby arugula 105 g, Pickled Red Onion (formula) 105 g, Insulated foil sandwich wrap 7 each, Sandwich label 7 each, Kraft paper bag #6 7 each, Napkin (kraft luncheon) 7 each.
+Batch of 7: Lunch Roll, Nigella (formula) 7 each, Unsalted butter 28 g, Harissa Mayo (formula) 140 g, Roasted Chicken Breast (formula) 700 g, Baby arugula 105 g, Pickled Red Onion (formula) 105 g, Insulated foil sandwich wrap 7 each, Sandwich label 7 each, Kraft paper bag #6 7 each, Napkin (kraft luncheon) 7 each.
 
 ### Cilantro Lime Quinoa Salad (`cilantro_lime_quinoa_salad`), per unit
 
@@ -331,15 +330,6 @@ Batch of 10: House Hummus (formula) 1,000 g, Extra-virgin olive oil 50 g, Portio
 
 ## Formulas
 
-### Oven Bacon (`bacon_cooked`), draft
-
-| Item | Qty | Retail est. | Distributor est. |
-|---|---|---|---|
-| Bacon (applewood-smoked) | 1,000 g | $16.76 | $14.15 |
-| **Batch** | **1,000 g in, 350 g out** | **$16.76** | **$14.15** |
-
-Cost per kg of yield: $47.87 retail est., $40.44 distributor est.
-
 ### Batch Brew Coffee (`batch_brew_coffee`), pending_test
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -469,6 +459,16 @@ Cost per kg of yield: $10.27 retail est., $5.00 distributor est.
 | **Batch** | **101 g in, 97 g out** | **$0.46** | **$0.25** |
 
 Cost per kg of yield: $4.71 retail est., $2.58 distributor est.
+
+### Dijon Butter (`dijon_butter`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Unsalted butter | 200 g | $1.76 | $1.06 |
+| Dijon mustard | 50 g | $0.59 | $0.28 |
+| **Batch** | **250 g in, 250 g out** | **$2.35** | **$1.33** |
+
+Cost per kg of yield: $9.38 retail est., $5.34 distributor est.
 
 ### Blueberry Scone Dough (`dough_blueberry_scone`), pending_test
 
@@ -683,6 +683,26 @@ Cost per kg of yield: $7.51 retail est., $3.05 distributor est.
 
 Cost per kg of yield: $2.85 retail est., $1.57 distributor est.
 
+### Lunch Roll, Cheddar-Crusted (`roll_lunch_cheddar`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 120 g | $0.54 | $0.21 |
+| Cheddar cheese (sliced) | 10 g | $0.19 | $0.08 |
+| **Batch** | **130 g in, 117 g out** | **$0.73** | **$0.29** |
+
+Cost per kg of yield: $6.20 retail est., $2.47 distributor est. Per unit: $0.73 / $0.29.
+
+### Lunch Roll, Nigella (`roll_lunch_nigella`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 120 g | $0.54 | $0.21 |
+| Nigella seeds | 1.5 g | $0.13 | $0.03 |
+| **Batch** | **122 g in, 109 g out** | **$0.67** | **$0.24** |
+
+Cost per kg of yield: $6.13 retail est., $2.18 distributor est. Per unit: $0.67 / $0.24.
+
 ### Sandwich Roll (`sandwich_roll`), approved
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -691,15 +711,6 @@ Cost per kg of yield: $2.85 retail est., $1.57 distributor est.
 | **Batch** | **90 g in, 81 g out** | **$0.40** | **$0.16** |
 
 Cost per kg of yield: $4.97 retail est., $1.92 distributor est. Per unit: $0.40 / $0.16.
-
-### Lunch Sandwich Roll (`sandwich_roll_lunch`), draft
-
-| Item | Qty | Retail est. | Distributor est. |
-|---|---|---|---|
-| Signature Milk Dough (formula) | 120 g | $0.54 | $0.21 |
-| **Batch** | **120 g in, 108 g out** | **$0.54** | **$0.21** |
-
-Cost per kg of yield: $4.97 retail est., $1.92 distributor est. Per unit: $0.54 / $0.21.
 
 ## Ingredient prices
 
@@ -800,10 +811,10 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Walnuts (halves and pieces) | `walnuts` | $19.82 | $11.46 |  |
 | Turbinado sugar | `sugar_turbinado` | $4.95 | $1.98 |  |
 | Tulip baking cup (large) | `liner_tulip_large` | n/a | n/a |  |
-| Bacon (applewood-smoked) | `bacon_applewood` | $16.76 | $14.15 |  |
-| Tomato (vine-ripened) | `tomato_vine` | $7.32 | $3.14 |  |
-| Romaine hearts | `romaine_hearts` | $7.52 | $4.93 |  |
 | Red wine vinegar | `vinegar_red_wine` | $5.92 | $2.35 |  |
+| Ham (hardwood-smoked) | `ham_smoked` | $19.71 | $18.73 |  |
+| Apple (crisp) | `apple_crisp` | $6.24 | $2.83 |  |
+| Nigella seeds | `nigella_seeds` | $88.01 | $19.84 |  |
 
 ## Warnings
 

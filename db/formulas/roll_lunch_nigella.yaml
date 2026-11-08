@@ -1,0 +1,30 @@
+id: roll_lunch_nigella
+name: Lunch Roll, Nigella
+kind: roll
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [harissa_chicken_sandwich]
+yield:
+  units: 1
+  grams: 109
+  description: "1 roll: 120 g dough bakes to about 109 g"
+
+ingredients:
+  - {item: dough_signature, qty: 120, unit: g}
+  - {item: nigella_seeds, qty: 1.5, unit: g, note: "scattered over the egg wash"}
+
+method:
+  - "Shape 120 g pieces of chilled dough into 6-inch ovals, like a short sub roll, and set them seam side down, 6 per parchment-lined half-sheet."
+  - "Proof until about doubled and a gentle poke springs back slowly."
+  - "Brush with egg wash (the white saved from the dough's yolk plus 1 tablespoon water), scatter the nigella seeds, and score one shallow line down the length."
+  - "Default bake until confirmed: 350°F for 20–24 minutes, to 190°F inside."
+
+notes:
+  - "Same dough as the breakfast roll, different look: the breakfast roll is round and plain; this one is an oval with black seeds. Nigella's peppery, oniony note suits the harissa."
+  - "Egg wash uses a by-product white, so it is not costed."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted for the harissa chicken sandwich."

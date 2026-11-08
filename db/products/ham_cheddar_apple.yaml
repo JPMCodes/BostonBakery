@@ -1,0 +1,44 @@
+id: ham_cheddar_apple
+name: Ham, Cheddar & Apple
+category: sandwich
+status: draft
+version: "1.0"
+approved_on: null
+description: "Hardwood-smoked ham and melted cheddar with Dijon butter and thin crisp apple on a toasted, cheddar-crusted oval house roll."
+batch_units: 6
+waste_pct: 3
+
+build:
+  - {item: roll_lunch_cheddar, qty: 1, unit: each}
+  - {item: dijon_butter, qty: 12, unit: g, note: "on both cut sides"}
+  - {item: ham_smoked, qty: 85, unit: g, note: "3 oz, thin-sliced"}
+  - {item: cheese_cheddar_sliced, qty: 2, unit: each, note: "2 slices, 42 g"}
+  - {item: apple_crisp, qty: 25, unit: g, note: "thin slices, cut to order"}
+  - {item: wrap_foil_insulated, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: label_sandwich, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  build:
+    - "Split the roll and spread the Dijon butter on both cut sides."
+    - "Layer the ham and cheddar on the bottom half and toast on the flat-top or in the press until the cheese melts, 3–4 minutes."
+    - "Add the apple slices, cut to order so they stay crisp, and close."
+  packaging: "To go: wrap in insulated foil, seal with the sandwich label, and bag with a napkin. For here: serve it on a plate."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 11.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Pick the ham and check its label for allergens."
+    - "Test build on the cheddar-crusted roll; confirm the melt time and that the apple stays crisp to go."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $11.00, in place of the BLT."

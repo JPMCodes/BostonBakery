@@ -1,0 +1,30 @@
+id: roll_lunch_cheddar
+name: Lunch Roll, Cheddar-Crusted
+kind: roll
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [ham_cheddar_apple]
+yield:
+  units: 1
+  grams: 117
+  description: "1 roll: 120 g dough plus 10 g cheddar bakes to about 117 g"
+
+ingredients:
+  - {item: dough_signature, qty: 120, unit: g}
+  - {item: cheese_cheddar_sliced, qty: 10, unit: g, note: "about half a slice, cut into thin strips"}
+
+method:
+  - "Shape 120 g pieces of chilled dough into 6-inch ovals and set them seam side down, 6 per parchment-lined half-sheet."
+  - "Proof until about doubled and a gentle poke springs back slowly."
+  - "Brush with egg wash and lay the cheddar strips across the top; they bake into a lacy, browned crust."
+  - "Default bake until confirmed: 350°F for 20–24 minutes, to 190°F inside."
+
+notes:
+  - "Same dough as the breakfast roll, different look: an oval with a cheddar crust."
+  - "Egg wash uses a by-product white, so it is not costed."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted for the ham, cheddar and apple sandwich."

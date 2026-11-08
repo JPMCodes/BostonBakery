@@ -2,14 +2,14 @@ id: harissa_chicken_sandwich
 name: Harissa Chicken Sandwich
 category: sandwich
 status: draft
-version: "1.0"
+version: "1.1"
 approved_on: null
-description: "Sliced roast chicken breast, harissa mayo, arugula and pickled red onion on the toasted house roll."
+description: "Sliced roast chicken breast, harissa mayo, arugula and pickled red onion on a toasted, nigella-seeded oval house roll."
 batch_units: 7
 waste_pct: 3
 
 build:
-  - {item: sandwich_roll_lunch, qty: 1, unit: each}
+  - {item: roll_lunch_nigella, qty: 1, unit: each}
   - {item: butter_unsalted, qty: 4, unit: g, note: "for toasting the roll"}
   - {item: harissa_mayo, qty: 20, unit: g, note: "on both cut sides"}
   - {item: chicken_roasted, qty: 100, unit: g, note: "sliced thin"}
@@ -36,10 +36,13 @@ pricing:
 validation:
   tested: []
   pending:
-    - "Test build on the 120 g lunch roll; confirm the chicken and sauce portions."
+    - "Test build on the nigella-seeded lunch roll; confirm the chicken and sauce portions."
     - "Pick the harissa brand (shared with the breakfast sandwich) and check its label."
 
 history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted at a suggested $12.50."
+  - date: 2026-11-08
+    version: "1.1"
+    change: 'Moved to the nigella-seeded oval roll, so it doesn''t look like the breakfast sandwiches.'

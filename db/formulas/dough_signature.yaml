@@ -4,7 +4,7 @@ kind: dough
 status: approved
 version: "1.0"
 approved_on: 2026-11-06
-used_by: [cinnamon_roll, sandwich_roll, sandwich_roll_lunch]
+used_by: [cinnamon_roll, sandwich_roll, roll_lunch_nigella, roll_lunch_cheddar]
 yield:
   grams: 1095
   description: "12 pieces of 90 g, plus about 15 g left on the bowl and hook"
