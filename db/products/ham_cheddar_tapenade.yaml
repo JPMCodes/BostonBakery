@@ -2,7 +2,7 @@ id: ham_cheddar_tapenade
 name: Ham, Cheddar & Olive Tapenade
 category: sandwich
 status: draft
-version: "1.0"
+version: "1.1"
 approved_on: null
 description: "Hardwood-smoked ham and melted cheddar with house olive tapenade and arugula on a toasted, cheddar-crusted oval house roll."
 batch_units: 6
@@ -30,7 +30,7 @@ production:
 allergens_declared: [egg, milk, wheat]
 
 pricing:
-  suggested_retail_usd: 11.50
+  suggested_retail_usd: 12.50
   rationale: "See db/pricing.md"
 
 validation:
@@ -43,3 +43,6 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted at a suggested $11.50, replacing the ham, cheddar and apple version."
+  - date: 2026-11-08
+    version: "1.1"
+    change: "Price raised to $12.50 for margin, level with the harissa chicken sandwich."

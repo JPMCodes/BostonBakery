@@ -12,7 +12,7 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 | Harissa Chicken Sandwich, lunch (draft) | **$12.50** | $1.51–$2.76 | $0.12–$0.25 | 13–24% | $9.49–$10.87 (76–87%) |
-| Ham, Cheddar & Olive Tapenade, lunch (draft) | **$11.50** | $2.72–$4.18 | $0.12–$0.25 | 25–38% | $7.07–$8.66 (62–75%) |
+| Ham, Cheddar & Olive Tapenade, lunch (draft) | **$12.50** | $2.72–$4.18 | $0.12–$0.25 | 23–35% | $8.07–$9.66 (65–77%) |
 | Fennel Herb Salad Bowl, 382 g (draft) | **$12.50** | $2.44–$5.39 | $0.28–$0.63 | 22–48% | $6.48–$9.78 (52–78%) |
 | Cilantro Lime Quinoa Salad, 450 g (draft) | **$11.50** | $1.87–$3.52 | $0.28–$0.63 | 19–36% | $7.35–$9.35 (64–81%) |
 | Chicken Salad Scoop, 100 g add-on (draft) | **$4.50** | $0.77–$1.18 | $0.04–$0.14 | 18–29% | $3.18–$3.69 (71–82%) |
@@ -132,7 +132,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Fennel sausage SKU at $10.25:** $1.75 above the base sandwich. With meat on it, it joins the $9.50–$11.00 band: a quarter above Flour's $10.00 ham-or-bacon egg sandwich and $0.75 under La Saison's $11.00 Egg Bun. The extra quarter over $10.00 is pure margin, and with Boston's 7% meals tax it still rings up under $11 ($10.97). The 2 oz patty costs $0.36–$0.69. One reviewer reported paying $3 extra for sausage at Pavement, the high end of add-on pricing.
 - **Why it matters:** breakfast sandwiches are Tatte's two most-liked DoorDash items, and in the one Boston bakery-café sales mix the research found, pastry and desserts were only 27% of sales.
 
-## Lunch sandwiches: Harissa Chicken $12.50, Ham, Cheddar & Olive Tapenade $11.50 (draft)
+## Lunch sandwiches: Harissa Chicken and Ham, Cheddar & Olive Tapenade, $12.50 each (draft)
 
 | Boston comparable | Price | Note |
 |---|---|---|
@@ -144,10 +144,10 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Flour BLT | $16.00 | Named by Flour's owner as a signature; left alone so we don't copy it |
 
 - **Why these two:** the research has no sandwich sales counts. Roast chicken anchors lunch at Tatte and Sofra, and ham and cheese is the most widespread savory format in the research: Flour, La Saison, Elephantine and Colette (Parisian sandwiches) all sell a version.
-- **Prices:** the chicken at Tatte's Wellesley pita price; the ham, cheddar and tapenade $1.00 under it, and above La Saison's smaller $9.50 ham & cheese brioche.
+- **Prices:** both at Tatte's Wellesley chicken-pita price and at the bottom of the $13–$16 lunch band. The ham sandwich was raised from $11.50 for margin; it sits $3.00 above La Saison's smaller $9.50 ham & cheese brioche, with more filling, a melted build and the tapenade.
 - **One dough, three looks:** the breakfast sandwiches keep the round, glossy 90 g bun. The lunch sandwiches use 120 g ovals, nigella-seeded for the chicken and cheddar-crusted for the ham. Nigella rather than sesame, because sesame seeds scatter across pans and would add a major allergen to the rolls. Wrapped to go, the label tells the sandwiches apart; the look matters on the plate and in photos.
 - **Shared prep:** the chicken roasts with the chicken salad batch, the harissa is the breakfast sandwich's, and the arugula and red onion come from the salads. The ham sandwich needs no cooking beyond the melt. The tapenade is a 10-minute food-processor batch that keeps 2 weeks, made without anchovy so it adds no fish allergen. New are ham, Kalamata olives, capers, nigella seeds and red wine vinegar.
-- **Ham is the cost lever:** at $1.59 a sandwich it's more than half the food cost, which puts this sandwich at 25% of its price at distributor prices, the highest of the four. A $7.30/lb Black Forest ham in place of the $8.50/lb hardwood-smoked would save about $0.22.
+- **Ham is the cost lever:** at $1.59 a sandwich it's more than half the food cost, which puts this sandwich at 23% of its price at distributor prices, the highest of the four. A $7.30/lb Black Forest ham in place of the $8.50/lb hardwood-smoked would save about $0.22.
 - **Runner-up:** a vegetarian sandwich built on the house hummus. Tatte pairs its chicken pita with a vegetarian feta-pistachio pita.
 
 ## Salad bowls: $12.50 and $11.50 (draft)
@@ -220,7 +220,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, breakfast sandwiches $10.20 and $12.30, chicken sandwich $15.00, ham sandwich $13.80, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, breakfast sandwiches $10.20 and $12.30, lunch sandwiches $15.00, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 

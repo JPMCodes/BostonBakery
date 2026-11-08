@@ -15,7 +15,7 @@ Prices as of 2026-11-08. **Retail est.** = US grocery or small-pack estimates; *
 | Sour Cream Coffee Cake Slice | pastry | draft | $4.50 | $0.90 | $0.54 | $0.11 / $0.06 | 20% / 12% | egg, milk, tree nuts, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
-| Ham, Cheddar & Olive Tapenade | sandwich | draft | $11.50 | $4.43 | $2.84 | $0.25 / $0.12 | 38% / 25% | egg, milk, wheat |
+| Ham, Cheddar & Olive Tapenade | sandwich | draft | $12.50 | $4.43 | $2.84 | $0.25 / $0.12 | 35% / 23% | egg, milk, wheat |
 | Harissa Chicken Sandwich | sandwich | draft | $12.50 | $3.01 | $1.63 | $0.25 / $0.12 | 24% / 13% | egg, milk, wheat |
 | Cilantro Lime Quinoa Salad | salad | draft | $11.50 | $4.15 | $2.15 | $0.63 / $0.28 | 36% / 19% | milk |
 | Fennel Herb Salad Bowl | salad | draft | $12.50 | $6.02 | $2.72 | $0.63 / $0.28 | 48% / 22% | milk, wheat |
