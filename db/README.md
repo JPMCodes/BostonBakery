@@ -9,6 +9,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Cinnamon Roll](products/cinnamon_roll.yaml) | approved | $4.75 | 4 oz finished. Approved 2026-11-06; the cooked buttermilk glaze is still pending its first test bake |
 | [Blueberry Scone](products/blueberry_scone.yaml) | pending_test | $4.50 | 95 g of dough with fresh and dried blueberries, lemon and sour cream, under a brown-butter crumb; pending a test bake |
 | [Mini Vanilla Scone](products/mini_vanilla_scone.yaml) | pending_test | $2.25 | 31 g vanilla bean cream scone under a vanilla bean glaze, 24 to a batch; pending a test bake |
+| [Sour Cream Coffee Cake Slice](products/coffee_cake_slice.yaml) | draft | $4.50 | All-butter sour cream coffee cake with a toasted walnut-cinnamon ribbon and a brown-butter streusel top, after the Original Boston Coffee Cake; 16 slices per 12-cup bundt |
 | [Breakfast Sandwich](products/breakfast_sandwich.yaml) | approved | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
 | [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | approved | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
 | [Fennel Herb Salad Bowl](products/fennel_herb_bowl.yaml) | draft | $12.50 | Farro, arugula, shaved fennel, orange, parsley, dill and mint, Parmesan and pepitas; lemon-Dijon vinaigrette on the side. Same-day sale |
@@ -31,7 +32,7 @@ The drinks stay `pending_test` until the roaster, matcha and chai suppliers are 
 |---|---|
 | `ingredients.csv` | Ingredient master: id, name, category, allergens, spec, unit weight, density |
 | `ingredient_prices.csv` | Dated price quotes per ingredient and channel; the newest `as_of` per channel wins |
-| `formulas/*.yaml` | Sub-recipes (dough, filling, glaze, roll, cooked grains, dressings, chicken salad, hummus): quantities, method, specs, history |
+| `formulas/*.yaml` | Sub-recipes (dough, cake batter, filling, glaze, roll, cooked grains, dressings, chicken salad, hummus): quantities, method, specs, history |
 | `products/*.yaml` | What we sell: build per unit, production steps, QA checks, declared allergens, price, what's tested and what's pending |
 | `costing.md` | Generated cost report. Do not edit by hand |
 | `pricing.md` | Retail price recommendations and their market basis |

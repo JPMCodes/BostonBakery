@@ -7,6 +7,7 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Cinnamon Roll (4 oz, buttermilk glaze) | **$4.75** | $0.29–$0.64 | $0.34–$0.47 | 13–23% | $3.64–$4.12 (77–87%) |
 | Blueberry Scone, 95 g (pending test) | **$4.50** | $0.53–$0.98 | $0.05–$0.09 | 13–24% | $3.43–$3.92 (76–87%) |
 | Mini Vanilla Scone, 31 g (pending test) | **$2.25** | $0.13–$0.20 | $0.02–$0.07 | 7–12% | $1.98–$2.10 (88–93%) |
+| Sour Cream Coffee Cake Slice, 107 g (draft) | **$4.50** | $0.49–$0.79 | $0.06–$0.11 | 12–20% | $3.60–$3.96 (80–88%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 | Fennel Herb Salad Bowl, 382 g (draft) | **$12.50** | $2.44–$5.39 | $0.28–$0.63 | 22–48% | $6.48–$9.78 (52–78%) |
@@ -24,6 +25,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Both breakfast sandwiches | Insulated foil wrap, printed label, #6 kraft bag, kraft napkin | $0.12–$0.25 |
 | Blueberry Scone | #6 kraft bag, kraft napkin | $0.05–$0.09 |
 | Mini Vanilla Scone | 1/2 lb glassine bag, kraft napkin; three or more go in a #6 kraft bag | $0.02–$0.07 |
+| Coffee Cake Slice | #6 kraft bag, dry-wax square under the slice, kraft napkin | $0.06–$0.11 |
 | Both salads | Clear 32 oz PET bowl and lid, 2 oz dressing cup and lid, wooden fork, kraft napkin, grab-and-go label | $0.28–$0.63 |
 | Chicken salad and hummus scoops | 4 oz cup and lid, grab-and-go label | $0.04–$0.14 |
 
@@ -78,6 +80,24 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Option:** 3 for $6.00 in a #6 kraft bag.
 - **Cheapest item on the menu to make:** about $0.15 at distributor prices, 7% of the price. Vanilla bean paste is the biggest line at about $0.03 a scone, ahead of butter and cream at about $0.02 each.
 - **Glassine bag, not kraft:** it's grease-resistant, so the butter and glaze don't mark it. With the napkin it costs $0.02.
+
+## Sour Cream Coffee Cake Slice: $4.50 (draft)
+
+| Comparable | Price | Note |
+|---|---|---|
+| The Original Boston Cinnamon Walnut Coffee Cake, 24 oz | $7.99 | Price Rite grocery listing ($0.33/oz), about $1.25 for a slice our size; the benchmark |
+| Tatte cake slice | $5.50–$6.75 | Market research |
+| Flour cake slice | $6.30 | Lemon raspberry; market research |
+| Santia's cake slice | $6.50–$7.25 | Aggregator listing |
+| Our Blueberry Scone and Cinnamon Roll | $4.50 and $4.75 | |
+
+- **Level with the scone, under the layer cakes:** Flour and Tatte's frosted layer-cake slices run $5.50–$6.75. An unfrosted coffee cake slice sits $1.00 or more under them, at the scone's $4.50 and a quarter under the cinnamon roll.
+- **Same cake, better ingredients:** the grocery cake's label leads with sugar, bleached flour, sour cream, soybean oil, walnuts, eggs, water and palm oil. Ours keeps the sour cream crumb, the sweetness and the heavy walnut-cinnamon ribbon, but uses butter (with a little sunflower oil for softness), unbleached pastry and all-purpose flour, real vanilla extract and bean paste, toasted walnuts, Saigon cinnamon and a brown-butter topping.
+- **About 3.6 times the grocery cake by weight,** a bit above the 2–3 times the research found for a premium croissant over grocery. The quality gap is wider here too: a fresh all-butter bake against an oil-based shelf cake.
+- **Biggest lines at distributor prices:** sour cream ($0.11 a slice), walnuts ($0.09) and butter ($0.08). The whole cake's ingredients cost $7.40–$12.00.
+- **Keeps well:** sour cream, the high sugar and a little oil hold the crumb soft. Keep cakes whole under a cover and cut to order; best within 3 days of baking.
+- **Walnuts are the menu's first tree nut.** They define the benchmark, but they bring tree nuts into the kitchen: store and scoop them apart from everything else, and decide whether to post a kitchen-wide tree-nut notice. Leaving them out makes a nut-free cinnamon version about $0.09 a slice cheaper.
+- **Option:** whole cakes on pre-order at about $40 for 16 slices. The research found 8-inch bundts at $18.50–$35 and Flour's 8-inch cake at $57; ours is a 12-cup cake. The box isn't costed.
 
 ## Breakfast Sandwiches: $8.50, or $10.25 with fennel sausage
 
@@ -164,7 +184,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, sandwiches $10.20 and $12.30, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake $5.40, sandwiches $10.20 and $12.30, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
@@ -177,6 +197,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - [Toast: chai lattes in Boston](https://www.toasttab.com/local/boston-ma-restaurants/dish/chai-lattes) and [Tatte South End on Toast](https://toasttab.com/local/order/tatte-south-end/r-e14b0c20-4650-4326-b837-0938a1d4e868): Tatte chai and iced latte prices.
 - WebstaurantStore food packaging: [Baker's Lane 4×4×4 kraft window box](https://www.webstaurantstore.com/bakers-lane-4-x-4-x-4-kraft-window-cupcake-bakery-box-case/245444WBKBL.html), [Choice 10 3/4 × 14 in insulated foil wrap](https://www.webstaurantstore.com/choice-10-3-4-x-14-insulated-foil-sandwich-wrap-sheets-case/612W45.html), [12×12 kraft luncheon napkin](https://www.webstaurantstore.com/12-x-12-natural-kraft-1-4-fold-luncheon-napkin-case/5001N200KRA.html) and [Greenprint 6×6 sugarcane clamshell](https://www.webstaurantstore.com/greenprint-6-x-6-compostable-sugarcane-fiber-clamshell-take-out-container-case/485HTO661W.html).
 - Starbucks petite scone: [Tasting Table](https://tastingtable.com/1808434/cheapest-vs-most-expensive-food-starbucks-menu) (about $1.75, up to $2.95 in some areas) and [Chowhound](https://www.chowhound.com/1977466/cheapest-food-item-starbucks/) ($2.65; $1.95 at some stores); full-size scone from [Six Storeys](https://sixstoreys.com/?p=31718) (August 2026 menu aggregator). All undated or aggregated national prices.
+- Coffee cake benchmark: The Original Boston Cinnamon Walnut Coffee Cake, 24 oz, at [Price Rite](https://www.priceritemarketplace.com/product/boston-cinnamon-walnut-coffee-cake-24-oz-id-00710233990015) ($7.99) and [Stop & Shop](https://stopandshop.com/groceries/breakfast/breakfast-bread-pastries/the-original-boston-cinnamon-walnut-coffee-cake-24-oz-pkg.html); ingredient order from a [retail listing](https://supermarketpuzzle.com/product/the-original-boston-coffee-cake-cinnamon-walnut-coffee-cake-24-oz). Cake-slice prices from the market research's price matrix. Walnuts: [Patterson Nut Company 25 lb](https://www.webstaurantstore.com/patterson-nut-company-walnut-halves-and-pieces-raw-25-lb/113WNPCRW25.html) (WebstaurantStore).
 - Mini scone inputs: [Kari-Out 1/2 lb glassine bag, 1,000/case](https://www.webstaurantstore.com/kari-out-company-1-2-lb-square-glassine-bag-case/1500100.html) (WebstaurantStore); Nielsen-Massey 32 oz vanilla bean paste at [Walmart](https://www.walmart.com/ip/38442217) ($106.48) and [Restaurantware](https://www.restaurantware.com/products/nielsen-massey-32-0-oz-pure-vanilla-paste-1-count-box) ($134.83).
 - Tatte add-on and salad prices: [2022 Boston gluten-friendly menu](https://tattebakery.com/wp-content/uploads/2022/03/BOS_Spring2022_GF_22822.pdf), [2023 DC gluten-friendly menu](https://tattebakery.com/dc_spring2023_gf_022423), [Tatte Charlestown on Toast](https://www.toasttab.com/tatte-charlestown/v3) and [Tatte South End on Toast](https://www.toasttab.com/tatte-south-end).
 - Protein inputs: [BLS boneless chicken breast, Northeast urban, via FRED](https://fred.stlouisfed.org/series/APU0100FF1101) ($3.96/lb, September 2026); [S&P Global Platts jumbo boneless breast](https://www.spglobal.com/energy/en/news-research/latest-news/agriculture/021126-us-jumbo-boneless-skinless-chicken-breast-prices-mark-their-first-decline-in-2026) ($1.45/lb, February 2026); [Hellmann's 4 × 1 gal mayonnaise](https://www.webstaurantstore.com/hellmanns-1-gallon-real-mayonnaise-case/125HLMN5308.html) (WebstaurantStore); [Choice 4 oz portion cup](https://www.webstaurantstore.com/choice-4-oz-clear-plastic-souffle-cup-portion-cup-case/127P400C.html) (WebstaurantStore). The distributor chicken price and the celery are estimates.

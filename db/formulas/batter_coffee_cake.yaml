@@ -1,0 +1,41 @@
+id: batter_coffee_cake
+name: Sour Cream Coffee Cake Batter
+kind: batter
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [coffee_cake_bundt]
+yield:
+  grams: 1500
+  description: "one 12-cup bundt cake"
+
+ingredients:
+  - {stage: Creamed, item: butter_unsalted, qty: 200, unit: g, note: "softened, 65–68°F"}
+  - {stage: Creamed, item: sugar_granulated, qty: 324, unit: g}
+  - {stage: Creamed, item: salt_fine, qty: 5, unit: g}
+  - {stage: Wet, item: egg_large, qty: 200, unit: g, note: "4 eggs, room temperature"}
+  - {stage: Wet, item: oil_high_oleic_sunflower, qty: 36, unit: g, note: "keeps the crumb soft for days"}
+  - {stage: Wet, item: vanilla_extract, qty: 8, unit: g, note: "about 2 tsp"}
+  - {stage: Wet, item: vanilla_bean_paste, qty: 4, unit: g, note: "about 3/4 tsp"}
+  - {stage: Dry, item: flour_ap, qty: 180, unit: g}
+  - {stage: Dry, item: flour_pastry, qty: 180, unit: g}
+  - {stage: Dry, item: baking_powder, qty: 8, unit: g, note: "2 tsp"}
+  - {stage: Dry, item: baking_soda, qty: 3, unit: g, note: "1/2 tsp; neutralizes the sour cream"}
+  - {stage: Alternate, item: sour_cream, qty: 360, unit: g, note: "full fat, room temperature"}
+
+method:
+  - "Cream the butter, sugar and salt on medium speed until light and fluffy, about 4 minutes."
+  - "Beat in the eggs one at a time, then the oil, vanilla extract and vanilla paste."
+  - "Whisk the flours, baking powder and baking soda. On low speed, add them in three parts, alternating with the sour cream in two, and mix just until smooth. The batter should be thick enough to hold the walnut layer."
+
+specs:
+  flour_total_g: 360
+
+notes:
+  - "Benchmark: the Original Boston Cinnamon Walnut Coffee Cake, a sour cream cake with a walnut, cinnamon and sugar streusel. Its label leads with sugar, bleached flour, sour cream, soybean oil, walnuts, eggs, water and palm oil. This version keeps the sour cream richness and the sweetness, swaps the soybean and palm oil for butter with a little sunflower oil for softness, uses unbleached pastry and all-purpose flour in place of bleached, and adds real vanilla."
+  - "The method is a default; replace it with the house method once confirmed."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."

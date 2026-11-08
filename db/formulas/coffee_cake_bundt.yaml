@@ -1,0 +1,31 @@
+id: coffee_cake_bundt
+name: Sour Cream Coffee Cake (12-cup bundt)
+kind: cake
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [coffee_cake_slice]
+yield:
+  grams: 1710
+  units: 16
+  description: "one cake, about 1,710 g baked; 16 slices of about 107 g"
+
+ingredients:
+  - {item: batter_coffee_cake, qty: 1500, unit: g}
+  - {item: cinnamon_walnut_mix, qty: 333, unit: g}
+  - {item: butter_unsalted, qty: 45, unit: g, note: "browned, for the topping"}
+
+method:
+  - "Grease a 12-cup bundt pan thoroughly with baking spray that contains flour."
+  - "Brown the butter and toss it with 133 g of the cinnamon-walnut mix. Press it into the bottom of the pan; it becomes the top of the cake."
+  - "Spread in half the batter (750 g). Scatter the remaining 200 g of mix over it, then spread in the rest of the batter. Run a knife once around the ring to ripple the layer."
+  - "Default bake until confirmed: 350°F (325°F convection) for 55–65 minutes, until a skewer comes out clean and the center reads about 205°F."
+  - "Cool 15 minutes in the pan, invert onto a rack, and cool completely, at least 2 hours, before cutting."
+
+notes:
+  - "The baking spray is not costed."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."

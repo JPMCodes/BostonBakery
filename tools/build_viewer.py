@@ -92,7 +92,7 @@ def build_data(book: Book) -> dict:
 
     formulas = []
     for fid, doc in book.formulas.items():
-        dough = doc["kind"] == "dough"
+        dough = doc["kind"] in ("dough", "batter")  # show baker's %
         flour = sum(
             float(line["qty"])
             for line in doc["ingredients"]

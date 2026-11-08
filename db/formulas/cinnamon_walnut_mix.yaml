@@ -1,0 +1,27 @@
+id: cinnamon_walnut_mix
+name: Cinnamon-Walnut Mix
+kind: filling
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [coffee_cake_bundt]
+yield:
+  grams: 333
+  description: "one cake: about 133 g for the topping and 200 g for the ribbon"
+
+ingredients:
+  - {item: walnuts, qty: 130, unit: g, note: "toasted at 325°F for 8–10 minutes, cooled, chopped medium"}
+  - {item: sugar_brown_light, qty: 160, unit: g}
+  - {item: flour_ap, qty: 30, unit: g, note: "keeps the ribbon from opening a gap in the cake"}
+  - {item: cinnamon_ground, qty: 12, unit: g, note: "Saigon"}
+  - {item: salt_fine, qty: 1, unit: g}
+
+method:
+  - "Toast the walnuts, cool them, and chop medium."
+  - "Mix everything, breaking up any brown sugar lumps."
+  - "Keeps 2 weeks covered at room temperature, so make several cakes' worth at once."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."

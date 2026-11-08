@@ -421,7 +421,7 @@ def render(book: Book, warnings: list[str]) -> str:
 
     out += ["", "## Formulas"]
     for fid, doc in book.formulas.items():
-        dough = doc["kind"] == "dough"
+        dough = doc["kind"] in ("dough", "batter")  # show baker's %
         flour = sum(
             float(line["qty"])
             for line in doc["ingredients"]
