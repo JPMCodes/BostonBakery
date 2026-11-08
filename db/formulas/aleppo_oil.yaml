@@ -21,3 +21,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted for the red lentil soup."
+
+labor:
+  batch_min: 5
+  production_batches: 4
+  note: "Warm the oil and steep a 4× batch."

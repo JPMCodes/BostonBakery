@@ -32,7 +32,15 @@ def pack_label(size: float, unit: str) -> str:
 def item_name(book: Book, item: str) -> str:
     if item in book.ingredients:
         return book.ingredients[item]["name"]
+    if item in book.products:
+        return book.products[item]["name"]
     return book.formulas[item]["name"]
+
+
+def line_kind(book: Book, item: str) -> str:
+    if item in book.formulas:
+        return "formula"
+    return "product" if item in book.products else "ingredient"
 
 
 def per_channel(fn) -> dict:
@@ -55,14 +63,17 @@ def build_data(book: Book) -> dict:
             build.append(
                 {
                     "name": item_name(book, line["item"]),
-                    "kind": "formula" if line["item"] in book.formulas else "ingredient",
+                    "kind": line_kind(book, line["item"]),
                     "qty": line["qty"],
                     "unit": line["unit"],
                     "note": line.get("note", ""),
                     "packaging": book.is_packaging(line["item"]),
-                    "cost": per_channel(lambda ch, line=line: book.line_cost(line, ch)),
+                    "credit": bool(line.get("credit")),
+                    "cost": per_channel(lambda ch, line=line: book.signed_line_cost(line, ch)),
                 }
             )
+        labor_min = book.product_labor(pid)
+        par = float(doc.get("par_daily") or 0)
         products.append(
             {
                 "id": pid,
@@ -80,6 +91,15 @@ def build_data(book: Book) -> dict:
                 "batchUnits": doc.get("batch_units"),
                 "allergens": sorted(book.allergens(pid)),
                 "build": build,
+                "laborMin": labor_min,
+                "laborCost": book.labor_cost(labor_min),
+                "laborNote": (doc.get("labor") or {}).get("note", ""),
+                "laborBreakdown": [
+                    {"name": name.replace(" (formula)", "").replace(" (product)", ""), "min": m}
+                    for name, m in book.labor_breakdown(pid)
+                ],
+                "parDaily": par,
+                "laborHoursDay": labor_min * par / 60,
                 "targets": doc.get("targets") or {},
                 "production": doc.get("production") or {},
                 "qa": doc.get("qa") or [],
@@ -109,7 +129,7 @@ def build_data(book: Book) -> dict:
                 {
                     "stage": line.get("stage", ""),
                     "name": item_name(book, line["item"]),
-                    "kind": "formula" if line["item"] in book.formulas else "ingredient",
+                    "kind": line_kind(book, line["item"]),
                     "qty": line["qty"],
                     "unit": line["unit"],
                     "note": line.get("note", ""),
@@ -119,6 +139,7 @@ def build_data(book: Book) -> dict:
             )
         yld = doc["yield"]
         batch = per_channel(lambda ch, fid=fid: book.formula_cost(fid, ch))
+        lab = doc.get("labor") or {}
         formulas.append(
             {
                 "id": fid,
@@ -139,6 +160,12 @@ def build_data(book: Book) -> dict:
                     for ch, c in batch.items()
                 },
                 "lines": lines,
+                "labor": {
+                    "batchMin": lab.get("batch_min"),
+                    "productionBatches": lab.get("production_batches", 1),
+                    "perBatch": book.formula_labor(fid),
+                    "note": lab.get("note", ""),
+                },
                 "method": doc.get("method") or [],
                 "specs": doc.get("specs") or {},
                 "notes": doc.get("notes") or [],
@@ -184,6 +211,7 @@ def build_data(book: Book) -> dict:
     return {
         "asOf": max(row["as_of"] for row in book.prices.values()),
         "channels": CHANNELS,
+        "laborRate": book.labor_rate,
         "products": products,
         "formulas": formulas,
         "ingredients": ingredients,
@@ -216,14 +244,17 @@ PAGE = r"""<title>BostonBakery Formula Book</title>
   --sandwich: #b0452b;
   --salad: #2c6e73;
   --soup: #7d6400;
+  --catering: #5d4a8a;
   --add-on: #4a5a8a;
   --drink: #4e6e3a;
   --ok: #2f6b45;
   --ok-bg: #e2eedd;
   --warn: #8a5a00;
   --warn-bg: #f6e7c6;
-  --cost: #6e5d58;
-  --pack: #c2b4a6;
+  /* Price-split parts, checked with the dataviz palette validator (light surface #fffdf8). */
+  --cost: #8c2f3f;
+  --pack: #c98500;
+  --labor: #2a78d6;
   --margin: #ecd7d9;
   --font-display: "Barlow Semi Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -277,6 +308,7 @@ main { padding-block: 18px 40px; display: flex; flex-direction: column; gap: 22p
 .cat-salad { color: var(--salad); border-color: currentColor; }
 .cat-soup { color: var(--soup); border-color: currentColor; }
 .cat-add-on { color: var(--add-on); border-color: currentColor; }
+.cat-catering { color: var(--catering); border-color: currentColor; }
 .cat-drink { color: var(--drink); border-color: currentColor; }
 .pill { padding: 2px 8px; border-radius: 4px; font: 600 12px/1.4 var(--font-display); letter-spacing: .06em; text-transform: uppercase; }
 .pill.approved { background: var(--ok-bg); color: var(--ok); }
@@ -291,13 +323,23 @@ main { padding-block: 18px 40px; display: flex; flex-direction: column; gap: 22p
 .kv dt { font-size: 12px; color: var(--ink-2); letter-spacing: .03em; }
 .kv dd { margin: 0; font: 500 15px var(--font-mono); font-variant-numeric: tabular-nums; }
 
-.bar { display: flex; height: 10px; border-radius: 5px; background: var(--margin); overflow: hidden; }
+.bar { display: flex; gap: 2px; height: 8px; border-radius: 4px; overflow: hidden; }
 .bar span { display: block; height: 100%; }
 .bar .s-cost { background: var(--cost); }
 .bar .s-pack { background: var(--pack); }
+.bar .s-labor { background: var(--labor); }
+.bar .s-margin { background: var(--margin); }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); }
 .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
-.legend .k-cost { background: var(--cost); } .legend .k-pack { background: var(--pack); } .legend .k-margin { background: var(--margin); border: 1px solid var(--accent); }
+.legend .k-cost { background: var(--cost); } .legend .k-pack { background: var(--pack); } .legend .k-labor { background: var(--labor); } .legend .k-margin { background: var(--margin); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.tile .t-label { font-size: 13px; color: var(--ink-2); }
+.tile .t-value { font: 600 26px/1.1 var(--font-body); color: var(--ink); }
+.hours { display: flex; align-items: center; gap: 8px; min-width: 150px; }
+.hours .hb { height: 12px; background: var(--labor); border-radius: 0 4px 4px 0; flex: none; }
+.hours .hv { font: 500 13px var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+tr.click:focus-visible td { background: var(--surface-2); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .muted { color: var(--ink-2); }
 .small { font-size: 13px; }
@@ -375,15 +417,18 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
   const VIEWS = [
     { id: "products", label: "Products", count: DATA.products.length },
     { id: "formulas", label: "Formulas", count: DATA.formulas.length },
-    { id: "ingredients", label: "Ingredients", count: DATA.ingredients.length }
+    { id: "ingredients", label: "Ingredients", count: DATA.ingredients.length },
+    { id: "labor", label: "Labor", count: Math.round(DATA.products.reduce((s, p) => s + p.laborHoursDay, 0)) + " h/day" }
   ];
-  const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["salad", "Salads"], ["soup", "Soups"], ["add-on", "Add-ons"], ["drink", "Drinks"]];
+  const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["salad", "Salads"], ["soup", "Soups"], ["add-on", "Add-ons"], ["drink", "Drinks"], ["catering", "Pre-order & catering"]];
   const STATUS = { approved: "Approved", pending_test: "Pending test", draft: "Draft", retired: "Retired" };
-  const state = { view: "products", channel: "distributor_est", query: "", open: new Set(), cat: "all" };
+  const state = { view: "products", channel: "distributor_est", query: "", open: new Set(), cat: "all", lcat: "all" };
   try { const saved = localStorage.getItem("fb-channel"); if (saved && CH.includes(saved)) state.channel = saved; } catch (e) {}
 
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-  const money = (v) => v == null ? "n/a" : (v > 0 && v < 0.005 ? "<$0.01" : "$" + v.toFixed(2));
+  const money = (v) => v == null ? "n/a" : (v > 0 && v < 0.005 ? "<$0.01" : v < 0 ? "−$" + (-v).toFixed(2) : "$" + v.toFixed(2));
+  const mins = (m) => (Math.round(m * 10) / 10).toFixed(1) + " min";
+  const unitCost = (p, ch) => p.food[ch] == null ? null : p.food[ch] + (p.hasPackaging ? (p.packagingCost[ch] || 0) : 0);
   const num = (q) => Number(q).toLocaleString("en-US", { maximumFractionDigits: 1 });
   const qty = (q, unit) => unit === "each" ? num(q) + " each" : num(q) + " g";
   const pct = (a, b) => (a == null || !b) ? "n/a" : Math.round((100 * a) / b) + "%";
@@ -416,9 +461,15 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     const ch = state.channel;
     const food = p.food[ch], pack = p.hasPackaging ? p.packagingCost[ch] : 0;
     const total = food == null ? null : food + (pack || 0);
-    const margin = total == null || p.price == null ? null : p.price - total;
-    const fw = p.price ? Math.min(100, (100 * (food || 0)) / p.price) : 0;
-    const pw = p.price ? Math.min(100 - fw, (100 * (pack || 0)) / p.price) : 0;
+    const labor = p.laborCost;
+    const prime = total == null ? null : total + labor;
+    const margin = prime == null || p.price == null ? null : p.price - prime;
+    const share = (v) => p.price ? Math.max(0, (100 * (v || 0)) / p.price) : 0;
+    let left = 100;
+    const fw = Math.min(left, share(food)); left -= fw;
+    const pw = Math.min(left, share(pack)); left -= pw;
+    const lw = Math.min(left, share(labor)); left -= lw;
+    const seg = (cls, w) => w > 0 ? `<span class="${cls}" style="width:${w}%"></span>` : "";
     const key = "p:" + p.id, open = state.open.has(key);
     const allergens = p.allergens.length ? p.allergens.map((a) => `<span class="chip allergen">${esc(a)}</span>`).join("") : `<span class="muted small">No major allergens</span>`;
     return `<article class="card${open ? " open" : ""}">
@@ -429,12 +480,13 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
         <div class="price" aria-label="Suggested price">${money(p.price)}</div>
         <dl class="kv">
           <div><dt>Unit cost</dt><dd>${money(total)}</dd></div>
-          <div><dt>Margin</dt><dd>${money(margin)}</dd></div>
-          <div><dt>Cost of price</dt><dd>${pct(total, p.price)}</dd></div>
+          <div><dt>Labor</dt><dd>${money(labor)} <span class="muted small">${mins(p.laborMin)}</span></dd></div>
+          <div><dt>Prime cost</dt><dd>${pct(prime, p.price)}</dd></div>
+          <div><dt>Margin after labor</dt><dd>${money(margin)}</dd></div>
         </dl>
       </div>
-      <div class="bar" role="img" aria-label="Food ${pct(food, p.price)}, packaging ${p.hasPackaging ? pct(pack, p.price) : "not costed"}, margin ${pct(margin, p.price)} of the price"><span class="s-cost" style="width:${fw}%"></span><span class="s-pack" style="width:${pw}%"></span></div>
-      <div class="legend"><span><i class="k-cost"></i>Food ${pct(food, p.price)}</span><span><i class="k-pack"></i>Packaging ${p.hasPackaging ? pct(pack, p.price) : "not costed yet"}</span><span><i class="k-margin"></i>Margin ${pct(margin, p.price)}</span></div>
+      <div class="bar" role="img" aria-label="Of the price: food ${pct(food, p.price)}, packaging ${p.hasPackaging ? pct(pack, p.price) : "none"}, labor ${pct(labor, p.price)}, margin ${pct(margin, p.price)}">${seg("s-cost", fw)}${seg("s-pack", pw)}${seg("s-labor", lw)}${seg("s-margin", left)}</div>
+      <div class="legend"><span><i class="k-cost"></i>Food ${pct(food, p.price)}</span><span><i class="k-pack"></i>Packaging ${p.hasPackaging ? pct(pack, p.price) : "none"}</span><span><i class="k-labor"></i>Labor ${pct(labor, p.price)}</span><span><i class="k-margin"></i>Margin ${pct(margin, p.price)}</span></div>
       <div class="chips">${allergens}</div>
       <button type="button" class="toggle" data-toggle="${key}" aria-expanded="${open}">${open ? "Hide build and method" : "Show build and method"}</button>
       ${open ? productDetails(p) : ""}
@@ -442,15 +494,20 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
   }
 
   function productDetails(p) {
-    const rows = p.build.map((b) => `<tr><td>${esc(b.name)}${b.kind === "formula" ? ` <span class="muted small">(formula)</span>` : ""}${b.note ? `<span class="note">${esc(b.note)}</span>` : ""}</td><td class="n">${qty(b.qty, b.unit)}</td>${costCells(b.cost)}</tr>`).join("");
+    const rows = p.build.map((b) => `<tr><td>${esc(b.name)}${b.kind !== "ingredient" ? ` <span class="muted small">(${b.kind})</span>` : ""}${b.credit ? ` <span class="muted small">(replaced)</span>` : ""}${b.note ? `<span class="note">${esc(b.note)}</span>` : ""}</td><td class="n">${qty(b.qty, b.unit)}</td>${costCells(b.cost)}</tr>`).join("");
     const waste = {};
     const foodOnly = {};
     CH.forEach((ch) => {
       foodOnly[ch] = p.build.filter((b) => !b.packaging).reduce((s, b) => s + (b.cost[ch] || 0), 0);
       waste[ch] = foodOnly[ch] * p.wastePct / 100;
     });
-    const totals = {};
-    CH.forEach((ch) => { totals[ch] = p.food[ch] == null ? null : p.food[ch] + (p.packagingCost[ch] || 0); });
+    const totals = {}, laborRow = {}, primes = {};
+    CH.forEach((ch) => {
+      totals[ch] = p.food[ch] == null ? null : p.food[ch] + (p.packagingCost[ch] || 0);
+      laborRow[ch] = p.laborCost;
+      primes[ch] = totals[ch] == null ? null : totals[ch] + p.laborCost;
+    });
+    const breakdown = p.laborBreakdown.map((b) => `${b.name === "own steps" ? "Own steps" : b.name}: ${mins(b.min)}`);
     const prod = Object.entries(p.production || {}).map(([k, v]) => {
       if (Array.isArray(v)) return `<div><h4>${esc(human(k))}</h4>${list(v)}</div>`;
       if (v && typeof v === "object") return `<div><h4>${esc(human(k))}</h4>${list(Object.values(v).flat())}</div>`;
@@ -465,10 +522,13 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
           ${rows}
           <tr><td>Waste allowance, food only</td><td class="n">${p.wastePct}%</td>${costCells(waste)}</tr>
           <tr class="total"><td>Unit cost</td><td></td>${costCells(totals)}</tr>
+          <tr><td>Prep labor at $${DATA.laborRate.toFixed(2)}/hr</td><td class="n">${mins(p.laborMin)}</td>${costCells(laborRow)}</tr>
+          <tr class="total"><td>Prime cost</td><td></td>${costCells(primes)}</tr>
         </tbody></table></div>
-        ${p.hasPackaging ? "" : `<p class="muted small" style="margin:6px 0 0">Packaging isn't in this build yet; the pricing memo assumes $0.25 an item.</p>`}
       </div>
-      <div class="cols">${prod}${targets}${p.qa.length ? `<div><h4>QA checks</h4>${list(p.qa)}</div>` : ""}</div>
+      <div class="cols">${prod}${targets}${p.qa.length ? `<div><h4>QA checks</h4>${list(p.qa)}</div>` : ""}
+        <div><h4>Prep labor</h4>${p.laborNote ? `<p style="margin:0 0 6px;max-width:75ch">${esc(p.laborNote)}</p>` : ""}${list(breakdown)}<p class="muted small" style="margin:6px 0 0">${num(p.parDaily)} a day at par: ${(Math.round(p.laborHoursDay * 10) / 10).toFixed(1)} hands-on hours. Minutes include the waste allowance.</p></div>
+      </div>
       <div class="cols">
         ${val.tested && val.tested.length ? `<div><h4>Tested</h4>${list(val.tested, "tested")}</div>` : ""}
         ${val.pending && val.pending.length ? `<div><h4>Still to test</h4>${list(val.pending, "pending")}</div>` : ""}
@@ -509,6 +569,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
         <div><dt>Batch cost</dt><dd>${money(f.batch[ch])}</dd></div>
         <div><dt>Per kg</dt><dd>${money(f.perKg[ch])}</dd></div>
         ${f.yield.units ? `<div><dt>Per unit</dt><dd>${money(f.perUnit[ch])}</dd></div>` : ""}
+        <div><dt>Labor per batch</dt><dd>${mins(f.labor.perBatch)}</dd></div>
       </dl>
       ${f.usedBy.length ? `<p class="muted small" style="margin:0">Used in ${esc(f.usedBy.join(", "))}</p>` : ""}
       <button type="button" class="toggle" data-toggle="${key}" aria-expanded="${open}">${open ? "Hide formula" : "Show formula"}</button>
@@ -522,6 +583,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
           <div>
             ${specs.length ? `<h4>Specs</h4><dl class="specs">${specs.map(([k, v]) => `<dt>${esc(human(k))}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""}
             ${f.notes.length ? `<h4 style="margin-top:14px">Notes</h4>${list(f.notes)}` : ""}
+            ${f.labor.batchMin != null ? `<h4 style="margin-top:14px">Prep labor</h4><p style="margin:0">${num(f.labor.batchMin)} hands-on min per production run of ${num(f.labor.productionBatches)} batch${f.labor.productionBatches == 1 ? "" : "es"}; ${mins(f.labor.perBatch)} per batch with sub-recipes.${f.labor.note ? " " + esc(f.labor.note) : ""}</p>` : ""}
             ${history.length ? `<h4 style="margin-top:14px">History</h4>${list(history)}` : ""}
           </div>
         </div>
@@ -552,10 +614,39 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     return `<div class="summary"><span>Prices at <strong>${chLabel(ch).toLowerCase()}</strong> estimates. Tap a row for the spec and price source.</span></div>${filters}${items.length ? table : `<div class="empty">No ingredients match.</div>`}`;
   }
 
+  function renderLabor() {
+    const ch = state.channel;
+    const all = DATA.products;
+    const sales = all.reduce((s, p) => s + (p.price || 0) * p.parDaily, 0);
+    const hours = all.reduce((s, p) => s + p.laborHoursDay, 0);
+    const laborUsd = hours * DATA.laborRate;
+    const goods = all.reduce((s, p) => s + (unitCost(p, ch) || 0) * p.parDaily, 0);
+    const tiles = `<div class="tiles">
+      <div class="tile"><span class="t-label">Sales a day at par</span><span class="t-value">$${Math.round(sales).toLocaleString("en-US")}</span></div>
+      <div class="tile"><span class="t-label">Hands-on hours a day</span><span class="t-value">${hours.toFixed(1)}</span></div>
+      <div class="tile"><span class="t-label">Prep labor, share of sales</span><span class="t-value">${pct(laborUsd, sales)}</span></div>
+      <div class="tile"><span class="t-label">Food, packaging and prep labor, share of sales</span><span class="t-value">${pct(goods + laborUsd, sales)}</span></div>
+    </div>`;
+    const present = CATS.filter(([c]) => all.some((p) => p.category === c));
+    const filters = `<div class="filters" role="group" aria-label="Filter by category"><button type="button" data-lcat="all" aria-pressed="${state.lcat === "all"}">All</button>${present.map(([c, label]) => `<button type="button" data-lcat="${esc(c)}" aria-pressed="${state.lcat === c}">${esc(label)}</button>`).join("")}</div>`;
+    const items = all.filter((p) => (state.lcat === "all" || p.category === state.lcat) && matches(p.name)).slice().sort((a, b) => b.laborHoursDay - a.laborHoursDay);
+    const maxH = Math.max(0.0001, ...items.map((p) => p.laborHoursDay));
+    const rows = items.map((p) => {
+      const key = "l:" + p.id, open = state.open.has(key);
+      const prime = unitCost(p, ch) == null ? null : unitCost(p, ch) + p.laborCost;
+      const h = (Math.round(p.laborHoursDay * 10) / 10).toFixed(1);
+      const w = Math.max(p.laborHoursDay > 0 ? 2 : 0, Math.round((120 * p.laborHoursDay) / maxH));
+      const detail = open ? `<tr class="detail"><td colspan="6"><div class="cols"><div><h4>Where the minutes go</h4>${list(p.laborBreakdown.map((b) => `${b.name === "own steps" ? "Own steps" : b.name}: ${mins(b.min)}`))}${p.laborNote ? `<p class="muted small" style="margin:6px 0 0">${esc(p.laborNote)}</p>` : ""}</div></div></td></tr>` : "";
+      return `<tr class="click" data-toggle="${key}" tabindex="0" aria-expanded="${open}"><td>${esc(p.name)}<span class="note">${esc((CATS.find(([c]) => c === p.category) || [0, p.category])[1])}</span></td><td class="n">${num(p.parDaily)}</td><td class="n">${(Math.round(p.laborMin * 10) / 10).toFixed(1)}</td><td class="n hide-sm">${money(p.laborCost)}</td><td class="n hide-sm">${pct(prime, p.price)}</td><td><div class="hours" role="img" aria-label="${esc(p.name)}: ${h} hands-on hours a day"><span class="hb" style="width:${w}px"></span><span class="hv">${h} h</span></div></td></tr>${detail}`;
+    }).join("");
+    const table = `<div class="tbl-wrap"><table><thead><tr><th>Product</th><th class="n">Par/day</th><th class="n">Min/unit</th><th class="n hide-sm">Labor/unit</th><th class="n hide-sm">Prime cost</th><th>Hands-on hours a day</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    return `<div class="summary"><span>Hands-on prep and bar minutes at <strong>$${DATA.laborRate.toFixed(2)}/hr</strong>, including each sub-recipe's share of its production run. Proofing, baking and brewing time, taking orders and bagging aren't counted. Daily figures use each product's planning par; prime cost uses <strong>${chLabel(ch).toLowerCase()}</strong> prices. Tap a row to see where the minutes go.</span></div>${tiles}${filters}${items.length ? table : `<div class="empty">No products match.</div>`}`;
+  }
+
   function render() {
     renderControls();
     const view = document.getElementById("view");
-    view.innerHTML = state.view === "formulas" ? renderFormulas() : state.view === "ingredients" ? renderIngredients() : renderProducts();
+    view.innerHTML = state.view === "formulas" ? renderFormulas() : state.view === "ingredients" ? renderIngredients() : state.view === "labor" ? renderLabor() : renderProducts();
     document.getElementById("foot").innerHTML = `Generated from the <span class="num">db/</span> folder of the BostonBakery repo. Prices as of ${esc(DATA.asOf)}. Rebuild with <span class="num">tools/build_viewer.py</span> after changing the data.`;
   }
 
@@ -563,11 +654,12 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
   function fromHash() { setView((location.hash || "").replace("#", "")); }
 
   document.addEventListener("click", (e) => {
-    const t = e.target.closest("[data-toggle],[data-view],[data-channel],[data-cat]");
+    const t = e.target.closest("[data-toggle],[data-view],[data-channel],[data-cat],[data-lcat]");
     if (!t) return;
     if (t.dataset.view) { if (location.hash !== "#" + t.dataset.view) location.hash = t.dataset.view; else setView(t.dataset.view); return; }
     if (t.dataset.channel) { state.channel = t.dataset.channel; try { localStorage.setItem("fb-channel", state.channel); } catch (err) {} render(); return; }
     if (t.dataset.cat) { state.cat = t.dataset.cat; render(); return; }
+    if (t.dataset.lcat) { state.lcat = t.dataset.lcat; render(); return; }
     const key = t.dataset.toggle;
     if (state.open.has(key)) state.open.delete(key); else state.open.add(key);
     render();

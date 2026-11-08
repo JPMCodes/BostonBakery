@@ -26,3 +26,8 @@ notes:
 history:
   - date: 2026-11-06
     change: "First approved version; tested 2026-11-06 for the breakfast sandwich (rave reviews)."
+
+labor:
+  batch_min: 0.55
+  production_batches: 1
+  note: "Per roll: shape, pan, egg wash, bake handling."

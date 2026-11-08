@@ -27,3 +27,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Drafted for the Fennel Herb Salad Bowl."
+
+labor:
+  batch_min: 16
+  production_batches: 2
+  note: "Two batches: juice lemons, mince shallot, whisk, clean up."

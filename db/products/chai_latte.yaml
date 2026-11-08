@@ -33,3 +33,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Added with a suggested $4.75."
+
+par_daily: 15
+labor:
+  unit_min: 1.2
+  note: "Steam the milk and pour."

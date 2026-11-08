@@ -104,3 +104,16 @@ carrot,Carrot,produce,,"Carrots, peeled and diced; priced by usable weight",,,,
 onion_yellow,Yellow onion,produce,,"Yellow onion, diced; priced by usable weight",,,,
 cup_soup_12oz,Soup cup 12 oz with lid,packaging,,"Double poly-coated paper soup cup with vented paper lid; holds about 10 oz cleanly",,,,
 spoon_wood,Wooden spoon,packaging,,"Disposable wooden spoon",,,,
+chocolate_chips_semisweet,Chocolate chips (semisweet),chocolate,soy,"Semisweet chips, about 41% cacao (for example Guittard)",,,,"Contains soy lecithin; most brands also warn they may contain milk. Check the chosen brand"
+chocolate_bittersweet,Bittersweet chocolate (60–70%),chocolate,soy,"Bittersweet chocolate callets or wafers, 60–70% cacao",,,,"Most contain soy lecithin; check the chosen brand"
+cocoa_dutch,Cocoa powder (Dutch-process),chocolate,,"Dutch-process cocoa, 22–24% fat (for example Guittard Cocoa Rouge)",,,,
+chamomile_dried,Chamomile (dried flowers),tea,,"Dried whole chamomile flowers for the lemonade base",,,,"Caffeine-free. Chamomile is in the ragweed family; a few people with ragweed allergy react to it"
+strawberries_frozen,Strawberries (frozen),fruit,,"Frozen whole strawberries, no sugar added",,,,
+oat_milk_barista,Oat milk (barista),dairy alternative,,"Oatly Barista Edition or equal; steams like whole milk",,1.03,,"Oats aren't a major allergen; Oatly's US oat milk is certified gluten-free"
+almond_milk_barista,Almond milk (barista),dairy alternative,tree nuts,"Califia Farms Barista Blend or equal",,1.01,,
+bag_glassine_1lb,Glassine bag 1 lb,packaging,,"Grease-resistant glassine bag, 1 lb size; holds one 6 oz cookie",,,,
+box_4pack,Window box for 4 rolls,packaging,,"Kraft window bakery box about 9 × 9 × 4 in, for a 4-pack of cinnamon rolls",,,,
+box_cake_10in,Cake box 10 × 10 × 5 in,packaging,,"White auto-popup window cake box for a whole 12-cup bundt",,,,
+box_catering_quarter,Catering box 14 × 10 × 4 in,packaging,,"Kraft auto-popup window box, quarter-sheet size, for a dozen pastries",,,,
+coffee_traveler_96oz,Coffee traveler 96 oz,packaging,,"Insulated take-out coffee box with spout, 96 oz",,,,
+service_kit_coffee,Coffee service kit,packaging,,"12 sugar packets and 12 wooden stirrers for a coffee traveler",,,,

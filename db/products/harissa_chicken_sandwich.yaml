@@ -46,3 +46,8 @@ history:
   - date: 2026-11-08
     version: "1.1"
     change: 'Moved to the nigella-seeded oval roll, so it doesn''t look like the breakfast sandwiches.'
+
+par_daily: 15
+labor:
+  unit_min: 2.3
+  note: "Toast, slice the chicken, build and wrap."

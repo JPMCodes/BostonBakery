@@ -37,3 +37,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted at a suggested $4.50."
+
+par_daily: 24
+labor:
+  unit_min: 0.35
+  note: "Line, scoop 130 g and cover the night before; top and load in the morning."

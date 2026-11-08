@@ -31,3 +31,8 @@ notes:
 history:
   - date: 2026-11-06
     change: "First approved version. White-sugar filling tested on 2026-11-06 with 25 g honey per 245 g; this version swaps the honey for glucose syrup 1:1 (pending first bake) and scales to 12 rolls of 22 g."
+
+labor:
+  batch_min: 8
+  production_batches: 3
+  note: "Three batches: scale and beat the filling."

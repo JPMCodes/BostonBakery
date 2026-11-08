@@ -1,0 +1,38 @@
+id: cinnamon_roll_4pack
+name: Cinnamon Roll 4-Pack
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "Four cinnamon rolls in a window gift box. Pre-order by 2 pm the day before."
+waste_pct: 0
+
+build:
+  - {item: cinnamon_roll, qty: 4, unit: each}
+  - {item: box_4pack, qty: 1, unit: each}
+  - {item: paper_wax_square, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Box four glazed rolls on a dry-wax sheet and label with the order name, ingredients, allergens and date."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 18.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Confirm four 4 oz rolls fit the 9 × 9 in box without the glaze touching the lid."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $18.00."
+
+par_daily: 3
+labor:
+  unit_min: 0.75
+  note: "Fold, fill and label the box."

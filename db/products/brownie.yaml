@@ -1,0 +1,40 @@
+id: brownie
+name: Brownie
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "A thick, fudgy brownie with bittersweet chocolate, Dutch cocoa, a shot of house espresso and chocolate chips, under a shiny crackled top. About 125 g, 1/16 of a pan."
+batch_units: 16
+waste_pct: 3
+
+build:
+  - {item: brownie_pan, qty: 1, unit: each}
+  - {item: bag_glassine_half_lb, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  cut: "Cut the chilled pan 4 × 4 with a hot knife, wiping it between cuts."
+  hold: "Keeps 3 days covered at room temperature."
+  packaging: "To go: a 1/2 lb glassine bag and a napkin. For here: a plate."
+
+allergens_declared: [egg, milk, soy, wheat]
+
+pricing:
+  suggested_retail_usd: 4.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Test bake: set center at 195°F, crackled top, clean cuts after chilling."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $4.50."
+
+par_daily: 24
+labor:
+  unit_min: 0.15
+  note: "Cut and set out one brownie."

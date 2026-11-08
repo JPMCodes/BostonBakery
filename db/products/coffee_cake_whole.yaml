@@ -1,0 +1,37 @@
+id: coffee_cake_whole
+name: Whole Sour Cream Coffee Cake
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "The whole 12-cup bundt, uncut, in a window cake box. Serves 16. Pre-order 48 hours ahead."
+waste_pct: 0
+
+build:
+  - {item: coffee_cake_bundt, qty: 16, unit: each, note: "one whole cake"}
+  - {item: box_cake_10in, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Box the cooled, uncut cake and label with the order name, ingredients, allergens and date."
+
+allergens_declared: [egg, milk, tree nuts, wheat]
+
+pricing:
+  suggested_retail_usd: 45.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Confirm the cake travels without the streusel top shedding."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $45.00."
+
+par_daily: 0.5
+labor:
+  unit_min: 1.0
+  note: "Box and label; the cake's own labor comes from its formula."

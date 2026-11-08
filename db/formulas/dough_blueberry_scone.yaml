@@ -51,3 +51,8 @@ history:
   - date: 2026-11-07
     version: "1.2"
     change: "Sour cream version confirmed. Portion cut from 100 g to 95 g, and the batch scaled to 1,152 g (×0.97) so it makes exactly 12. Pending a test bake."
+
+labor:
+  batch_min: 26
+  production_batches: 2
+  note: "Two batches (24 scones): scale, cut in the butter, mix, fold the berries, clean up. Portioning is in the scone product."

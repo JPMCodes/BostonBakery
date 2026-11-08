@@ -31,10 +31,15 @@ method:
   - "Hot-hold at 135°F or above. To keep leftovers, cool fast in shallow pans or an ice bath, refrigerate, and use within 4 days, reheating to 165°F."
 
 notes:
-  - "About 20 minutes of hands-on work for 18 servings; no soaking, one pot and an immersion blender."
+  - "About 25 minutes of hands-on work for 18 servings; no soaking, one pot and an immersion blender."
   - "Vegan and made without wheat, eggs or dairy, so it carries none of the major allergens. The kitchen handles wheat, so don't call it gluten-free."
 
 history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted."
+
+labor:
+  batch_min: 26
+  production_batches: 1
+  note: "One pot: dice onion and carrot, cook, blend, clean up."

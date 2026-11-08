@@ -37,3 +37,8 @@ history:
   - date: 2026-11-07
     version: "1.1"
     change: "Price raised to $4.50 for margin; at $3.50 the tuna scoop cost 38% of its price at distributor prices."
+
+par_daily: 6
+labor:
+  unit_min: 0.4
+  note: "Portion, lid and label."

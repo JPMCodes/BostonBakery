@@ -26,3 +26,8 @@ specs:
 history:
   - date: 2026-11-07
     change: "Formulated; dial in once the roaster is chosen."
+
+labor:
+  batch_min: 16
+  production_batches: 2
+  note: "Two batches: grind, set the steep, filter the next day, clean up."

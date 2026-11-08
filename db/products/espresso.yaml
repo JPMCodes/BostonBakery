@@ -31,3 +31,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Added with a suggested $3.50."
+
+par_daily: 15
+labor:
+  unit_min: 0.2
+  note: "Serve; the shot is in the espresso formula."

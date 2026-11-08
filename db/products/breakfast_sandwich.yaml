@@ -46,3 +46,8 @@ history:
   - date: 2026-11-07
     version: "1.1"
     change: "Costed to-go packaging: insulated foil wrap, label, kraft bag and napkin."
+
+par_daily: 30
+labor:
+  unit_min: 3
+  note: "Toast the roll, fry the egg, melt the cheese, build and wrap."

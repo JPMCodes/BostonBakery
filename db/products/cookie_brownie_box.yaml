@@ -1,0 +1,39 @@
+id: cookie_brownie_box
+name: Cookie & Brownie Box (12)
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "Six chocolate chip walnut cookies and six brownies, with napkins. Pre-order by 2 pm the day before."
+waste_pct: 0
+
+build:
+  - {item: cookie_chocolate_chip, qty: 6, unit: each}
+  - {item: brownie, qty: 6, unit: each}
+  - {item: box_catering_quarter, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 12, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Pack the box and label with the order name, ingredients, allergens and date."
+
+allergens_declared: [egg, milk, soy, tree nuts, wheat]
+
+pricing:
+  suggested_retail_usd: 50.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Confirm 6 cookies and 6 brownies fit the 14 × 10 × 4 in box."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $50.00, the same as the pastry box."
+
+par_daily: 0.5
+labor:
+  unit_min: 1.5
+  note: "Fold, pack and label the box."

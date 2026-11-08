@@ -1,0 +1,46 @@
+id: dough_cookie_levain
+name: Chocolate Chip Walnut Cookie Dough
+kind: dough
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [cookie_chocolate_chip]
+yield:
+  grams: 4080
+  description: "24 cookies at 170 g (6 oz)"
+
+ingredients:
+  - {stage: Creamed, item: butter_unsalted, qty: 584, unit: g, note: "cold, 1/2-inch cubes"}
+  - {stage: Creamed, item: sugar_brown_light, qty: 515, unit: g}
+  - {stage: Creamed, item: sugar_granulated, qty: 257, unit: g}
+  - {stage: Wet, item: egg_large, qty: 257, unit: g, note: "about 5 eggs, cold"}
+  - {stage: Wet, item: vanilla_extract, qty: 10, unit: g}
+  - {stage: Dry, item: flour_pastry, qty: 489, unit: g, note: "in place of cake flour, for a tender center"}
+  - {stage: Dry, item: flour_ap, qty: 489, unit: g}
+  - {stage: Dry, item: baking_powder, qty: 10, unit: g}
+  - {stage: Dry, item: baking_soda, qty: 5, unit: g}
+  - {stage: Dry, item: salt_fine, qty: 15, unit: g}
+  - {stage: Mix-ins, item: chocolate_chips_semisweet, qty: 875, unit: g}
+  - {stage: Mix-ins, item: walnuts, qty: 592, unit: g, note: "raw halves and pieces, broken by hand"}
+
+method:
+  - "Beat the cold butter with both sugars on low, then medium, just until no butter lumps remain, about 2 minutes. Don't cream it fluffy: a dense, cold dough keeps the cookie tall."
+  - "Beat in the eggs and vanilla on low until just combined."
+  - "Add the flours, baking powder, baking soda and salt and mix on low until a few dry streaks remain. Add the chocolate and walnuts and mix just until even."
+  - "Scoop 170 g balls and leave them tall and craggy, not rolled smooth. Freeze on sheet pans, then bag. Keeps 1 month frozen."
+
+specs:
+  portion_g: 170
+
+notes:
+  - "Benchmark: Levain's chocolate chip walnut cookie, about 6 oz, sold at about $4.50 at its two Boston shops. Its thickness comes from cold dough meeting a hot oven: the outside sets before the center can spread. Baking from frozen is the house version of that, and it means the dough is made once or twice a week and the cookies are baked in rounds all day."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."
+
+labor:
+  batch_min: 25
+  production_batches: 1
+  note: "Scale, mix and clean up for 24 cookies. Portioning is in the cookie product."

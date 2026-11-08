@@ -33,3 +33,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Added with a suggested $4.00."
+
+par_daily: 40
+labor:
+  unit_min: 0.4
+  note: "Ice, cold brew, water, lid."

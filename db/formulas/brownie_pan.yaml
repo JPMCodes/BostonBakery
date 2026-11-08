@@ -1,0 +1,44 @@
+id: brownie_pan
+name: Brownies (quarter-sheet pan)
+kind: cake
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [brownie]
+yield:
+  grams: 2000
+  units: 16
+  description: "one 13 × 9 in pan, about 2,000 g baked; 16 brownies of about 125 g"
+
+ingredients:
+  - {stage: Melted, item: butter_unsalted, qty: 375, unit: g}
+  - {stage: Melted, item: chocolate_bittersweet, qty: 285, unit: g, note: "60–70%"}
+  - {stage: Melted, item: cocoa_dutch, qty: 70, unit: g}
+  - {stage: Melted, item: espresso_double, qty: 1, unit: each, note: "one double shot from the bar; deepens the chocolate"}
+  - {stage: Whipped, item: egg_large, qty: 375, unit: g, note: "about 7 1/2 eggs"}
+  - {stage: Whipped, item: sugar_granulated, qty: 520, unit: g}
+  - {stage: Whipped, item: sugar_brown_light, qty: 130, unit: g}
+  - {stage: Whipped, item: vanilla_extract, qty: 12, unit: g}
+  - {stage: Whipped, item: salt_fine, qty: 7, unit: g}
+  - {stage: Folded, item: flour_ap, qty: 175, unit: g}
+  - {stage: Folded, item: chocolate_chips_semisweet, qty: 165, unit: g}
+
+method:
+  - "Melt the butter and bittersweet chocolate together, then whisk in the cocoa and the espresso shot."
+  - "Whip the eggs, both sugars, vanilla and salt on high for 3 minutes, until pale and thick. This gives the shiny, crackled top."
+  - "Fold the warm chocolate into the eggs, then the flour, then the chips."
+  - "Spread in a parchment-lined 13 × 9 in quarter-sheet pan. Default bake until confirmed: 350°F for 28–32 minutes, until the center reads about 195°F."
+  - "Cool completely, then chill 1 hour for clean cuts."
+
+notes:
+  - "Bakes at 350°F, the same oven setting as the rolls and the coffee cake, so it fits in their bake window."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."
+
+labor:
+  batch_min: 26
+  production_batches: 2
+  note: "Two pans at once: melt, whip, fold, pan, load and unload, clean up. Cutting is in the brownie product."

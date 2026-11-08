@@ -36,3 +36,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted at a suggested $4.50."
+
+par_daily: 16
+labor:
+  unit_min: 0.1
+  note: "Plate or bag one slice; cutting is in the cake formula."

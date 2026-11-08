@@ -26,3 +26,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Recipe as received."
+
+labor:
+  batch_min: 8
+  production_batches: 4
+  note: "A 4× batch of crumb, enough for 48 scones."

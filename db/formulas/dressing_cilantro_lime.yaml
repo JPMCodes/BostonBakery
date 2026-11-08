@@ -28,3 +28,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Drafted for the Cilantro Lime Quinoa Salad."
+
+labor:
+  batch_min: 14
+  production_batches: 2
+  note: "Two batches: juice limes, blend, clean up."

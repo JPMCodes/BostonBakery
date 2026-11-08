@@ -1,0 +1,41 @@
+id: cookie_chocolate_chip
+name: Chocolate Chip Walnut Cookie
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "A 6 oz Levain-style cookie: crisp and golden outside, thick and gooey inside, loaded with semisweet chips and walnuts. Baked from frozen dough in rounds all day."
+batch_units: 24
+waste_pct: 5
+
+build:
+  - {item: dough_cookie_levain, qty: 170, unit: g}
+  - {item: bag_glassine_1lb, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  bake: "Default until confirmed: bake straight from the freezer at 410°F (375°F convection) for 13–16 minutes, 8 to a half-sheet, until golden outside and still soft in the center. Cool on the pan 15 minutes; they finish setting there."
+  hold: "Best the day they're baked. Bake small rounds through the day instead of one big morning bake."
+  packaging: "To go: a 1 lb glassine bag and a napkin. For here: a plate."
+
+allergens_declared: [egg, milk, soy, tree nuts, wheat]
+
+pricing:
+  suggested_retail_usd: 4.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Test bake from frozen: height, spread and a gooey center at 13–16 minutes."
+    - "Choose the chocolate and check its label (soy, may-contain milk)."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $4.50."
+
+par_daily: 36
+labor:
+  unit_min: 0.35
+  note: "Scoop and freeze one 170 g ball (0.25 min); pan and bake handling (0.1 min)."

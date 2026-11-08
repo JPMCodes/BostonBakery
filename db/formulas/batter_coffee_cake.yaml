@@ -39,3 +39,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted."
+
+labor:
+  batch_min: 26
+  production_batches: 2
+  note: "Batter for two cakes at once: scale, cream, mix, clean up."

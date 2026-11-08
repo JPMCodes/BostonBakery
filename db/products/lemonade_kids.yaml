@@ -1,0 +1,40 @@
+id: lemonade_kids
+name: Strawberry Chamomile Lemonade
+category: drink
+status: draft
+version: "1.0"
+approved_on: null
+description: "Caffeine-free strawberry lemonade made on chamomile tea, over ice in a 16 oz cup. Made for kids; adults will order it too."
+waste_pct: 3
+
+build:
+  - {item: lemonade_strawberry_chamomile, qty: 300, unit: g, note: "about 10 oz"}
+  - {item: ice, qty: 120, unit: g}
+  - {item: cup_cold_16oz, qty: 1, unit: each}
+  - {item: lid_cold_sip, qty: 1, unit: each}
+
+production:
+  build:
+    - "Fill the cup a third with ice, stir the lemonade base, and pour 300 g. Lid it."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 3.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Taste with kids: sweetness and tartness."
+    - "Check that the color holds for 3 days."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $3.50."
+
+par_daily: 20
+labor:
+  unit_min: 0.3
+  note: "Ice, pour, lid."

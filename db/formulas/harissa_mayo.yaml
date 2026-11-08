@@ -21,3 +21,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted for the harissa chicken sandwich."
+
+labor:
+  batch_min: 4
+  production_batches: 2
+  note: "Whisk a double batch."

@@ -55,3 +55,8 @@ history:
   - date: 2026-11-07
     version: "1.1"
     change: "Price cut by $1.00 to $11.50, so the salad with a protein scoop lands at $15.00–$16.00."
+
+par_daily: 10
+labor:
+  unit_min: 3.3
+  note: "Roast corn, cut vegetables, toss, bowl, dressing cup and label."

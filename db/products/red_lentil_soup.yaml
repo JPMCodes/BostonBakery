@@ -37,3 +37,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted at a suggested $7.00."
+
+par_daily: 18
+labor:
+  unit_min: 0.4
+  note: "Ladle, drizzle and lid."

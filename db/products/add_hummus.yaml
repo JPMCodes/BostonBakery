@@ -35,3 +35,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Drafted at a suggested $3.50, replacing the tuna salad scoop."
+
+par_daily: 6
+labor:
+  unit_min: 0.45
+  note: "Portion, drizzle, lid and label."

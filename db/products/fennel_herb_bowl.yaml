@@ -54,3 +54,8 @@ history:
   - date: 2026-11-07
     version: "1.1"
     change: "Price cut by $1.00 to $12.50, so the bowl with a protein scoop lands at $16.00–$17.00."
+
+par_daily: 8
+labor:
+  unit_min: 4.8
+  note: "Shave fennel, segment oranges, pick herbs, shave Parmesan, toast pepitas, build, dressing cup and label."

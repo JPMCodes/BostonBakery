@@ -34,3 +34,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Added with a suggested $5.00."
+
+par_daily: 30
+labor:
+  unit_min: 0.4
+  note: "Ice and milk while the shot pulls, then the shot and a lid."

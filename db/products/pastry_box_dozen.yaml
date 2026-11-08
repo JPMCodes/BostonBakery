@@ -1,0 +1,41 @@
+id: pastry_box_dozen
+name: Breakfast Pastry Box (12)
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "A dozen for the office: 4 cinnamon rolls, 4 blueberry scones and 4 blueberry muffins, with napkins. Pre-order by 2 pm the day before."
+waste_pct: 0
+
+build:
+  - {item: cinnamon_roll, qty: 4, unit: each}
+  - {item: blueberry_scone, qty: 4, unit: each}
+  - {item: blueberry_muffin, qty: 4, unit: each}
+  - {item: box_catering_quarter, qty: 1, unit: each}
+  - {item: paper_wax_square, qty: 4, unit: each, note: "under the glazed rolls"}
+  - {item: napkin_kraft, qty: 12, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Pack the box from the morning bake, rolls on wax squares, and label with the order name, ingredients, allergens and date."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 50.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Confirm a dozen fit the 14 × 10 × 4 in box."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $50.00."
+
+par_daily: 1
+labor:
+  unit_min: 2.0
+  note: "Fold, pack and label the box."

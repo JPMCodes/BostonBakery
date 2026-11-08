@@ -9,6 +9,8 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Mini Vanilla Scone, 31 g (pending test) | **$2.25** | $0.13–$0.20 | $0.02–$0.07 | 7–12% | $1.98–$2.10 (88–93%) |
 | Sour Cream Coffee Cake Slice, 107 g (draft) | **$4.50** | $0.49–$0.79 | $0.06–$0.11 | 12–20% | $3.60–$3.96 (80–88%) |
 | Blueberry Muffin, 130 g batter (draft) | **$4.50** | $0.56–$1.01 | $0.11–$0.19 | 15–27% | $3.30–$3.83 (73–85%) |
+| Chocolate Chip Walnut Cookie, 170 g (draft) | **$4.50** | $1.17–$1.76 | $0.03–$0.08 | 27–41% | $2.66–$3.30 (59–73%) |
+| Brownie, about 125 g (draft) | **$4.50** | $0.99–$1.34 | $0.02–$0.07 | 22–31% | $3.09–$3.49 (69–78%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 | Harissa Chicken Sandwich, lunch (draft) | **$12.50** | $1.51–$2.76 | $0.12–$0.25 | 13–24% | $9.49–$10.87 (76–87%) |
@@ -18,6 +20,13 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Red Lentil & Aleppo Pepper Soup, 300 g (draft) | **$7.00** | $0.44–$0.88 | $0.24–$0.47 | 10–19% | $5.65–$6.32 (81–90%) |
 | Chicken Salad Scoop, 100 g add-on (draft) | **$4.50** | $0.77–$1.18 | $0.04–$0.14 | 18–29% | $3.18–$3.69 (71–82%) |
 | Hummus Scoop, 100 g add-on (draft) | **$3.50** | $0.55–$0.97 | $0.04–$0.14 | 17–32% | $2.39–$2.91 (68–83%) |
+| Cinnamon Roll 4-Pack, pre-order (draft) | **$18.00** | $1.10–$2.43 | $0.77–$1.35 | 10–21% | $14.22–$16.12 (79–90%) |
+| Whole Sour Cream Coffee Cake, pre-order (draft) | **$45.00** | $7.40–$12.00 | $0.91–$1.33 | 18–30% | $31.67–$36.69 (70–82%) |
+| Breakfast Pastry Box (12), catering (draft) | **$50.00** | $5.30–$10.07 | $1.01–$1.74 | 13–24% | $38.19–$43.69 (76–87%) |
+| Cookie & Brownie Box (12), catering (draft) | **$50.00** | $12.43–$17.88 | $0.97–$1.66 | 27–39% | $30.46–$36.60 (61–73%) |
+| Coffee Traveler (96 oz), catering (draft) | **$40.00** | $6.74–$13.65 | $6.84–$12.62 | 34–66% | $13.74–$26.42 (34–66%) |
+
+The margins above are after food and packaging only. Prep labor per item, and prime cost with it, are in the Prep labor section of [`costing.md`](costing.md) and in [`production.md`](production.md).
 
 The cost range runs from the distributor estimate to the retail estimate. Packaging is costed for to-go orders; served on a plate for here, it drops out. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.
 
@@ -34,6 +43,10 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Both salads | Clear 32 oz PET bowl and lid, 2 oz dressing cup and lid, wooden fork, kraft napkin, grab-and-go label | $0.28–$0.63 |
 | Soup | 12 oz paper soup cup with vented lid, wooden spoon, kraft napkin | $0.24–$0.47 |
 | Chicken salad and hummus scoops | 4 oz cup and lid, grab-and-go label | $0.04–$0.14 |
+| Cookie | 1 lb glassine bag, kraft napkin | $0.03–$0.08 |
+| Brownie | 1/2 lb glassine bag, kraft napkin | $0.02–$0.07 |
+| Pre-orders and catering boxes | 9 × 9 in window box (4-pack), 10 × 10 × 5 in cake box or 14 × 10 × 4 in catering box, plus label, wax sheets and napkins | $0.77–$1.74 a box |
+| Coffee Traveler | 96 oz traveler, 12 cups and lids, two milk cups, sugar kit, napkins | $6.84–$12.62 |
 
 - **Box only what needs it:** glazed, frosted or fragile items, multi-packs and gifts. Sturdy, dry pastries go in a bag. Each box swapped for a bag saves about $0.28; at 100 pastries a day that's about $10,000 a year.
 - **The roll's box is its biggest cost.** At distributor prices the box ($0.32) costs more than the roll's food ($0.29), and packaging is over half the roll's cost. A 6×6 sugarcane-fiber clamshell (about $0.15 at WebstaurantStore) would halve the packaging, at some cost to presentation.
@@ -118,6 +131,22 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Blueberries are the biggest cost:** about $0.30 a muffin at distributor prices ($3.50/lb), and more out of season.
 - **The tulip liner earns its place:** at $0.06 it gives the bakery-case look and room for a tall dome. With the bag and napkin, packaging is $0.11, about a sixth of the muffin's cost.
 - **Overnight batter, morning bake:** scooped and chilled the day before, the muffins go straight from the fridge into the oven, so the early shift only bakes.
+
+## Chocolate Chip Walnut Cookie and Brownie: $4.50 each (draft)
+
+| Comparable | Price | Note |
+|---|---|---|
+| Levain chocolate chip walnut cookie, 6 oz | about $4.50 | Two Boston shops; aggregator listing |
+| Crumbl cookie | $4.49–$5.49 | National pickup pages, 2025 |
+| Flour, Tatte and La Saison cookies | $3.00–$4.00 | Regular-size cookies |
+| Flour brownie | $5.00 | |
+
+- **The cookie is Levain's size at Levain's price:** 170 g of dough, crisp outside and gooey inside. Levain has two Boston shops, so ours has to win on freshness: baked from frozen in small rounds all day instead of once in the morning.
+- **The brownie is $0.50 under Flour's:** bittersweet chocolate, Dutch cocoa, chips and a shot of house espresso, cut 16 to a quarter-sheet pan.
+- **Chocolate makes the cookie the costliest pastry:** $1.20 at distributor prices, 27% of its price, and the chips ($0.55) and walnuts ($0.28) are two-thirds of that. Hershey's chips in place of Guittard would save about $0.12 a cookie, at a cost in flavor. The brownie runs 22%.
+- **Little labor, little waste:** 1.5 minutes a cookie and 1.1 a brownie. Frozen dough and a 3-day brownie mean little gets thrown out.
+- **New allergen, soy:** most semisweet and bittersweet chocolate contains soy lecithin, so both carry soy, and the cookie also has walnuts.
+- **Both feed catering:** six of each make the Cookie & Brownie Box.
 
 ## Breakfast Sandwiches: $8.50, or $10.25 with fennel sausage
 
@@ -205,7 +234,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Flour spicy tomato soup on DoorDash | $8.19 | Delivery-app price |
 
 - **At par with Flour:** $7.00 matches Flour's soup of the day, the only Boston bakery-café soup price found. The market research itself has no soup data.
-- **Easy and cheap:** one pot, no soaking and an immersion blender, about 20 minutes of hands-on work for 18 servings. Food costs $0.44 a serving at distributor prices; the lentils are the biggest line at $3.00 a pot.
+- **Easy and cheap:** one pot, no soaking and an immersion blender, about 25 minutes of hands-on work for 18 servings. Food costs $0.44 a serving at distributor prices; the lentils are the biggest line at $3.00 a pot.
 - **Packaging is a third of the cost:** the cup and lid are $0.21, and $0.24 with the spoon and napkin. 300 g (about 10 oz) fills the 12 oz cup with room to carry it; reviewers say a full 12 oz doesn't fit these cups.
 - **No major allergens:** vegan and made without wheat, eggs or dairy, the only food on the menu with none. The kitchen handles wheat, so don't call it gluten-free.
 - **10% waste allowance** for soup left in the kettle at close. Leftovers can be cooled fast and kept 4 days.
@@ -223,6 +252,7 @@ Specialty beans from a Boston-area roaster, double-wall compostable hot cups (no
 | Iced Latte, 16 oz | **$5.00** | $1.02–$1.83 | 20–37% | $4.50 | $4.85 | Starbucks grande $5.95 (national, undated) |
 | Matcha Latte, 12 oz | **$5.25** | $1.06–$1.67 | 20–32% | $5.00 | not found | |
 | Chai Latte, 12 oz | **$4.75** | $1.58–$2.64 | 33–56% | $4.75 | $3.75–$4.75 (large $5.25) | |
+| Strawberry Chamomile Lemonade (kids), 16 oz with ice | **$3.50** | $0.77–$1.54 | 22–44% | $4.00 lemonade (Boston Common) | | |
 
 Flour's drink prices are from its Boston Common ordering page and its drip and iced coffee from the market research; Flour doesn't state cup sizes. Tatte's chai prices are from Toast listings.
 
@@ -231,11 +261,50 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - **Weakest margin is the chai:** 33% at distributor prices, because a premium concentrate costs about $1.12 a drink. A house chai of black tea, whole spices and sugar, like Tatte's, would cut that by more than half.
 - **Drip assumes dumping 15% of every batch** at the 60-minute hold. Selling through faster lowers the cost.
 - **Espresso is costed to go.** For here, in ceramic, it's about $0.10 cheaper.
-- **Not costed yet:** alternative milks and syrups.
+- **Strawberry chamomile lemonade for kids:** caffeine-free, made on chamomile tea with strawberry purée and fresh lemon, $0.50 under Flour's $4.00 lemonade. Fresh lemon juice is the biggest line ($0.32 a drink) and most of the prep, so the base is made in double batches: 1.5 minutes a drink. Chamomile is in the ragweed family, which is worth a line on the menu for allergy-prone families.
+- **Not costed yet:** syrups.
+
+## Alternative milks: oat and almond, $1.00 each (draft)
+
+| For a typical 270 g of milk | Distributor | Grocery |
+|---|---|---|
+| Whole milk | $0.26 | $0.33 |
+| Oat milk (Oatly Barista) | $0.90 | $1.17 |
+| Almond milk (Califia Barista) | $1.04 | $1.44 |
+
+- **A must-have, not a profit center:** after subtracting the whole milk they replace, oat adds $0.65 and almond $0.78 at distributor prices. A $1.00 upcharge keeps $0.35 on oat and $0.22 on almond. At grocery prices almond loses $0.11 a drink.
+- **Don't go under $1.00:** at the $0.62–$0.70 national chains charged in older reports, an oat latte would earn less than a dairy one. Some chains have dropped the charge altogether (Starbucks did in late 2024). If competition forces that here, build the cost into the latte price instead.
+- **Almond brings tree nuts to the bar:** give it its own steaming pitcher.
+
+## Pre-order and catering (draft)
+
+| Item | Price | Same items bought singly | Food and packaging, % of price | With prep labor |
+|---|---|---|---|---|
+| Cinnamon Roll 4-Pack | $18.00 | $19.00 | 10–21% | 36% |
+| Whole Sour Cream Coffee Cake, 16 slices | $45.00 | $72.00 | 18–30% | 42% |
+| Breakfast Pastry Box: 4 rolls, 4 scones, 4 muffins | $50.00 | $55.00 | 13–24% | 32% |
+| Cookie & Brownie Box: 6 and 6 | $50.00 | $54.00 | 27–39% | 38% |
+| Coffee Traveler, 96 oz, about 12 cups | $40.00 | $42.00 for 12 drips | 34–66% | 38% |
+
+"With prep labor" is food, packaging and prep labor at distributor prices.
+
+| Boston comparable | Price |
+|---|---|
+| Flour sticky bun 4-pack, pre-order | $22 (Mother's Day 2026) |
+| Crumbl 4-pack | $15.99–$19.99 (national) |
+| Flour whole cakes | 6-inch $40–$42, 8-inch $57, 10-inch $74 |
+| 8-inch bundt cakes | $18.50–$35 (national) |
+
+- **The 4-pack carries the brand:** the cinnamon roll in a window box, $4 under Flour's sticky-bun 4-pack and a dollar off four singles. It's the item for gifts, office drop-offs and holidays.
+- **No waste:** pre-orders are made to order, so they carry no waste allowance, and the boxes are packed from the morning bake.
+- **Lead times:** 2 pm the day before for boxes and 4-packs, 48 hours for whole cakes, 2 hours for coffee.
+- **The whole coffee cake is a deal on purpose:** $45 against $72 by the slice, but it's made to order, never sliced, and sold two days ahead.
+- **The coffee traveler's cost is half packaging:** $6.84 of $13.58, mostly the traveler ($3.40) and twelve cups and lids ($2.99). At $40 it's priced like twelve single drips.
+- **Where to sell it:** take pre-orders through the point-of-sale system's online ordering, and list catering on ezCater, where Boston bakeries such as Lakon already sell. Sofra takes cookie-box orders on 72 hours' notice, a model for lead times.
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, breakfast sandwiches $10.20 and $12.30, lunch sandwiches $15.00, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20, soup $8.40) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake, muffin, cookie and brownie $5.40, lemonade $4.20, breakfast sandwiches $10.20 and $12.30, lunch sandwiches $15.00, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20, soup $8.40) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
@@ -250,6 +319,10 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - Starbucks petite scone: [Tasting Table](https://tastingtable.com/1808434/cheapest-vs-most-expensive-food-starbucks-menu) (about $1.75, up to $2.95 in some areas) and [Chowhound](https://www.chowhound.com/1977466/cheapest-food-item-starbucks/) ($2.65; $1.95 at some stores); full-size scone from [Six Storeys](https://sixstoreys.com/?p=31718) (August 2026 menu aggregator). All undated or aggregated national prices.
 - Lunch sandwiches: [`research_notes/Boston bakery market matrix/digests/digest_1_premium_bakery_cafes.md`](../research_notes/Boston%20bakery%20market%20matrix/digests/digest_1_premium_bakery_cafes.md) (Flour BLT as an owner-named signature; Tatte, Sofra and Hi-Rise sandwich prices) and [`gapfill_premium_prices_menus.md`](../research_notes/Boston%20bakery%20market%20matrix/gapfill_premium_prices_menus.md) (Tatte chicken pita and feta-pistachio pita; ham & cheese at Flour, La Saison and Elephantine). Ham: [Double L Ranch hardwood-smoked, 4 × 2.5 lb](https://www.foodservicedirect.com/double-l-ranch-naturally-hardwood-smoked-sliced-ham--2-5-pound----4-per-case-311047.html) and [Rose Packing Black Forest, 4 × 5 lb](https://www.foodservicedirect.com/rose-packing-sliced-black-forest-boneless-cooked-ham--5-pound----4-per-case-271928.html) (FoodServiceDirect). Olives, capers, nigella seeds and vinegar are estimates.
 - Soup: Flour soup of the day, $7.00 on its [South End Toast page](https://order.toasttab.com/online/floursouthend) and at Harvard Square; [Choice 12 oz soup cup with vented lid](https://www.webstaurantstore.com/choice-12-oz-double-wall-poly-paper-soup-hot-food-cup-with-vented-paper-lid-case/760SOUP12PAP.html) (WebstaurantStore); red lentils from [Bob's Red Mill, 25 lb](https://www.foodservicedirect.com/bobs-red-mill-red-lentils-25-pound-21275942.html) and [Palouse, 25 lb](https://palousebrand.com/collections/all/products/red-lentils-25-bucket) (branded; the costing uses a lower broadline estimate); [Aleppo pepper, 1 lb](https://www.gourmetfoodstore.com/aleppo-pepper-16948) (Gourmet Food Store). Onions, carrots, tomato paste and the spoon are estimates.
+- Cookie, brownie and catering comparables: the market research's price matrix (Levain, Crumbl, Flour, Tatte and La Saison cookies; Flour brownie; Flour's sticky-bun 4-pack and whole cakes; Sofra cookie boxes; Lakon on ezCater). Chocolate: [Guittard 41% semisweet chips, 25 lb](https://www.webstaurantstore.com/guittard-25-lb-41-semisweet-chocolate-4m-baking-chips/409G0142C25.html) and [Guittard Cocoa Rouge, 5 lb](https://www.webstaurantstore.com/guittard-5-lb-cocoa-rouge-22-24-fat-dutched-cocoa-powder/999G3023C10.html) (WebstaurantStore); bittersweet callets are an estimate.
+- Milks: [Oatly Barista, 12 × 32 oz](https://www.foodservicedirect.com/oatly-oat-milk-barista-edition-32-fluid-ounce-12-per-case-250050.html) (FoodServiceDirect) and [at HEB](https://www.heb.com/product-detail/oatly-oat-milk-barista-edition-32-oz/4379081); [Califia Barista almond, 6 × 32 oz](https://www.webstaurantstore.com/califia-farms-barista-blend-unsweetened-almond-milk-32-fl-oz-case/110CFAALMBRU.html) (WebstaurantStore). Upcharge context: [VegNews](https://vegnews.com/vegan-health-wellness/how-much-extra-non-dairy-milk-coffee-shops) (older chain upcharges) and [Barista Magazine, 2026](https://www.baristamagazine.com/is-anyone-still-charging-extra-for-alt-milk-in-2026/).
+- Lemonade: Flour's homemade lemonade, $4.00, on its [Boston Common ordering page](https://order.flourbakery.com/order/flour-bakery-cafe-tbd-1b-charles-street-boston-common). Chamomile and frozen strawberries are estimates.
+- Catering packaging: [Kari-Out 1 lb glassine bag](https://www.webstaurantstore.com/kari-out-company-1-lb-plain-glassine-bag-box/9990200.html), [Baker's Lane 10 × 10 × 5 in cake box](https://www.webstaurantstore.com/bakers-lane-10-x-10-x-5-white-auto-popup-window-cake-bakery-box-case/24510105WBABL.html) and [Choice 96 oz coffee traveler](https://argo.webstaurantstore.com/choice-96-oz-beverage-take-out-container-case/500CTOUT96.html) (WebstaurantStore). The 4-pack box and the coffee sugar kit are estimates.
 - Coffee cake benchmark: The Original Boston Cinnamon Walnut Coffee Cake, 24 oz, at [Price Rite](https://www.priceritemarketplace.com/product/boston-cinnamon-walnut-coffee-cake-24-oz-id-00710233990015) ($7.99) and [Stop & Shop](https://stopandshop.com/groceries/breakfast/breakfast-bread-pastries/the-original-boston-cinnamon-walnut-coffee-cake-24-oz-pkg.html); ingredient order from a [retail listing](https://supermarketpuzzle.com/product/the-original-boston-coffee-cake-cinnamon-walnut-coffee-cake-24-oz). Cake-slice prices from the market research's price matrix. Walnuts: [Patterson Nut Company 25 lb](https://www.webstaurantstore.com/patterson-nut-company-walnut-halves-and-pieces-raw-25-lb/113WNPCRW25.html) (WebstaurantStore).
 - Blueberry muffin: Jordan Marsh clone recipes from [New England Today](https://newengland.com/food/breads/jordan-marsh-blueberry-muffins/), [King Arthur](https://www.kingarthurbaking.com/recipes/famous-jordan-marsh-blueberry-muffins-recipe) and [A Family Feast](https://www.afamilyfeast.com/real-jordan-marsh-blueberry-muffins-recipe/print/24520/); [Baker's Mark large tulip baking cup](https://www.webstaurantstore.com/bakers-mark-white-large-tulip-baking-cup-2-x-3-3-4-case/245T170WHTBL.html) (WebstaurantStore). Muffin comparables from the market research's price matrix; turbinado sugar is an estimate.
 - Mini scone inputs: [Kari-Out 1/2 lb glassine bag, 1,000/case](https://www.webstaurantstore.com/kari-out-company-1-2-lb-square-glassine-bag-case/1500100.html) (WebstaurantStore); Nielsen-Massey 32 oz vanilla bean paste at [Walmart](https://www.walmart.com/ip/38442217) ($106.48) and [Restaurantware](https://www.restaurantware.com/products/nielsen-massey-32-0-oz-pure-vanilla-paste-1-count-box) ($134.83).

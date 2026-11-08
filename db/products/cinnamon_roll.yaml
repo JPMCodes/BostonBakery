@@ -66,3 +66,8 @@ history:
   - date: 2026-11-07
     version: "1.2"
     change: "Costed to-go packaging: 4×4×4 kraft window box, wax square and napkin."
+
+par_daily: 60
+labor:
+  unit_min: 1.5
+  note: "Roll out, fill, roll up, cut and pan; bake handling; glaze."

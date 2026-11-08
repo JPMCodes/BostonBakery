@@ -1,0 +1,37 @@
+id: lemonade_strawberry_chamomile
+name: Strawberry Chamomile Lemonade Base
+kind: beverage base
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [lemonade_kids]
+yield:
+  grams: 3750
+  description: "about 12 drinks at 300 g"
+
+ingredients:
+  - {item: water_filtered, qty: 1000, unit: g, note: "just off the boil, for steeping"}
+  - {item: chamomile_dried, qty: 20, unit: g, note: "steep 6 minutes, then strain and press"}
+  - {item: sugar_granulated, qty: 360, unit: g, note: "dissolved in the hot tea"}
+  - {item: water_filtered, qty: 1400, unit: g, note: "cold"}
+  - {item: strawberries_frozen, qty: 600, unit: g, note: "thawed and puréed"}
+  - {item: lemon_juice, qty: 480, unit: g, note: "about 12 lemons"}
+
+method:
+  - "Steep the chamomile in the just-boiled water for 6 minutes. Strain, pressing the flowers, and dissolve the sugar in the hot tea."
+  - "Purée the strawberries with some of the cold water."
+  - "Combine the tea, purée, lemon juice and the rest of the cold water. Chill."
+  - "Refrigerate covered and dated; use within 3 days. Stir before pouring; the purée settles."
+
+notes:
+  - "Caffeine-free, since chamomile is an herbal tea, so it works for kids. Chamomile is in the ragweed family; a few people with ragweed allergy react to it. It isn't a major allergen."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."
+
+labor:
+  batch_min: 30
+  production_batches: 2
+  note: "A double batch (24 drinks, about a day's sales): steep and strain, juice 24 lemons on an electric juicer, purée, mix, clean up."

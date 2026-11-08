@@ -1,0 +1,37 @@
+id: almond_milk_swap
+name: Almond Milk (swap)
+category: add-on
+status: draft
+version: "1.0"
+approved_on: null
+description: "Barista almond milk in place of whole milk in any milk drink. Costed on a typical 270 g of milk, net of the whole milk it replaces."
+waste_pct: 0
+
+build:
+  - {item: almond_milk_barista, qty: 270, unit: g, note: "a typical milk drink's worth"}
+  - {item: milk_whole, qty: 270, unit: g, credit: true, note: "the whole milk it replaces"}
+
+production:
+  build:
+    - "Steam or pour it exactly like whole milk."
+
+allergens_declared: [tree nuts]
+
+pricing:
+  suggested_retail_usd: 1.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Check how it steams and pours for latte art."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $1.00 upcharge."
+
+par_daily: 8
+labor:
+  unit_min: 0
+  note: "No extra work over whole milk."

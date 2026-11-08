@@ -26,3 +26,8 @@ specs:
 history:
   - date: 2026-11-07
     change: "Formulated; dial in once the roaster is chosen."
+
+labor:
+  batch_min: 4
+  production_batches: 7
+  note: "A 1.4 gal brewer batch: weigh, grind, load, start, then dump and rinse the airpot."

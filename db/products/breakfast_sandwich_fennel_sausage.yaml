@@ -56,3 +56,8 @@ history:
   - date: 2026-11-07
     version: "1.2"
     change: "Costed to-go packaging: insulated foil wrap, label, kraft bag and napkin."
+
+par_daily: 20
+labor:
+  unit_min: 3.5
+  note: "As the breakfast sandwich, plus forming and cooking the patty."

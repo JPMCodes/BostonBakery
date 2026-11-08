@@ -25,3 +25,8 @@ history:
   - date: 2026-11-07
     version: "1.0"
     change: "Drafted for the chicken salad add-on."
+
+labor:
+  batch_min: 37
+  production_batches: 4
+  note: "4 kg of breast at once: season and pan, temp and pull, cool, dice, clean up."

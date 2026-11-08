@@ -25,3 +25,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted."
+
+labor:
+  batch_min: 16
+  production_batches: 6
+  note: "Six cakes' worth: toast, cool and chop the walnuts, mix, clean up. Toast the cookie's walnuts in the same run if they're wanted toasted."

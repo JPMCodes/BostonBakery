@@ -46,3 +46,8 @@ history:
   - date: 2026-11-08
     version: "1.1"
     change: "Price raised to $12.50 for margin, level with the harissa chicken sandwich."
+
+par_daily: 12
+labor:
+  unit_min: 1.9
+  note: "Toast, melt, build and wrap."

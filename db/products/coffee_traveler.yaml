@@ -1,0 +1,44 @@
+id: coffee_traveler
+name: Coffee Traveler (96 oz)
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "96 oz of house drip coffee, about twelve 8 oz cups, with cups, lids, napkins, milk and a sugar kit. Order 2 hours ahead."
+waste_pct: 0
+
+build:
+  - {item: batch_brew_coffee, qty: 2840, unit: g, note: "96 fl oz"}
+  - {item: milk_whole, qty: 240, unit: g, note: "in two lidded 4 oz cups"}
+  - {item: coffee_traveler_96oz, qty: 1, unit: each}
+  - {item: cup_hot_12oz, qty: 12, unit: each}
+  - {item: lid_hot, qty: 12, unit: each}
+  - {item: cup_portion_4oz, qty: 2, unit: each}
+  - {item: lid_portion_4oz, qty: 2, unit: each}
+  - {item: napkin_kraft, qty: 12, unit: each}
+  - {item: service_kit_coffee, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Brew fresh, fill the traveler, and bag it with the cups, lids, milk, sugar kit and napkins."
+
+allergens_declared: [milk]
+
+pricing:
+  suggested_retail_usd: 40.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Check how long the traveler keeps the coffee above 150°F."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $40.00."
+
+par_daily: 1
+labor:
+  unit_min: 2.0
+  note: "Fill the traveler and pack the cups, milk and kit; brewing is in the batch formula."

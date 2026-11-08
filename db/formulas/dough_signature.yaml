@@ -45,3 +45,8 @@ notes:
 history:
   - date: 2026-11-06
     change: "First approved version. Test bake on 2026-11-06 in a 76°F kitchen: muffin-tin cinnamon rolls came out 'pretty much perfect' and the 90 g sandwich rolls got rave reviews. Replaces the earlier V4–V6 formulas: V4 would not rise and the V6 trial stalled in bulk."
+
+labor:
+  batch_min: 38
+  production_batches: 3
+  note: "Three batches together in a 20-qt mixer: scale, cook the tangzhong, load and watch the mix, bulk handling, clean up. Feeds the cinnamon rolls and every sandwich roll."

@@ -1,0 +1,6 @@
+# Settings read by tools/costing.py and tools/build_viewer.py.
+
+labor:
+  # Loaded hourly cost of prep labor, used to turn prep minutes into dollars.
+  rate_usd_per_hour: 21.00
+  basis: "BLS bakers $18.54 an hour (May 2025, in research_notes/.../gapfill_boston_costs.md) plus about 13% for payroll taxes, workers' comp and paid leave"

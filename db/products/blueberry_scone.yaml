@@ -46,3 +46,8 @@ history:
   - date: 2026-11-07
     version: "1.2"
     change: "To-go packaging changed from the window box to a kraft bag; a scone is sturdy and unglazed."
+
+par_daily: 24
+labor:
+  unit_min: 0.7
+  note: "Portion and shape, egg wash, press in berries, crumb, bake handling."

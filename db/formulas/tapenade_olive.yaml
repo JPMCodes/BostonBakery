@@ -30,3 +30,8 @@ history:
   - date: 2026-11-08
     version: "1.0"
     change: "Drafted for the ham and cheddar sandwich."
+
+labor:
+  batch_min: 11
+  production_batches: 2
+  note: "Two batches: drain, process, clean the processor."
