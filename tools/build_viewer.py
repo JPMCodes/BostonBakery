@@ -475,7 +475,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     { id: "formulas", label: "Formulas", count: DATA.formulas.length },
     { id: "ingredients", label: "Ingredients", count: DATA.ingredients.length },
     { id: "labor", label: "Labor", count: Math.round(DATA.products.reduce((s, p) => s + p.laborHoursDay, 0)) + " h/day" },
-    { id: "proforma", label: "Pro forma", count: DATA.proforma.sites.length + " sites" }
+    { id: "proforma", label: "Pro forma", count: DATA.proforma.sites.length + (DATA.proforma.sites.length === 1 ? " site" : " sites") }
   ];
   const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["salad", "Salads"], ["soup", "Soups"], ["add-on", "Add-ons"], ["drink", "Drinks"], ["catering", "Pre-order & catering"]];
   const STATUS = { approved: "Approved", pending_test: "Pending test", draft: "Draft", retired: "Retired" };

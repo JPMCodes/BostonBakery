@@ -178,39 +178,3 @@ sites:
     rent_basis: "$35 a sq ft in the 2024 listing, raised 3% a year to $37; NNN charges not stated, $12 assumed"
     risks: "Rent is two years old; two operators closed here in two years; needs bakery-café sales"
     source: "Site scan lease #3; LoopNet 33223782 (2024, snippet); for-lease sign reported July 2026"
-  - id: jamaica_plain
-    name: "349 Centre St, Jamaica Plain"
-    short: Jamaica Plain
-    area: "Centre St between Jackson Square and Hyde Square"
-    format: cafe
-    sqft: 2380
-    seats: 24
-    rent_psf: 30.00
-    nnn_psf: 8.00
-    escalation_pct: 3
-    buildout_psf: 160
-    equipment_credit: 0
-    months_to_open: 6             # hood, grease trap and gas probably reinstalled
-    sales_index: 0.75
-    kitchen: "Restaurants about 2011–2022 with a hood, wall exhaust and grease trap on record; since renovated as flex space, so the hood and trap probably need reinstalling"
-    rent_basis: "Whole space at $5,950 a month ($30 a sq ft) in a live boston.com listing; lease type not stated, $8 NNN assumed"
-    risks: "Kitchen likely removed; lease type not stated; the listing also offers a 1,200 sq ft section"
-    source: "Site scan lease #2; boston.com 73578246, live 2026-11-07"
-  - id: egleston
-    name: "3089-3091 Washington St, Boston"
-    short: Egleston Square
-    area: "Egleston Square, Roxbury and Jamaica Plain"
-    format: counter
-    sqft: 1490
-    seats: 10
-    rent_psf: 29.00
-    nnn_psf: 6.00
-    escalation_pct: 3
-    buildout_psf: 110
-    equipment_credit: 0
-    months_to_open: 4             # hood and trap on record; deep clean and refit
-    sales_index: 0.5
-    kitchen: "Hood (Feb 2025) and grease trap (Feb 2026) on the city's inspection record for the former fish market; listing includes restaurant equipment"
-    rent_basis: "$43,210 a year ($29 a sq ft) in a live boston.com listing; lease type not stated, $6 NNN assumed"
-    risks: "Former fish market: deep clean and odors; hood and trap condition unknown; local trade with no weekend draw named"
-    source: "Site scan lease #1; boston.com 73497894, live 2026-11-07"

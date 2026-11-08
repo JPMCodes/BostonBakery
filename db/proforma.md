@@ -53,8 +53,6 @@ The full menu, with lunch, seats and catering, needs about 2,000–2,500 sq ft. 
 | Site | Format | Sq ft | Rent and NNN, Year 1 | Steady sales a year | Base rent / with NNN, % of sales | Startup cost | Cash after debt, Year 1 | EBITDA, Year 2 | Cash after debt, Year 2 | Break-even sales a day | Payback |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1105 Massachusetts Ave, Cambridge | cafe | 2,500 | $122,500 | $1,175,310 | 8.1% / 10.7% | $749,366 | −$49,603 | $148,019 (13%) | $63,082 | $2,950 | 4.9 yrs |
-| 349 Centre St, Jamaica Plain | cafe | 2,380 | $90,440 | $979,425 | 7.5% / 9.5% | $907,886 | −$122,147 (more than the reserve) | $73,201 (7%) | −$29,704 | $2,869 | 12.0 yrs |
-| 3089-3091 Washington St, Boston | counter | 1,490 | $52,150 | $652,950 | 6.8% / 8.2% | $517,593 | −$121,294 (more than the reserve) | −$8,240 (−1%) | −$66,907 | $2,176 | n/a |
 
 Break-even is the daily sales at which Year-2 cash flow after debt service is zero. Payback is the startup cost divided by Year-3 EBITDA. The site scan's rent test is base rent at or under 8% of sales; NNN charges come on top. Year-1 cash after debt has to fit inside the working capital reserve.
 
@@ -114,118 +112,6 @@ Prime cost (food, packaging, hourly crew and manager) is 62% of Year-2 sales; sa
 | **Total** | **$749,366** |
 
 Financed 70% with a 10-year loan at 10.5% ($524,556, $84,937 a year) and $224,810 of owner equity.
-
-## 349 Centre St, Jamaica Plain
-
-Centre St between Jackson Square and Hyde Square. 2,380 sq ft, 24 seats, cafe format. Sales index 0.75 of the menu's par day.
-
-- **Kitchen:** Restaurants about 2011–2022 with a hood, wall exhaust and grease trap on record; since renovated as flex space, so the hood and trap probably need reinstalling
-- **Rent:** Whole space at $5,950 a month ($30 a sq ft) in a live boston.com listing; lease type not stated, $8 NNN assumed
-- **Time to open:** about 6 months from lease signing, paying rent throughout
-- **Risks:** Kitchen likely removed; lease type not stated; the listing also offers a 1,200 sq ft section
-- **Source:** Site scan lease #2; boston.com 73578246, live 2026-11-07
-
-| Scenario | Sales a day, steady | Sales, Year 2 | EBITDA, Year 2 | Cash after debt, Year 2 | Owner's earnings if the owner manages, Year 2 |
-|---|---|---|---|---|---|
-| Conservative | $2,177 | $783,540 | −$35,875 (−5%) | −$138,417 | $33,341 |
-| Base | $2,721 | $979,425 | $73,201 (7%) | −$29,704 | $142,417 |
-| Upside | $3,265 | $1,175,310 | $182,276 (16%) | $79,009 | $251,492 |
-
-**Base case, three years**
-
-| Line | Year 1 | Year 2 | Year 3 | Year 2, % of sales |
-|---|---|---|---|---|
-| Sales | $783,540 | $979,425 | $1,008,808 | 100% |
-| Food and packaging | $177,062 | $221,327 | $227,967 | 23% |
-| Hourly crew, with payroll taxes | $335,978 | $370,776 | $381,900 | 38% |
-| General manager, with payroll taxes | $67,200 | $69,216 | $71,292 | 7% |
-| Base rent | $71,400 | $73,542 | $75,748 | 8% |
-| NNN charges | $19,040 | $19,611 | $20,200 | 2% |
-| Utilities | $23,800 | $24,514 | $25,249 | 3% |
-| Card fees, repairs, supplies, marketing, delivery, other | $71,302 | $89,128 | $91,802 | 9% |
-| Insurance, software, accounting, licenses, waste, linens, phone | $37,000 | $38,110 | $39,253 | 4% |
-| **EBITDA** | **−$19,242** | **$73,201** | **$75,397** | **7%** |
-| Debt service | $102,905 | $102,905 | $102,905 | 11% |
-| **Cash after debt service** | **−$122,147** | **−$29,704** | **−$27,508** | **−3%** |
-| Scheduled crew hours a day | 45 | 48 | 48 | |
-
-Prime cost (food, packaging, hourly crew and manager) is 68% of Year-2 sales; sales per scheduled crew hour are $57. Break-even is $2,869 a day after debt service (105% of the steady state) and $2,355 a day before it. Each extra $100 a day of sales adds about $20,046 a year of EBITDA once the crew flexes.
-
-**Startup cost**
-
-| Item | Cost |
-|---|---|
-| Build-out | $380,800 |
-| Design, engineering, permits and legal | $57,120 |
-| Equipment | $181,000 |
-| Furniture and fixtures | $16,800 |
-| Signage | $12,000 |
-| Pre-opening payroll and training | $21,753 |
-| Opening inventory | $10,000 |
-| Launch marketing | $12,000 |
-| Security deposit | $22,610 |
-| Rent and NNN before opening | $45,220 |
-| Contingency | $56,180 |
-| Working capital reserve | $92,403 |
-| **Total** | **$907,886** |
-
-Financed 70% with a 10-year loan at 10.5% ($635,520, $102,905 a year) and $272,366 of owner equity.
-
-## 3089-3091 Washington St, Boston
-
-Egleston Square, Roxbury and Jamaica Plain. 1,490 sq ft, 10 seats, counter format. Sales index 0.5 of the menu's par day.
-
-- **Kitchen:** Hood (Feb 2025) and grease trap (Feb 2026) on the city's inspection record for the former fish market; listing includes restaurant equipment
-- **Rent:** $43,210 a year ($29 a sq ft) in a live boston.com listing; lease type not stated, $6 NNN assumed
-- **Time to open:** about 4 months from lease signing, paying rent throughout
-- **Risks:** Former fish market: deep clean and odors; hood and trap condition unknown; local trade with no weekend draw named
-- **Source:** Site scan lease #1; boston.com 73497894, live 2026-11-07
-
-| Scenario | Sales a day, steady | Sales, Year 2 | EBITDA, Year 2 | Cash after debt, Year 2 | Owner's earnings if the owner manages, Year 2 |
-|---|---|---|---|---|---|
-| Conservative | $1,451 | $522,360 | −$75,210 (−14%) | −$133,550 | −$5,994 |
-| Base | $1,814 | $652,950 | −$8,240 (−1%) | −$66,907 | $60,976 |
-| Upside | $2,176 | $783,540 | $58,729 (7%) | −$264 | $127,945 |
-
-**Base case, three years**
-
-| Line | Year 1 | Year 2 | Year 3 | Year 2, % of sales |
-|---|---|---|---|---|
-| Sales | $522,360 | $652,950 | $672,538 | 100% |
-| Food and packaging | $118,041 | $147,551 | $151,978 | 23% |
-| Hourly crew, with payroll taxes | $248,162 | $277,833 | $286,168 | 43% |
-| General manager, with payroll taxes | $67,200 | $69,216 | $71,292 | 11% |
-| Base rent | $43,210 | $44,506 | $45,841 | 7% |
-| NNN charges | $8,940 | $9,208 | $9,484 | 1% |
-| Utilities | $14,900 | $15,347 | $15,807 | 2% |
-| Card fees, repairs, supplies, marketing, delivery, other | $47,535 | $59,418 | $61,201 | 9% |
-| Insurance, software, accounting, licenses, waste, linens, phone | $37,000 | $38,110 | $39,253 | 6% |
-| **EBITDA** | **−$62,627** | **−$8,240** | **−$8,488** | **−1%** |
-| Debt service | $58,667 | $58,667 | $58,667 | 9% |
-| **Cash after debt service** | **−$121,294** | **−$66,907** | **−$67,154** | **−10%** |
-| Scheduled crew hours a day | 33 | 36 | 36 | |
-
-Prime cost (food, packaging, hourly crew and manager) is 76% of Year-2 sales; sales per scheduled crew hour are $51. Break-even is $2,176 a day after debt service (120% of the steady state) and $1,858 a day before it. Each extra $100 a day of sales adds about $18,462 a year of EBITDA once the crew flexes.
-
-**Startup cost**
-
-| Item | Cost |
-|---|---|
-| Build-out | $163,900 |
-| Design, engineering, permits and legal | $24,585 |
-| Equipment | $137,000 |
-| Furniture and fixtures | $10,500 |
-| Signage | $12,000 |
-| Pre-opening payroll and training | $17,195 |
-| Opening inventory | $10,000 |
-| Launch marketing | $12,000 |
-| Security deposit | $13,038 |
-| Rent and NNN before opening | $17,383 |
-| Contingency | $30,090 |
-| Working capital reserve | $69,902 |
-| **Total** | **$517,593** |
-
-Financed 70% with a 10-year loan at 10.5% ($362,315, $58,667 a year) and $155,278 of owner equity.
 
 ## Staffing at each format's design volume
 
