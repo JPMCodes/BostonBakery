@@ -1,0 +1,45 @@
+id: blt_sandwich
+name: BLT
+category: sandwich
+status: draft
+version: "1.0"
+approved_on: null
+description: "Applewood-smoked bacon, vine-ripened tomato and crisp romaine with mayo on the toasted house roll."
+batch_units: 7
+waste_pct: 3
+
+build:
+  - {item: sandwich_roll_lunch, qty: 1, unit: each}
+  - {item: butter_unsalted, qty: 4, unit: g, note: "for toasting the roll"}
+  - {item: mayonnaise, qty: 20, unit: g, note: "on both cut sides"}
+  - {item: bacon_cooked, qty: 45, unit: g, note: "about 5 strips"}
+  - {item: tomato_vine, qty: 80, unit: g, note: "2 thick slices, salted and peppered"}
+  - {item: romaine_hearts, qty: 25, unit: g}
+  - {item: wrap_foil_insulated, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: label_sandwich, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  build:
+    - "Split the roll and toast the cut sides in the butter."
+    - "Spread the mayo on both cut sides. Stack: bottom roll, romaine, tomato seasoned with salt and pepper, warm bacon, top roll."
+  packaging: "To go: wrap in insulated foil, seal with the sandwich label, and bag with a napkin. For here: serve it on a plate."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 13.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Pick the bacon (thick-cut applewood) and confirm the 45 g portion."
+    - "Test build on the 120 g lunch roll; check that the tomato doesn't make the roll soggy to go."
+    - "Decide on winter tomatoes, or run the BLT seasonally."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $13.00."

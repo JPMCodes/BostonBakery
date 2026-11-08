@@ -1,0 +1,26 @@
+id: bacon_cooked
+name: Oven Bacon
+kind: protein
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [blt_sandwich]
+yield:
+  grams: 350
+  description: "about 35% of the raw weight; 7 BLTs at 45 g"
+
+ingredients:
+  - {item: bacon_applewood, qty: 1000, unit: g}
+
+method:
+  - "Lay the strips on parchment-lined sheet pans without overlapping."
+  - "Bake at 400°F for 15–20 minutes, until crisp at the edges but still a little chewy. Drain on paper."
+  - "Hold warm at 135°F or above through lunch, or chill and re-crisp to order. Refrigerated, use within 5 days."
+
+notes:
+  - "Strain and keep the fat for roasting; it isn't costed."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted for the BLT."

@@ -1,0 +1,26 @@
+id: pickled_red_onion
+name: Pickled Red Onion
+kind: pickle
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [harissa_chicken_sandwich]
+yield:
+  grams: 340
+  description: "drained onions; about 22 sandwiches at 15 g"
+
+ingredients:
+  - {item: onion_red, qty: 300, unit: g, note: "sliced thin"}
+  - {item: vinegar_red_wine, qty: 200, unit: g}
+  - {item: water_filtered, qty: 100, unit: g}
+  - {item: sugar_granulated, qty: 20, unit: g}
+  - {item: salt_fine, qty: 8, unit: g}
+
+method:
+  - "Bring the vinegar, water, sugar and salt to a simmer and pour over the sliced onions."
+  - "Cool, then refrigerate. Ready in an hour; keeps 2 weeks covered and dated."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted for the harissa chicken sandwich."

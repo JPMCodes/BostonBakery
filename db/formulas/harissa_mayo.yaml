@@ -1,0 +1,23 @@
+id: harissa_mayo
+name: Harissa Mayo
+kind: sauce
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [harissa_chicken_sandwich]
+yield:
+  grams: 260
+  description: "13 sandwiches at 20 g"
+
+ingredients:
+  - {item: mayonnaise, qty: 200, unit: g}
+  - {item: harissa_sauce, qty: 50, unit: g, note: "the breakfast sandwich's harissa"}
+  - {item: lemon_juice, qty: 10, unit: g}
+
+method:
+  - "Whisk together. Refrigerate covered and dated; use within 5 days."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted for the harissa chicken sandwich."

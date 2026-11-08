@@ -1,0 +1,45 @@
+id: harissa_chicken_sandwich
+name: Harissa Chicken Sandwich
+category: sandwich
+status: draft
+version: "1.0"
+approved_on: null
+description: "Sliced roast chicken breast, harissa mayo, arugula and pickled red onion on the toasted house roll."
+batch_units: 7
+waste_pct: 3
+
+build:
+  - {item: sandwich_roll_lunch, qty: 1, unit: each}
+  - {item: butter_unsalted, qty: 4, unit: g, note: "for toasting the roll"}
+  - {item: harissa_mayo, qty: 20, unit: g, note: "on both cut sides"}
+  - {item: chicken_roasted, qty: 100, unit: g, note: "sliced thin"}
+  - {item: arugula, qty: 15, unit: g}
+  - {item: pickled_red_onion, qty: 15, unit: g, note: "drained"}
+  - {item: wrap_foil_insulated, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: label_sandwich, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  build:
+    - "Split the roll and toast the cut sides in the butter."
+    - "Spread the harissa mayo on both cut sides. Stack: bottom roll, arugula, sliced chicken, pickled onion, top roll."
+  prep: "The chicken roasts with the chicken salad batch; slice it thin from cold."
+  packaging: "To go: wrap in insulated foil, seal with the sandwich label, and bag with a napkin. For here: serve it on a plate."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 12.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "Test build on the 120 g lunch roll; confirm the chicken and sauce portions."
+    - "Pick the harissa brand (shared with the breakfast sandwich) and check its label."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $12.50."

@@ -11,6 +11,8 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Blueberry Muffin, 130 g batter (draft) | **$4.50** | $0.56–$1.01 | $0.11–$0.19 | 15–27% | $3.30–$3.83 (73–85%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
+| BLT, lunch (draft) | **$13.00** | $2.61–$3.76 | $0.12–$0.25 | 21–31% | $8.99–$10.27 (69–79%) |
+| Harissa Chicken Sandwich, lunch (draft) | **$12.50** | $1.48–$2.63 | $0.12–$0.25 | 13–23% | $9.62–$10.90 (77–87%) |
 | Fennel Herb Salad Bowl, 382 g (draft) | **$12.50** | $2.44–$5.39 | $0.28–$0.63 | 22–48% | $6.48–$9.78 (52–78%) |
 | Cilantro Lime Quinoa Salad, 450 g (draft) | **$11.50** | $1.87–$3.52 | $0.28–$0.63 | 19–36% | $7.35–$9.35 (64–81%) |
 | Chicken Salad Scoop, 100 g add-on (draft) | **$4.50** | $0.77–$1.18 | $0.04–$0.14 | 18–29% | $3.18–$3.69 (71–82%) |
@@ -23,7 +25,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Product | To-go packaging | Per unit |
 |---|---|---|
 | Cinnamon Roll | 4×4×4 in kraft window box, dry-wax square under the roll, kraft napkin | $0.34–$0.47 |
-| Both breakfast sandwiches | Insulated foil wrap, printed label, #6 kraft bag, kraft napkin | $0.12–$0.25 |
+| All four sandwiches | Insulated foil wrap, printed label, #6 kraft bag, kraft napkin | $0.12–$0.25 |
 | Blueberry Scone | #6 kraft bag, kraft napkin | $0.05–$0.09 |
 | Mini Vanilla Scone | 1/2 lb glassine bag, kraft napkin; three or more go in a #6 kraft bag | $0.02–$0.07 |
 | Coffee Cake Slice | #6 kraft bag, dry-wax square under the slice, kraft napkin | $0.06–$0.11 |
@@ -33,7 +35,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 
 - **Box only what needs it:** glazed, frosted or fragile items, multi-packs and gifts. Sturdy, dry pastries go in a bag. Each box swapped for a bag saves about $0.28; at 100 pastries a day that's about $10,000 a year.
 - **The roll's box is its biggest cost.** At distributor prices the box ($0.32) costs more than the roll's food ($0.29), and packaging is over half the roll's cost. A 6×6 sugarcane-fiber clamshell (about $0.15 at WebstaurantStore) would halve the packaging, at some cost to presentation.
-- **The sandwich label does a job:** the two sandwiches look alike once wrapped, so the label names which is which and seals the wrap.
+- **The sandwich label does a job:** the sandwiches look alike once wrapped, so the label names which is which and seals the wrap.
 - **Salads go in clear PET** so the bowl sells itself from the cold case. A kraft bowl with a clear lid (Solia, about $0.62) looks more upscale but nearly triples the $0.22 bowl, and was out of stock when checked. The label isn't optional: food packed on site for self-service generally needs its name, ingredients, allergens and a date under the Food Code.
 - **Not costed:** a box for the 4-pack, and bags for multi-item orders.
 
@@ -130,6 +132,22 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Fennel sausage SKU at $10.25:** $1.75 above the base sandwich. With meat on it, it joins the $9.50–$11.00 band: a quarter above Flour's $10.00 ham-or-bacon egg sandwich and $0.75 under La Saison's $11.00 Egg Bun. The extra quarter over $10.00 is pure margin, and with Boston's 7% meals tax it still rings up under $11 ($10.97). The 2 oz patty costs $0.36–$0.69. One reviewer reported paying $3 extra for sausage at Pavement, the high end of add-on pricing.
 - **Why it matters:** breakfast sandwiches are Tatte's two most-liked DoorDash items, and in the one Boston bakery-café sales mix the research found, pastry and desserts were only 27% of sales.
 
+## Lunch sandwiches: BLT $13.00, Harissa Chicken $12.50 (draft)
+
+| Boston comparable | Price | Evidence |
+|---|---|---|
+| Tatte chicken pita | $12.50–$13.00 | Its lunch sandwich in the research: roast chicken breast with a tomato, cucumber and red-onion salad (Wellesley and Copley) |
+| Sofra chicken shawarma and sausage pitas | $14.00 | |
+| Flour BLT | $16.00 | Named by Flour's owner, with the sticky bun, as what the bakery is known for ("After 25 years of serving up sticky buns, BLTs…", April 2025) |
+| Hi-Rise sandwiches | mostly $9.50–$19.00 | Classic grilled cheese $9.50+ |
+
+- **Why these two:** the research has no sandwich sales counts. The strongest evidence is the BLT, which Flour's owner names with the sticky bun as the bakery's identity, and roast chicken, which anchors lunch at Tatte (its chicken pita) and Sofra. Delivery data adds that savory sells: Tatte's most-liked items are its breakfast sandwiches, already on our menu.
+- **Priced at the bottom of the $13–$16 lunch band:** the chicken at Tatte's Wellesley pita price, the BLT $3 under Flour's $16, on a smaller roll.
+- **One dough for every sandwich:** both use the house roll at 120 g instead of the breakfast roll's 90 g, so all bread stays on the cinnamon-roll dough.
+- **Shared prep:** the chicken roasts in the same batch as the chicken salad, the harissa is the breakfast sandwich's, and the arugula and red onion come from the salads. New are bacon, vine tomatoes, romaine and red wine vinegar.
+- **Bacon is the BLT's big cost:** $1.82 of its $2.61 food cost at distributor prices. Stocking it also opens a bacon add-on for the breakfast sandwiches; Flour's $10 egg sandwich comes with ham or bacon.
+- **Tomato season:** a BLT is only as good as its tomato. If winter vine tomatoes disappoint, run it June to October and give the slot to another sandwich in winter.
+
 ## Salad bowls: $12.50 and $11.50 (draft)
 
 | Boston comparable | Counter price | Note |
@@ -200,7 +218,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, sandwiches $10.20 and $12.30, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, breakfast sandwiches $10.20 and $12.30, BLT $15.60, chicken sandwich $15.00, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
@@ -213,6 +231,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - [Toast: chai lattes in Boston](https://www.toasttab.com/local/boston-ma-restaurants/dish/chai-lattes) and [Tatte South End on Toast](https://toasttab.com/local/order/tatte-south-end/r-e14b0c20-4650-4326-b837-0938a1d4e868): Tatte chai and iced latte prices.
 - WebstaurantStore food packaging: [Baker's Lane 4×4×4 kraft window box](https://www.webstaurantstore.com/bakers-lane-4-x-4-x-4-kraft-window-cupcake-bakery-box-case/245444WBKBL.html), [Choice 10 3/4 × 14 in insulated foil wrap](https://www.webstaurantstore.com/choice-10-3-4-x-14-insulated-foil-sandwich-wrap-sheets-case/612W45.html), [12×12 kraft luncheon napkin](https://www.webstaurantstore.com/12-x-12-natural-kraft-1-4-fold-luncheon-napkin-case/5001N200KRA.html) and [Greenprint 6×6 sugarcane clamshell](https://www.webstaurantstore.com/greenprint-6-x-6-compostable-sugarcane-fiber-clamshell-take-out-container-case/485HTO661W.html).
 - Starbucks petite scone: [Tasting Table](https://tastingtable.com/1808434/cheapest-vs-most-expensive-food-starbucks-menu) (about $1.75, up to $2.95 in some areas) and [Chowhound](https://www.chowhound.com/1977466/cheapest-food-item-starbucks/) ($2.65; $1.95 at some stores); full-size scone from [Six Storeys](https://sixstoreys.com/?p=31718) (August 2026 menu aggregator). All undated or aggregated national prices.
+- Lunch sandwiches: [`research_notes/Boston bakery market matrix/digests/digest_1_premium_bakery_cafes.md`](../research_notes/Boston%20bakery%20market%20matrix/digests/digest_1_premium_bakery_cafes.md) (Flour BLT as an owner-named identity item; Tatte, Sofra and Hi-Rise sandwich prices) and [`gapfill_premium_prices_menus.md`](../research_notes/Boston%20bakery%20market%20matrix/gapfill_premium_prices_menus.md) (Tatte chicken pita build and prices). Bacon: [BLS sliced bacon, Northeast urban, via FRED](https://fred.stlouisfed.org/series/APU0100704111); [Smithfield applewood bacon, 15 lb](https://www.webstaurantstore.com/smithfield-single-sliced-applewood-bacon-15-lb/871SMI174833.html) and [Tender Belly thick-cut, 15 lb](https://www.webstaurantstore.com/tender-belly-9-11-count-applewood-double-smoked-sliced-bacon-15-lb/871TB70113.html) (WebstaurantStore). Tomatoes, romaine and vinegar are estimates.
 - Coffee cake benchmark: The Original Boston Cinnamon Walnut Coffee Cake, 24 oz, at [Price Rite](https://www.priceritemarketplace.com/product/boston-cinnamon-walnut-coffee-cake-24-oz-id-00710233990015) ($7.99) and [Stop & Shop](https://stopandshop.com/groceries/breakfast/breakfast-bread-pastries/the-original-boston-cinnamon-walnut-coffee-cake-24-oz-pkg.html); ingredient order from a [retail listing](https://supermarketpuzzle.com/product/the-original-boston-coffee-cake-cinnamon-walnut-coffee-cake-24-oz). Cake-slice prices from the market research's price matrix. Walnuts: [Patterson Nut Company 25 lb](https://www.webstaurantstore.com/patterson-nut-company-walnut-halves-and-pieces-raw-25-lb/113WNPCRW25.html) (WebstaurantStore).
 - Blueberry muffin: Jordan Marsh clone recipes from [New England Today](https://newengland.com/food/breads/jordan-marsh-blueberry-muffins/), [King Arthur](https://www.kingarthurbaking.com/recipes/famous-jordan-marsh-blueberry-muffins-recipe) and [A Family Feast](https://www.afamilyfeast.com/real-jordan-marsh-blueberry-muffins-recipe/print/24520/); [Baker's Mark large tulip baking cup](https://www.webstaurantstore.com/bakers-mark-white-large-tulip-baking-cup-2-x-3-3-4-case/245T170WHTBL.html) (WebstaurantStore). Muffin comparables from the market research's price matrix; turbinado sugar is an estimate.
 - Mini scone inputs: [Kari-Out 1/2 lb glassine bag, 1,000/case](https://www.webstaurantstore.com/kari-out-company-1-2-lb-square-glassine-bag-case/1500100.html) (WebstaurantStore); Nielsen-Massey 32 oz vanilla bean paste at [Walmart](https://www.walmart.com/ip/38442217) ($106.48) and [Restaurantware](https://www.restaurantware.com/products/nielsen-massey-32-0-oz-pure-vanilla-paste-1-count-box) ($134.83).

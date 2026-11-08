@@ -4,7 +4,7 @@ kind: protein
 status: draft
 version: "1.0"
 approved_on: null
-used_by: [chicken_salad]
+used_by: [chicken_salad, harissa_chicken_sandwich]
 yield:
   grams: 730
   description: "about 73% of the raw weight after roasting"
