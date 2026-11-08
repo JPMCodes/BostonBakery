@@ -19,6 +19,7 @@ Prices as of 2026-11-08. **Retail est.** = US grocery or small-pack estimates; *
 | Harissa Chicken Sandwich | sandwich | draft | $12.50 | $3.01 | $1.63 | $0.25 / $0.12 | 24% / 13% | egg, milk, wheat |
 | Cilantro Lime Quinoa Salad | salad | draft | $11.50 | $4.15 | $2.15 | $0.63 / $0.28 | 36% / 19% | milk |
 | Fennel Herb Salad Bowl | salad | draft | $12.50 | $6.02 | $2.72 | $0.63 / $0.28 | 48% / 22% | milk, wheat |
+| Red Lentil & Aleppo Pepper Soup | soup | draft | $7.00 | $1.35 | $0.68 | $0.47 / $0.24 | 19% / 10% | none |
 | Chicken Salad Scoop | add-on | draft | $4.50 | $1.32 | $0.81 | $0.14 / $0.04 | 29% / 18% | egg |
 | Hummus Scoop | add-on | draft | $3.50 | $1.11 | $0.59 | $0.14 / $0.04 | 32% / 17% | sesame |
 | Chai Latte (12 oz) | drink | pending_test | $4.75 | $2.64 | $1.58 | $0.42 / $0.25 | 56% / 33% | milk |
@@ -224,6 +225,20 @@ Batch of 10: Cooked Quinoa (formula) 1,400 g, Black beans (canned) 700 g, Sweet 
 
 Batch of 10: Cooked Farro (formula) 1,300 g, Baby arugula 450 g, Fennel bulb 700 g, Navel orange 600 g, Flat-leaf parsley 60 g, Dill 30 g, Mint 30 g, Parmesan (block) 150 g, Pepitas (shelled pumpkin seeds) 150 g, Lemon-Dijon Vinaigrette (formula) 350 g, Salad bowl 32 oz with lid 10 each, Portion cup 2 oz 10 each, Portion cup lid 2 oz 10 each, Wooden fork 10 each, Napkin (kraft luncheon) 10 each, Grab-and-go label 10 each.
 
+### Red Lentil & Aleppo Pepper Soup (`red_lentil_soup`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Red Lentil & Aleppo Pepper Soup (formula) | 300 g | $0.67 | $0.34 |
+| Aleppo Pepper Oil (formula) | 5 g | $0.13 | $0.06 |
+| Soup cup 12 oz with lid | 1 each | $0.40 | $0.21 |
+| Wooden spoon | 1 each | $0.06 | $0.03 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Waste allowance (food only) | 10% | $0.08 | $0.04 |
+| **Unit cost** | | **$1.35** | **$0.68** |
+
+Batch of 18: Red Lentil & Aleppo Pepper Soup (formula) 5,400 g, Aleppo Pepper Oil (formula) 90 g, Soup cup 12 oz with lid 18 each, Wooden spoon 18 each, Napkin (kraft luncheon) 18 each.
+
 ### Chicken Salad Scoop (`add_chicken_salad`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -330,6 +345,16 @@ Batch of 10: House Hummus (formula) 1,000 g, Extra-virgin olive oil 50 g, Portio
 | **Unit cost** | | **$1.67** | **$1.06** |
 
 ## Formulas
+
+### Aleppo Pepper Oil (`aleppo_oil`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Extra-virgin olive oil | 100 g | $1.41 | $0.98 |
+| Aleppo pepper | 10 g | $1.41 | $0.33 |
+| **Batch** | **110 g in, 110 g out** | **$2.82** | **$1.31** |
+
+Cost per kg of yield: $25.65 retail est., $11.87 distributor est.
 
 ### Batch Brew Coffee (`batch_brew_coffee`), pending_test
 
@@ -703,6 +728,26 @@ Cost per kg of yield: $6.13 retail est., $2.18 distributor est. Per unit: $0.67 
 
 Cost per kg of yield: $4.97 retail est., $1.92 distributor est. Per unit: $0.40 / $0.16.
 
+### Red Lentil & Aleppo Pepper Soup (`soup_red_lentil`), draft
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Extra-virgin olive oil | 60 g | $0.85 | $0.59 |
+| Yellow onion | 500 g | $1.42 | $0.69 |
+| Carrot | 300 g | $0.73 | $0.53 |
+| Garlic (peeled) | 25 g | $0.33 | $0.20 |
+| Tomato paste | 60 g | $0.46 | $0.19 |
+| Ground cumin | 8 g | $0.66 | $0.18 |
+| Aleppo pepper | 12 g | $1.69 | $0.39 |
+| Red lentils (split) | 850 g | $5.23 | $3.00 |
+| Filtered water | 4,200 g | $0.00 | $0.00 |
+| Fine salt | 50 g | $0.09 | $0.04 |
+| Black pepper (ground) | 2 g | $0.09 | $0.04 |
+| Lemon juice (fresh) | 60 g | $1.03 | $0.50 |
+| **Batch** | **6,127 g in, 5,600 g out** | **$12.58** | **$6.34** |
+
+Cost per kg of yield: $2.25 retail est., $1.13 distributor est.
+
 ### Olive Tapenade (`tapenade_olive`), draft
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -823,6 +868,13 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Nigella seeds | `nigella_seeds` | $88.01 | $19.84 |  |
 | Kalamata olives (pitted) | `olives_kalamata` | $26.40 | $14.00 |  |
 | Capers | `capers` | $61.55 | $23.52 |  |
+| Red lentils (split) | `red_lentils` | $6.15 | $3.53 |  |
+| Aleppo pepper | `aleppo_pepper` | $140.92 | $32.74 |  |
+| Tomato paste | `tomato_paste` | $7.58 | $3.18 |  |
+| Carrot | `carrot` | $2.44 | $1.76 |  |
+| Yellow onion | `onion_yellow` | $2.85 | $1.37 |  |
+| Soup cup 12 oz with lid | `cup_soup_12oz` | n/a | n/a |  |
+| Wooden spoon | `spoon_wood` | n/a | n/a |  |
 
 ## Warnings
 

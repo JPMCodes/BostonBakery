@@ -1,0 +1,23 @@
+id: aleppo_oil
+name: Aleppo Pepper Oil
+kind: sauce
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [red_lentil_soup]
+yield:
+  grams: 110
+  description: "22 servings at 5 g"
+
+ingredients:
+  - {item: olive_oil_ev, qty: 100, unit: g}
+  - {item: aleppo_pepper, qty: 10, unit: g}
+
+method:
+  - "Warm the oil to about 180°F, take it off the heat, and stir in the Aleppo pepper. Steep 10 minutes."
+  - "Keep covered at room temperature; use within 2 weeks. Stir before drizzling."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted for the red lentil soup."

@@ -17,6 +17,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Ham, Cheddar & Olive Tapenade](products/ham_cheddar_tapenade.yaml) | draft | $12.50 | Hardwood-smoked ham, melted cheddar, house olive tapenade and arugula on a cheddar-crusted oval house roll |
 | [Fennel Herb Salad Bowl](products/fennel_herb_bowl.yaml) | draft | $12.50 | Farro, arugula, shaved fennel, orange, parsley, dill and mint, Parmesan and pepitas; lemon-Dijon vinaigrette on the side. Same-day sale |
 | [Cilantro Lime Quinoa Salad](products/cilantro_lime_quinoa_salad.yaml) | draft | $11.50 | Quinoa, black beans, roasted corn, tomatoes, red pepper, cotija and pepitas; cilantro-lime vinaigrette on the side. Holds 2 days; made without wheat |
+| [Red Lentil & Aleppo Pepper Soup](products/red_lentil_soup.yaml) | draft | $7.00 | Vegan one-pot red lentil soup with carrot, cumin, Aleppo pepper and lemon, finished with Aleppo oil; 300 g in a 12 oz cup |
 | [Chicken Salad Scoop](products/add_chicken_salad.yaml) | draft | $4.50 | Add-on for either salad: 100 g of lemon-herb chicken salad in its own lidded, labeled cup |
 | [Hummus Scoop](products/add_hummus.yaml) | draft | $3.50 | Add-on for either salad: 100 g of house hummus with an olive oil drizzle, in its own lidded, labeled cup |
 | [Drip Coffee (12 oz)](products/drip_coffee.yaml) | pending_test | $3.50 | Specialty filter coffee from the batch brewer |
@@ -35,7 +36,7 @@ The drinks stay `pending_test` until the roaster, matcha and chai suppliers are 
 |---|---|
 | `ingredients.csv` | Ingredient master: id, name, category, allergens, spec, unit weight, density |
 | `ingredient_prices.csv` | Dated price quotes per ingredient and channel; the newest `as_of` per channel wins |
-| `formulas/*.yaml` | Sub-recipes (dough, cake batter, filling, glaze, roll, cooked grains, dressings, sauces, pickles, chicken salad, hummus): quantities, method, specs, history |
+| `formulas/*.yaml` | Sub-recipes (dough, cake batter, filling, glaze, roll, cooked grains, dressings, sauces, pickles, chicken salad, hummus, soup): quantities, method, specs, history |
 | `products/*.yaml` | What we sell: build per unit, production steps, QA checks, declared allergens, price, what's tested and what's pending |
 | `costing.md` | Generated cost report. Do not edit by hand |
 | `pricing.md` | Retail price recommendations and their market basis |
@@ -72,7 +73,7 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 - **Ids:** lowercase `snake_case`. Ingredients and formulas share one namespace, so a product or formula line can point at either. Never rename an id that's in use; retire it and add a new one.
 - **Quantities:** formula and product lines use grams (`g`) or counts (`each`).
 - **Price packs:** `pack_unit` can be `g`, `kg`, `oz`, `lb`, `ml`, `l`, `fl_oz`, `qt`, `gal` or `each`. Volume packs need `density_g_per_ml`; count packs need `each_g`.
-- **Product categories:** every product has a `category` of `pastry`, `sandwich`, `salad`, `add-on` or `drink`, which sets its place in the cost report.
+- **Product categories:** every product has a `category` of `pastry`, `sandwich`, `salad`, `soup`, `add-on` or `drink`, which sets its place in the cost report.
 - **Packaging:** cups, lids and other packaging are ingredients with `category` `packaging`, priced per `each`. The report shows them separately, and a product's `waste_pct` applies to its food lines only, not its packaging. Food products are costed with their to-go packaging; for-here orders on a plate skip it.
 - **`price_ref`:** costs an item as one unit of another. An egg yolk costs one whole egg, and its white goes to egg wash.
 - **Allergens:** semicolon-separated, using US major-allergen names (milk, egg, wheat, soy, peanuts, tree nuts, fish, shellfish, sesame). Every product must list `allergens_declared`, and it must match its ingredients.

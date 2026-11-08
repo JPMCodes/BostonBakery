@@ -1,0 +1,40 @@
+id: soup_red_lentil
+name: Red Lentil & Aleppo Pepper Soup
+kind: soup
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [red_lentil_soup]
+yield:
+  grams: 5600
+  description: "one pot, about 18 servings at 300 g"
+
+ingredients:
+  - {item: olive_oil_ev, qty: 60, unit: g}
+  - {item: onion_yellow, qty: 500, unit: g, note: "diced"}
+  - {item: carrot, qty: 300, unit: g, note: "peeled and diced"}
+  - {item: garlic, qty: 25, unit: g, note: "chopped"}
+  - {item: tomato_paste, qty: 60, unit: g}
+  - {item: cumin_ground, qty: 8, unit: g}
+  - {item: aleppo_pepper, qty: 12, unit: g}
+  - {item: red_lentils, qty: 850, unit: g, note: "rinsed"}
+  - {item: water_filtered, qty: 4200, unit: g}
+  - {item: salt_fine, qty: 50, unit: g}
+  - {item: black_pepper, qty: 2, unit: g}
+  - {item: lemon_juice, qty: 60, unit: g, note: "stirred in at the end"}
+
+method:
+  - "Warm the oil in a heavy pot. Cook the onion and carrot with a pinch of the salt over medium heat until soft, about 10 minutes."
+  - "Add the garlic, tomato paste, cumin and Aleppo pepper and stir for 2 minutes, until the paste darkens."
+  - "Add the lentils, water and the rest of the salt. Bring to a boil, skim, and simmer partly covered for 25–30 minutes, until the lentils fall apart."
+  - "Blend smooth with an immersion blender. Stir in the lemon juice and pepper and taste for salt. It thickens as it stands; thin with hot water."
+  - "Hot-hold at 135°F or above. To keep leftovers, cool fast in shallow pans or an ice bath, refrigerate, and use within 4 days, reheating to 165°F."
+
+notes:
+  - "About 20 minutes of hands-on work for 18 servings; no soaking, one pot and an immersion blender."
+  - "Vegan and made without wheat, eggs or dairy, so it carries none of the major allergens. The kitchen handles wheat, so don't call it gluten-free."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."

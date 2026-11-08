@@ -36,7 +36,7 @@ VOLUME_ML = {
 USE_UNITS = {"g", "each"}
 STATUSES = {"draft", "pending_test", "approved", "retired"}
 # Product categories, in report order.
-CATEGORY_ORDER = ("pastry", "sandwich", "salad", "add-on", "drink")
+CATEGORY_ORDER = ("pastry", "sandwich", "salad", "soup", "add-on", "drink")
 
 
 class DBError(Exception):

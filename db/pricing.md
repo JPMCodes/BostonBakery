@@ -15,6 +15,7 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Ham, Cheddar & Olive Tapenade, lunch (draft) | **$12.50** | $2.72–$4.18 | $0.12–$0.25 | 23–35% | $8.07–$9.66 (65–77%) |
 | Fennel Herb Salad Bowl, 382 g (draft) | **$12.50** | $2.44–$5.39 | $0.28–$0.63 | 22–48% | $6.48–$9.78 (52–78%) |
 | Cilantro Lime Quinoa Salad, 450 g (draft) | **$11.50** | $1.87–$3.52 | $0.28–$0.63 | 19–36% | $7.35–$9.35 (64–81%) |
+| Red Lentil & Aleppo Pepper Soup, 300 g (draft) | **$7.00** | $0.44–$0.88 | $0.24–$0.47 | 10–19% | $5.65–$6.32 (81–90%) |
 | Chicken Salad Scoop, 100 g add-on (draft) | **$4.50** | $0.77–$1.18 | $0.04–$0.14 | 18–29% | $3.18–$3.69 (71–82%) |
 | Hummus Scoop, 100 g add-on (draft) | **$3.50** | $0.55–$0.97 | $0.04–$0.14 | 17–32% | $2.39–$2.91 (68–83%) |
 
@@ -31,6 +32,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Coffee Cake Slice | #6 kraft bag, dry-wax square under the slice, kraft napkin | $0.06–$0.11 |
 | Blueberry Muffin | Large tulip baking cup, #6 kraft bag, kraft napkin | $0.11–$0.19 |
 | Both salads | Clear 32 oz PET bowl and lid, 2 oz dressing cup and lid, wooden fork, kraft napkin, grab-and-go label | $0.28–$0.63 |
+| Soup | 12 oz paper soup cup with vented lid, wooden spoon, kraft napkin | $0.24–$0.47 |
 | Chicken salad and hummus scoops | 4 oz cup and lid, grab-and-go label | $0.04–$0.14 |
 
 - **Box only what needs it:** glazed, frosted or fragile items, multi-packs and gifts. Sturdy, dry pastries go in a bag. Each box swapped for a bag saves about $0.28; at 100 pastries a day that's about $10,000 a year.
@@ -195,6 +197,19 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Few new ingredients:** the chicken salad uses the parsley, dill, shallot, lemon and Dijon already bought for the fennel bowl, and the hummus uses the lemon, garlic, cumin and olive oil already on hand. Only chicken, mayonnaise, celery, canned chickpeas and tahini are new.
 - **No wheat added:** neither scoop contains wheat, so the quinoa salad stays wheat-free with either.
 
+## Soup: Red Lentil & Aleppo Pepper, $7.00 (draft)
+
+| Boston comparable | Price | Note |
+|---|---|---|
+| Flour soup of the day | $7.00 | South End and Harvard Square ordering pages; vegetarian (farro, escarole and potato when checked); size not stated |
+| Flour spicy tomato soup on DoorDash | $8.19 | Delivery-app price |
+
+- **At par with Flour:** $7.00 matches Flour's soup of the day, the only Boston bakery-café soup price found. The market research itself has no soup data.
+- **Easy and cheap:** one pot, no soaking and an immersion blender, about 20 minutes of hands-on work for 18 servings. Food costs $0.44 a serving at distributor prices; the lentils are the biggest line at $3.00 a pot.
+- **Packaging is a third of the cost:** the cup and lid are $0.21, and $0.24 with the spoon and napkin. 300 g (about 10 oz) fills the 12 oz cup with room to carry it; reviewers say a full 12 oz doesn't fit these cups.
+- **No major allergens:** vegan and made without wheat, eggs or dairy, the only food on the menu with none. The kitchen handles wheat, so don't call it gluten-free.
+- **10% waste allowance** for soup left in the kettle at close. Leftovers can be cooled fast and kept 4 days.
+
 ## Drinks
 
 Specialty beans from a Boston-area roaster, double-wall compostable hot cups (no sleeve), clear PET cold cups with strawless lids. Drink costs include the cup and lid; the range runs distributor to retail estimate.
@@ -220,7 +235,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, breakfast sandwiches $10.20 and $12.30, lunch sandwiches $15.00, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, breakfast sandwiches $10.20 and $12.30, lunch sandwiches $15.00, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20, soup $8.40) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
@@ -234,6 +249,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - WebstaurantStore food packaging: [Baker's Lane 4×4×4 kraft window box](https://www.webstaurantstore.com/bakers-lane-4-x-4-x-4-kraft-window-cupcake-bakery-box-case/245444WBKBL.html), [Choice 10 3/4 × 14 in insulated foil wrap](https://www.webstaurantstore.com/choice-10-3-4-x-14-insulated-foil-sandwich-wrap-sheets-case/612W45.html), [12×12 kraft luncheon napkin](https://www.webstaurantstore.com/12-x-12-natural-kraft-1-4-fold-luncheon-napkin-case/5001N200KRA.html) and [Greenprint 6×6 sugarcane clamshell](https://www.webstaurantstore.com/greenprint-6-x-6-compostable-sugarcane-fiber-clamshell-take-out-container-case/485HTO661W.html).
 - Starbucks petite scone: [Tasting Table](https://tastingtable.com/1808434/cheapest-vs-most-expensive-food-starbucks-menu) (about $1.75, up to $2.95 in some areas) and [Chowhound](https://www.chowhound.com/1977466/cheapest-food-item-starbucks/) ($2.65; $1.95 at some stores); full-size scone from [Six Storeys](https://sixstoreys.com/?p=31718) (August 2026 menu aggregator). All undated or aggregated national prices.
 - Lunch sandwiches: [`research_notes/Boston bakery market matrix/digests/digest_1_premium_bakery_cafes.md`](../research_notes/Boston%20bakery%20market%20matrix/digests/digest_1_premium_bakery_cafes.md) (Flour BLT as an owner-named signature; Tatte, Sofra and Hi-Rise sandwich prices) and [`gapfill_premium_prices_menus.md`](../research_notes/Boston%20bakery%20market%20matrix/gapfill_premium_prices_menus.md) (Tatte chicken pita and feta-pistachio pita; ham & cheese at Flour, La Saison and Elephantine). Ham: [Double L Ranch hardwood-smoked, 4 × 2.5 lb](https://www.foodservicedirect.com/double-l-ranch-naturally-hardwood-smoked-sliced-ham--2-5-pound----4-per-case-311047.html) and [Rose Packing Black Forest, 4 × 5 lb](https://www.foodservicedirect.com/rose-packing-sliced-black-forest-boneless-cooked-ham--5-pound----4-per-case-271928.html) (FoodServiceDirect). Olives, capers, nigella seeds and vinegar are estimates.
+- Soup: Flour soup of the day, $7.00 on its [South End Toast page](https://order.toasttab.com/online/floursouthend) and at Harvard Square; [Choice 12 oz soup cup with vented lid](https://www.webstaurantstore.com/choice-12-oz-double-wall-poly-paper-soup-hot-food-cup-with-vented-paper-lid-case/760SOUP12PAP.html) (WebstaurantStore); red lentils from [Bob's Red Mill, 25 lb](https://www.foodservicedirect.com/bobs-red-mill-red-lentils-25-pound-21275942.html) and [Palouse, 25 lb](https://palousebrand.com/collections/all/products/red-lentils-25-bucket) (branded; the costing uses a lower broadline estimate); [Aleppo pepper, 1 lb](https://www.gourmetfoodstore.com/aleppo-pepper-16948) (Gourmet Food Store). Onions, carrots, tomato paste and the spoon are estimates.
 - Coffee cake benchmark: The Original Boston Cinnamon Walnut Coffee Cake, 24 oz, at [Price Rite](https://www.priceritemarketplace.com/product/boston-cinnamon-walnut-coffee-cake-24-oz-id-00710233990015) ($7.99) and [Stop & Shop](https://stopandshop.com/groceries/breakfast/breakfast-bread-pastries/the-original-boston-cinnamon-walnut-coffee-cake-24-oz-pkg.html); ingredient order from a [retail listing](https://supermarketpuzzle.com/product/the-original-boston-coffee-cake-cinnamon-walnut-coffee-cake-24-oz). Cake-slice prices from the market research's price matrix. Walnuts: [Patterson Nut Company 25 lb](https://www.webstaurantstore.com/patterson-nut-company-walnut-halves-and-pieces-raw-25-lb/113WNPCRW25.html) (WebstaurantStore).
 - Blueberry muffin: Jordan Marsh clone recipes from [New England Today](https://newengland.com/food/breads/jordan-marsh-blueberry-muffins/), [King Arthur](https://www.kingarthurbaking.com/recipes/famous-jordan-marsh-blueberry-muffins-recipe) and [A Family Feast](https://www.afamilyfeast.com/real-jordan-marsh-blueberry-muffins-recipe/print/24520/); [Baker's Mark large tulip baking cup](https://www.webstaurantstore.com/bakers-mark-white-large-tulip-baking-cup-2-x-3-3-4-case/245T170WHTBL.html) (WebstaurantStore). Muffin comparables from the market research's price matrix; turbinado sugar is an estimate.
 - Mini scone inputs: [Kari-Out 1/2 lb glassine bag, 1,000/case](https://www.webstaurantstore.com/kari-out-company-1-2-lb-square-glassine-bag-case/1500100.html) (WebstaurantStore); Nielsen-Massey 32 oz vanilla bean paste at [Walmart](https://www.walmart.com/ip/38442217) ($106.48) and [Restaurantware](https://www.restaurantware.com/products/nielsen-massey-32-0-oz-pure-vanilla-paste-1-count-box) ($134.83).

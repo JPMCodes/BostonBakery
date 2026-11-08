@@ -1,0 +1,39 @@
+id: red_lentil_soup
+name: Red Lentil & Aleppo Pepper Soup
+category: soup
+status: draft
+version: "1.0"
+approved_on: null
+description: "Smooth red lentil soup with carrot, cumin and Aleppo pepper, brightened with lemon and finished with a drizzle of Aleppo pepper oil. About 10 oz, served hot. Vegan."
+batch_units: 18
+waste_pct: 10  # covers soup left in the kettle at close
+
+build:
+  - {item: soup_red_lentil, qty: 300, unit: g, note: "about 10 oz"}
+  - {item: aleppo_oil, qty: 5, unit: g, note: "drizzled on top"}
+  - {item: cup_soup_12oz, qty: 1, unit: each, note: "to go; for here, a bowl"}
+  - {item: spoon_wood, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  serve: "Stir the kettle, ladle 300 g into the cup or bowl, and drizzle 5 g of Aleppo oil over the top."
+  hold: "Hot-hold at 135°F or above, stirring now and then. At close, discard or cool fast and refrigerate within the 4-day limit."
+  packaging: "To go: 12 oz paper soup cup with vented lid, wooden spoon and napkin. 300 g fills it to about 10 oz, which leaves room to carry it."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 7.00
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "First pot: seasoning, and thickness after two hours of hot-holding."
+    - "Check that 300 g fills the 12 oz cup cleanly with the lid on."
+    - "Pick the Aleppo pepper supplier."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $7.00."
