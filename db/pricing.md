@@ -8,6 +8,7 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Blueberry Scone, 95 g (pending test) | **$4.50** | $0.53–$0.98 | $0.05–$0.09 | 13–24% | $3.43–$3.92 (76–87%) |
 | Mini Vanilla Scone, 31 g (pending test) | **$2.25** | $0.13–$0.20 | $0.02–$0.07 | 7–12% | $1.98–$2.10 (88–93%) |
 | Sour Cream Coffee Cake Slice, 107 g (draft) | **$4.50** | $0.49–$0.79 | $0.06–$0.11 | 12–20% | $3.60–$3.96 (80–88%) |
+| Blueberry Muffin, 130 g batter (draft) | **$4.50** | $0.56–$1.01 | $0.11–$0.19 | 15–27% | $3.30–$3.83 (73–85%) |
 | Breakfast Sandwich (egg, cheddar, harissa) | **$8.50** | $0.71–$1.44 | $0.12–$0.25 | 10–20% | $6.80–$7.67 (80–90%) |
 | Fennel Sausage Breakfast Sandwich | **$10.25** | $1.09–$2.16 | $0.12–$0.25 | 12–23% | $7.84–$9.05 (76–88%) |
 | Fennel Herb Salad Bowl, 382 g (draft) | **$12.50** | $2.44–$5.39 | $0.28–$0.63 | 22–48% | $6.48–$9.78 (52–78%) |
@@ -26,6 +27,7 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 | Blueberry Scone | #6 kraft bag, kraft napkin | $0.05–$0.09 |
 | Mini Vanilla Scone | 1/2 lb glassine bag, kraft napkin; three or more go in a #6 kraft bag | $0.02–$0.07 |
 | Coffee Cake Slice | #6 kraft bag, dry-wax square under the slice, kraft napkin | $0.06–$0.11 |
+| Blueberry Muffin | Large tulip baking cup, #6 kraft bag, kraft napkin | $0.11–$0.19 |
 | Both salads | Clear 32 oz PET bowl and lid, 2 oz dressing cup and lid, wooden fork, kraft napkin, grab-and-go label | $0.28–$0.63 |
 | Chicken salad and hummus scoops | 4 oz cup and lid, grab-and-go label | $0.04–$0.14 |
 
@@ -98,6 +100,20 @@ The cost range runs from the distributor estimate to the retail estimate. Packag
 - **Keeps well:** sour cream, the high sugar and a little oil hold the crumb soft. Keep cakes whole under a cover and cut to order; best within 3 days of baking.
 - **Walnuts are the menu's first tree nut.** They define the benchmark, but they bring tree nuts into the kitchen: store and scoop them apart from everything else, and decide whether to post a kitchen-wide tree-nut notice. Leaving them out makes a nut-free cinnamon version about $0.09 a slice cheaper.
 - **Option:** whole cakes on pre-order at about $40 for 16 slices. The research found 8-inch bundts at $18.50–$35 and Flour's 8-inch cake at $57; ours is a 12-cup cake. The box isn't costed.
+
+## Blueberry Muffin: $4.50 (draft)
+
+| Comparable | Price | Note |
+|---|---|---|
+| Flour muffins | $4.50–$5.00 | Market research |
+| Dunkin' muffin | $1.69 | 2022 aggregator listing; the chain tier |
+| Our Blueberry Scone and Coffee Cake Slice | $4.50 | |
+
+- **At Flour's low end, level with the scone and the coffee cake:** that makes $4.50 the house pastry price, with the cinnamon roll a quarter above as the hero.
+- **The Jordan Marsh muffin, kept and upgraded:** the same creamed-butter method, about 80% sugar to flour, about 1.4 times the flour's weight in blueberries with a fifth of them mashed into the batter for the purple-streaked crumb, and a sugar crust. The upgrades are sour cream and a little oil for a crumb that stays moist through the day, real vanilla, a little lemon zest, turbinado sugar for a crunchier crust (the original uses granulated), and an overnight rest for taller domes.
+- **Blueberries are the biggest cost:** about $0.30 a muffin at distributor prices ($3.50/lb), and more out of season.
+- **The tulip liner earns its place:** at $0.06 it gives the bakery-case look and room for a tall dome. With the bag and napkin, packaging is $0.11, about a sixth of the muffin's cost.
+- **Overnight batter, morning bake:** scooped and chilled the day before, the muffins go straight from the fridge into the oven, so the early shift only bakes.
 
 ## Breakfast Sandwiches: $8.50, or $10.25 with fennel sausage
 
@@ -184,7 +200,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 
 ## Rules carried over from the research
 
-- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake $5.40, sandwiches $10.20 and $12.30, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
+- Benchmark counter prices only. Delivery apps run 10–40% above the counter in Boston. If these go on apps, list them about 20% higher (roll $5.70, mini scone $2.70, coffee cake and muffin $5.40, sandwiches $10.20 and $12.30, salads $15.00 and $13.80, chicken salad $5.40, hummus $4.20) and stay on the lowest-commission plan.
 - Plan to hold these prices through 2026–27. Butter (CME cash $1.28/lb on Nov 4, 2026) and eggs ($2.27 a dozen in Sept 2026) are well below their peaks.
 - Revisit once real distributor quotes replace the estimates in `ingredient_prices.csv`, or after the first month of sales.
 
@@ -198,6 +214,7 @@ Flour's drink prices are from its Boston Common ordering page and its drip and i
 - WebstaurantStore food packaging: [Baker's Lane 4×4×4 kraft window box](https://www.webstaurantstore.com/bakers-lane-4-x-4-x-4-kraft-window-cupcake-bakery-box-case/245444WBKBL.html), [Choice 10 3/4 × 14 in insulated foil wrap](https://www.webstaurantstore.com/choice-10-3-4-x-14-insulated-foil-sandwich-wrap-sheets-case/612W45.html), [12×12 kraft luncheon napkin](https://www.webstaurantstore.com/12-x-12-natural-kraft-1-4-fold-luncheon-napkin-case/5001N200KRA.html) and [Greenprint 6×6 sugarcane clamshell](https://www.webstaurantstore.com/greenprint-6-x-6-compostable-sugarcane-fiber-clamshell-take-out-container-case/485HTO661W.html).
 - Starbucks petite scone: [Tasting Table](https://tastingtable.com/1808434/cheapest-vs-most-expensive-food-starbucks-menu) (about $1.75, up to $2.95 in some areas) and [Chowhound](https://www.chowhound.com/1977466/cheapest-food-item-starbucks/) ($2.65; $1.95 at some stores); full-size scone from [Six Storeys](https://sixstoreys.com/?p=31718) (August 2026 menu aggregator). All undated or aggregated national prices.
 - Coffee cake benchmark: The Original Boston Cinnamon Walnut Coffee Cake, 24 oz, at [Price Rite](https://www.priceritemarketplace.com/product/boston-cinnamon-walnut-coffee-cake-24-oz-id-00710233990015) ($7.99) and [Stop & Shop](https://stopandshop.com/groceries/breakfast/breakfast-bread-pastries/the-original-boston-cinnamon-walnut-coffee-cake-24-oz-pkg.html); ingredient order from a [retail listing](https://supermarketpuzzle.com/product/the-original-boston-coffee-cake-cinnamon-walnut-coffee-cake-24-oz). Cake-slice prices from the market research's price matrix. Walnuts: [Patterson Nut Company 25 lb](https://www.webstaurantstore.com/patterson-nut-company-walnut-halves-and-pieces-raw-25-lb/113WNPCRW25.html) (WebstaurantStore).
+- Blueberry muffin: Jordan Marsh clone recipes from [New England Today](https://newengland.com/food/breads/jordan-marsh-blueberry-muffins/), [King Arthur](https://www.kingarthurbaking.com/recipes/famous-jordan-marsh-blueberry-muffins-recipe) and [A Family Feast](https://www.afamilyfeast.com/real-jordan-marsh-blueberry-muffins-recipe/print/24520/); [Baker's Mark large tulip baking cup](https://www.webstaurantstore.com/bakers-mark-white-large-tulip-baking-cup-2-x-3-3-4-case/245T170WHTBL.html) (WebstaurantStore). Muffin comparables from the market research's price matrix; turbinado sugar is an estimate.
 - Mini scone inputs: [Kari-Out 1/2 lb glassine bag, 1,000/case](https://www.webstaurantstore.com/kari-out-company-1-2-lb-square-glassine-bag-case/1500100.html) (WebstaurantStore); Nielsen-Massey 32 oz vanilla bean paste at [Walmart](https://www.walmart.com/ip/38442217) ($106.48) and [Restaurantware](https://www.restaurantware.com/products/nielsen-massey-32-0-oz-pure-vanilla-paste-1-count-box) ($134.83).
 - Tatte add-on and salad prices: [2022 Boston gluten-friendly menu](https://tattebakery.com/wp-content/uploads/2022/03/BOS_Spring2022_GF_22822.pdf), [2023 DC gluten-friendly menu](https://tattebakery.com/dc_spring2023_gf_022423), [Tatte Charlestown on Toast](https://www.toasttab.com/tatte-charlestown/v3) and [Tatte South End on Toast](https://www.toasttab.com/tatte-south-end).
 - Protein inputs: [BLS boneless chicken breast, Northeast urban, via FRED](https://fred.stlouisfed.org/series/APU0100FF1101) ($3.96/lb, September 2026); [S&P Global Platts jumbo boneless breast](https://www.spglobal.com/energy/en/news-research/latest-news/agriculture/021126-us-jumbo-boneless-skinless-chicken-breast-prices-mark-their-first-decline-in-2026) ($1.45/lb, February 2026); [Hellmann's 4 × 1 gal mayonnaise](https://www.webstaurantstore.com/hellmanns-1-gallon-real-mayonnaise-case/125HLMN5308.html) (WebstaurantStore); [Choice 4 oz portion cup](https://www.webstaurantstore.com/choice-4-oz-clear-plastic-souffle-cup-portion-cup-case/127P400C.html) (WebstaurantStore). The distributor chicken price and the celery are estimates.

@@ -8,6 +8,7 @@ Prices as of 2026-11-08. **Retail est.** = US grocery or small-pack estimates; *
 
 | Product | Category | Status | Price | Unit cost, retail est. | Unit cost, distributor est. | Packaging in unit cost | Cost % of price | Allergens |
 |---|---|---|---|---|---|---|---|---|
+| Blueberry Muffin | pastry | draft | $4.50 | $1.20 | $0.67 | $0.19 / $0.11 | 27% / 15% | egg, milk, wheat |
 | Blueberry Scone | pastry | pending_test | $4.50 | $1.07 | $0.58 | $0.09 / $0.05 | 24% / 13% | egg, milk, wheat |
 | Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
 | Mini Vanilla Scone | pastry | pending_test | $2.25 | $0.27 | $0.15 | $0.07 / $0.02 | 12% / 7% | egg, milk, wheat |
@@ -25,6 +26,20 @@ Prices as of 2026-11-08. **Retail est.** = US grocery or small-pack estimates; *
 | Iced Latte (16 oz) | drink | pending_test | $5.00 | $1.83 | $1.02 | $0.23 / $0.15 | 37% / 20% | milk |
 | Latte (12 oz) | drink | pending_test | $4.75 | $2.07 | $1.15 | $0.42 / $0.25 | 44% / 24% | milk |
 | Matcha Latte (12 oz) | drink | pending_test | $5.25 | $1.67 | $1.06 | $0.42 / $0.25 | 32% / 20% | milk |
+
+### Blueberry Muffin (`blueberry_muffin`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Blueberry Muffin Batter (formula) | 130 g | $0.94 | $0.53 |
+| Turbinado sugar | 4 g | $0.02 | $0.01 |
+| Tulip baking cup (large) | 1 each | $0.10 | $0.06 |
+| Kraft paper bag #6 | 1 each | $0.08 | $0.04 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Waste allowance (food only) | 5% | $0.05 | $0.03 |
+| **Unit cost** | | **$1.20** | **$0.67** |
+
+Batch of 24: Blueberry Muffin Batter (formula) 3,120 g, Turbinado sugar 96 g, Tulip baking cup (large) 24 each, Kraft paper bag #6 24 each, Napkin (kraft luncheon) 24 each.
 
 ### Blueberry Scone (`blueberry_scone`), per unit
 
@@ -285,6 +300,28 @@ Batch of 10: House Hummus (formula) 1,000 g, Extra-virgin olive oil 50 g, Portio
 | **Batch** | **1,060 g in, 750 g out** | **$3.53** | **$1.72** |
 
 Cost per kg of yield: $4.70 retail est., $2.29 distributor est.
+
+### Blueberry Muffin Batter (`batter_blueberry_muffin`), draft
+
+| Stage | Item | Qty | Baker's % | Retail est. | Distributor est. |
+|---|---|---|---|---|---|
+| Creamed | Granulated sugar | 536 g | 80.0% | $1.03 | $0.83 |
+| Creamed | Lemon zest | 4 g | 0.6% | $0.46 | $0.22 |
+| Creamed | Unsalted butter | 268 g | 40.0% | $2.36 | $1.42 |
+| Creamed | Fine salt | 9 g | 1.3% | $0.02 | $0.01 |
+| Wet | Egg (large) | 270 g | 40.3% | $1.02 | $0.85 |
+| Wet | High-oleic sunflower oil | 54 g | 8.1% | $0.44 | $0.15 |
+| Wet | Pure vanilla extract | 10 g | 1.5% | $0.67 | $0.42 |
+| Dry | All-purpose flour | 670 g | 100.0% | $1.77 | $0.65 |
+| Dry | Baking powder (double-acting) | 21 g | 3.1% | $0.21 | $0.08 |
+| Dry | Baking soda | 1.5 g | 0.2% | <$0.01 | <$0.01 |
+| Alternate | Whole milk | 240 g | 35.8% | $0.29 | $0.23 |
+| Alternate | Sour cream (full fat) | 110 g | 16.4% | $0.73 | $0.53 |
+| Berries | Blueberries (fresh) | 190 g | 28.4% | $2.74 | $1.47 |
+| Berries | Blueberries (fresh) | 750 g | 111.9% | $10.80 | $5.79 |
+| **Batch** | | **3,134 g in, 3,120 g out** | | **$22.52** | **$12.65** |
+
+Cost per kg of yield: $7.22 retail est., $4.05 distributor est.
 
 ### Sour Cream Coffee Cake Batter (`batter_coffee_cake`), draft
 
@@ -679,6 +716,8 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Chickpeas (canned) | `chickpeas_canned` | $5.38 | $3.08 |  |
 | Tahini | `tahini` | $17.61 | $9.74 |  |
 | Walnuts (halves and pieces) | `walnuts` | $19.82 | $11.46 |  |
+| Turbinado sugar | `sugar_turbinado` | $4.95 | $1.98 |  |
+| Tulip baking cup (large) | `liner_tulip_large` | n/a | n/a |  |
 
 ## Warnings
 

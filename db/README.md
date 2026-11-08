@@ -10,6 +10,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Blueberry Scone](products/blueberry_scone.yaml) | pending_test | $4.50 | 95 g of dough with fresh and dried blueberries, lemon and sour cream, under a brown-butter crumb; pending a test bake |
 | [Mini Vanilla Scone](products/mini_vanilla_scone.yaml) | pending_test | $2.25 | 31 g vanilla bean cream scone under a vanilla bean glaze, 24 to a batch; pending a test bake |
 | [Sour Cream Coffee Cake Slice](products/coffee_cake_slice.yaml) | draft | $4.50 | All-butter sour cream coffee cake with a toasted walnut-cinnamon ribbon and a brown-butter streusel top, after the Original Boston Coffee Cake; 16 slices per 12-cup bundt |
+| [Blueberry Muffin](products/blueberry_muffin.yaml) | draft | $4.50 | Jordan Marsh-style: buttery batter streaked with mashed berries, packed with whole fresh blueberries, under a turbinado sugar crust; 130 g of batter in a tulip liner |
 | [Breakfast Sandwich](products/breakfast_sandwich.yaml) | approved | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
 | [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | approved | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
 | [Fennel Herb Salad Bowl](products/fennel_herb_bowl.yaml) | draft | $12.50 | Farro, arugula, shaved fennel, orange, parsley, dill and mint, Parmesan and pepitas; lemon-Dijon vinaigrette on the side. Same-day sale |

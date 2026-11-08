@@ -1,0 +1,39 @@
+id: blueberry_muffin
+name: Blueberry Muffin
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "A big, domed blueberry muffin in the Jordan Marsh style: buttery batter streaked purple with mashed berries, packed with whole fresh blueberries, under a crunchy turbinado sugar crust. 130 g of batter in a tulip liner."
+batch_units: 24
+waste_pct: 5
+
+build:
+  - {item: batter_blueberry_muffin, qty: 130, unit: g}
+  - {item: sugar_turbinado, qty: 4, unit: g, note: "sprinkled on top before baking; the original uses granulated"}
+  - {item: liner_tulip_large, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  bake: "Default until confirmed: sprinkle 4 g of turbinado sugar over each muffin straight from the fridge. Bake at 425°F for 5 minutes, then at 375°F for 18–22 minutes, until a skewer comes out clean and the center reads about 205°F."
+  hold: "Cool 10 minutes in the pan, then on a rack. Bake daily; best within 24 hours. Keep covered once cool."
+  packaging: "To go: in its tulip liner in a #6 kraft bag, with a napkin. For here: on a plate."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 4.50
+  rationale: "See db/pricing.md"
+
+validation:
+  tested: []
+  pending:
+    - "First test bake: dome height, berry spread and the sugar crust; confirm the bake time and temperature."
+    - "Side-by-side tasting against a classic Jordan Marsh-recipe muffin."
+    - "Check the texture on day 2."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted at a suggested $4.50."

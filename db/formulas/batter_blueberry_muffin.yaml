@@ -1,0 +1,46 @@
+id: batter_blueberry_muffin
+name: Blueberry Muffin Batter
+kind: batter
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [blueberry_muffin]
+yield:
+  grams: 3120
+  description: "24 muffins at 130 g"
+
+ingredients:
+  - {stage: Creamed, item: sugar_granulated, qty: 536, unit: g}
+  - {stage: Creamed, item: lemon_zest, qty: 4, unit: g, note: "rubbed into the sugar first"}
+  - {stage: Creamed, item: butter_unsalted, qty: 268, unit: g, note: "softened, 65–68°F"}
+  - {stage: Creamed, item: salt_fine, qty: 9, unit: g}
+  - {stage: Wet, item: egg_large, qty: 270, unit: g, note: "about 5 1/2 eggs, room temperature"}
+  - {stage: Wet, item: oil_high_oleic_sunflower, qty: 54, unit: g, note: "keeps the crumb moist through the day"}
+  - {stage: Wet, item: vanilla_extract, qty: 10, unit: g, note: "about 2 1/2 tsp"}
+  - {stage: Dry, item: flour_ap, qty: 670, unit: g}
+  - {stage: Dry, item: baking_powder, qty: 21, unit: g, note: "about 1 3/4 tbsp"}
+  - {stage: Dry, item: baking_soda, qty: 1.5, unit: g, note: "1/4 tsp; balances the sour cream"}
+  - {stage: Alternate, item: milk_whole, qty: 240, unit: g}
+  - {stage: Alternate, item: sour_cream, qty: 110, unit: g, note: "full fat; whisk into the milk"}
+  - {stage: Berries, item: blueberries_fresh, qty: 190, unit: g, note: "mashed with a fork, juice and all"}
+  - {stage: Berries, item: blueberries_fresh, qty: 750, unit: g, note: "whole, cold and dry"}
+
+method:
+  - "Rub the lemon zest into the sugar. Cream it with the butter and salt on medium speed until light, about 3 minutes."
+  - "Beat in the eggs one at a time, then the oil and vanilla."
+  - "Whisk the flour, baking powder and baking soda. Whisk the milk and sour cream together. On low speed, add the dry ingredients in three parts, alternating with the milk mixture in two, and stop while a few streaks of flour remain."
+  - "Fold in the mashed berries until the batter streaks purple, then fold in the whole berries."
+  - "Scoop 130 g into large tulip liners set in standard muffin pans. Cover and refrigerate overnight, up to 18 hours: the rest gives taller domes, and the early shift bakes straight from the fridge."
+
+specs:
+  flour_total_g: 670
+  portion_g: 130
+
+notes:
+  - "Benchmark: the Jordan Marsh blueberry muffin, as published in clone recipes: creamed butter, 1 cup sugar to 2 cups flour, 2 eggs, 1/2 cup milk, 2 1/2 cups blueberries with 1/2 cup of them mashed, and a sugar top. This version keeps the method, the 80% sugar, the 1.4× flour weight of berries and the mashed-berry streaks, and adds sour cream and a little oil for a moister crumb, real vanilla, a little lemon zest and an overnight rest."
+  - "The method is a default; replace it with the house method once confirmed."
+
+history:
+  - date: 2026-11-08
+    version: "1.0"
+    change: "Drafted."
