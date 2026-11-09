@@ -413,6 +413,7 @@ tr.detail td { background: var(--bg); }
 .pf h4 { margin: 0 0 6px; font: 700 13px var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
 .pf p { margin: 0; max-width: 80ch; }
 .pf th { white-space: normal; }
+.pf td .pill { white-space: nowrap; }
 .stack { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
 .pf-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .ctl-label { font: 700 12px var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
@@ -783,6 +784,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       return `<tr class="click${s.id === site.id ? " cur" : ""}" data-site="${esc(s.id)}" tabindex="0"${s.id === site.id ? ` aria-current="true"` : ""}>
         <td>${esc(s.short || s.name)}<span class="note">${esc(fmtName(s.format))}, ${s.sqft.toLocaleString("en-US")} sq ft</span></td>
         <td class="n">${big(q.steady_sales)}</td>
+        <td class="n hide-sm">$${Number(s.rent_psf).toFixed(0)}${s.rent_assumed ? "*" : ""} / ${q.rent_ceiling_psf == null ? "none" : "$" + q.rent_ceiling_psf.toFixed(0)}</td>
         <td class="n hide-sm">${q.base_rent_pct_y2.toFixed(1)}% / ${q.rent_pct_y2.toFixed(1)}%</td>
         <td class="n hide-sm">${kd(q.startup)}</td>
         <td class="n${neg(q2.ebitda)}">${kd(q2.ebitda)}</td>
@@ -791,8 +793,8 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
         <td><span class="pill ${cls}">${text}</span></td></tr>`;
     }).join("");
     const compare = `<section class="group pf"><div class="group-head"><h2>Sites compared</h2><span class="count">${esc(scen.name)}</span></div>${scenChips}
-      <div class="tbl-wrap"><table><thead><tr><th>Site</th><th class="n">Sales a year</th><th class="n hide-sm">Rent / with NNN</th><th class="n hide-sm">Startup</th><th class="n">EBITDA</th><th class="n hide-sm">Cash after loan</th><th class="n hide-sm">Break-even a day</th><th>Verdict</th></tr></thead><tbody>${cmpRows}</tbody></table></div>
-      <p class="muted small">Sales, rent share, EBITDA and cash after loan payments are for Year 2, the first full year after the ramp. Rent is base rent and base rent plus NNN, as a share of sales; the site scan's test is base rent at or under 8%. Break-even is the daily sales at which Year-2 cash after loan payments is zero. Tap a site for its detail.</p></section>`;
+      <div class="tbl-wrap"><table><thead><tr><th>Site</th><th class="n">Sales a year</th><th class="n hide-sm">Rent per sq ft / most it can carry</th><th class="n hide-sm">Rent / with NNN, % of sales</th><th class="n hide-sm">Startup</th><th class="n">EBITDA</th><th class="n hide-sm">Cash after loan</th><th class="n hide-sm">Break-even a day</th><th>Verdict</th></tr></thead><tbody>${cmpRows}</tbody></table></div>
+      <p class="muted small">Sales, rent share, EBITDA and cash after loan payments are for Year 2, the first full year after the ramp. "Most it can carry" is the base rent at which Year-2 cash after loan payments falls to zero; * marks a rent assumed because none is published. Rent share is base rent and base rent plus NNN, as a share of sales; the site scan's test is base rent at or under 8%. Break-even is the daily sales at which Year-2 cash after loan payments is zero. Tap a site for its detail.</p></section>`;
 
     // The chosen site
     const siteChips = `<div class="pf-ctl"><span class="ctl-label" id="site-label">Site</span><div class="filters" role="group" aria-labelledby="site-label">${PF.sites.map((s) => `<button type="button" data-site="${esc(s.id)}" aria-pressed="${s.id === site.id}">${esc(s.short || s.name)}</button>`).join("")}</div></div>`;
@@ -841,7 +843,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     const space = `<div class="tbl-wrap"><table><thead><tr><th>Zone</th><th class="n">Sq ft</th><th class="hide-sm"><span class="sr-only">Size</span></th></tr></thead><tbody>
       ${zones.map((z) => `<tr><td>${esc(z.zone)}</td><td class="n">${z.sqft.toLocaleString("en-US")}</td><td class="hide-sm"><div class="zone" aria-hidden="true"><span style="width:${Math.round((80 * z.sqft) / zmax)}px"></span></div></td></tr>`).join("")}
       <tr class="total"><td>${esc(fmtName(site.format))} program</td><td class="n">${ztotal.toLocaleString("en-US")}</td><td class="hide-sm"></td></tr>
-      <tr><td>This site<span class="note">${spare >= 0 ? `${spare.toLocaleString("en-US")} sq ft to spare for seats, storage or catering` : `${(-spare).toLocaleString("en-US")} sq ft short: trim seats or storage`}</span></td><td class="n">${site.sqft.toLocaleString("en-US")}</td><td class="hide-sm"></td></tr>
+      <tr><td>This site<span class="note">${site.space_note ? esc(site.space_note) : spare >= 0 ? `${spare.toLocaleString("en-US")} sq ft to spare for seats, storage or catering` : `${(-spare).toLocaleString("en-US")} sq ft short: trim seats or storage`}</span></td><td class="n">${site.sqft.toLocaleString("en-US")}</td><td class="hide-sm"></td></tr>
     </tbody></table></div>`;
 
     const f = lab.formats[site.format], c = PF.crews[site.format];
@@ -859,7 +861,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     </tbody></table></div>`;
 
     const detail = `<section class="group pf"><div class="group-head"><h2>${esc(site.name)}</h2><span class="count">${esc(scen.name)}</span></div>${siteChips}
-      <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats} seats. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft plus about $${Number(site.nnn_psf).toFixed(2)} NNN. Sales index ${site.sales_index} of the menu's par day. About ${site.months_to_open || 0} months from lease to opening.</span></div>
+      <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats} seats. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft${site.rent_assumed ? " (assumed; none published)" : ""} plus about $${Number(site.nnn_psf).toFixed(2)} NNN; the most base rent it can carry is ${r.rent_ceiling_psf == null ? "none" : "$" + r.rent_ceiling_psf.toFixed(0)}. Sales index ${site.sales_index} of the menu's par day. About ${site.months_to_open || 0} months from lease to opening.</span></div>
       ${facts.length ? `<dl class="specs small">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""}
       ${tiles}
       <div><h4>Where Year-2 sales go</h4>${costBar(y2)}</div>

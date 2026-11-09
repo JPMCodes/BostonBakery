@@ -50,11 +50,13 @@ The full menu, with lunch, seats and catering, needs about 2,000–2,500 sq ft. 
 
 ## Sites compared, base scenario
 
-| Site | Format | Sq ft | Rent and NNN, Year 1 | Steady sales a year | Base rent / with NNN, % of sales | Startup cost | Cash after debt, Year 1 | EBITDA, Year 2 | Cash after debt, Year 2 | Break-even sales a day | Payback |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1105 Massachusetts Ave, Cambridge | cafe | 2,500 | $122,500 | $1,175,310 | 8.1% / 10.7% | $749,366 | −$49,603 | $148,019 (13%) | $63,082 | $2,950 | 4.9 yrs |
+| Site | Format | Sq ft | Base rent / NNN per sq ft | Most base rent it can carry | Steady sales a year | Base rent / with NNN, % of sales | Startup cost | Cash after debt, Year 1 | EBITDA, Year 2 | Cash after debt, Year 2 | Break-even sales a day | Payback |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1105 Massachusetts Ave, Cambridge | cafe | 2,500 | $37.00 / $12.00 | $59 | $1,175,310 | 8.1% / 10.7% | $749,366 | −$49,603 | $148,019 (13%) | $63,082 | $2,950 | 4.9 yrs |
+| 145 Charles St, Boston | cafe | 1,838 | $65.00 (assumed) / $12.00 | $106 | $1,240,605 | 9.9% / 11.8% | $744,797 | −$32,212 | $171,599 (14%) | $87,180 | $3,011 | 4.2 yrs |
+| 1191 Centre St, Newton | cafe | 1,894 | $45.00 (assumed) / $10.00 | $57 | $1,044,720 | 8.4% / 10.3% | $669,198 | −$74,684 | $100,423 (10%) | $24,573 | $2,779 | 6.5 yrs |
 
-Break-even is the daily sales at which Year-2 cash flow after debt service is zero. Payback is the startup cost divided by Year-3 EBITDA. The site scan's rent test is base rent at or under 8% of sales; NNN charges come on top. Year-1 cash after debt has to fit inside the working capital reserve.
+Break-even is the daily sales at which Year-2 cash flow after debt service is zero. Payback is the startup cost divided by Year-3 EBITDA. The most base rent a site can carry is the rent at which Year-2 cash after debt service falls to zero, with its NNN unchanged; an assumed rent is a placeholder until a broker quotes one. The site scan's rent test is base rent at or under 8% of sales; NNN charges come on top. Year-1 cash after debt has to fit inside the working capital reserve.
 
 ## 1105 Massachusetts Ave, Cambridge
 
@@ -62,6 +64,7 @@ East edge of Harvard Square. 2,500 sq ft, 24 seats, cafe format. Sales index 0.9
 
 - **Kitchen:** Former diner with a very large hood, two walk-in coolers, storage room and counter (2024 listing)
 - **Rent:** $35 a sq ft in the 2024 listing, raised 3% a year to $37; NNN charges not stated, $12 assumed
+- **Most base rent it can carry:** $59 a sq ft in the base case
 - **Time to open:** about 5 months from lease signing, paying rent throughout
 - **Equipment credit:** $16,000, the diner's walk-in coolers stay, so no new walk-in
 - **Risks:** Rent is two years old; two operators closed here in two years; needs bakery-café sales
@@ -112,6 +115,122 @@ Prime cost (food, packaging, hourly crew and manager) is 62% of Year-2 sales; sa
 | **Total** | **$749,366** |
 
 Financed 70% with a 10-year loan at 10.5% ($524,556, $84,937 a year) and $224,810 of owner equity.
+
+## 145 Charles St, Boston
+
+Charles St on Beacon Hill, near the Charles/MGH Red Line stop and Mass General. 1,838 sq ft, 20 seats, cafe format. Sales index 0.95 of the menu's par day.
+
+- **Kitchen:** King & I Thai, 1983 to Aug 2024; city inspections cite a cooking-line vent hood (2021–22), a walk-in (2018) and an expired hood tag (May 2024)
+- **Rent:** Not published (NNN, 1–5-year term offered, snippet). $65 assumed: Charles St is a premium street and an undated broker source puts Boston's median quoted rent near $56; $12 NNN assumed
+- **Most base rent it can carry:** $106 a sq ft in the base case
+- **Space:** Short on the street floor; the basement (size not published) may take storage and some prep
+- **Time to open:** about 7 months from lease signing, paying rent throughout
+- **Risks:** Rent unknown; empty since Aug 2024; short term offered; take-out may need a zoning appeal; Beacon Hill's historic commission reviews signs and storefronts; Tatte (70 Charles) and Flour (Cambridge St) nearby
+- **Source:** Site shortlist #1; CommercialSearch and TenantBase listings (snippets, seen 2026-11-08); Boston food inspection records
+
+| Scenario | Sales a day, steady | Sales, Year 2 | EBITDA, Year 2 | Cash after debt, Year 2 | Owner's earnings if the owner manages, Year 2 |
+|---|---|---|---|---|---|
+| Conservative | $2,757 | $992,484 | $33,437 (3%) | −$50,523 | $102,653 |
+| Base | $3,446 | $1,240,605 | $171,599 (14%) | $87,180 | $240,815 |
+| Upside | $4,135 | $1,488,726 | $309,762 (21%) | $224,883 | $378,978 |
+
+**Base case, three years**
+
+| Line | Year 1 | Year 2 | Year 3 | Year 2, % of sales |
+|---|---|---|---|---|
+| Sales | $992,484 | $1,240,605 | $1,277,823 | 100% |
+| Food and packaging | $224,278 | $280,348 | $288,758 | 23% |
+| Hourly crew, with payroll taxes | $361,577 | $403,734 | $415,846 | 33% |
+| General manager, with payroll taxes | $67,200 | $69,216 | $71,292 | 6% |
+| Base rent | $119,470 | $123,054 | $126,746 | 10% |
+| NNN charges | $22,056 | $22,718 | $23,399 | 2% |
+| Utilities | $18,380 | $18,931 | $19,499 | 2% |
+| Card fees, repairs, supplies, marketing, delivery, other | $90,316 | $112,895 | $116,282 | 9% |
+| Insurance, software, accounting, licenses, waste, linens, phone | $37,000 | $38,110 | $39,253 | 3% |
+| **EBITDA** | **$52,207** | **$171,599** | **$176,747** | **14%** |
+| Debt service | $84,419 | $84,419 | $84,419 | 7% |
+| **Cash after debt service** | **−$32,212** | **$87,180** | **$92,328** | **7%** |
+| Scheduled crew hours a day | 48 | 52 | 52 | |
+
+Prime cost (food, packaging, hourly crew and manager) is 61% of Year-2 sales; sales per scheduled crew hour are $66. Break-even is $3,011 a day after debt service (87% of the steady state) and $2,590 a day before it. Each extra $100 a day of sales adds about $20,046 a year of EBITDA once the crew flexes.
+
+**Startup cost**
+
+| Item | Cost |
+|---|---|
+| Build-out | $202,180 |
+| Design, engineering, permits and legal | $30,327 |
+| Equipment | $181,000 |
+| Furniture and fixtures | $15,000 |
+| Signage | $12,000 |
+| Pre-opening payroll and training | $21,753 |
+| Opening inventory | $10,000 |
+| Launch marketing | $12,000 |
+| Security deposit | $35,382 |
+| Rent and NNN before opening | $82,557 |
+| Contingency | $38,318 |
+| Working capital reserve | $104,280 |
+| **Total** | **$744,797** |
+
+Financed 70% with a 10-year loan at 10.5% ($521,358, $84,419 a year) and $223,439 of owner equity.
+
+## 1191 Centre St, Newton
+
+Newton Centre's village core, 0.2 miles from the Green Line and beside a 126-space town lot. 1,894 sq ft, 16 seats, cafe format. Sales index 0.8 of the menu's par day.
+
+- **Kitchen:** Listed as '1,894 SF second generation restaurant space' (CBRE, snippet); hood, grease trap and prior tenant unconfirmed
+- **Rent:** Not published ('contact broker'). $45 assumed, matching a former restaurant listed at $45 in Newton Highlands; $10 NNN assumed. The 951 sq ft unit next door can be added, but the larger space can't carry a normal rent
+- **Most base rent it can carry:** $57 a sq ft in the base case
+- **Space:** Tight: about 16 seats fit beside the full kitchen
+- **Time to open:** about 5 months from lease signing, paying rent throughout
+- **Risks:** On the market about 21 months (ask why); SALT Patisserie and Blackbird Doughnuts nearby; hood and trap unconfirmed
+- **Source:** Site shortlist #2; CBRE US-SMPL-167115 and Crexi 924251 (snippets, seen 2026-11-08)
+
+| Scenario | Sales a day, steady | Sales, Year 2 | EBITDA, Year 2 | Cash after debt, Year 2 | Owner's earnings if the owner manages, Year 2 |
+|---|---|---|---|---|---|
+| Conservative | $2,322 | $835,776 | −$15,924 (−2%) | −$91,388 | $53,292 |
+| Base | $2,902 | $1,044,720 | $100,423 (10%) | $24,573 | $169,639 |
+| Upside | $3,482 | $1,253,664 | $216,771 (17%) | $140,533 | $285,987 |
+
+**Base case, three years**
+
+| Line | Year 1 | Year 2 | Year 3 | Year 2, % of sales |
+|---|---|---|---|---|
+| Sales | $835,776 | $1,044,720 | $1,076,062 | 100% |
+| Food and packaging | $188,866 | $236,082 | $243,165 | 23% |
+| Hourly crew, with payroll taxes | $342,378 | $379,016 | $390,386 | 36% |
+| General manager, with payroll taxes | $67,200 | $69,216 | $71,292 | 7% |
+| Base rent | $85,230 | $87,787 | $90,421 | 8% |
+| NNN charges | $18,940 | $19,508 | $20,093 | 2% |
+| Utilities | $18,940 | $19,508 | $20,093 | 2% |
+| Card fees, repairs, supplies, marketing, delivery, other | $76,056 | $95,070 | $97,922 | 9% |
+| Insurance, software, accounting, licenses, waste, linens, phone | $37,000 | $38,110 | $39,253 | 4% |
+| **EBITDA** | **$1,167** | **$100,423** | **$103,436** | **10%** |
+| Debt service | $75,850 | $75,850 | $75,850 | 7% |
+| **Cash after debt service** | **−$74,684** | **$24,573** | **$27,586** | **2%** |
+| Scheduled crew hours a day | 46 | 49 | 49 | |
+
+Prime cost (food, packaging, hourly crew and manager) is 66% of Year-2 sales; sales per scheduled crew hour are $59. Break-even is $2,779 a day after debt service (96% of the steady state) and $2,401 a day before it. Each extra $100 a day of sales adds about $20,046 a year of EBITDA once the crew flexes.
+
+**Startup cost**
+
+| Item | Cost |
+|---|---|
+| Build-out | $189,400 |
+| Design, engineering, permits and legal | $28,410 |
+| Equipment | $181,000 |
+| Furniture and fixtures | $13,200 |
+| Signage | $12,000 |
+| Pre-opening payroll and training | $21,753 |
+| Opening inventory | $10,000 |
+| Launch marketing | $12,000 |
+| Security deposit | $26,042 |
+| Rent and NNN before opening | $43,404 |
+| Contingency | $37,040 |
+| Working capital reserve | $94,948 |
+| **Total** | **$669,198** |
+
+Financed 70% with a 10-year loan at 10.5% ($468,438, $75,850 a year) and $200,759 of owner equity.
 
 ## Staffing at each format's design volume
 

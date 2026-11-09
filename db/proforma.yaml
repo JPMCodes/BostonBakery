@@ -178,3 +178,43 @@ sites:
     rent_basis: "$35 a sq ft in the 2024 listing, raised 3% a year to $37; NNN charges not stated, $12 assumed"
     risks: "Rent is two years old; two operators closed here in two years; needs bakery-café sales"
     source: "Site scan lease #3; LoopNet 33223782 (2024, snippet); for-lease sign reported July 2026"
+  - id: charles_street
+    name: "145 Charles St, Boston"
+    short: Beacon Hill
+    area: "Charles St on Beacon Hill, near the Charles/MGH Red Line stop and Mass General"
+    format: cafe
+    sqft: 1838                    # street level; the basement isn't counted
+    seats: 20
+    rent_psf: 65.00
+    rent_assumed: true
+    nnn_psf: 12.00
+    escalation_pct: 3
+    buildout_psf: 110             # restaurant dark since Aug 2024; hood tag expired May 2024
+    equipment_credit: 0
+    months_to_open: 7             # take-out may need a Boston zoning appeal; historic-district review of signs
+    sales_index: 0.95
+    space_note: "Short on the street floor; the basement (size not published) may take storage and some prep"
+    kitchen: "King & I Thai, 1983 to Aug 2024; city inspections cite a cooking-line vent hood (2021–22), a walk-in (2018) and an expired hood tag (May 2024)"
+    rent_basis: "Not published (NNN, 1–5-year term offered, snippet). $65 assumed: Charles St is a premium street and an undated broker source puts Boston's median quoted rent near $56; $12 NNN assumed"
+    risks: "Rent unknown; empty since Aug 2024; short term offered; take-out may need a zoning appeal; Beacon Hill's historic commission reviews signs and storefronts; Tatte (70 Charles) and Flour (Cambridge St) nearby"
+    source: "Site shortlist #1; CommercialSearch and TenantBase listings (snippets, seen 2026-11-08); Boston food inspection records"
+  - id: newton_centre
+    name: "1191 Centre St, Newton"
+    short: Newton Centre
+    area: "Newton Centre's village core, 0.2 miles from the Green Line and beside a 126-space town lot"
+    format: cafe
+    sqft: 1894
+    seats: 16
+    rent_psf: 45.00
+    rent_assumed: true
+    nnn_psf: 10.00
+    escalation_pct: 3
+    buildout_psf: 100             # second-generation restaurant space; hood and grease trap unconfirmed
+    equipment_credit: 0
+    months_to_open: 5             # Newton approves a restaurant of up to 50 seats without a hearing
+    sales_index: 0.8
+    space_note: "Tight: about 16 seats fit beside the full kitchen"
+    kitchen: "Listed as '1,894 SF second generation restaurant space' (CBRE, snippet); hood, grease trap and prior tenant unconfirmed"
+    rent_basis: "Not published ('contact broker'). $45 assumed, matching a former restaurant listed at $45 in Newton Highlands; $10 NNN assumed. The 951 sq ft unit next door can be added, but the larger space can't carry a normal rent"
+    risks: "On the market about 21 months (ask why); SALT Patisserie and Blackbird Doughnuts nearby; hood and trap unconfirmed"
+    source: "Site shortlist #2; CBRE US-SMPL-167115 and Crexi 924251 (snippets, seen 2026-11-08)"

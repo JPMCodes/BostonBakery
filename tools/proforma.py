@@ -53,6 +53,8 @@ def validate(cfg: dict) -> list[str]:
     if len(ramp) != 12:
         errors.append("proforma.yaml: operating.ramp_year1_pct needs 12 monthly values")
     for site in cfg["sites"]:
+        if "rent_assumed" in site and not isinstance(site["rent_assumed"], bool):
+            errors.append(f"proforma.yaml: site {site.get('id', '?')}: rent_assumed must be true or false")
         for key in ("months_to_open", "soft_costs_pct", "equipment_credit"):
             if key in site and (not isinstance(site[key], (int, float)) or site[key] < 0):
                 errors.append(f"proforma.yaml: site {site.get('id', '?')}: {key} must be a number of 0 or more")
@@ -208,6 +210,21 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
     }
 
 
+def rent_ceiling(cfg: dict, menu: dict, site: dict, scenario: dict) -> float | None:
+    """The base rent per sq ft at which Year-2 cash after debt service is zero, other inputs fixed."""
+    def cash(rent: float) -> float:
+        return model(cfg, menu, dict(site, rent_psf=rent), scenario)["years"][1]["cash_after_debt"]
+    lo, hi = 0.0, 400.0
+    if cash(lo) <= 0:
+        return None
+    if cash(hi) > 0:
+        return hi
+    for _ in range(50):
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if cash(mid) > 0 else (lo, mid)
+    return lo
+
+
 def build(book: Book | None = None) -> dict:
     """Everything the report and the viewer need."""
     book = book or Book()
@@ -217,6 +234,9 @@ def build(book: Book | None = None) -> dict:
         raise DBError("; ".join(errors))
     menu = menu_day(book)
     results = {s["id"]: {sc["id"]: model(cfg, menu, s, sc) for sc in cfg["scenarios"]} for s in cfg["sites"]}
+    for s in cfg["sites"]:
+        for sc in cfg["scenarios"]:
+            results[s["id"]][sc["id"]]["rent_ceiling_psf"] = rent_ceiling(cfg, menu, s, sc)
     crews = {}
     for fmt in cfg["labor"]["formats"]:
         hours, wage = crew(cfg, fmt)
@@ -300,9 +320,9 @@ def render(data: dict) -> str:
         "",
         "## Sites compared, base scenario",
         "",
-        "| Site | Format | Sq ft | Rent and NNN, Year 1 | Steady sales a year | Base rent / with NNN, % of sales | Startup cost | "
+        "| Site | Format | Sq ft | Base rent / NNN per sq ft | Most base rent it can carry | Steady sales a year | Base rent / with NNN, % of sales | Startup cost | "
         "Cash after debt, Year 1 | EBITDA, Year 2 | Cash after debt, Year 2 | Break-even sales a day | Payback |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for sid, by_sc in results.items():
         r = by_sc["base"]
@@ -310,7 +330,9 @@ def render(data: dict) -> str:
         y1, y2 = r["years"][0], r["years"][1]
         payback = f"{r['payback_years']:.1f} yrs" if r["payback_years"] else "n/a"
         out.append(
-            f"| {s['name']} | {s['format']} | {float(s['sqft']):,.0f} | {usd(y1['rent'] + y1['nnn'])} | "
+            f"| {s['name']} | {s['format']} | {float(s['sqft']):,.0f} | "
+            f"${float(s['rent_psf']):.2f}{' (assumed)' if s.get('rent_assumed') else ''} / ${float(s['nnn_psf']):.2f} | "
+            f"{'none' if r['rent_ceiling_psf'] is None else usd(r['rent_ceiling_psf'])} | "
             f"{usd(r['steady_sales'])} | {r['base_rent_pct_y2']:.1f}% / {r['rent_pct_y2']:.1f}% | {usd(r['startup'])} | "
             f"{usd(y1['cash_after_debt'])}{'' if r['reserve_covers_year1'] else ' (more than the reserve)'} | "
             f"{usd(y2['ebitda'])} ({pct(y2['ebitda'], y2['sales'])}) | {usd(y2['cash_after_debt'])} | "
@@ -319,7 +341,9 @@ def render(data: dict) -> str:
     out += [
         "",
         "Break-even is the daily sales at which Year-2 cash flow after debt service is zero. Payback is the "
-        "startup cost divided by Year-3 EBITDA. The site scan's rent test is base rent at or under 8% of sales; "
+        "startup cost divided by Year-3 EBITDA. The most base rent a site can carry is the rent at which Year-2 cash "
+        "after debt service falls to zero, with its NNN unchanged; an assumed rent is a placeholder until a broker "
+        "quotes one. The site scan's rent test is base rent at or under 8% of sales; "
         "NNN charges come on top. Year-1 cash after debt has to fit inside the working capital reserve.",
     ]
 
@@ -336,6 +360,9 @@ def render(data: dict) -> str:
             "",
             f"- **Kitchen:** {s.get('kitchen', '')}",
             f"- **Rent:** {s.get('rent_basis', '')}",
+            f"- **Most base rent it can carry:** "
+            f"{'none' if base['rent_ceiling_psf'] is None else usd(base['rent_ceiling_psf']) + ' a sq ft'} in the base case",
+            *([f"- **Space:** {s['space_note']}"] if s.get("space_note") else []),
             f"- **Time to open:** about {s.get('months_to_open', 0):g} months from lease signing, paying rent throughout",
             *([f"- **Equipment credit:** {usd(float(s['equipment_credit']))}, "
                f"{s.get('equipment_credit_note', 'equipment already in place')}"] if s.get("equipment_credit") else []),
