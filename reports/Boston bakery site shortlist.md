@@ -1,5 +1,7 @@
 # Boston Bakery Site Shortlist: Spaces with Kitchens Worth a Call
 
+*Update, November 10, 2026: the pro forma's food-cost and utilities inputs were raised after this was written, which lowers every rent ceiling below; current figures are in [`db/proforma.md`](../db/proforma.md). The smaller owner-run shop has its own site list in [Boston bakery small-shop sites.md](Boston%20bakery%20small-shop%20sites.md).*
+
 *Checked November 8, 2026. This extends the [site scan](Boston%20bakery%20site%20scan.md) to Newton, Chestnut Hill, Brookline, Wellesley and Hingham, and re-checks the scan's best leads elsewhere. Only spaces with an existing kitchen or a recent food use count; raw retail is out. Sales levels are estimates, rents come from listings, and nothing was confirmed with a broker.*
 
 Eight spaces are worth a call. Two stand out: **145 Charles St on Beacon Hill**, the best street and foot traffic found, and **1191 Centre St in Newton Centre**, in the easiest town to permit. Two more turn on one fact each. **250 Huntington Ave** pays well at its listed $4,000 a month and loses money at the $14,000 its broker's sale listing implies. **A Brookline pizzeria for sale** has a full hot line at about $30–35 a sq ft all-in, but its address is withheld. None of the best spaces publishes a rent, so the table gives the most rent each can carry.

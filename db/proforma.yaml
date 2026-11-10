@@ -205,6 +205,112 @@ scenarios:
 # about $1,730 for the roll bakery) to the site's steady state. These are judgment
 # calls from the site research's traffic notes, not measured sales.
 sites:
+  # Roll bakery candidates: small former food spaces. Build-out costs, equipment
+  # credits and sales indexes are estimates until a contractor and a broker weigh in.
+  - id: jp_cafe
+    name: "Café for sale, Jamaica Plain center"
+    short: Jamaica Plain café
+    area: "Centre St area in the heart of Jamaica Plain; the broker withholds the address"
+    format: roll_bakery
+    sqft: 1090                    # 650 at street level plus a 440 sq ft basement
+    seats: 8
+    rent_psf: 48.44               # $4,400 a month all-in over 1,090 sq ft
+    nnn_psf: 0
+    escalation_pct: 3
+    buildout_psf: 50              # a working café: oven power and venting, and a basement prep room
+    equipment_credit: 25000
+    equipment_credit_note: "assumed value of the café's espresso bar, case, refrigeration and sinks, until the equipment list is seen"
+    purchase_price: 95000
+    months_to_open: 3
+    sales_index: 1.1
+    space_note: "650 sq ft at street level plus a 440 sq ft basement, so some storage and prep go downstairs"
+    kitchen: "Operating café set up for coffee, pastry and baked goods, 12 seats; fit-out and equipment included. Sinks, grease trap and electrical service not stated"
+    rent_basis: "$4,400 a month all-in ($52,800 a year) in the sale listing; lease runs to June 30, 2027 with one 5-year option"
+    risks: "Address withheld; the lease and its option end in mid-2032, short for a 10-year loan; price seen only on an index page; several cafés already in the center (Café Selah, Cafe Siete, Caffè Nero, Monumental Market)"
+    source: "BizBuySell 2481187 and BizQuest BW2481187 (snippets, undated; seen 2026-11-10)"
+  - id: brighton_center
+    name: "401-403 Washington St, Brighton"
+    short: Brighton Center
+    area: "Brighton Center's main street, near St. Elizabeth's Medical Center"
+    format: roll_bakery
+    sqft: 705
+    seats: 4
+    rent_psf: 37.45               # $2,200 a month
+    nnn_psf: 6.00
+    escalation_pct: 3
+    buildout_psf: 90              # a juice bar: needs oven power and venting and a bakery layout
+    equipment_credit: 10000
+    equipment_credit_note: "assumed value of the juice bar's refrigeration and sinks"
+    purchase_price: 79500
+    months_to_open: 4
+    sales_index: 0.95
+    space_note: "225 sq ft under the program: baking and the bar fit only with about four seats and storage in the basement"
+    kitchen: "Franchise juice bar since November 2023; the city licence shows a prep area, 23 seats, a bathroom and basement storage. No ovens; electrical service unknown"
+    rent_basis: "$2,200 a month ($26,400 a year) in the sale listing; NNN not stated, $6 assumed; lease runs to July 5, 2034"
+    risks: "A franchise resale, so the landlord and franchisor must accept a new concept; asking price is an unconfirmed snippet; Lakon Paris Patisserie is next door at 407 Washington St; very small"
+    source: "BizQuest BW2520885 (snippet, seen 2026-11-10); Boston Licensing Board records"
+  - id: davis_college_ave
+    name: "24 College Ave, Somerville"
+    short: Davis Square
+    area: "Between Davis Square's Red Line station and Tufts University"
+    format: roll_bakery
+    sqft: 1200                    # 600 at street level plus a 600 sq ft basement
+    seats: 6
+    rent_psf: 30.00               # about $3,000 a month
+    nnn_psf: 4.50                 # about $450 a month
+    escalation_pct: 3
+    buildout_psf: 60              # a built-out quick-service restaurant: oven power and venting, and a basement bake room
+    equipment_credit: 15000
+    equipment_credit_note: "assumed value of the restaurant's refrigeration, sinks and tables"
+    purchase_price: 200000
+    months_to_open: 3
+    sales_index: 1.15
+    space_note: "600 sq ft at street level plus a 600 sq ft basement: the baking has to go downstairs, if the city allows it"
+    kitchen: "Operating quick-service restaurant, fully built out, 12 seats, with a basement for prep and storage. Hood and equipment list not stated"
+    rent_basis: "About $3,000 a month plus about $450 NNN in the live listing ($41,400 a year); a new lease is negotiated with the landlord"
+    risks: "The seller asks $200,000 for a fit-out and equipment a bakery mostly can't use; baking in the basement needs health and building approval; lease terms not set"
+    source: "boston.com 73569759, read 2026-11-10 (listed 2026-08-29, available)"
+  - id: harvard_brattle
+    name: "1 Brattle Sq, Cambridge"
+    short: "Harvard Sq: Brattle"
+    area: "Brattle Square, in the middle of Harvard Square"
+    format: roll_bakery
+    sqft: 715
+    seats: 4
+    rent_psf: 105.00
+    rent_assumed: true
+    nnn_psf: 15.00
+    escalation_pct: 3
+    buildout_psf: 40              # a cookie bakery's fit-out, if it is still in place
+    equipment_credit: 29000
+    equipment_credit_note: "the cookie shop's double convection oven, freezers and sinks, if they are still there"
+    months_to_open: 3
+    sales_index: 1.35
+    space_note: "215 sq ft under the program: about four seats and very tight storage"
+    kitchen: "Chip City cookie bakery, 2024 to October 2026. Its 2023 permit drawings show a double electric convection oven, three reach-in freezers, a three-bay sink, a grease trap, mop and hand sinks and an accessible restroom; not confirmed still in place"
+    rent_basis: "Not listed and no rent published. $105 a sq ft plus $15 NNN assumed, from a Harvard Square café for sale at about $108 a sq ft base ($7,649 a month for 850 sq ft plus a basement, snippet)"
+    risks: "Not on the market: the chain closed on October 2, 2026, and who controls the lease and equipment is unclear; rent unknown; Flour is about two minutes away and Tatte about four"
+    source: "City of Cambridge permit drawings and advisory-committee report for Chip City (2023–24); Boston Restaurant Talk, 2026-10-02"
+  - id: harvard_church_st
+    name: "6 Church St, Cambridge"
+    short: "Harvard Sq: Church St"
+    area: "Beside the Harvard Square Red Line station, across Mass Ave from the campus"
+    format: roll_bakery
+    sqft: 850
+    seats: 6
+    rent_psf: 105.00
+    rent_assumed: true
+    nnn_psf: 15.00
+    escalation_pct: 3
+    buildout_psf: 90              # a dessert shop's fit-out, condition unknown
+    equipment_credit: 0
+    months_to_open: 5
+    sales_index: 1.35
+    kitchen: "Taiyaki NYC and The Dough Club (mochi donuts and ice cream), 2022 to November 2025; the fit-out isn't described"
+    rent_basis: "Listed with no rent published (NNN, renewal option). $105 a sq ft plus $15 NNN assumed, from a Harvard Square café for sale at about $108 a sq ft base (snippet)"
+    risks: "Rent unknown; empty for a year; what the dessert shop left behind is unknown; Tatte is three to four minutes away and Flour about five"
+    source: "CommercialSearch listing (snippet, updated 2026-05-26); Boston Restaurant Talk, 2025-11"
+  # Bakery-café sites: the bigger shop, kept for comparison.
   - id: cambridge
     name: "1105 Massachusetts Ave, Cambridge"
     short: Cambridge
