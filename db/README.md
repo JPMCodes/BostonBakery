@@ -107,11 +107,17 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 
 ## Pro forma
 
-`tools/proforma.py` adds up each product's price times its `par_daily` to get the menu's steady-state day, with its food-and-packaging cost at distributor prices. Each site in `proforma.yaml` has a `format` (`cafe` or `counter`, which sets its crew, space program and equipment) and a `sales_index`, the share of that day it should reach once it's established. Each scenario scales sales again. From those the script builds three years of P&L (Year 1 ramps up month by month), the startup cost and its financing, break-even and payback.
+`tools/proforma.py` projects sales, costs and startup money for each candidate site. Each site has a `format`, defined under `labor.formats` in `proforma.yaml`:
 
-- **Add a site:** copy a site block in `proforma.yaml`, set its size, seats, rent, NNN, build-out cost per sq ft, `months_to_open` (rent is paid from lease signing) and `sales_index`, and say in `rent_basis` and `source` where the numbers came from. A space that needs its kitchen rebuilt can raise its `soft_costs_pct`. If no rent is published, set `rent_assumed: true` and explain the guess in `rent_basis`; the report and viewer show the most base rent the site can carry, so the guess can be checked against a broker's quote.
-- **Change the crew:** edit the roles under `labor.formats`. The crew is sized for the format's `design_index` share of the par day, and `fixed_share` of its hours don't flex with sales.
-- **Treat the outputs as estimates:** the sales indexes are judgment calls, and no site's rent or condition has been confirmed with a broker.
+- **`cafe`, the bakery-café:** the full menu with lunch and a hired general manager. Its design day is every product's price times its `par_daily`.
+- **`roll_bakery`, the smaller first shop:** the cinnamon roll, a short pastry case and coffee, run by the owner. Its design day is the short `menu` listed under the format (product id and units a day). Its costs include no pay for the owner, so cash after loan payments is the owner's pay, measured against `owner_pay_target`.
+
+A site's `sales_index` is the share of its format's design day it should reach once it's established, and each scenario scales sales again. From those the script builds three years of P&L (Year 1 ramps up month by month), the startup cost and its financing, break-even in dollars and orders, payback, and the most base rent the site can carry.
+
+- **Add a site:** copy a site block in `proforma.yaml`, set its format, size, seats, rent, NNN, build-out cost per sq ft, `months_to_open` (rent is paid from lease signing) and `sales_index`, and say in `rent_basis` and `source` where the numbers came from. A space that needs its kitchen rebuilt can raise its `soft_costs_pct`. If no rent is published, set `rent_assumed: true` and explain the guess in `rent_basis`; the report and viewer show the most base rent the site can carry, so the guess can be checked against a broker's quote.
+- **Change a format:** edit its `roles` (mark the owner's with `owner: true`; they carry no wage), its `menu` volumes, `days_per_year`, `items_per_order` (used only to turn sales into an order count) and `manager`. A format can replace individual lines of `fixed_costs_per_year` and `startup` with its own.
+- **Food cost and utilities:** `cogs_buffer_pts` is added to each menu's cost at distributor prices; it and `utilities_per_sqft_year` were raised on 2026-11-10 to match restaurant norms. Lower them only on the evidence of real invoices.
+- **Treat the outputs as estimates:** the design-day volumes and sales indexes are judgment calls, and no site's rent or condition has been confirmed with a broker.
 
 ## Updating prices
 

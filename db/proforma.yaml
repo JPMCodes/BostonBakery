@@ -1,17 +1,18 @@
 # Pro forma inputs, read by tools/proforma.py (report: db/proforma.md; viewer: Pro forma tab).
 #
-# Sales, food cost and prep hours come from the menu database itself: the planning
-# pars (par_daily) in db/products give the menu's steady-state day, and each site's
-# sales_index scales that day to the site. Everything else is set here.
+# Sales, food cost and prep hours come from the menu database itself. Each format
+# (under labor.formats) has a design day: the bakery-café uses every product's
+# par_daily; the roll bakery lists its own short menu and volumes. Each site's
+# sales_index scales its format's design day to the site. Everything else is set here.
 #
 # Dollar figures are 2026 estimates unless a source is given. Sites, sizes and rents
-# come from reports/Boston bakery site scan.md (checked 2026-11-07); none has been
-# confirmed with a broker.
+# come from the reports in reports/ (site scan, 2026-11-07; shortlist, 2026-11-08);
+# none has been confirmed with a broker.
 
-as_of: 2026-11-08
+as_of: 2026-11-10
 
 operating:
-  days_per_year: 360            # open daily; closed five holidays
+  days_per_year: 360            # default: open daily, closed five holidays; a format can set its own
   hours: "6:30 am to 3:00 pm, seven days"
   # Year-1 sales as % of the site's steady state, month by month.
   ramp_year1_pct: [55, 60, 65, 70, 75, 80, 85, 88, 91, 94, 97, 100]
@@ -19,7 +20,10 @@ operating:
   cost_inflation_pct: 3         # yearly rise in wages, rent and fixed costs
   # Points added to the menu's food-and-packaging cost for comps, staff meals,
   # spoilage beyond the waste allowances and price drift before real invoices.
-  cogs_buffer_pts: 3
+  # Raised from 3 on 2026-11-10: it brings the café to 25% of sales, the low end of
+  # the research's 25–35% benchmark. The recipes allow only 0–5% for waste and every
+  # ingredient price is still an estimate.
+  cogs_buffer_pts: 5.5
 
 variable_costs_pct_of_sales:
   card_processing: 2.6          # about 90% of sales on cards at about 2.9%
@@ -38,7 +42,10 @@ fixed_costs_per_year:           # Year-1 dollars
   linens_uniforms: 2400
   internet_phone: 2400
 
-utilities_per_sqft_year: 10     # gas, electric and water for ovens, refrigeration and the bar
+# Gas, electric and water for ovens, refrigeration and the bar. Raised from $10 on
+# 2026-11-10: $10 came to 1.5–2% of sales, and restaurants commonly run 3% or more
+# (a rule of thumb, not from the market research).
+utilities_per_sqft_year: 20
 
 labor:
   burden_pct: 12                # FICA, FUTA, MA UI, training fund, workers' comp (research: statutory 8.5–9% plus workers' comp 1–3%)
@@ -53,6 +60,9 @@ labor:
     cafe:
       label: "Bakery-café: full menu with lunch, about 24 seats"
       design_index: 1.0         # staffed for the menu's full par day
+      items_per_order: 2.0      # assumption, used only to turn sales into an order count
+      hero: cinnamon_roll
+      manager: true             # a hired general manager runs it
       roles:
         - {role: Lead baker, hours: 8.5, wage: 25.00, note: "4:30 am start: mixes, shapes and bakes"}
         - {role: Baker and prep, hours: 8, wage: 20.00, note: "pastry, glazes, cookie and brownie batches, salad prep"}
@@ -60,17 +70,54 @@ labor:
         - {role: Baristas, hours: 14, wage: 16.50, note: "two at the morning peak, one after; plus tips"}
         - {role: Counter, hours: 10, wage: 15.50, note: "register, pastry case, grab-and-go; plus tips"}
         - {role: Dish and porter, hours: 5, wage: 15.50, note: "late morning to close"}
-    counter:
-      label: "Counter bakery: pastry, coffee and breakfast sandwiches, about 10 seats"
-      design_index: 0.5         # staffed for half the menu's par day
+    # The smaller first shop: one hero pastry, a short case and coffee, run by the owner.
+    # The research's independent winners start this way and add lunch at a second, bigger shop.
+    roll_bakery:
+      label: "Roll bakery: the cinnamon roll, six other pastries and coffee; about 8 seats"
+      hours: "7:00 am to 2:00 pm, Tuesday to Sunday"
+      days_per_year: 307        # six days a week, closed five holidays
+      design_index: 1.0         # staffed for this format's design day
+      items_per_order: 1.8      # assumption, used only to turn sales into an order count
+      hero: cinnamon_roll
+      manager: false            # the owner runs it; the P&L pays the owner nothing
+      owner_pay_target: 65000   # what the owner could earn as a hired lead baker: $25 an hour, 50 hours a week
       roles:
-        - {role: Lead baker, hours: 8.5, wage: 25.00, note: "4:30 am start"}
-        - {role: Baker and prep, hours: 6, wage: 20.00, note: "pastry and grab-and-go"}
-        - {role: Baristas, hours: 11, wage: 16.50, note: "one all day, a second at the peak; plus tips"}
-        - {role: Counter, hours: 7, wage: 15.50, note: "plus tips"}
-        - {role: Dish and porter, hours: 3, wage: 15.50, note: ""}
+        - {role: "Owner, lead baker", hours: 10, owner: true, note: "4:30 am start: mixes, rolls, bakes and glazes; runs the shop"}
+        - {role: Baker and prep, hours: 6, wage: 20.00, note: "shaping at the morning peak, then scones, muffins, cookies and tomorrow's dough"}
+        - {role: Barista, hours: 8.5, wage: 16.50, note: "opens the bar; plus tips"}
+        - {role: Counter, hours: 8, wage: 15.50, note: "register, pastry case and boxes; plus tips"}
+        - {role: Peak help, hours: 3, wage: 15.50, note: "an average: none on quiet weekdays, more on weekends"}
+        - {role: Dish and close, hours: 2, wage: 15.50, note: ""}
+      # This format's design day: units sold a day. Products left out aren't sold.
+      # No griddle, soup or salads, so no grease hood and no line cook.
+      menu:
+        cinnamon_roll: 110
+        blueberry_scone: 15
+        mini_vanilla_scone: 20
+        blueberry_muffin: 18
+        coffee_cake_slice: 10
+        cookie_chocolate_chip: 20
+        brownie: 12
+        drip_coffee: 55
+        latte: 30
+        iced_coffee: 15
+        iced_latte: 12
+        matcha_latte: 6
+        chai_latte: 6
+        espresso: 6
+        lemonade_kids: 7
+        oat_milk_swap: 15
+        almond_milk_swap: 4
+        cinnamon_roll_4pack: 6
+        pastry_box_dozen: 1.5
+        cookie_brownie_box: 0.5
+        coffee_cake_whole: 0.3
+        coffee_traveler: 0.5
+      # A smaller shop with fewer staff: these replace the same lines below and in startup.
+      fixed_costs_per_year: {insurance: 6000, software_pos: 3600, accounting_payroll_legal: 7000, licenses_music: 2000, waste_pest: 4800, linens_uniforms: 1500}
+      startup: {signage: 8000, opening_inventory: 5000, launch_marketing: 8000, furniture_base: 4000}
 
-# What the menu needs, zone by zone. Seats at about 15 sq ft each.
+# What each format needs, zone by zone. Seats at about 15 sq ft each.
 space_program:
   cafe:
     - {zone: "Bakery production: mixers, bench, double-stack oven, proofer, speed racks", sqft: 650}
@@ -81,20 +128,21 @@ space_program:
     - {zone: "Seating, 24 seats", sqft: 360}
     - {zone: "Restroom, office, staff lockers", sqft: 160}
     - {zone: "Entry, queue and circulation", sqft: 300}
-  counter:
-    - {zone: "Bakery production: mixer, bench, double-stack oven, proofer, speed racks", sqft: 450}
-    - {zone: "Hot line under a Type 1 hood: griddle", sqft: 80}
-    - {zone: "Cold and dry storage: reach-ins, freezer, shelving", sqft: 150}
-    - {zone: "Dish and sanitation", sqft: 90}
-    - {zone: "Coffee bar, pastry case, register", sqft: 250}
-    - {zone: "Seating, 10 seats", sqft: 150}
-    - {zone: "Restroom and office", sqft: 110}
-    - {zone: "Entry, queue and circulation", sqft: 200}
+  roll_bakery:
+    - {zone: "Bakery production: 40-qt mixer, bench, sheeter, double-stack oven, proofer, speed racks", sqft: 360}
+    - {zone: "Cold and dry storage: reach-ins, freezer, shelving", sqft: 110}
+    - {zone: "Dish and sanitation: 3-bay sink, dishwasher, mop sink", sqft: 70}
+    - {zone: "Coffee bar, pastry case, register", sqft: 150}
+    - {zone: "Seating, 8 seats", sqft: 110}
+    - {zone: "Restroom and office nook", sqft: 70}
+    - {zone: "Entry and queue", sqft: 60}
 
 # Equipment by format: estimates at new dealer prices before delivery and install.
 # Research anchors: double rack oven $55.6–57.0K, mixer $3–15K, proofing $5–10K,
 # hood $6–25K (gapfill_model_economics.md). A double-stack convection oven replaces
-# the rack oven at this volume.
+# the rack oven at this volume. The roll bakery's ovens are electric and it has no
+# griddle or fryer, so it should not need a grease hood: confirm with the local
+# building and health departments.
 equipment:
   cafe:
     - {item: "Double-stack convection oven, gas", cost: 22000}
@@ -113,21 +161,20 @@ equipment:
     - {item: "Speed racks, sheet pans, smallwares", cost: 9000}
     - {item: "Food processor, blenders, scales, juicer", cost: 4500}
     - {item: "Point-of-sale hardware and kitchen screen", cost: 4000}
-  counter:
-    - {item: "Double-stack convection oven, gas", cost: 22000}
-    - {item: "20-qt heavy-duty planetary mixer", cost: 8000}
+  roll_bakery:
+    - {item: "Double-stack convection oven, electric", cost: 20000}
+    - {item: "40-qt planetary mixer", cost: 16000}
+    - {item: "Reversible dough sheeter", cost: 7000}
     - {item: "Proofer-retarder cabinet", cost: 9000}
-    - {item: "Griddle and two-burner range", cost: 4500}
-    - {item: "Two reach-in refrigerators and a reach-in freezer", cost: 14000}
-    - {item: "Two-group espresso machine and two grinders", cost: 23000}
-    - {item: "Batch brewer, hot water, cold brew system, water filtration", cost: 7000}
-    - {item: "Pastry case", cost: 12000}
-    - {item: "Small grab-and-go case", cost: 6000}
-    - {item: "Sinks, stainless tables, shelving", cost: 11000}
-    - {item: "Undercounter dishwasher", cost: 7000}
-    - {item: "Speed racks, sheet pans, smallwares", cost: 7000}
-    - {item: "Food processor, blender, scales", cost: 3500}
-    - {item: "Point-of-sale hardware", cost: 3000}
+    - {item: "Two reach-in refrigerators and a reach-in freezer", cost: 12000}
+    - {item: "Compact two-group espresso machine and grinder", cost: 15000}
+    - {item: "Batch brewer, hot water, cold brew system, water filtration", cost: 6000}
+    - {item: "Pastry case", cost: 9000}
+    - {item: "Sinks, stainless tables, shelving", cost: 9000}
+    - {item: "Undercounter dishwasher", cost: 6500}
+    - {item: "Speed racks, sheet pans, roll pans, smallwares", cost: 7000}
+    - {item: "Induction burners for glaze, scales, food processor", cost: 2500}
+    - {item: "Point-of-sale hardware", cost: 2500}
 
 startup:
   soft_costs_pct_of_buildout: 15   # design, engineering, permits, legal (research: soft costs run 30–40% of a full restaurant build; less on a second-generation space). A site can override it with soft_costs_pct.
@@ -154,10 +201,9 @@ scenarios:
   - {id: base, name: Base, sales_factor: 1.0}
   - {id: upside, name: Upside, sales_factor: 1.2}
 
-# sales_index scales the menu's par day (about $3,630) to the site's steady state.
-# These are judgment calls from the site scan's traffic notes and the market
-# research's format benchmarks (a 2,500 sq ft café needs about $1.2–1.4M on cheaper
-# streets; a 1,200 sq ft counter about $0.6–0.8M), not measured sales.
+# sales_index scales the format's design day (about $3,630 for the bakery-café,
+# about $1,730 for the roll bakery) to the site's steady state. These are judgment
+# calls from the site research's traffic notes, not measured sales.
 sites:
   - id: cambridge
     name: "1105 Massachusetts Ave, Cambridge"
@@ -198,23 +244,3 @@ sites:
     rent_basis: "Not published (NNN, 1–5-year term offered, snippet). $65 assumed: Charles St is a premium street and an undated broker source puts Boston's median quoted rent near $56; $12 NNN assumed"
     risks: "Rent unknown; empty since Aug 2024; short term offered; take-out may need a zoning appeal; Beacon Hill's historic commission reviews signs and storefronts; Tatte (70 Charles) and Flour (Cambridge St) nearby"
     source: "Site shortlist #1; CommercialSearch and TenantBase listings (snippets, seen 2026-11-08); Boston food inspection records"
-  - id: newton_centre
-    name: "1191 Centre St, Newton"
-    short: Newton Centre
-    area: "Newton Centre's village core, 0.2 miles from the Green Line and beside a 126-space town lot"
-    format: cafe
-    sqft: 1894
-    seats: 16
-    rent_psf: 45.00
-    rent_assumed: true
-    nnn_psf: 10.00
-    escalation_pct: 3
-    buildout_psf: 100             # second-generation restaurant space; hood and grease trap unconfirmed
-    equipment_credit: 0
-    months_to_open: 5             # Newton approves a restaurant of up to 50 seats without a hearing
-    sales_index: 0.8
-    space_note: "Tight: about 16 seats fit beside the full kitchen"
-    kitchen: "Listed as '1,894 SF second generation restaurant space' (CBRE, snippet); hood, grease trap and prior tenant unconfirmed"
-    rent_basis: "Not published ('contact broker'). $45 assumed, matching a former restaurant listed at $45 in Newton Highlands; $10 NNN assumed. The 951 sq ft unit next door can be added, but the larger space can't carry a normal rent"
-    risks: "On the market about 21 months (ask why); SALT Patisserie and Blackbird Doughnuts nearby; hood and trap unconfirmed"
-    source: "Site shortlist #2; CBRE US-SMPL-167115 and Crexi 924251 (snippets, seen 2026-11-08)"
