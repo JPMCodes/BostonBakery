@@ -156,8 +156,9 @@ def owner_target(fmt_cfg: dict) -> float:
 
 
 def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
-    op, lab, fin = cfg["operating"], cfg["labor"], cfg["financing"]
+    op, lab = cfg["operating"], cfg["labor"]
     fmt_cfg = lab["formats"][site["format"]]
+    fin = {**cfg["financing"], **(fmt_cfg.get("financing") or {})}
     st = {**cfg["startup"], **(fmt_cfg.get("startup") or {})}
     fixed_costs = {**cfg["fixed_costs_per_year"], **(fmt_cfg.get("fixed_costs_per_year") or {})}
     days = float(fmt_cfg.get("days_per_year", op["days_per_year"]))
@@ -262,6 +263,9 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
         "loan": loan,
         "equity": equity,
         "debt_service": debt_service,
+        "return_on_cash_y2": y2["cash_after_debt"] / equity if equity else None,
+        "owner_cash_limit": fin.get("owner_cash_limit"),
+        "over_cash_limit": bool(fin.get("owner_cash_limit")) and equity > float(fin["owner_cash_limit"]),
         "breakeven_sales": breakeven,
         "breakeven_daily": breakeven / days,
         "breakeven_orders_daily": breakeven / days / ticket,
@@ -353,6 +357,7 @@ def render(data: dict) -> str:
     cfg, menus, results = data["config"], data["menus"], data["results"]
     sites = {s["id"]: s for s in cfg["sites"]}
     op, fin, lab = cfg["operating"], cfg["financing"], cfg["labor"]
+    cash_limit = fin.get("owner_cash_limit")
     formats = lab["formats"]
     short = {fmt: f["label"].split(":")[0] for fmt, f in formats.items()}
     days_of = {fmt: float(f.get("days_per_year", op["days_per_year"])) for fmt, f in formats.items()}
@@ -388,8 +393,11 @@ def render(data: dict) -> str:
     for fmt, f in formats.items():
         m = menus[fmt]
         who = (f"A hired general manager runs it ({usd(float(lab['manager']['salary']))} a year)." if f.get("manager", True)
-               else "The owner bakes and runs it. The P&L pays the owner nothing, so cash after debt service is the "
-                    f"owner's pay; the target is {usd(owner_target(f))} a year.")
+               else "The owner runs it. The P&L pays the owner nothing, so what is left after any debt service is "
+                    f"the owner's pay; the target is {usd(owner_target(f))} a year.")
+        share = float({**fin, **(f.get("financing") or {})}["loan_share_pct"])
+        who += (" Paid for in cash, with no loan." if not share
+                else f" Financed {share:g}% with a {fin['term_years']}-year loan at {fin['rate_pct']}%.")
         hero = f" About {m['hero_units']:.0f} {m['hero_name'].lower()}s a day, counting boxes." if m["hero_name"] else ""
         out.append(f"- **{f['label']}.** {who}{hero}")
     out += [
@@ -435,9 +443,9 @@ def render(data: dict) -> str:
         "## Sites compared, base scenario",
         "",
         "| Site | Format | Sq ft | Base rent / NNN per sq ft | Most base rent it can carry | Steady sales a year | "
-        "Orders a day | Base rent / with NNN, % of sales | Startup cost | Cash after debt, Year 1 | EBITDA, Year 2 | "
-        "Cash after debt, Year 2 | Break-even sales a day | Payback |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "Orders a day | Base rent / with NNN, % of sales | Startup cost | Owner's cash | Cash after debt, Year 1 | "
+        "EBITDA, Year 2 | Cash after debt, Year 2 | Return on the owner's cash, Year 2 | Break-even sales a day | Payback |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     owner_note = " (the owner's pay)"
     for sid, by_sc in results.items():
@@ -451,9 +459,11 @@ def render(data: dict) -> str:
             f"{'none' if r['rent_ceiling_psf'] is None else usd(r['rent_ceiling_psf'])} | "
             f"{usd(r['steady_sales'])} | {r['orders_daily']:.0f} | {r['base_rent_pct_y2']:.1f}% / {r['rent_pct_y2']:.1f}% | "
             f"{usd(r['startup'])} | "
+            f"{usd(r['equity'])}{' (over the limit)' if r['over_cash_limit'] else ''} | "
             f"{usd(y1['cash_after_debt'])}{'' if r['reserve_covers_year1'] else ' (more than the reserve)'} | "
             f"{usd(y2['ebitda'])} ({pct(y2['ebitda'], y2['sales'])}) | "
             f"{usd(y2['cash_after_debt'])}{'' if r['managed'] else owner_note} | "
+            f"{pct(y2['cash_after_debt'], r['equity'])} | "
             f"{usd(r['breakeven_daily'])} ({r['breakeven_orders_daily']:.0f} orders) | {payback} |"
         )
     out += [
@@ -463,7 +473,9 @@ def render(data: dict) -> str:
         "after debt service falls to zero, or, for an owner-run format, to the owner's target pay, with its NNN "
         "unchanged; an assumed rent is a placeholder until a broker quotes one. The site scan's rent test is base "
         "rent at or under 8% of sales; NNN charges come on top. Year-1 cash after debt has to fit inside the "
-        "working capital reserve.",
+        "working capital reserve."
+        + (f" The owner would put in up to {usd(float(cash_limit))} without a loan." if cash_limit else "")
+        + " A site paid for in cash has no debt service, so its EBITDA and its cash after debt are the same.",
     ]
 
     # Per site
@@ -474,7 +486,7 @@ def render(data: dict) -> str:
         managed = base["managed"]
         hero_name = menus[s["format"]]["hero_name"]
         last_col = ("Owner's earnings if the owner manages, Year 2" if managed
-                    else f"{hero_name}s a day, with boxes" if hero_name else "Orders a day")
+                    else f"{hero_name.capitalize()}s a day, with boxes" if hero_name else "Orders a day")
         ceiling = 'none' if base['rent_ceiling_psf'] is None else usd(base['rent_ceiling_psf']) + ' a sq ft'
         out += [
             "",
@@ -516,9 +528,12 @@ def render(data: dict) -> str:
                 out.append(f"| {label} | {' | '.join(usd(y[key]) for y in ys)} | {pct(ys[1][key], ys[1]['sales'])} |")
         out.append(f"| **EBITDA** | {' | '.join('**' + usd(y['ebitda']) + '**' for y in ys)} | "
                    f"**{pct(ys[1]['ebitda'], ys[1]['sales'])}** |")
-        out.append(f"| Debt service | {' | '.join(usd(y['debt_service']) for y in ys)} | "
-                   f"{pct(ys[1]['debt_service'], ys[1]['sales'])} |")
-        cash_label = "Cash after debt service" if managed else "Cash after debt service: the owner's pay"
+        borrowed = base["loan"] > 0
+        if borrowed:
+            out.append(f"| Debt service | {' | '.join(usd(y['debt_service']) for y in ys)} | "
+                       f"{pct(ys[1]['debt_service'], ys[1]['sales'])} |")
+        cash_label = ("Cash after debt service" if managed else "Cash after debt service: the owner's pay" if borrowed
+                      else "Left for the owner (no loan)")
         out.append(f"| **{cash_label}** | {' | '.join('**' + usd(y['cash_after_debt']) + '**' for y in ys)} | "
                    f"**{pct(ys[1]['cash_after_debt'], ys[1]['sales'])}** |")
         crew_hours = " | ".join(f"{y['hours_day']:.0f}" for y in ys)
@@ -529,9 +544,10 @@ def render(data: dict) -> str:
             f"Prime cost (food, packaging{', hourly crew and manager' if managed else ' and hourly crew, before any owner pay'}) is "
             f"{pct(labor, ys[1]['sales'])} of Year-2 sales; "
             f"sales per paid crew hour are {usd(base['sales_per_labor_hour_y2'])}. Break-even is "
-            f"{usd(base['breakeven_daily'])} a day after debt service, about {base['breakeven_orders_daily']:.0f} orders "
-            f"({100 * base['breakeven_vs_steady']:.0f}% of the steady state), and "
-            f"{usd(base['breakeven_ebitda_daily'])} a day before it. Each extra $100 a day of sales adds about "
+            f"{usd(base['breakeven_daily'])} a day{' after debt service' if borrowed else ''}, about "
+            f"{base['breakeven_orders_daily']:.0f} orders ({100 * base['breakeven_vs_steady']:.0f}% of the steady state)"
+            + (f", and {usd(base['breakeven_ebitda_daily'])} a day before it" if borrowed else "")
+            + ". Each extra $100 a day of sales adds about "
             f"{usd(base['per_extra_100_daily'])} a year of EBITDA once the crew flexes.",
         ]
         if not managed and base["owner_target_daily"]:
@@ -546,8 +562,13 @@ def render(data: dict) -> str:
         out += [
             f"| **Total** | **{usd(base['startup'])}** |",
             "",
-            f"Financed {fin['loan_share_pct']}% with a {fin['term_years']}-year loan at {fin['rate_pct']}% "
-            f"({usd(base['loan'])}, {usd(base['debt_service'])} a year) and {usd(base['equity'])} of owner equity.",
+            (f"Financed {100 * base['loan'] / base['startup']:.0f}% with a {fin['term_years']}-year loan at "
+             f"{fin['rate_pct']}% ({usd(base['loan'])}, {usd(base['debt_service'])} a year) and "
+             f"{usd(base['equity'])} of owner equity." if borrowed
+             else f"Paid for in cash, with no loan: {usd(base['equity'])} from the owner, a "
+                  f"{pct(ys[1]['cash_after_debt'], base['equity'])} return on it in Year 2."
+                  + (f" That is {usd(base['equity'] - float(base['owner_cash_limit']))} more than the "
+                     f"{usd(float(base['owner_cash_limit']))} the owner would put in." if base["over_cash_limit"] else "")),
         ]
 
     # Staffing and equipment
@@ -590,6 +611,13 @@ def render(data: dict) -> str:
         "- **Fixed costs a year:** " + ", ".join(f"{k.replace('_', ' ')} {usd(float(v))}" for k, v in fixed.items())
         + f". Totals by format: {fixed_by_format}.",
         f"- **Utilities:** ${cfg['utilities_per_sqft_year']} a sq ft a year.",
+        "- **Financing:** " + "; ".join(
+            f"{short[fmt].lower()} "
+            + ("paid in cash, with no loan" if not float({**fin, **(f.get('financing') or {})}['loan_share_pct'])
+               else f"{float({**fin, **(f.get('financing') or {})}['loan_share_pct']):g}% from a {fin['term_years']}-year "
+                    f"loan at {fin['rate_pct']}%")
+            for fmt, f in formats.items())
+        + (f". The owner would put in up to {usd(float(cash_limit))}." if cash_limit else "."),
         f"- **Inflation:** wages, NNN and fixed costs rise {op['cost_inflation_pct']}% a year; base rent rises at "
         "each site's escalation.",
         "- **Before opening:** rent and NNN are paid from lease signing to opening, for each site's months to open; "

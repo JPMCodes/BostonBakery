@@ -741,12 +741,13 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     const y2 = r.years[1];
     if (y2.ebitda <= 0) return ["bad", "Loses money"];
     if (y2.cash_after_debt < 0) return ["bad", "Can't carry the loan"];
+    if (r.over_cash_limit) return ["warn", "Over the cash limit"];
     if (!r.managed && r.owner_pay_target && y2.cash_after_debt < r.owner_pay_target) return ["warn", "Underpays the owner"];
     if (!r.reserve_covers_year1) return ["warn", "Year 1 needs more cash"];
     return ["ok", "Pays its way"];
   }
 
-  function costBar(y, managed) {
+  function costBar(y, managed, borrowed) {
     const parts = [
       ["cost", "Food and packaging", y.cogs],
       ["labor", managed ? "Crew and manager" : "Paid crew", y.hourly_labor + y.manager],
@@ -757,7 +758,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     const denom = Math.max(y.sales, costs);
     const w = (v) => (100 * v / denom).toFixed(2);
     const loss = y.ebitda < 0;
-    const rest = managed ? "EBITDA" : "Left for loan payments and the owner";
+    const rest = managed ? "EBITDA" : borrowed ? "Left for loan payments and the owner" : "Left for the owner";
     const segs = parts.map(([k, , v]) => `<span class="s-${k}" style="width:${w(v)}%"></span>`).join("") + (loss ? "" : `<span class="s-margin" style="width:${w(y.ebitda)}%"></span>`);
     const items = parts.map(([k, label, v]) => [k, label, pct(v, y.sales)]).concat([loss ? ["tick", "Sales end at the line: loss", pct(y.ebitda, y.sales)] : ["margin", rest, pct(y.ebitda, y.sales)]]);
     const aria = "Of Year-2 sales: " + items.map(([, l, v]) => `${l.toLowerCase()} ${v}`).join(", ");
@@ -774,12 +775,14 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     const ys = r.years, y1 = ys[0], y2 = ys[1], y3 = ys[2];
     const ramp = op.ramp_year1_pct, rampAvg = ramp.reduce((a, b) => a + b, 0) / ramp.length;
     const hero = menu.hero_name ? menu.hero_name.toLowerCase() + "s" : null;
+    const borrowed = r.loan > 0;
+    const loanShare = (k) => Object.assign({}, fin, fmtCfg(k).financing || {}).loan_share_pct;
 
     // Formats: each one's design day and what it needs
     const fmtRows = FORMATS.map((k) => {
       const m = PF.menus[k], c = PF.crews[k], label = fmtCfg(k).label, i = label.indexOf(":");
       const space = PF.space[k].reduce((a, z) => a + z.sqft, 0), equip = PF.equipment[k].reduce((a, e) => a + e.cost, 0);
-      return `<tr><td>${esc(fmtName(k))}<span class="note">${esc(i < 0 ? "" : label.slice(i + 1).trim() + ". ")}${fmtManaged(k) ? "Hired manager" : "Owner-run"}; ${esc(fmtHours(k))}</span></td>
+      return `<tr><td>${esc(fmtName(k))}<span class="note">${esc(i < 0 ? "" : label.slice(i + 1).trim() + ". ")}${fmtManaged(k) ? "Hired manager" : "Owner-run"}; ${loanShare(k) ? loanShare(k) + "% loan" : "paid for in cash"}; ${esc(fmtHours(k))}</span></td>
         <td class="n">${dollars(m.sales)}</td><td class="n">${whole(m.orders)}</td><td class="n hide-sm">$${m.ticket.toFixed(2)}</td>
         <td class="n hide-sm">${(m.goods_pct + op.cogs_buffer_pts).toFixed(0)}%</td><td class="n hide-sm">${c.hours}</td>
         <td class="n">${space.toLocaleString("en-US")}</td><td class="n hide-sm">${kd(equip)}</td></tr>`;
@@ -798,16 +801,16 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
         <td class="n">${big(q.steady_sales)}</td>
         <td class="n hide-sm">${whole(q.orders_daily)}</td>
         <td class="n hide-sm">$${Number(s.rent_psf).toFixed(0)}${s.rent_assumed ? "*" : ""} / ${q.rent_ceiling_psf == null ? "none" : "$" + q.rent_ceiling_psf.toFixed(0)}</td>
-        <td class="n hide-sm">${kd(q.startup)}</td>
-        <td class="n hide-sm${neg(q2.ebitda)}">${kd(q2.ebitda)}</td>
+        <td class="n hide-sm">${kd(q.startup)}<span class="note">${q.loan > 0 ? kd(q.equity) + " yours" : "all cash"}</span></td>
         <td class="n${neg(q2.cash_after_debt)}">${kd(q2.cash_after_debt)}${q.managed ? "" : "†"}</td>
+        <td class="n hide-sm${neg(q2.cash_after_debt)}">${pct(q2.cash_after_debt, q.equity)}</td>
         <td class="n hide-sm">${dollars(q.breakeven_daily)}</td>
         <td><span class="pill ${cls}">${text}</span></td></tr>`;
     }).join("");
     const anyOwnerRun = PF.sites.some((s) => !fmtManaged(s.format));
     const compare = `<section class="group pf"><div class="group-head"><h2>Sites compared</h2><span class="count">${esc(scen.name)}</span></div>${scenChips}
-      <div class="tbl-wrap"><table><thead><tr><th>Site</th><th class="n">Sales a year</th><th class="n hide-sm">Orders a day</th><th class="n hide-sm">Rent per sq ft / most it can carry</th><th class="n hide-sm">Startup</th><th class="n hide-sm">EBITDA</th><th class="n">Cash after loan</th><th class="n hide-sm">Break-even a day</th><th>Verdict</th></tr></thead><tbody>${cmpRows}</tbody></table></div>
-      <p class="muted small">Sales, EBITDA and cash after loan payments are for Year 2, the first full year after the ramp. ${anyOwnerRun ? "† Owner-run: the costs include no pay for the owner, so this figure is the owner's pay. " : ""}"Most it can carry" is the base rent at which Year-2 cash after loan payments falls to zero${anyOwnerRun ? ", or to the owner's target pay in an owner-run shop" : ""}; * marks a rent assumed because none is published. Break-even is the daily sales at which Year-2 cash after loan payments is zero. Tap a site for its detail.</p></section>`;
+      <div class="tbl-wrap"><table><thead><tr><th>Site</th><th class="n">Sales a year</th><th class="n hide-sm">Orders a day</th><th class="n hide-sm">Rent per sq ft / most it can carry</th><th class="n hide-sm">Startup</th><th class="n">Cash after loan</th><th class="n hide-sm">Return on your cash</th><th class="n hide-sm">Break-even a day</th><th>Verdict</th></tr></thead><tbody>${cmpRows}</tbody></table></div>
+      <p class="muted small">Sales and cash after loan payments are for Year 2, the first full year after the ramp; a site paid for in cash has no loan to pay. ${anyOwnerRun ? "† Owner-run: the costs include no pay for the owner, so this figure is the owner's pay. " : ""}Return is that cash as a share of what the owner puts in. "Most it can carry" is the base rent at which Year-2 cash after loan payments falls to zero${anyOwnerRun ? ", or to the owner's target pay in an owner-run shop" : ""}; * marks a rent assumed because none is published. Break-even is the daily sales at which Year-2 cash after loan payments is zero. Tap a site for its detail.</p></section>`;
 
     // The chosen site
     const siteChips = `<div class="pf-ctl"><span class="ctl-label" id="site-label">Site</span><div class="filters" role="group" aria-labelledby="site-label">${PF.sites.map((s) => `<button type="button" data-site="${esc(s.id)}" aria-pressed="${s.id === site.id}">${esc(s.short || s.name)}</button>`).join("")}</div></div>`;
@@ -824,19 +827,19 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     ] : [
       tile("Sales, Year 2", big(y2.sales), `${dollars(y2.daily_sales)} a day; Year 1 ${big(y1.sales)} while it ramps`),
       tile("Orders a day", whole(r.orders_daily), `${hero ? `about ${whole(r.hero_units_daily)} ${esc(hero)} a day, counting boxes; ` : ""}average order $${r.ticket.toFixed(2)}`),
-      tile("Left for the owner, Year 2", kd(y2.cash_after_debt), `after ${kd(r.debt_service)} of loan payments; the costs include no owner pay`, y2.cash_after_debt < 0),
+      tile("Left for the owner, Year 2", kd(y2.cash_after_debt), `${borrowed ? `after ${kd(r.debt_service)} of loan payments` : "no loan to pay"}; the costs include no owner pay`, y2.cash_after_debt < 0),
       tile(`Orders a day to pay the owner ${kd(r.owner_pay_target)}`, whole(r.owner_target_orders_daily), `${dollars(r.owner_target_daily)} a day; break-even is ${whole(r.breakeven_orders_daily)} orders`, r.owner_target_daily > r.steady_daily),
-      tile("Startup cost", big(r.startup), `${kd(r.equity)} owner equity, ${kd(r.loan)} loan`),
-      tile("EBITDA, Year 2", kd(y2.ebitda), `${pct(y2.ebitda, y2.sales)} of sales, before loan payments and owner pay`, y2.ebitda < 0)
+      tile("Startup cost", big(r.startup), borrowed ? `${kd(r.equity)} owner equity, ${kd(r.loan)} loan` : `paid for in cash, with no loan${r.over_cash_limit ? `; ${kd(r.equity - r.owner_cash_limit)} over the ${kd(r.owner_cash_limit)} limit` : ""}`, r.over_cash_limit),
+      tile("Return on the owner's cash, Year 2", pct(y2.cash_after_debt, r.equity), `${kd(y2.cash_after_debt)} on ${kd(r.equity)} put in; ${payback}`, y2.cash_after_debt < 0)
     ]).join("")}</div>`;
 
     const plRow = (label, key, cls, note) => `<tr${cls ? ` class="${cls}"` : ""}><td>${esc(label)}${note ? `<span class="note">${esc(note)}</span>` : ""}</td>${ys.map((y, i) => `<td class="n${i === 2 ? " hide-sm" : ""}${neg(y[key])}">${kd(y[key])}</td>`).join("")}<td class="n${neg(y2[key])}">${key === "sales" ? "100%" : pct(y2[key], y2.sales)}</td></tr>`;
     const pl = `<div class="tbl-wrap"><table><thead><tr><th>Line</th><th class="n">Year 1</th><th class="n">Year 2</th><th class="n hide-sm">Year 3</th><th class="n">Year 2 share</th></tr></thead><tbody>
       ${plRow("Sales", "sales", "total", `Year 1 ramps from ${ramp[0]}% to ${ramp[ramp.length - 1]}% of steady sales; Year 3 adds ${op.price_growth_pct}% in prices`)}
       ${PF_LINES.filter(([k]) => ys.some((y) => Math.round(y[k]) !== 0)).map(([k, label]) => plRow(label, k)).join("")}
-      ${plRow("EBITDA", "ebitda", "total")}
-      ${plRow("Loan payments", "debt_service")}
-      ${managed ? plRow("Cash after loan payments", "cash_after_debt", "total") : plRow("Left for the owner after loan payments", "cash_after_debt", "total", "The costs above include no pay for the owner")}
+      ${!managed && !borrowed ? plRow("Left for the owner", "ebitda", "total", "No loan to pay; the costs above include no pay for the owner") : plRow("EBITDA", "ebitda", "total")}
+      ${borrowed ? plRow("Loan payments", "debt_service") : ""}
+      ${managed ? plRow("Cash after loan payments", "cash_after_debt", "total") : borrowed ? plRow("Left for the owner after loan payments", "cash_after_debt", "total", "The costs above include no pay for the owner") : ""}
       ${managed ? plRow("If the owner manages", "owner_earnings", "", "EBITDA plus the manager's pay, before loan payments") : ""}
       <tr><td>Paid crew hours a day</td>${ys.map((y, i) => `<td class="n${i === 2 ? " hide-sm" : ""}">${y.hours_day.toFixed(0)}</td>`).join("")}<td></td></tr>
     </tbody></table></div>
@@ -849,14 +852,18 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     }).join("");
     const scenTable = `<div class="tbl-wrap"><table><thead><tr><th>Scenario</th><th class="n">Sales a day</th><th class="n">Orders a day</th><th class="n">${managed ? "Cash after loan" : "Left for the owner"}</th><th class="n hide-sm">${managed ? "If owner manages" : esc(hero ? hero.replace(/^\w/, (ch) => ch.toUpperCase()) + " a day" : "Units a day")}</th></tr></thead><tbody>${scRows}</tbody></table></div><p class="muted small" style="margin-top:6px">Year 2. Tap a scenario to switch the whole tab.</p>`;
 
+    const afterLoan = borrowed ? " after loan payments" : "";
     const y1cash = y1.cash_after_debt >= 0
-      ? `Year 1 makes ${dollars(y1.cash_after_debt)} after loan payments, so the ${dollars(r.reserve)} working capital reserve stays untouched.`
-      : `Year 1 runs ${dollars(-y1.cash_after_debt)} short after loan payments, ${r.reserve_covers_year1 ? "inside" : "more than"} the ${dollars(r.reserve)} working capital reserve${r.reserve_covers_year1 ? "" : ": it needs more equity or a cheaper start"}.`;
+      ? `Year 1 makes ${dollars(y1.cash_after_debt)}${afterLoan}, so the ${dollars(r.reserve)} working capital reserve stays untouched.`
+      : `Year 1 runs ${dollars(-y1.cash_after_debt)} short${afterLoan}, ${r.reserve_covers_year1 ? "inside" : "more than"} the ${dollars(r.reserve)} working capital reserve${r.reserve_covers_year1 ? "" : ": it needs more equity or a cheaper start"}.`;
+    const funding = borrowed
+      ? `Financed ${Math.round((100 * r.loan) / r.startup)}% with a ${fin.term_years}-year loan at ${fin.rate_pct}%: ${dollars(r.loan)}, paid at ${dollars(r.debt_service)} a year. Owner equity ${dollars(r.equity)}.`
+      : `Paid for in cash, with no loan: ${dollars(r.equity)} from the owner.${r.over_cash_limit ? ` That is ${dollars(r.equity - r.owner_cash_limit)} more than the ${dollars(r.owner_cash_limit)} the owner would put in.` : ""}`;
     const startup = `<div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="n">Cost</th></tr></thead><tbody>
       ${Object.entries(r.startup_lines).map(([k, v]) => `<tr><td>${esc(k)}${k === "Equipment" && site.equipment_credit ? `<span class="note">Net of a ${dollars(site.equipment_credit)} credit: ${esc(site.equipment_credit_note || "equipment already in place")}</span>` : ""}</td><td class="n">${dollars(v)}</td></tr>`).join("")}
       <tr class="total"><td>Total</td><td class="n">${dollars(r.startup)}</td></tr>
     </tbody></table></div>
-    <p class="small" style="margin-top:6px">Financed ${fin.loan_share_pct}% with a ${fin.term_years}-year loan at ${fin.rate_pct}%: ${dollars(r.loan)}, paid at ${dollars(r.debt_service)} a year. Owner equity ${dollars(r.equity)}. ${y1cash}${managed ? "" : " The owner draws nothing in Year 1 on these figures."}</p>`;
+    <p class="small" style="margin-top:6px">${funding} ${y1cash}${managed ? "" : " The owner draws nothing in Year 1 on these figures."}</p>`;
 
     const zones = PF.space[site.format];
     const ztotal = zones.reduce((a, z) => a + z.sqft, 0), zmax = Math.max(...zones.map((z) => z.sqft));
@@ -886,7 +893,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats} seats. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft${site.rent_assumed ? " (assumed; none published)" : ""} plus about $${Number(site.nnn_psf).toFixed(2)} NNN; the most base rent it can carry${managed ? "" : ` and still pay the owner ${kd(r.owner_pay_target)}`} is ${ceiling}. Sales index ${site.sales_index} of the format's design day. About ${site.months_to_open || 0} months from lease to opening.</span></div>
       ${facts.length ? `<dl class="specs small">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""}
       ${tiles}
-      <div><h4>Where Year-2 sales go</h4>${costBar(y2, managed)}</div>
+      <div><h4>Where Year-2 sales go</h4>${costBar(y2, managed, borrowed)}</div>
       <div><h4>Three years</h4>${pl}</div>
       <div class="cols">
         <div class="stack"><div><h4>Scenarios at this site</h4>${scenTable}</div><div><h4>Space</h4>${space}</div><div><h4>Staffing</h4>${staff}</div></div>
@@ -907,7 +914,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       `Fixed costs a year: ${FORMATS.map((k) => `${lower(k)} ${dollars(fixedOf(k))}`).join("; ")}. The bakery-café's lines: ${Object.entries(PF.fixed).map(([k, v]) => `${costWord(k)} ${dollars(v)}`).join(", ")}.`,
       `Utilities: $${PF.utilitiesPsf} a sq ft a year.`,
       `Startup: soft costs ${PF.startup.soft_costs_pct_of_buildout}% of build-out; furniture $${PF.startup.furniture_per_seat} a seat plus ${dollars(PF.startup.furniture_base)}; signage ${dollars(PF.startup.signage)}; ${PF.startup.preopening_payroll_weeks} weeks of pre-opening payroll at 60% of the crew and ${PF.startup.manager_preopening_weeks || 0} weeks of any manager; opening inventory ${dollars(PF.startup.opening_inventory)}; launch marketing ${dollars(PF.startup.launch_marketing)}; a ${PF.startup.deposit_months}-month deposit; rent and NNN from lease signing to opening, with no free rent assumed; ${PF.startup.working_capital_months} months of working capital; ${PF.startup.contingency_pct}% contingency on build-out and equipment. A smaller format uses smaller signage, inventory, marketing and furniture figures.`,
-      `Financing: ${fin.loan_share_pct}% from an SBA 7(a)-style loan at ${fin.rate_pct}% over ${fin.term_years} years; the rest is owner equity.`,
+      `Financing: ${FORMATS.map((k) => loanShare(k) ? `the ${lower(k)} borrows ${loanShare(k)}% on an SBA 7(a)-style loan at ${fin.rate_pct}% over ${fin.term_years} years` : `the ${lower(k)} is paid for in cash, with no loan`).join("; ")}.${fin.owner_cash_limit ? ` The owner would put in up to ${dollars(fin.owner_cash_limit)}.` : ""}`,
       `Not included: income taxes, depreciation, the owner's pay in an owner-run format, and any landlord build-out allowance or free rent, which would lower the startup cost.`,
       `Sources: sites, sizes and rents from the site reports in reports/; wages, payroll burden and format benchmarks from the market research; menu sales, food cost and prep hours from this database. Full report: db/proforma.md.`
     ];
