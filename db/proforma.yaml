@@ -194,6 +194,19 @@ startup:
   working_capital_months: 2        # of rent, payroll and fixed costs
   contingency_pct: 10              # of build-out and equipment
 
+# Local costs. The inputs above are Boston's; a site with `market: miami` uses these
+# instead. Lines not named here (food cost, prices, insurance, other fixed costs,
+# startup lines) stay as above. Research: reports/Miami roll bakery feasibility.md.
+markets:
+  miami:
+    label: "Miami-Dade: Coral Gables, South Miami, Pinecrest"
+    note: "Florida's minimum wage reached $15.00 on September 30, 2026, the same as Massachusetts', so counter pay converges with Boston's; skilled baking pay runs about 5–10% lower. Florida has no paid-leave or sick-leave mandate and a lighter unemployment tax. Power costs about half Boston's per kWh, but the air conditioning runs all year. Menu prices are left at the database's, which sit at or below Coral Gables specialty bakeries (croissants $5.50–5.95) and two to five times Cuban-bakery prices."
+    wages: {Lead baker: 23.00, Baker and prep: 19.00, Barista: 16.00, Counter: 15.25, Peak help: 15.00, Dish and close: 15.00, Line cook: 18.00, Baristas: 16.00, Dish and porter: 15.00}
+    burden_pct: 11                 # FICA and FUTA, Florida reemployment tax (2.7% on $7,000), workers' comp; no state paid leave
+    utilities_per_sqft_year: 15    # all-electric bakery with year-round air conditioning; estimate, no Miami benchmark found
+    closed_days_per_year: 2        # tropical storms: about 0.3 events a year, a few days each; real years are lumpy
+    sources: "Wages: Coral Gables bakery job ads 2026 ($18–24, assistant pastry chef $25–28), Florida minimum wage schedule, BLS OEWS May 2025 (Miami bakers' median $17.73). Payroll burden: Florida reemployment tax and NCCI bakery class rate ($2.778 per $100 from 2026-01-01). Utilities: FPL GSD-1 tariff ($12.70 per kW plus about 6.3¢ a kWh), EIA Florida commercial average 12.84¢ a kWh (Feb 2026), Miami-Dade water and sewer rates. Storms: DisasterAWARE (0.3 events a year near Miami). All in research_notes/Miami roll bakery feasibility/costs_rules.md."
+
 financing:
   owner_cash_limit: 500000         # the most the owner would put in; a startup at or under it takes no loan
   loan_share_pct: 70               # SBA 7(a)-style loan; the rest is owner equity. A format can set its own share
@@ -314,6 +327,95 @@ sites:
     rent_basis: "$2,200 a month ($26,400 a year) in the sale listing; NNN not stated, $6 assumed; lease runs to July 5, 2034"
     risks: "A franchise resale, so the landlord and franchisor must accept a new concept; asking price is an unconfirmed snippet; Lakon Paris Patisserie is next door at 407 Washington St; very small"
     source: "BizQuest BW2520885 (snippet, seen 2026-11-10); Boston Licensing Board records"
+  # Miami-Dade roll bakery candidates (research 2026-11-19). Each uses the miami market's
+  # wages, payroll burden, utilities and storm days. Sales indexes follow the traffic
+  # research's ranking against the Boston sites (Brighton 0.95, Jamaica Plain 1.1).
+  - id: gables_aragon
+    name: "Gables Grand Plaza, 353–383 Aragon Ave, Coral Gables"
+    short: "Gables: Aragon Ave"
+    area: "One block behind Miracle Mile in downtown Coral Gables, by the Coral Gables Museum and Books & Books"
+    market: miami
+    format: roll_bakery
+    sqft: 1400
+    seats: 8
+    rent_psf: 55.00
+    rent_assumed: true
+    nnn_psf: 16.00
+    escalation_pct: 3
+    buildout_psf: 75              # a second-generation restaurant: oven power and venting and a bakery layout
+    equipment_credit: 15000
+    equipment_credit_note: "assumed value of the restaurant's sinks, grease trap, tables and refrigeration"
+    months_to_open: 4
+    sales_index: 1.0
+    space_note: "About 470 sq ft over the program: room for more seats, a bigger box and pre-order counter, or storage"
+    kitchen: "Listed by Colliers as a ±1,400 sq ft second-generation restaurant space; former tenant and equipment not published"
+    rent_basis: "Rent on request. $55 a sq ft assumed, below Miracle Mile's $65–95 asking range (Terranova, April 2026) and Giralda's $75, above the Ponce de Leon strips' $40–47; $16 NNN assumed, between Ponce Plaza's $14.50 CAM estimate and Terranova's $24 office operating costs"
+    risks: "Rent unknown; a Colliers brochure calls the building fully leased, so the space may be gone; weekday office trade and weekend leisure trade only, with no rail at the door; visible vacancies on Miracle Mile and the business improvement district lapsed in 2022; Bachour, Pura Vida and Facade are within a few blocks"
+    source: "Colliers listing (snippet, undated); Showcase brochures (snippets); The Real Deal, 2026-04-08, for Miracle Mile asking rents"
+  - id: gables_santona
+    name: "Santona Corner #112, 1430 S Dixie Hwy, Coral Gables"
+    short: "Gables: US-1 by UM"
+    area: "US-1 across from the University of Miami, near the University Metrorail station"
+    market: miami
+    format: roll_bakery
+    sqft: 1373
+    seats: 8
+    rent_psf: 47.00
+    nnn_psf: 14.50
+    escalation_pct: 3
+    buildout_psf: 100             # a juice bar: needs oven power and venting, more drains and a bakery layout
+    equipment_credit: 10000
+    equipment_credit_note: "assumed value of the juice bar's refrigeration and sinks"
+    months_to_open: 5
+    sales_index: 0.85
+    space_note: "About 440 sq ft over the program"
+    kitchen: "Raw Juce juice bar (state corporate record at Suite 112); equipment not published. Plumbing likely; no ovens or oven ventilation"
+    rent_basis: "$47 a sq ft on Crexi and $40 in another listing; NNN not published, $14.50 assumed from Ponce Plaza's CAM estimate. Offered as a sublease of a master lease ending August 1, 2027, so a direct lease from the owner is needed"
+    risks: "Madruga Bakery, which sells a cinnamon bun, is in the same building (Suite 117), and its lease may bar another bakery; student trade falls by about half in June and December (University station boardings −55% in June); pass-by US-1 traffic; the sublease ends in 2027; on the market since mid-2025"
+    source: "Crexi, LoopNet, Showcase, JLL and CityFeet listings (snippets, 2025–26); Sunbiz record for Raw Juce LLC; Miami-Dade transit ridership reports"
+  - id: pinecrest_us1
+    name: "12257 S Dixie Hwy, Pinecrest"
+    short: "Pinecrest: US-1"
+    area: "US-1 (Pinecrest Parkway) between Suniland and Pinecrest Town Center"
+    market: miami
+    format: roll_bakery
+    sqft: 1500
+    seats: 8
+    rent_psf: 68.00               # $8,500 a month
+    nnn_psf: 12.00
+    escalation_pct: 3
+    buildout_psf: 50              # a working restaurant with hood and grease trap: oven power, bakery layout, refresh
+    equipment_credit: 15000
+    equipment_credit_note: "assumed value of the restaurant's bar refrigeration, sinks and tables"
+    purchase_price: 50000          # key money asked for the turnkey space
+    months_to_open: 3
+    sales_index: 0.95
+    space_note: "About 570 sq ft over the program, with 50-plus seats in place; more seats cost nothing extra in rent but add cleaning"
+    kitchen: "Turnkey restaurant: \"up-to-date grease trap and hood, seating for over 50 guests, a fully functional bar\" and over 30 parking spaces. Rumi Persian Grill and Malanga Cuban Cafe, both closed by October 2026"
+    rent_basis: "$8,500 a month ($68 a sq ft) plus $50,000 key money in the listing; whether that is gross or base is not stated, so $12 NNN assumed from the $8–15 strip-center CAM range a 2026 broker guide gives for Miami-Dade"
+    risks: "The listing is about 17 months old, so it may be gone; two restaurants closed here; rent alone is about 19% of the estimated sales; key money is lost if the shop fails; weekday trade is thin, with weekends carrying the week; Paris Baguette is opening at 9600 S Dixie Hwy and Crumbl is in Pinecrest"
+    source: "Fausto Commercial listing (snippet, about 513 days old); Yelp closure notices (snippets, October 2026)"
+  - id: pinecrest_dadeland
+    name: "Dadeland Plaza, 9455–9569 S Dixie Hwy, Pinecrest"
+    short: "Pinecrest: Dadeland Plaza"
+    area: "US-1 at the Dadeland end of Pinecrest, near Dadeland Mall and the Dadeland North Metrorail station"
+    market: miami
+    format: roll_bakery
+    sqft: 1004
+    seats: 6
+    rent_psf: 55.00
+    rent_assumed: true
+    nnn_psf: 12.00
+    escalation_pct: 3
+    buildout_psf: 110             # "restaurant / retail": food infrastructure not confirmed
+    equipment_credit: 0
+    months_to_open: 5
+    sales_index: 1.0
+    space_note: "About 70 sq ft over the program"
+    kitchen: "Listed by the landlord as a 1,004 sq ft \"restaurant / retail\" unit; the center has several second-generation restaurant spaces. Drains, grease trap and ventilation not confirmed"
+    rent_basis: "Rate undisclosed (NNN). $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (1,600 sq ft, August 2026); $12 NNN assumed from the strip-center CAM range"
+    risks: "Rent, availability and food infrastructure unconfirmed (the landlord's page is undated); if it is a raw retail bay, the county may charge road impact and sewer connection fees for the change to food use; Paris Baguette is opening about a quarter mile south at 9600 S Dixie Hwy"
+    source: "Gator Investments property page and Crexi listing (snippets, undated); PropertyShark (Downtown Dadeland, 2026-08-16)"
   # Bakery-café sites: the bigger shop, kept for comparison.
   - id: cambridge
     name: "1105 Massachusetts Ave, Cambridge"
