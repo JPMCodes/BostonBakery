@@ -6,14 +6,32 @@ Generated with `tools/proforma.py`'s model and `db/proforma.yaml` inputs as of 2
 
 | Site | In the model? | Sq ft | Rent / NNN per sq ft | Rent and NNN, Year 2 | Orders a day (est.) | Sales, Year 2 | Left for the owner: low / base / high | Cash to open | Return on it | Break-even orders a day | Orders a day to pay $60K | Most base rent it can carry and pay $60K | With Miami prices 10% higher |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Gables Grand Plaza, 353–383 Aragon Ave, Coral Gables | kept | 1,400 | $55.00 (assumed) / $16.00 (assumed) | $102,382 | 195 | $526,430 | −$82K / −$31K / $21K | $402,697 | −8% | 218 | 263 | none | $14K |
-| Santona Corner #112, 1430 S Dixie Hwy, Coral Gables | kept | 1,373 | $47.00 / $14.50 (assumed) | $86,973 | 166 | $447,466 | −$97K / −$54K / −$10K | $442,549 | −12% | 206 | 251 | none | −$15K |
-| 12257 S Dixie Hwy, Pinecrest | kept | 1,500 | $68.00 / $12.00 (assumed) | $123,600 | 185 | $500,108 | −$115K / −$66K / −$17K | $420,306 | −16% | 235 | 280 | none | −$24K |
 | Dadeland Plaza, 9455–9569 S Dixie Hwy, Pinecrest | kept | 1,004 | $55.00 (assumed) / $12.00 (assumed) | $69,286 | 195 | $526,430 | −$43K / $9K / $60K | $405,613 | 2% | 188 | 234 | $5 | $54K |
+| Gables Grand Plaza, 353–383 Aragon Ave, Coral Gables | dropped: loses money; probably leased | 1,400 | $55.00 (assumed) / $16.00 (assumed) | $102,382 | 195 | $526,430 | −$82K / −$31K / $21K | $402,697 | −8% | 218 | 263 | none | $14K |
+| Santona Corner #112, 1430 S Dixie Hwy, Coral Gables | dropped: loses money | 1,373 | $40.00 / $14.50 (assumed) | $77,073 | 166 | $447,466 | −$88K / −$44K / $0K | $434,540 | −10% | 199 | 244 | none | −$5K |
+| 12257 S Dixie Hwy, Pinecrest | dropped: loses money; probably leased | 1,500 | $68.00 / $12.00 (assumed) | $123,600 | 185 | $500,108 | −$115K / −$66K / −$17K | $420,306 | −16% | 235 | 280 | none | −$24K |
 
 Notes: NNN is assumed at every site (no listing published it). Sales indexes are the traffic research's ranking against the Boston sites (Brighton 0.95 = 185 orders, Jamaica Plain 1.1 = 214, Davis 1.15 = 224, Harvard 1.35 = 263): Miracle Mile and the Dadeland end 1.0, Suniland and Pinecrest US-1 0.95, Sunset Drive 0.9, US-1 by the University of Miami 0.85.
 
 ## Per-site detail, base case
+
+### Dadeland Plaza, 9455–9569 S Dixie Hwy, Pinecrest
+
+Inputs: sales index 1.0, build-out $110 a sq ft, equipment credit $0, 5 months from lease to opening. Rent basis: Rate undisclosed (NNN). $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (1,600 sq ft, August 2026); $12 NNN assumed from the strip-center CAM range
+
+| Line | Year 1 | Year 2 | Year 3 |
+|---|---|---|---|
+| Sales | $421,144 | $526,430 | $542,223 |
+| Food and packaging | $103,130 | $128,913 | $132,780 |
+| Hourly crew, with payroll taxes | $203,699 | $228,054 | $234,896 |
+| Base rent | $55,220 | $56,877 | $58,583 |
+| NNN charges | $12,048 | $12,409 | $12,782 |
+| Utilities | $15,060 | $15,512 | $15,977 |
+| Card fees, repairs, supplies, marketing, delivery, other | $38,324 | $47,905 | $49,342 |
+| Insurance, software, accounting, licenses, waste, linens, phone | $27,300 | $28,119 | $28,963 |
+| Left for the owner | −$33,637 | $8,641 | $8,900 |
+
+Startup: Build-out $110,440; Design, engineering, permits and legal $16,566; Equipment $121,500; Furniture and fixtures $6,700; Signage $8,000; Pre-opening payroll and training $9,147; Opening inventory $5,000; Launch marketing $8,000; Security deposit $16,817; Rent and NNN before opening $28,028; Contingency $23,194; Working capital reserve $52,221. Total $405,613.
 
 ### Gables Grand Plaza, 353–383 Aragon Ave, Coral Gables
 
@@ -35,21 +53,21 @@ Startup: Build-out $105,000; Design, engineering, permits and legal $15,750; Equ
 
 ### Santona Corner #112, 1430 S Dixie Hwy, Coral Gables
 
-Inputs: sales index 0.85, build-out $100 a sq ft, equipment credit $10,000, 5 months from lease to opening. Rent basis: $47 a sq ft on Crexi and $40 in another listing; NNN not published, $14.50 assumed from Ponce Plaza's CAM estimate. Offered as a sublease of a master lease ending August 1, 2027, so a direct lease from the owner is needed
+Inputs: sales index 0.85, build-out $100 a sq ft, equipment credit $10,000, 5 months from lease to opening. Rent basis: Contact for pricing in the landlord's agent's (JLL) listing; an older listing showed $40 a sq ft, used here. NNN not published, $14.50 assumed from Ponce Plaza's CAM estimate. The $47 sublease quote seen first belongs to Suite 104 (1,369 sq ft, master lease to August 1, 2027), possibly the same bay listed twice
 
 | Line | Year 1 | Year 2 | Year 3 |
 |---|---|---|---|
 | Sales | $357,972 | $447,466 | $460,889 |
 | Food and packaging | $87,661 | $109,576 | $112,863 |
 | Hourly crew, with payroll taxes | $193,071 | $214,371 | $220,802 |
-| Base rent | $64,531 | $66,467 | $68,461 |
+| Base rent | $54,920 | $56,568 | $58,265 |
 | NNN charges | $19,908 | $20,506 | $21,121 |
 | Utilities | $20,595 | $21,213 | $21,849 |
 | Card fees, repairs, supplies, marketing, delivery, other | $32,575 | $40,719 | $41,941 |
 | Insurance, software, accounting, licenses, waste, linens, phone | $27,300 | $28,119 | $28,963 |
-| Left for the owner | −$87,669 | −$53,505 | −$55,110 |
+| Left for the owner | −$78,058 | −$43,606 | −$44,914 |
 
-Startup: Build-out $137,300; Design, engineering, permits and legal $20,595; Equipment $111,500; Furniture and fixtures $7,600; Signage $8,000; Pre-opening payroll and training $9,147; Opening inventory $5,000; Launch marketing $8,000; Security deposit $21,110; Rent and NNN before opening $35,183; Contingency $24,880; Working capital reserve $54,234. Total $442,549.
+Startup: Build-out $137,300; Design, engineering, permits and legal $20,595; Equipment $111,500; Furniture and fixtures $7,600; Signage $8,000; Pre-opening payroll and training $9,147; Opening inventory $5,000; Launch marketing $8,000; Security deposit $18,707; Rent and NNN before opening $31,179; Contingency $24,880; Working capital reserve $52,632. Total $434,540.
 
 ### 12257 S Dixie Hwy, Pinecrest
 
@@ -68,24 +86,6 @@ Inputs: sales index 0.95, build-out $50 a sq ft, equipment credit $15,000, purch
 | Left for the owner | −$104,251 | −$66,256 | −$68,243 |
 
 Startup: Build-out $75,000; Design, engineering, permits and legal $11,250; Equipment $106,500; Purchase of the existing fit-out and lease $50,000; Furniture and fixtures $7,600; Signage $8,000; Pre-opening payroll and training $9,147; Opening inventory $5,000; Launch marketing $8,000; Security deposit $30,000; Rent and NNN before opening $30,000; Contingency $18,150; Working capital reserve $61,659. Total $420,306.
-
-### Dadeland Plaza, 9455–9569 S Dixie Hwy, Pinecrest
-
-Inputs: sales index 1.0, build-out $110 a sq ft, equipment credit $0, 5 months from lease to opening. Rent basis: Rate undisclosed (NNN). $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (1,600 sq ft, August 2026); $12 NNN assumed from the strip-center CAM range
-
-| Line | Year 1 | Year 2 | Year 3 |
-|---|---|---|---|
-| Sales | $421,144 | $526,430 | $542,223 |
-| Food and packaging | $103,130 | $128,913 | $132,780 |
-| Hourly crew, with payroll taxes | $203,699 | $228,054 | $234,896 |
-| Base rent | $55,220 | $56,877 | $58,583 |
-| NNN charges | $12,048 | $12,409 | $12,782 |
-| Utilities | $15,060 | $15,512 | $15,977 |
-| Card fees, repairs, supplies, marketing, delivery, other | $38,324 | $47,905 | $49,342 |
-| Insurance, software, accounting, licenses, waste, linens, phone | $27,300 | $28,119 | $28,963 |
-| Left for the owner | −$33,637 | $8,641 | $8,900 |
-
-Startup: Build-out $110,440; Design, engineering, permits and legal $16,566; Equipment $121,500; Furniture and fixtures $6,700; Signage $8,000; Pre-opening payroll and training $9,147; Opening inventory $5,000; Launch marketing $8,000; Security deposit $16,817; Rent and NNN before opening $28,028; Contingency $23,194; Working capital reserve $52,221. Total $405,613.
 
 ## What Miami's lower costs are worth on the same shop
 
