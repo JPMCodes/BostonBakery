@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Miami Roll Kitchen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Josefin+Sans:wght@600;700&display=swap">
+<style>
+/* Layout: a striped awning over a walk-up window. The three stages run across the top; under them a
+   control rail (the answer, then the assumptions) sits beside the readouts it drives. Chrome stays
+   teal and stucco so the only loud color on the page is the data: one fixed color per sales channel. */
+:root {
+  --plane: #eef4f1;  --surface: #fbfdfc;  --sunk: #e2ebe7;
+  --ink: #0c2b2a;  --ink-2: #3d5957;  --ink-3: #6a827f;
+  --rule: #d5e1dc;  --rule-2: #b2c3bf;
+  --brand: #0f4f4b;  --brand-soft: #d9ebe6;  --focus: #0f7f78;
+  --awn-a: #0f4f4b;  --awn-b: #f3d0d6;
+  --panel: #0f4f4b;  --panel-2: #1a6660;  --panel-ink: #f3fbf9;  --panel-ink-2: #b7d8d2;  --panel-well: rgba(255, 255, 255, .14);
+  --c-window: #2a78d6;  --c-drops: #2a78d6;  --c-markets: #eb6834;  --c-orders: #1baf7a;
+  --c-fundraisers: #eda100;  --c-apps: #e87ba4;  --c-grocers: #008300;
+  --on-c: #ffffff;  --on-c-fundraisers: #0b0b0b;
+  --n-1: #476763;  --n-2: #638480;  --n-3: #819d99;  --n-4: #9eb4b0;
+  --on-n-1: #ffffff;  --on-n-2: #ffffff;  --on-n-3: #0c2b2a;  --on-n-4: #0c2b2a;
+  --good: #0ca30c;  --good-ink: #006300;  --warn: #fab219;  --warn-ink: #6d4c00;  --bad: #d03b3b;  --bad-ink: #a82626;
+  --font-ui: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sign: "Josefin Sans", "Century Gothic", "Avenir Next", Futura, sans-serif;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane: #081617;  --surface: #0f2224;  --sunk: #1a3335;
+    --ink: #e8f2ef;  --ink-2: #b3c6c2;  --ink-3: #829995;
+    --rule: #1f3638;  --rule-2: #34514f;
+    --brand: #8fd6cb;  --brand-soft: #14393a;  --focus: #8fd6cb;
+    --awn-a: #17635d;  --awn-b: #6b3a4a;
+    --panel: #123f3c;  --panel-2: #1b5a55;  --panel-ink: #f3fbf9;  --panel-ink-2: #a9cdc7;  --panel-well: rgba(255, 255, 255, .12);
+    --c-window: #3987e5;  --c-drops: #3987e5;  --c-markets: #d95926;  --c-orders: #199e70;
+    --c-fundraisers: #c98500;  --c-apps: #d55181;  --c-grocers: #0ca30c;
+    --on-c: #ffffff;  --on-c-fundraisers: #ffffff;
+    --n-1: #a9c0bc;  --n-2: #8aa5a1;  --n-3: #6c8985;  --n-4: #527370;
+    --on-n-1: #062322;  --on-n-2: #062322;  --on-n-3: #062322;  --on-n-4: #ffffff;
+    --good: #0ca30c;  --good-ink: #5fd35f;  --warn: #fab219;  --warn-ink: #fab219;  --bad: #d03b3b;  --bad-ink: #f08a8a;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --plane: #081617;  --surface: #0f2224;  --sunk: #1a3335;
+  --ink: #e8f2ef;  --ink-2: #b3c6c2;  --ink-3: #829995;
+  --rule: #1f3638;  --rule-2: #34514f;
+  --brand: #8fd6cb;  --brand-soft: #14393a;  --focus: #8fd6cb;
+  --awn-a: #17635d;  --awn-b: #6b3a4a;
+  --panel: #123f3c;  --panel-2: #1b5a55;  --panel-ink: #f3fbf9;  --panel-ink-2: #a9cdc7;  --panel-well: rgba(255, 255, 255, .12);
+  --c-window: #3987e5;  --c-drops: #3987e5;  --c-markets: #d95926;  --c-orders: #199e70;
+  --c-fundraisers: #c98500;  --c-apps: #d55181;  --c-grocers: #0ca30c;
+  --on-c: #ffffff;  --on-c-fundraisers: #ffffff;
+  --n-1: #a9c0bc;  --n-2: #8aa5a1;  --n-3: #6c8985;  --n-4: #527370;
+  --on-n-1: #062322;  --on-n-2: #062322;  --on-n-3: #062322;  --on-n-4: #ffffff;
+  --good: #0ca30c;  --good-ink: #5fd35f;  --warn: #fab219;  --warn-ink: #fab219;  --bad: #d03b3b;  --bad-ink: #f08a8a;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--plane); color: var(--ink); font: 15px/1.5 var(--font-ui); -webkit-text-size-adjust: 100%; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--awn-a); }
+button, input, select { font: inherit; color: inherit; }
+h1, h2, h3, p, dl, dd, figure { margin: 0; }
+.wrap { max-width: 1260px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.num { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+/* Awning and masthead */
+.awning { height: 30px; background: repeating-linear-gradient(90deg, var(--awn-a) 0 26px, var(--awn-b) 26px 52px);
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 13px) no-repeat, radial-gradient(circle at 13px 0, #000 12.6px, transparent 13.4px) bottom left / 26px 13px repeat-x;
+  mask: linear-gradient(#000 0 0) top / 100% calc(100% - 13px) no-repeat, radial-gradient(circle at 13px 0, #000 12.6px, transparent 13.4px) bottom left / 26px 13px repeat-x; }
+.mast { padding-block: 18px 22px; }
+.mast .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+.brandline { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1 1 420px; }
+.mark { flex: none; width: 46px; height: 46px; }
+.mark path { fill: none; stroke: var(--brand); stroke-width: 3.4; stroke-linecap: round; }
+.mast h1 { font: 700 22px/1.1 var(--font-sign); letter-spacing: .17em; text-transform: uppercase; padding-top: .18em; text-wrap: balance; }
+.tagline { color: var(--ink-2); font-size: 14.5px; margin-top: 3px; }
+.asof { color: var(--ink-3); font-size: 13px; max-width: 46ch; flex: 1 1 300px; }
+
+/* The three stages */
+.path { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); align-items: stretch; gap: 0 10px; margin-bottom: 26px; }
+.stage { display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 16px 18px 14px; background: transparent; border: 1px solid var(--rule-2); border-radius: 14px; cursor: pointer; min-width: 0; transition: background-color .15s, border-color .15s; }
+.stage:hover { background: var(--surface); }
+.stage.is-on { background: var(--surface); border-color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); }
+.kick { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font: 700 12px/1.2 var(--font-sign); letter-spacing: .16em; text-transform: uppercase; color: var(--brand); padding-top: .15em; }
+.kick i { font: 500 12.5px/1.2 var(--font-ui); letter-spacing: 0; text-transform: none; color: var(--ink-3); }
+.stage-name { font-weight: 700; font-size: 20px; line-height: 1.2; }
+.stage-blurb { color: var(--ink-2); font-size: 13.5px; line-height: 1.4; flex: 1; }
+.stage-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--rule); }
+.stage-stats span { display: block; min-width: 0; }
+.stage-stats small { display: block; color: var(--ink-3); font-size: 12px; line-height: 1.25; }
+.stage-stats b { display: block; font-weight: 600; font-size: 15.5px; overflow-wrap: anywhere; }
+.stage-stats em { display: block; font-style: normal; color: var(--ink-3); font-weight: 500; font-size: 12.5px; line-height: 1.3; }
+.hop { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; width: 84px; color: var(--ink-3); font-size: 12px; line-height: 1.25; text-align: center; }
+.hop svg { width: 26px; height: 12px; fill: none; stroke: var(--rule-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.hop a { color: var(--ink-2); text-underline-offset: 2px; }
+
+/* Rail and readouts */
+.desk { display: grid; grid-template-columns: 376px minmax(0, 1fr); gap: 28px; align-items: start; padding-bottom: 56px; }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px - env(safe-area-inset-top, 0px)); overflow-y: auto; display: flex; flex-direction: column; gap: 14px; scrollbar-width: thin; padding-bottom: 2px; }
+.read { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+
+.answer { background: var(--panel); color: var(--panel-ink); border-radius: 16px; padding: 18px 20px 18px; display: flex; flex-direction: column; gap: 10px; }
+.ans-where { display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; font-size: 13px; color: var(--panel-ink-2); }
+.ans-where b { font: 700 12px/1.2 var(--font-sign); letter-spacing: .16em; text-transform: uppercase; color: var(--panel-ink); padding-top: .15em; }
+.ans-label { font-size: 14px; color: var(--panel-ink-2); margin-bottom: -8px; }
+.ans-fig { font-weight: 700; font-size: clamp(44px, 12vw, 56px); line-height: 1.05; letter-spacing: -.02em; }
+.ans-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 14px; color: var(--panel-ink-2); }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 7px; border-radius: 999px; background: var(--panel-ink); color: #0c2b2a; font-weight: 600; font-size: 13px; line-height: 1.3; }
+.pill svg { width: 15px; height: 15px; flex: none; }
+.pill.good svg { fill: #0a8a0a; }  .pill.warn svg { fill: #c98500; }  .pill.bad svg { fill: #d03b3b; }
+.ans-delta { font-size: 13.5px; color: var(--panel-ink); }
+.years { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.years button { background: var(--panel-well); border: 0; border-radius: 10px; padding: 7px 8px 6px; text-align: left; cursor: pointer; color: var(--panel-ink); min-width: 0; }
+.years button small { display: block; font-size: 12px; color: var(--panel-ink-2); line-height: 1.2; }
+.years button b { display: block; font-weight: 600; font-size: 14.5px; overflow-wrap: anywhere; }
+.years button[aria-checked="true"] { background: var(--panel-ink); color: #0c2b2a; }
+.years button[aria-checked="true"] small { color: #3d5957; }
+.years button:focus-visible, .answer .linkish:focus-visible { outline-color: var(--panel-ink); }
+.be { display: flex; flex-direction: column; gap: 6px; }
+.be-bar { height: 8px; border-radius: 4px; background: var(--panel-well); overflow: hidden; }
+.be-bar i { display: block; height: 100%; border-radius: 4px; background: var(--panel-ink); }
+.be-bar i.warn { background: var(--warn); }  .be-bar i.bad { background: #ff9a9a; }
+.be p { font-size: 13.5px; line-height: 1.4; color: var(--panel-ink-2); }
+.be p b { color: var(--panel-ink); font-weight: 600; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-top: 10px; border-top: 1px solid var(--panel-well); }
+.facts dt { font-size: 12px; color: var(--panel-ink-2); line-height: 1.25; }
+.facts dd { font-weight: 600; font-size: 14.5px; overflow-wrap: anywhere; }
+
+.levers { background: var(--surface); border: 1px solid var(--rule); border-radius: 16px; padding: 16px 18px 14px; display: flex; flex-direction: column; gap: 12px; }
+.lev-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 30px; }
+.sign { font: 700 13px/1.2 var(--font-sign); letter-spacing: .16em; text-transform: uppercase; padding-top: .15em; }
+.btn { border: 1px solid var(--rule-2); background: transparent; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.btn:hover { background: var(--sunk); }
+.btn.solid { background: var(--brand); border-color: var(--brand); color: var(--surface); font-weight: 600; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); }
+.field select { width: 100%; padding: 7px 10px; border: 1px solid var(--rule-2); border-radius: 10px; background: var(--surface); color: var(--ink); font-size: 14.5px; }
+.group { display: flex; flex-direction: column; gap: 10px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.group > h3 { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 10px; font-size: 14px; font-weight: 700; }
+.group > h3 span { font-weight: 400; font-size: 12.5px; color: var(--ink-3); }
+.group-body { display: flex; flex-direction: column; gap: 12px; }
+.lev { display: flex; flex-direction: column; }
+.lev-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.lev-top label { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 14.5px; min-width: 0; }
+.lev-top output { font-weight: 600; font-size: 14.5px; white-space: nowrap; }
+.sw { flex: none; width: 10px; height: 10px; border-radius: 3px; background: var(--c, var(--ink-3)); }
+.lev-track { position: relative; height: 26px; }
+.rng { -webkit-appearance: none; appearance: none; display: block; width: 100%; height: 26px; margin: 0; background: transparent; cursor: pointer; }
+.rng::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(to right, var(--c, var(--ink-2)) 0 var(--p, 50%), var(--sunk) var(--p, 50%) 100%); }
+.rng::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .2); }
+.rng::-moz-range-track { height: 6px; border-radius: 3px; background: var(--sunk); }
+.rng::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--c, var(--ink-2)); }
+.rng::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink); }
+.rng.signed::-webkit-slider-runnable-track { background: var(--sunk); }
+.rng.signed::-moz-range-progress { background: transparent; }
+.rng:focus-visible { outline: 2px solid var(--focus); outline-offset: 0; border-radius: 13px; }
+.mk { position: absolute; left: calc(10px + (100% - 20px) * var(--x)); pointer-events: none; }
+.mk.zero { top: 3px; width: 2px; height: 20px; margin-left: -1px; border-radius: 1px; background: var(--bad); }
+.mk.plan { top: 21px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--ink-3); }
+.lev-sub { display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; line-height: 1.35; color: var(--ink-3); }
+.lev-sub b { font-weight: 500; color: var(--bad-ink); white-space: nowrap; }
+.check { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 2px 10px; align-items: start; font-size: 14.5px; cursor: pointer; }
+.check input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--brand); }
+.check small { grid-column: 2; font-size: 12.5px; line-height: 1.35; color: var(--ink-3); }
+
+/* Readout cards */
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 16px; padding: 20px 22px 20px; min-width: 0; }
+.card > header { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.card > header h2 { font: 700 14px/1.25 var(--font-sign); letter-spacing: .16em; text-transform: uppercase; padding-top: .15em; text-wrap: balance; }
+.lede { color: var(--ink-2); max-width: 72ch; }
+.lede b { color: var(--ink); font-weight: 600; }
+.note { color: var(--ink-3); font-size: 13px; line-height: 1.45; max-width: 80ch; margin-top: 12px; }
+.note b { color: var(--ink-2); font-weight: 600; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th:last-child, td:last-child { padding-right: 0; }
+thead th { font-weight: 600; font-size: 12.5px; color: var(--ink-3); line-height: 1.3; vertical-align: bottom; border-bottom-color: var(--rule-2); }
+tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+tbody th { font-weight: 500; }
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+thead th.r { white-space: normal; }
+tr.total td, tr.total th { font-weight: 700; border-top: 1px solid var(--rule-2); }
+td small, th small { display: block; color: var(--ink-3); font-size: 12.5px; font-weight: 400; line-height: 1.35; }
+.name { display: flex; align-items: center; gap: 8px; }
+.neg { color: var(--bad-ink); }
+.tag { display: inline-block; border: 1px solid var(--rule-2); border-radius: 999px; padding: 0 7px; font-size: 11.5px; font-weight: 500; color: var(--ink-2); white-space: nowrap; margin-left: 6px; vertical-align: 1px; }
+
+/* The two bars: what the channels bring in, and what that pays for */
+.flow { display: flex; flex-direction: column; gap: 6px; }
+.flow-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; font-size: 13.5px; color: var(--ink-2); }
+.flow-cap b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.flow-bar { display: flex; gap: 2px; height: 28px; }
+.seg { flex: 0 0 auto; min-width: 0; height: 28px; border-radius: 4px; background: var(--c); color: var(--on, #fff); padding: 0; border: 0; overflow: visible; display: flex; align-items: center; font-size: 12.5px; font-weight: 600; white-space: nowrap; position: relative; cursor: default; }
+.seg span { padding: 0 8px; }
+.seg:hover, .seg:focus-visible { filter: brightness(1.08); }
+.seg.ghost { background: transparent; box-shadow: inset 0 0 0 1.5px var(--bad); color: var(--bad-ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 3px 16px; font-size: 13px; color: var(--ink-2); margin-bottom: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.axis { position: relative; height: 22px; border-top: 1px solid var(--rule-2); margin-top: 2px; }
+.axis i { position: absolute; top: 0; width: 1px; height: 5px; background: var(--rule-2); }
+.axis span { position: absolute; top: 6px; transform: translateX(-50%); font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.axis span:first-of-type { transform: none; }
+.tip { position: fixed; z-index: 40; max-width: 280px; padding: 8px 11px; border-radius: 8px; background: var(--ink); color: var(--surface); font-size: 13px; line-height: 1.4; pointer-events: none; box-shadow: 0 4px 14px rgba(0, 0, 0, .22); }
+.tip b { display: block; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tip small { display: block; opacity: .82; font-size: 12.5px; }
+
+/* Rows with a bar: the P&L, the swings, the cash to open */
+.bars td.bar { width: 34%; padding-top: 12px; }
+.bars .b { display: block; height: 10px; border-radius: 0 4px 4px 0; background: var(--n-3); min-width: 1px; }
+.bars .b.own { background: var(--ink); }  .bars .b.sales { background: var(--n-4); }  .bars .b.swing { background: var(--n-1); height: 14px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 18px; margin-bottom: 16px; }
+.stats div { min-width: 0; }
+.stats small { display: block; color: var(--ink-3); font-size: 12.5px; line-height: 1.3; }
+.stats b { display: block; font-size: 19px; font-weight: 600; line-height: 1.25; }
+.stats span { display: block; color: var(--ink-3); font-size: 12.5px; line-height: 1.35; }
+.price { width: 5.4em; padding: 1px 6px; margin: -2px 0; border: 1px solid var(--rule-2); border-radius: 7px; background: var(--surface); text-align: right; font-variant-numeric: tabular-nums; }
+.price.changed { border-color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); }
+details { margin-top: 12px; }
+summary { cursor: pointer; font-weight: 500; color: var(--ink-2); }
+details table { margin-top: 8px; }
+.pick { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+.pick input { margin: 4px 0 0; accent-color: var(--brand); flex: none; }
+tr.is-on td, tr.is-on th { background: var(--brand-soft); }
+tr.is-on th:first-child { box-shadow: inset 3px 0 0 var(--brand); }
+.sites th:first-child, .sites td:first-child { padding-left: 10px; }
+.sitenotes { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 16px; margin-top: 14px; font-size: 13.5px; }
+.sitenotes dt { color: var(--ink-3); }
+.sitenotes dd { color: var(--ink-2); max-width: 82ch; }
+.callout { border: 1px solid var(--rule-2); border-left: 4px solid var(--warn); border-radius: 12px; padding: 12px 16px; background: var(--surface); color: var(--ink-2); font-size: 14px; max-width: none; }
+.callout b { color: var(--ink); font-weight: 700; }
+.foot { color: var(--ink-3); font-size: 13px; line-height: 1.5; max-width: 96ch; display: flex; flex-direction: column; gap: 6px; padding: 0 4px; }
+
+/* The slim bar that keeps the answer in view once the big figure has scrolled away */
+.mini { position: fixed; inset: 0 0 auto; z-index: 20; background: var(--panel); color: var(--panel-ink); padding-top: env(safe-area-inset-top, 0px); box-shadow: 0 2px 10px rgba(0, 0, 0, .18); }
+.mini .wrap { display: flex; align-items: center; gap: 10px 14px; padding-block: 8px; flex-wrap: wrap; }
+.mini small { color: var(--panel-ink-2); font-size: 12.5px; }
+.mini b { font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.mini .pill { font-size: 12.5px; padding: 2px 9px 2px 6px; }
+.mini .grow { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 1060px) {
+  .desk { grid-template-columns: minmax(0, 1fr); }
+  .rail { position: static; max-height: none; overflow: visible; }
+}
+@media (max-width: 880px) {
+  .path { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .hop { width: auto; flex-direction: row; justify-content: flex-start; gap: 8px; padding: 0 6px; text-align: left; }
+  .hop svg { transform: rotate(90deg); width: 18px; flex: none; }
+  .stage { padding: 13px 16px 12px; }
+  .stage:not(.is-on) .stage-blurb { display: none; }
+  .stage-stats { margin-top: 4px; }
+}
+@media (max-width: 560px) {
+  .card { padding: 16px 14px; border-radius: 14px; }
+  .levers { padding: 14px 14px 12px; }
+  .answer { padding: 16px 16px; }
+  .mast h1 { font-size: 19px; letter-spacing: .14em; }
+  .bars td.bar { width: 22%; }
+  .sitenotes { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .sitenotes dd { margin-bottom: 8px; }
+  .hide-s { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="awning" aria-hidden="true"></div>
+<header class="mast">
+  <div class="wrap">
+    <div class="brandline">
+      <svg class="mark" viewBox="0 0 46 46" aria-hidden="true"><path id="swirl" d=""/></svg>
+      <div>
+        <h1>Miami Roll Kitchen</h1>
+        <p class="tagline">One kitchen, five ways to sell. Move an assumption and every number follows.</p>
+      </div>
+    </div>
+    <p class="asof" id="asof"></p>
+  </div>
+</header>
+
+<div class="mini" id="mini" hidden>
+  <div class="wrap">
+    <div class="grow"><small id="mini-where"></small><b id="mini-fig"></b></div>
+    <span class="pill" id="mini-pill"></span>
+  </div>
+</div>
+
+<main class="wrap">
+  <nav class="path" id="path" aria-label="The plan's three stages"></nav>
+
+  <div class="desk">
+    <aside class="rail" id="rail" aria-label="The answer and the assumptions">
+      <section class="answer" id="answer" aria-live="polite">
+        <div class="ans-where"><b id="ans-stage"></b><span id="ans-site"></span></div>
+        <div class="ans-label" id="ans-label"></div>
+        <div class="ans-fig" id="ans-fig"></div>
+        <div class="ans-row"><span class="pill" id="ans-pill"></span><span id="ans-margin"></span></div>
+        <div class="ans-delta" id="ans-delta" hidden></div>
+        <div class="years" id="years" role="radiogroup" aria-label="Year"></div>
+        <div class="be"><div class="be-bar"><i id="be-fill"></i></div><p id="be-text"></p></div>
+        <dl class="facts" id="facts"></dl>
+      </section>
+
+      <section class="levers" aria-label="Assumptions">
+        <div class="lev-head"><h2 class="sign">Assumptions</h2><button type="button" class="btn solid" id="reset" hidden>Back to the plan</button></div>
+        <div class="presets" id="presets"></div>
+        <label class="field" id="site-field" for="site-select">Kitchen site<select id="site-select"></select></label>
+        <div class="group"><h3>What sells <span>share of the plan's volume</span></h3><div id="lev-sell" class="group-body"></div></div>
+        <div class="group"><h3>Prices and costs</h3><div id="lev-cost" class="group-body"></div></div>
+        <div class="group"><h3>Crew and you</h3><div id="lev-crew" class="group-body"></div></div>
+      </section>
+    </aside>
+
+    <div class="read">
+      <p class="callout" id="callout" hidden></p>
+      <section class="card" id="s-flow">
+        <header><h2>What each channel brings in, and what that pays for</h2><p class="lede" id="flow-lede"></p></header>
+        <figure class="flow" id="flow"></figure>
+        <div class="scroll"><table id="chan-table" style="min-width: 640px; margin-top: 16px"></table></div>
+        <p class="note" id="chan-note"></p>
+      </section>
+
+      <section class="card" id="s-pnl">
+        <header><h2>Where every dollar goes</h2><p class="lede" id="pnl-lede"></p></header>
+        <div class="scroll"><table class="bars" id="pnl-table"></table></div>
+        <p class="note" id="pnl-note"></p>
+      </section>
+
+      <section class="card" id="s-moves">
+        <header><h2>What moves the result</h2><p class="lede" id="moves-lede"></p></header>
+        <div class="scroll"><table class="bars" id="moves-table"></table></div>
+      </section>
+
+      <section class="card" id="s-menu">
+        <header><h2>The menu</h2><p class="lede" id="menu-lede"></p></header>
+        <div class="scroll"><table id="menu-table" style="min-width: 600px"></table></div>
+        <p class="note" id="menu-note"></p>
+      </section>
+
+      <section class="card" id="s-crew">
+        <header><h2>Crew and kitchen</h2><p class="lede" id="crew-lede"></p></header>
+        <div class="stats" id="crew-stats"></div>
+        <div class="scroll"><table id="crew-table" style="min-width: 560px"></table></div>
+      </section>
+
+      <section class="card" id="s-cash">
+        <header><h2>Cash to open</h2><p class="lede" id="cash-lede"></p></header>
+        <div class="scroll"><table class="bars" id="cash-table"></table></div>
+        <details id="equip"><summary id="equip-sum"></summary><div class="scroll"><table id="equip-table"></table></div></details>
+      </section>
+
+      <section class="card" id="s-sites">
+        <header><h2 id="sites-h"></h2><p class="lede" id="sites-lede"></p></header>
+        <div class="scroll" id="sites-wrap"><table class="sites" id="sites-table" style="min-width: 720px"></table></div>
+        <dl class="sitenotes" id="site-notes"></dl>
+      </section>
+
+      <section class="card" id="gates">
+        <header><h2>Gates before a lease</h2><p class="lede">What the pop-up has to show before the kitchen is worth $300,000. The targets are judgment, tied to the model's thresholds; the figures in the right-hand column come from this model at the plan's settings.</p></header>
+        <div class="scroll"><table id="gates-table" style="min-width: 620px"></table></div>
+      </section>
+
+      <footer class="foot" id="foot"></footer>
+    </div>
+  </div>
+</main>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script>var D = {"as_of":"2026-11-19","market":"Miami-Dade","op":{"ramp":0.8,"infl":0.03,"growth":0.03,"cogs_buffer":5.5},"manager_hire":{"salary":70000},"scenarios":[{"id":"conservative","name":"Conservative","factor":0.8},{"id":"base","name":"Base","factor":1.0},{"id":"upside","name":"Upside","factor":1.2}],"products":{"cinnamon_roll":{"name":"Cinnamon Roll","cat":"pastry","cost":0.6288245063539102,"min":1.3470979188305863,"hero":1.0},"guava_cheese_roll":{"name":"Guava & Cheese Roll","cat":"pastry","cost":0.7565058080864223,"min":1.5441274940588512,"hero":0},"cinnamon_roll_grande":{"name":"Grande Cinnamon Roll","cat":"pastry","cost":1.085255679374487,"min":2.169195837661172,"hero":0},"roll_of_the_week_grande":{"name":"Roll of the Week (Grande)","cat":"pastry","cost":1.3381879702103814,"min":2.2184123377153067,"hero":0},"cinnamon_roll_4pack":{"name":"Cinnamon Roll 4-Pack","cat":"catering","cost":1.8754947067450547,"min":5.88180159554509,"hero":4.0},"cinnamon_roll_6box":{"name":"Cinnamon Roll Box (6)","cat":"catering","cost":2.505739560117582,"min":8.597702393317634,"hero":6.0},"twist_loaf_cinnamon":{"name":"Cinnamon Twist Loaf","cat":"pastry","cost":1.6816815835063608,"min":5.542724923458429,"hero":0},"twist_loaf_dulce":{"name":"Dulce de Leche Twist Loaf","cat":"pastry","cost":2.2273290938496255,"min":5.153161965574707,"hero":0},"cookie_chocolate_chip":{"name":"Chocolate Chip Walnut Cookie","cat":"pastry","cost":1.1969313240150996,"min":0.8049999999999999,"hero":0},"brownie":{"name":"Brownie","cat":"pastry","cost":1.0116599902835866,"min":0.8626250000000001,"hero":0},"iced_coffee":{"name":"Iced Coffee (16 oz cold brew)","cat":"drink","cost":0.9386374827942982,"min":0.8787692307692309,"hero":0},"lemonade_kids":{"name":"Strawberry Chamomile Lemonade","cat":"drink","cost":0.7735784180332779,"min":1.545,"hero":0},"cinnamon_roll_12box":{"name":"Cinnamon Roll Box (12)","cat":"catering","cost":4.211384120235164,"min":16.59540478663527,"hero":12.0},"mini_roll_tray_24":{"name":"Mini Roll Party Tray (24)","cat":"catering","cost":3.382566912433616,"min":9.538661317202214,"hero":0},"take_and_bake_6":{"name":"Take-and-Bake Cinnamon Rolls (6)","cat":"catering","cost":2.4193565513199333,"min":7.851656441183988,"hero":0},"roll_cake_9in":{"name":"Celebration Roll Cake (9-inch)","cat":"catering","cost":3.8107456414643064,"min":11.651427872947664,"hero":0},"cookie_brownie_box":{"name":"Cookie & Brownie Box (12)","cat":"catering","cost":13.397378031622663,"min":11.125,"hero":0.0},"iced_latte":{"name":"Iced Latte (16 oz)","cat":"drink","cost":1.0191564756139095,"min":1.428,"hero":0},"latte":{"name":"Latte (12 oz)","cat":"drink","cost":1.1532632906973845,"min":1.6320000000000001,"hero":0},"drip_coffee":{"name":"Drip Coffee (12 oz)","cat":"drink","cost":1.0441256502674414,"min":0.5702285714285714,"hero":0},"espresso":{"name":"Espresso (double)","cat":"drink","cost":0.7138992152800101,"min":1.224,"hero":0},"colada":{"name":"Colada (to share)","cat":"drink","cost":1.4120804416000208,"min":2.448,"hero":0},"matcha_latte":{"name":"Matcha Latte (12 oz)","cat":"drink","cost":1.0611256678756371,"min":1.836,"hero":0},"oat_milk_swap":{"name":"Oat Milk (swap)","cat":"add-on","cost":0.6474780059981997,"min":0.0,"hero":0},"almond_milk_swap":{"name":"Almond Milk (swap)","cat":"add-on","cost":0.7790716457411282,"min":0.0,"hero":0},"coffee_traveler":{"name":"Coffee Traveler (96 oz)","cat":"catering","cost":13.582849591906172,"min":4.163809523809523,"hero":0}},"formats":{"roll_popup":{"id":"roll_popup","label":"Pop-up: markets, pre-order drops, office orders and fundraisers from a rented commissary kitchen","hours_text":"Markets on Saturday and Sunday; pre-order pickup on Saturday; office orders Wednesday to Friday","fmt_days":190.0,"days":188.0,"design_index":1.0,"fixed_share":0.5,"hero_name":"Cinnamon Roll","burden_pct":11.0,"utilities_psf":15.0,"price_index":1.0,"managed":false,"manager_salary":60000.0,"owner_pay_target":60000.0,"roles":[{"role":"Owner, manager","hours":8.0,"owner":true,"wage":0.0,"note":"sells the office and fundraiser accounts, runs pre-orders and works the market stall"},{"role":"Production lead","hours":7.6,"owner":false,"wage":25.0,"note":"30 hours a week: mixes, shapes and bakes in the commissary before dawn on market days"},{"role":"Baker's helper","hours":4.5,"owner":false,"wage":18.0,"note":"18 hours a week: panning, glazing, boxing, take-and-bake packs"},{"role":"Market crew","hours":3.6,"owner":false,"wage":16.5,"note":"one person beside the owner at each market; plus tips"},{"role":"Packing and delivery","hours":2.0,"owner":false,"wage":17.0,"note":"8 hours a week: boxes the pre-orders, runs the office drops"}],"extra_baker":null,"channels":[{"id":"drops","name":"Saturday pre-order pickup","short":"Saturday pickup","unit":"orders","per":"Saturday","days_label":"Saturdays","days_week":null,"days":46.0,"scales":false,"ipo":1.2,"pi":1.0,"cost_pct":0.0,"fee":0.0,"note":"Boxes ordered online by Thursday, picked up at the kitchen door or a partner's shop","lines":[["cinnamon_roll_4pack",14.0,19.0,true],["cinnamon_roll_6box",10.0,27.0,true],["cinnamon_roll_12box",2.0,50.0,true],["mini_roll_tray_24",2.0,38.0,true],["twist_loaf_cinnamon",4.0,19.0,true],["twist_loaf_dulce",3.0,21.0,true],["take_and_bake_6",4.0,24.0,true],["roll_cake_9in",1.0,45.0,true]]},{"id":"markets","name":"Farmers markets and pop-ups","short":"Farmers markets","unit":"sales","per":"stall-day","days_label":"stall-days","days_week":null,"days":80.0,"scales":false,"ipo":1.5,"pi":1.0,"cost_pct":0.0,"fee":110.0,"note":"About 235 rolls a stall-day. Roll & Dough, a Miami pop-up, has sold about 300 in a Saturday for about $3,100.","lines":[["cinnamon_roll",60.0,5.25,true],["guava_cheese_roll",35.0,5.75,true],["cinnamon_roll_grande",12.0,8.5,true],["roll_of_the_week_grande",35.0,9.5,true],["cinnamon_roll_4pack",14.0,19.0,true],["cinnamon_roll_6box",6.0,27.0,true],["twist_loaf_cinnamon",7.0,19.0,true],["twist_loaf_dulce",5.0,21.0,true],["cookie_chocolate_chip",16.0,4.75,true],["brownie",6.0,4.75,true],["iced_coffee",34.0,4.75,true],["lemonade_kids",14.0,3.75,true]]},{"id":"orders","name":"Office, gift and party orders","short":"Office and gift orders","unit":"orders_week","per":"week","days_label":"working days","days_week":3,"days":150.0,"scales":false,"ipo":3.0,"pi":1.0,"cost_pct":4.0,"fee":0.0,"note":"About two orders a working day at first: trays of mini rolls, dozens, loaves","lines":[["mini_roll_tray_24",2.0,38.0,true],["cinnamon_roll_12box",1.0,50.0,true],["twist_loaf_cinnamon",1.0,19.0,true],["twist_loaf_dulce",1.0,21.0,true],["cookie_brownie_box",0.3,52.0,true],["roll_cake_9in",0.3,45.0,true]]},{"id":"fundraisers","name":"School, league and church fundraisers","short":"Fundraisers","unit":"events","per":"event","days_label":"events","days_week":null,"days":8.0,"scales":false,"ipo":1.0,"pi":1.0,"cost_pct":30.0,"fee":0.0,"note":"Frozen take-and-bake packs and loaves sold by the group's families and delivered in one drop","lines":[["take_and_bake_6",130.0,24.0,true],["twist_loaf_cinnamon",25.0,19.0,true]]}],"var_costs":{"card_processing":2.6,"repairs_maintenance":0.5,"supplies_cleaning":1.5,"marketing":3.0,"delivery_net":0,"miscellaneous":1.0},"fixed_costs":{"insurance":3500,"software_pos":3000,"accounting_payroll_legal":4500,"licenses_music":1500,"waste_pest":0,"linens_uniforms":600,"internet_phone":1200,"vehicle":7000},"st":{"soft_costs_pct_of_buildout":15,"furniture_per_seat":450,"furniture_base":0,"signage":1500,"preopening_payroll_weeks":3,"manager_preopening_weeks":6,"opening_inventory":5000,"launch_marketing":6000,"deposit_months":3,"working_capital_months":2,"contingency_pct":10},"startup_fees":{"Brand, packaging design, website and ordering system":10000,"Company set-up, permits and trademark":5000},"equipment":[{"item":"Market kit: two tents, tables, display cases, coolers, banners","cost":8000.0},{"item":"Speed racks, sheet pans, roll pans, loaf moulds, smallwares","cost":6000.0},{"item":"Insulated carriers and two chest freezers for take-and-bake packs","cost":3000.0},{"item":"Point-of-sale hardware, label printer","cost":2000.0}],"space":[],"fin":{"owner_cash_limit":500000,"loan_share_pct":0,"rate_pct":10.5,"term_years":10},"index_gain":0.0,"growth_of":null,"growth_note":""},"roll_kitchen":{"id":"roll_kitchen","label":"Roll kitchen: a production kitchen with a walk-up window, selling boxes through five channels; no seats","hours_text":"Window 7:00 am to 1:00 pm Thursday to Sunday (Friday to Sunday June to September); office orders Tuesday to Friday; markets at weekends","fmt_days":296.0,"days":294.0,"design_index":1.0,"fixed_share":0.6,"hero_name":"Cinnamon Roll","burden_pct":11.0,"utilities_psf":15.0,"price_index":1.0,"managed":false,"manager_salary":60000.0,"owner_pay_target":60000.0,"roles":[{"role":"Owner, manager","hours":8.0,"owner":true,"wage":0.0,"note":"sells and looks after the office, gift and fundraiser accounts; runs the schedule, the books and marketing"},{"role":"Production lead","hours":6.8,"owner":false,"wage":25.0,"note":"40 hours a week, Tuesday to Saturday: dough, fillings, shaping; daytime hours, with the rolls retarded overnight"},{"role":"Baker","hours":6.8,"owner":false,"wage":19.5,"note":"40 hours a week, Wednesday to Sunday: the 5 am bake-off, glazing, market and window loads"},{"role":"Order desk and packing","hours":4.1,"owner":false,"wage":18.5,"note":"24 hours a week: pre-orders, boxes, labels, office drops staged for the courier"},{"role":"Window crew","hours":8.2,"owner":false,"wage":15.5,"note":"one on Thursday and Friday, two or three at the weekend, including the bar; plus tips"},{"role":"Market crew","hours":2.7,"owner":false,"wage":16.5,"note":"one or two at a stall, about 62 stall-days a year; plus tips"},{"role":"Dish and clean","hours":2.0,"owner":false,"wage":15.0,"note":"12 hours a week"}],"extra_baker":{"role":"Baker","hours":6.8},"channels":[{"id":"window","name":"Walk-up window and pre-order pickup","short":"Walk-up window","unit":"orders","per":"window day","days_label":"window days","days_week":null,"days":184.0,"scales":true,"ipo":1.7,"pi":1.0,"cost_pct":0.0,"fee":0.0,"note":"About 139 orders a window day at $14: in a year, about what an average cinnamon-roll franchise shop sells","lines":[["cinnamon_roll",52.0,5.25,true],["guava_cheese_roll",22.0,5.75,true],["cinnamon_roll_grande",7.0,8.5,true],["roll_of_the_week_grande",14.0,9.5,true],["cinnamon_roll_4pack",12.0,19.0,true],["cinnamon_roll_6box",8.0,27.0,true],["cinnamon_roll_12box",2.0,50.0,true],["mini_roll_tray_24",2.0,38.0,true],["roll_cake_9in",1.0,45.0,true],["twist_loaf_cinnamon",4.0,19.0,true],["twist_loaf_dulce",3.0,21.0,true],["take_and_bake_6",3.0,24.0,true],["cookie_chocolate_chip",12.0,4.75,true],["brownie",5.0,4.75,true],["iced_coffee",26.0,4.75,true],["iced_latte",21.0,5.75,true],["latte",12.0,5.25,true],["drip_coffee",9.0,3.75,true],["espresso",10.0,3.25,true],["colada",3.0,4.25,true],["matcha_latte",3.0,5.75,true],["lemonade_kids",6.0,3.75,true],["oat_milk_swap",9.0,1.0,false],["almond_milk_swap",2.0,1.0,false]]},{"id":"markets","name":"Farmers markets and pop-ups","short":"Farmers markets","unit":"sales","per":"stall-day","days_label":"stall-days","days_week":null,"days":62.0,"scales":false,"ipo":1.5,"pi":1.0,"cost_pct":0.0,"fee":110.0,"note":"About 235 rolls a stall-day","lines":[["cinnamon_roll",60.0,5.25,true],["guava_cheese_roll",35.0,5.75,true],["cinnamon_roll_grande",12.0,8.5,true],["roll_of_the_week_grande",35.0,9.5,true],["cinnamon_roll_4pack",14.0,19.0,true],["cinnamon_roll_6box",6.0,27.0,true],["twist_loaf_cinnamon",7.0,19.0,true],["twist_loaf_dulce",5.0,21.0,true],["cookie_chocolate_chip",16.0,4.75,true],["brownie",6.0,4.75,true],["iced_coffee",34.0,4.75,true],["lemonade_kids",14.0,3.75,true]]},{"id":"orders","name":"Office, gift and party orders","short":"Office and gift orders","unit":"orders_week","per":"week","days_label":"working days","days_week":4,"days":190.0,"scales":false,"ipo":3.0,"pi":1.0,"cost_pct":5.0,"fee":0.0,"note":"About 18 orders a week at about $88: trays of mini rolls with a colada for the 3:05 break, dozens, loaves, roll cakes","lines":[["mini_roll_tray_24",3.5,38.0,true],["cinnamon_roll_12box",1.6,50.0,true],["cinnamon_roll_6box",1.0,27.0,true],["twist_loaf_cinnamon",1.5,19.0,true],["twist_loaf_dulce",1.5,21.0,true],["roll_cake_9in",0.5,45.0,true],["colada",2.5,4.25,true],["coffee_traveler",0.9,42.0,true],["cookie_brownie_box",0.4,52.0,true]]},{"id":"fundraisers","name":"School, league and church fundraisers","short":"Fundraisers","unit":"events","per":"event","days_label":"events","days_week":null,"days":18.0,"scales":false,"ipo":1.0,"pi":1.0,"cost_pct":30.0,"fee":0.0,"note":"The group keeps 30% of each $24 pack and $19 loaf; one frozen drop per event","lines":[["take_and_bake_6",130.0,24.0,true],["twist_loaf_cinnamon",25.0,19.0,true]]},{"id":"apps","name":"Delivery apps","short":"Delivery apps","unit":"orders","per":"window day","days_label":"window days","days_week":null,"days":184.0,"scales":true,"ipo":2.2,"pi":1.15,"cost_pct":27.0,"fee":0.0,"note":"About 11 orders a window day","lines":[["cinnamon_roll",6.0,5.25,true],["guava_cheese_roll",3.0,5.75,true],["roll_of_the_week_grande",3.0,9.5,true],["cinnamon_roll_4pack",3.0,19.0,true],["cinnamon_roll_6box",2.0,27.0,true],["cookie_chocolate_chip",3.0,4.75,true],["iced_latte",3.0,5.75,true],["iced_coffee",2.0,4.75,true]]}],"var_costs":{"card_processing":2.6,"repairs_maintenance":1.5,"supplies_cleaning":1.5,"marketing":3.0,"delivery_net":0,"miscellaneous":1.0},"fixed_costs":{"insurance":7500,"software_pos":5000,"accounting_payroll_legal":7000,"licenses_music":2500,"waste_pest":4800,"linens_uniforms":1500,"internet_phone":2400,"vehicle":7000,"production_power":4500},"st":{"soft_costs_pct_of_buildout":15,"furniture_per_seat":450,"furniture_base":0,"signage":8000,"preopening_payroll_weeks":3,"manager_preopening_weeks":6,"opening_inventory":9000,"launch_marketing":15000,"deposit_months":3,"working_capital_months":2,"contingency_pct":10},"startup_fees":{},"equipment":[{"item":"Double-stack convection oven, electric, used and serviced","cost":7500.0},{"item":"60-qt planetary mixer, used","cost":8500.0},{"item":"20-qt planetary mixer for fillings and glaze, used","cost":2500.0},{"item":"Reversible dough sheeter, used","cost":3000.0},{"item":"Two proofer-retarder cabinets, used","cost":11000.0},{"item":"Three reach-in refrigerators and two reach-in freezers, new","cost":16000.0},{"item":"Compact two-group espresso machine and grinder","cost":12000.0},{"item":"Batch brewer, cold brew system, water filtration","cost":5000.0},{"item":"Window counter, small pastry case and pickup shelves","cost":6000.0},{"item":"Sinks, stainless tables, shelving, used","cost":5000.0},{"item":"Undercounter dishwasher, new","cost":6500.0},{"item":"Speed racks, sheet pans, roll pans, loaf moulds, smallwares","cost":10000.0},{"item":"Packing table, label printers, box storage","cost":3000.0},{"item":"Induction burners and a 12-qt pot for glaze, scales, food processor","cost":2500.0},{"item":"Point-of-sale hardware, with an online-order printer","cost":3000.0},{"item":"Market kit: two tents, tables, display cases, coolers, banners","cost":8000.0},{"item":"Insulated carriers","cost":2000.0},{"item":"Delivery, electrical hook-ups and installation of the used equipment","cost":8000.0}],"space":[{"zone":"Production: 60-qt mixer, bench, sheeter, double-stack oven, two proofer-retarders, speed racks","sqft":400.0},{"zone":"Cold, freezer and dry storage, with the take-and-bake freezers","sqft":170.0},{"zone":"Packing and order staging, with box storage","sqft":110.0},{"zone":"Dish and sanitation: 3-bay sink, dishwasher, mop sink","sqft":70.0},{"zone":"Walk-up window, coffee bar and pickup shelves","sqft":110.0},{"zone":"Restroom and office nook","sqft":70.0},{"zone":"Market kit and delivery staging by the back door","sqft":50.0}],"fin":{"owner_cash_limit":500000,"loan_share_pct":0,"rate_pct":10.5,"term_years":10},"index_gain":0.0,"growth_of":null,"growth_note":""},"roll_kitchen_growth":{"id":"roll_kitchen_growth","label":"The same kitchen, filled: a second market team, more office orders and fundraisers, grocers' shelves","hours_text":"Window 7:00 am to 1:00 pm Thursday to Sunday (Friday to Sunday June to September); office orders Tuesday to Friday; markets at weekends","fmt_days":296.0,"days":294.0,"design_index":1.0,"fixed_share":0.6,"hero_name":"Cinnamon Roll","burden_pct":11.0,"utilities_psf":15.0,"price_index":1.0,"managed":false,"manager_salary":60000.0,"owner_pay_target":60000.0,"roles":[{"role":"Owner, manager","hours":8.0,"owner":true,"wage":0.0,"note":"sells and looks after the office, gift and fundraiser accounts; runs the schedule, the books and marketing"},{"role":"Production lead","hours":6.8,"owner":false,"wage":25.0,"note":"40 hours a week, Tuesday to Saturday: dough, fillings, shaping; daytime hours, with the rolls retarded overnight"},{"role":"Baker","hours":11.899999999999999,"owner":false,"wage":19.5,"note":"40 hours a week, Wednesday to Sunday: the 5 am bake-off, glazing, market and window loads"},{"role":"Order desk and packing","hours":6.1,"owner":false,"wage":18.5,"note":"24 hours a week: pre-orders, boxes, labels, office drops staged for the courier"},{"role":"Window crew","hours":8.2,"owner":false,"wage":15.5,"note":"one on Thursday and Friday, two or three at the weekend, including the bar; plus tips"},{"role":"Market crew","hours":5.4,"owner":false,"wage":16.5,"note":"one or two at a stall, about 62 stall-days a year; plus tips"},{"role":"Dish and clean","hours":2.5,"owner":false,"wage":15.0,"note":"12 hours a week"},{"role":"Driver","hours":2.0,"owner":false,"wage":17.0,"note":"12 hours a week: grocers' and office drops in the leased van"}],"extra_baker":{"role":"Baker","hours":6.8},"channels":[{"id":"window","name":"Walk-up window and pre-order pickup","short":"Walk-up window","unit":"orders","per":"window day","days_label":"window days","days_week":null,"days":184.0,"scales":true,"ipo":1.7,"pi":1.0,"cost_pct":0.0,"fee":0.0,"note":"The Stage 2 window, 10% busier as the name gets known","lines":[["cinnamon_roll",52.0,5.25,true],["guava_cheese_roll",22.0,5.75,true],["cinnamon_roll_grande",7.0,8.5,true],["roll_of_the_week_grande",14.0,9.5,true],["cinnamon_roll_4pack",12.0,19.0,true],["cinnamon_roll_6box",8.0,27.0,true],["cinnamon_roll_12box",2.0,50.0,true],["mini_roll_tray_24",2.0,38.0,true],["roll_cake_9in",1.0,45.0,true],["twist_loaf_cinnamon",4.0,19.0,true],["twist_loaf_dulce",3.0,21.0,true],["take_and_bake_6",3.0,24.0,true],["cookie_chocolate_chip",12.0,4.75,true],["brownie",5.0,4.75,true],["iced_coffee",26.0,4.75,true],["iced_latte",21.0,5.75,true],["latte",12.0,5.25,true],["drip_coffee",9.0,3.75,true],["espresso",10.0,3.25,true],["colada",3.0,4.25,true],["matcha_latte",3.0,5.75,true],["lemonade_kids",6.0,3.75,true],["oat_milk_swap",9.0,1.0,false],["almond_milk_swap",2.0,1.0,false]]},{"id":"markets","name":"Farmers markets and pop-ups","short":"Farmers markets","unit":"sales","per":"stall-day","days_label":"stall-days","days_week":null,"days":124.0,"scales":false,"ipo":1.5,"pi":1.0,"cost_pct":0.0,"fee":110.0,"note":"A second market team: twice the stall-days","lines":[["cinnamon_roll",60.0,5.25,true],["guava_cheese_roll",35.0,5.75,true],["cinnamon_roll_grande",12.0,8.5,true],["roll_of_the_week_grande",35.0,9.5,true],["cinnamon_roll_4pack",14.0,19.0,true],["cinnamon_roll_6box",6.0,27.0,true],["twist_loaf_cinnamon",7.0,19.0,true],["twist_loaf_dulce",5.0,21.0,true],["cookie_chocolate_chip",16.0,4.75,true],["brownie",6.0,4.75,true],["iced_coffee",34.0,4.75,true],["lemonade_kids",14.0,3.75,true]]},{"id":"orders","name":"Office, gift and party orders","short":"Office and gift orders","unit":"orders_week","per":"week","days_label":"working days","days_week":4,"days":190.0,"scales":false,"ipo":3.0,"pi":1.0,"cost_pct":5.0,"fee":0.0,"note":"60% more than the Stage 2 design","lines":[["mini_roll_tray_24",5.6000000000000005,38.0,true],["cinnamon_roll_12box",2.5600000000000005,50.0,true],["cinnamon_roll_6box",1.6,27.0,true],["twist_loaf_cinnamon",2.4000000000000004,19.0,true],["twist_loaf_dulce",2.4000000000000004,21.0,true],["roll_cake_9in",0.8,45.0,true],["colada",4.0,4.25,true],["coffee_traveler",1.4400000000000002,42.0,true],["cookie_brownie_box",0.6400000000000001,52.0,true]]},{"id":"fundraisers","name":"School, league and church fundraisers","short":"Fundraisers","unit":"events","per":"event","days_label":"events","days_week":null,"days":30.0,"scales":false,"ipo":1.0,"pi":1.0,"cost_pct":30.0,"fee":0.0,"note":"30 events a year instead of 18","lines":[["take_and_bake_6",130.0,24.0,true],["twist_loaf_cinnamon",25.0,19.0,true]]},{"id":"apps","name":"Delivery apps","short":"Delivery apps","unit":"orders","per":"window day","days_label":"window days","days_week":null,"days":184.0,"scales":true,"ipo":2.2,"pi":1.15,"cost_pct":27.0,"fee":0.0,"note":"Rise with the window","lines":[["cinnamon_roll",6.0,5.25,true],["guava_cheese_roll",3.0,5.75,true],["roll_of_the_week_grande",3.0,9.5,true],["cinnamon_roll_4pack",3.0,19.0,true],["cinnamon_roll_6box",2.0,27.0,true],["cookie_chocolate_chip",3.0,4.75,true],["iced_latte",3.0,5.75,true],["iced_coffee",2.0,4.75,true]]},{"id":"grocers","name":"Grocers' shelves: loaves and frozen packs at wholesale","short":"Grocers' shelves","unit":"sales","per":"delivery day","days_label":"delivery days","days_week":null,"days":250.0,"scales":false,"ipo":6.0,"pi":0.62,"cost_pct":0.0,"fee":0.0,"note":"At 62% of the window price","lines":[["twist_loaf_cinnamon",7.0,19.0,true],["twist_loaf_dulce",5.0,21.0,true],["take_and_bake_6",10.0,24.0,true]]}],"var_costs":{"card_processing":2.6,"repairs_maintenance":1.5,"supplies_cleaning":1.5,"marketing":3.0,"delivery_net":0,"miscellaneous":1.0},"fixed_costs":{"insurance":8500,"software_pos":5000,"accounting_payroll_legal":7000,"licenses_music":2500,"waste_pest":4800,"linens_uniforms":1500,"internet_phone":2400,"vehicle":12000,"production_power":4500},"st":{"soft_costs_pct_of_buildout":15,"furniture_per_seat":450,"furniture_base":0,"signage":8000,"preopening_payroll_weeks":3,"manager_preopening_weeks":6,"opening_inventory":9000,"launch_marketing":15000,"deposit_months":3,"working_capital_months":2,"contingency_pct":10},"startup_fees":{},"equipment":[{"item":"Double-stack convection oven, electric, used and serviced","cost":7500.0},{"item":"60-qt planetary mixer, used","cost":8500.0},{"item":"20-qt planetary mixer for fillings and glaze, used","cost":2500.0},{"item":"Reversible dough sheeter, used","cost":3000.0},{"item":"Two proofer-retarder cabinets, used","cost":11000.0},{"item":"Three reach-in refrigerators and two reach-in freezers, new","cost":16000.0},{"item":"Compact two-group espresso machine and grinder","cost":12000.0},{"item":"Batch brewer, cold brew system, water filtration","cost":5000.0},{"item":"Window counter, small pastry case and pickup shelves","cost":6000.0},{"item":"Sinks, stainless tables, shelving, used","cost":5000.0},{"item":"Undercounter dishwasher, new","cost":6500.0},{"item":"Speed racks, sheet pans, roll pans, loaf moulds, smallwares","cost":10000.0},{"item":"Packing table, label printers, box storage","cost":3000.0},{"item":"Induction burners and a 12-qt pot for glaze, scales, food processor","cost":2500.0},{"item":"Point-of-sale hardware, with an online-order printer","cost":3000.0},{"item":"Market kit: two tents, tables, display cases, coolers, banners","cost":8000.0},{"item":"Insulated carriers","cost":2000.0},{"item":"Delivery, electrical hook-ups and installation of the used equipment","cost":8000.0}],"space":[{"zone":"Production: 60-qt mixer, bench, sheeter, double-stack oven, two proofer-retarders, speed racks","sqft":400.0},{"zone":"Cold, freezer and dry storage, with the take-and-bake freezers","sqft":170.0},{"zone":"Packing and order staging, with box storage","sqft":110.0},{"zone":"Dish and sanitation: 3-bay sink, dishwasher, mop sink","sqft":70.0},{"zone":"Walk-up window, coffee bar and pickup shelves","sqft":110.0},{"zone":"Restroom and office nook","sqft":70.0},{"zone":"Market kit and delivery staging by the back door","sqft":50.0}],"fin":{"owner_cash_limit":500000,"loan_share_pct":0,"rate_pct":10.5,"term_years":10},"index_gain":0.1,"growth_of":"roll_kitchen","growth_note":"A second market team (124 stall-days), office orders up 60%, 30 fundraisers, loaves and frozen packs on grocers' shelves at 62% of the window price, and a window 10% busier as the name gets known. Crew added: 30 more baker hours a week, 12 more at the order desk, a second market crew and a 12-hour driver, with a leased van. No grocer has agreed and the volumes are targets, not estimates."}},"sites":[{"id":"miami_popup","name":"Stage 1: commissary kitchen and market stalls","short":"Stage 1: pop-up","area":"A rented shared kitchen west of South Miami; stalls at the Pinecrest Sunday market and a Saturday market; pickup and office drops in Coral Gables, South Miami and Pinecrest","format":"roll_popup","kitchen":"My Kitchen8 at 9351 SW 56 St (Miller Drive) lists a deck oven, a convection oven, a dough sheeter and a mixer, cold and dry storage and 24-hour access, on six-month or annual terms. The Food Factory in Kendall lists convection ovens, mixers and a blast freezer. Mixer sizes aren't published","rent_basis":"$2,500 a month assumed for a station with storage and about 25 kitchen hours a week. Published rates: $1,350–1,750 a month at Miami Kitchen Incubator in north-west Miami and $21–45 an hour elsewhere; My Kitchen8 quotes on request","risks":"Commissary price, pre-dawn oven time and mixer size unconfirmed; market places aren't guaranteed, and Roll & Dough and Roll Model already sell rolls at the Merrick Park Sunday market; summer markets are slow; the owner works every market","source":"Commissary and market listings (snippets, 2025–26): research_notes/Miami bakery business plan/production_space.md and channels.md","space_note":"","equipment_credit_note":"","sqft":0.0,"seats":0.0,"rent_psf":0.0,"nnn_psf":0.0,"escalation_pct":3.0,"buildout_psf":0.0,"sales_index":1.0,"months_to_open":1.0,"rent_flat":30000.0,"rent_assumed":false},{"id":"pinecrest_dadeland_830","name":"Dadeland Plaza, 830 sq ft unit, Pinecrest","short":"Pinecrest: Dadeland Plaza","area":"US-1 at the Dadeland end of Pinecrest, just south of Dadeland Mall; Nothing Bundt Cakes trades in the same center","format":"roll_kitchen","kitchen":"Listed as an 830 sq ft NNN unit, available March 1, 2026. Three small food shops at 9471 S Dixie Hwy in this center closed in 2026 (Smoothie Spot, Kids Deli, Cannonball Cafe), so a fitted bay may be among the vacancies; whether this unit is one of them isn't confirmed","rent_basis":"Rent on request. $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (August 2026); $12 NNN assumed from the $8–15 strip-center range a 2026 broker guide gives","risks":"Counts only if it is a former food bay with drains and a grease trap (raw retail space is out); rent unknown; Nothing Bundt Cakes at 9487 S Dixie Hwy may hold a bakery exclusive in the center; Paris Baguette has leased a shop nearly across US-1; a walk-up window needs the landlord's and the village's consent","source":"Crexi and CommercialCafe listings (snippets, 2026); Yelp closure notices for 9471 S Dixie Hwy (snippets, April–October 2026); Village of Pinecrest use table (2009, read)","space_note":"150 sq ft under the program: box stock and the market kit go to a storage unit or the van","equipment_credit_note":"the pop-up's market kit, racks, pans and carriers move in","sqft":830.0,"seats":0.0,"rent_psf":55.0,"nnn_psf":12.0,"escalation_pct":3.0,"buildout_psf":75.0,"sales_index":1.0,"equipment_credit":15000.0,"months_to_open":4.0,"rent_flat":0.0,"rent_assumed":true},{"id":"kendall_drive_cafe","name":"Café for sale on N Kendall Drive, Kendall","short":"Kendall Drive café","area":"North Kendall Drive (SW 88 St), the main road through Kendall; the broker withholds the address","format":"roll_kitchen","kitchen":"Operating café of about 1,200 sq ft with a hood, a grease trap and an active permit (MLS A11987504)","rent_basis":"Rent not published. $40 a sq ft and $10 NNN assumed: Kendall shop space asks about $30–45 a sq ft","risks":"Address, rent and lease term unknown; the price has fallen from $150,000 in March 2026 to $95,000, so ask why it hasn't sold; its ZIP code straddles SW 137 Ave, so it may sit far west; Nothing Bundt Cakes (12030 SW 88 St) and Crumbl trade in Kendall","source":"MLS A11987504 on broker sites (snippets, March–May 2026): research_notes/Miami bakery business plan/sites_spokes.md","space_note":"About 220 sq ft over the program","equipment_credit_note":"the pop-up's kit ($15,000) and an assumed $20,000 for the café's refrigeration, sinks, espresso bar and counters","sqft":1200.0,"seats":0.0,"rent_psf":40.0,"nnn_psf":10.0,"escalation_pct":3.0,"buildout_psf":55.0,"sales_index":0.95,"equipment_credit":35000.0,"purchase_price":95000.0,"months_to_open":3.0,"rent_flat":0.0,"rent_assumed":true},{"id":"palmetto_bay_us1","name":"Restaurant for sale on US-1, Palmetto Bay","short":"Palmetto Bay: US-1","area":"US-1 in Palmetto Bay, the village just south of Pinecrest; the broker withholds the address","format":"roll_kitchen","kitchen":"Operating full-service restaurant with hoods, a cooler and a grease trap; 32 seats (broker listing)","rent_basis":"$3,620 a month \"with water included\" in the sale listing ($43,440 a year); whether that covers taxes and CAM isn't stated, so no NNN is added. Size not stated: 2,000 sq ft assumed from a possibly matching listing","risks":"Address, size, lease term and NNN unconfirmed; $149,000 buys a full-service kitchen the bakery only partly needs; the research rated no Palmetto Bay location, so the 0.95 window index (Pinecrest US-1's) is a judgment","source":"Tower Business Brokers listing (snippet; 24 days on market, capture date unknown): research_notes/Miami roll house design/spaces.md","space_note":"About 1,000 sq ft over the program if it is 2,000 sq ft: room for stock, the market kit and a second production line later","equipment_credit_note":"the pop-up's kit ($15,000) and an assumed $25,000 for the restaurant's cooler, sinks, tables and grease trap","sqft":2000.0,"seats":0.0,"rent_psf":21.72,"nnn_psf":0.0,"escalation_pct":3.0,"buildout_psf":45.0,"sales_index":0.95,"equipment_credit":40000.0,"purchase_price":149000.0,"months_to_open":3.0,"rent_flat":0.0,"rent_assumed":false},{"id":"coral_way_cafeteria","name":"Cafeteria for sale by Coral Gables (ZIP 33145)","short":"Coral Way cafeteria","area":"Listed as Coral Gables; one copy of the listing gives ZIP 33145, the Coral Way corridor just east of the city line","format":"roll_kitchen","kitchen":"Cafeteria trading since 2008 with a hood and exhaust system and free parking; furniture and fixtures included","rent_basis":"$3,257 a month ($39,084 a year) in the sale listing; the lease ends in September 2027, with renewal options. Size not published: 1,100 sq ft assumed","risks":"The $199,000 asked buys a going business (claimed sales $165,000 and cash flow $65,000) that the bakery would close; ten months are left on the lease before its options; address and size unknown","source":"BusinessesForSale listing and MLS A11871490 (snippets, 2026): research_notes/Miami bakery business plan/sites_spokes.md","space_note":"About 120 sq ft over the program, if it is 1,100 sq ft","equipment_credit_note":"the pop-up's kit ($15,000) and an assumed $20,000 for the cafeteria's refrigeration, sinks and counters","sqft":1100.0,"seats":0.0,"rent_psf":35.53,"nnn_psf":0.0,"escalation_pct":3.0,"buildout_psf":55.0,"sales_index":0.9,"equipment_credit":35000.0,"purchase_price":199000.0,"months_to_open":3.0,"rent_flat":0.0,"rent_assumed":false}],"stages":[{"id":"popup","n":1,"format":"roll_popup","kicker":"Stage 1","name":"Pop-up","blurb":"Market stalls, Saturday pickup, office orders and fundraisers, baked in a rented shared kitchen.","tag":"The test","sites":["miami_popup"]},{"id":"kitchen","n":2,"format":"roll_kitchen","kicker":"Stage 2","name":"Roll kitchen","blurb":"A small production kitchen with a walk-up window and no seats, selling five ways.","tag":"The business","sites":["pinecrest_dadeland_830","kendall_drive_cafe","palmetto_bay_us1","coral_way_cafeteria"]},{"id":"filled","n":3,"format":"roll_kitchen_growth","kicker":"Stage 3","name":"The kitchen, filled","blurb":"The same kitchen and lease with a second market team, more office orders and grocers' shelves.","tag":"A target, not an estimate","sites":["pinecrest_dadeland_830","kendall_drive_cafe","palmetto_bay_us1","coral_way_cafeteria"]}],"gates":[["Sales","$5,000 or more a week for eight straight weeks between March and May","The pop-up's design averages about {popup_week} a week across the year, and the season should beat the average"],["Markets","$1,500 or more a stall-day in season","With the crew held, the pop-up's second year leaves nothing at about {market_floor} a stall-day"],["Pre-orders","25 or more Saturday pickup orders a week by May; 40% of roll sales in boxes, trays and loaves","The best proxy for the window, which can't be measured before a lease"],["Offices and gifts","12 or more orders a week from 30 or more accounts","Two-thirds of the kitchen's design of {kitchen_orders} a week"],["Fundraisers","5 run, averaging 120 units, 3 rebooked","The kitchen's design is {kitchen_events} a year"],["Summer","June and July at 55% or more of March and April","The summer schedule assumes a dip, not a collapse"],["Production","1.5 hands-on minutes a roll or less over four weeks","Otherwise budget a third baker: {baker_cost} a year"],["Price","The single roll sells at {roll_price} without discounts","5% on prices is worth {price_5} a year"],["List","2,000 customers; 35% of pre-orders from repeat buyers","A habit, not a novelty"],["Site","A former food bay of 800–1,200 sq ft with parking, a window allowed, five years plus an option, no bakery exclusive against you","At Dadeland Plaza's size the kitchen can carry about {rent_ceiling} a sq ft and still pay you {target}"]]};</script>
+<script>
+/* The Miami page's model: tools/proforma.py's arithmetic, ported so the page can recompute as the
+   assumptions move. tools/build_miami.py embeds this file in the page and checks it against the
+   Python model on every build. No DOM here: `MiamiModel(D)` takes the page's data and returns `run`.
+
+   A lever state S (every field optional):
+     v       {channel id: share of the plan's volume}, 1 = the plan
+     price   multiplier on every listed menu price (rounded to the cent, as a reprice would be)
+     prices  {product id: price} replacing a product's window price
+     food    points added to food and packaging as a share of sales
+     wage    multiplier on every hourly wage
+     rent, nnn   per sq ft a year, replacing the site's; flat = a commissary's rent a year
+     baker   true adds the format's extra baker
+     manager true pays a hired manager, so the owner steps back
+     flex    false holds the crew at the plan's hours when a channel's volume moves
+     index   replaces the site's sales index */
+function MiamiModel(D) {
+  "use strict";
+  var op = D.op;
+  var sum = function (xs) { var t = 0; for (var i = 0; i < xs.length; i++) t += xs[i]; return t; };
+  var vals = function (o) { return Object.keys(o || {}).map(function (k) { return +o[k]; }); };
+  var cents = function (x) { return Number(x.toFixed(2)); };
+
+  function linePrice(line, S) {
+    var pid = line[0], base = line[2], listed = line[3];
+    var p = S.prices && S.prices[pid] != null ? +S.prices[pid] : base;
+    return listed && S.price != null && S.price !== 1 ? cents(p * S.price) : p;
+  }
+
+  /* format_menu: each channel's own day, then the average working day at this site. */
+  function menu(F, kSite, S) {
+    var t = { base: 0, design0: 0, site: 0, site0: 0, goods: 0, hours: 0, items: 0, orders: 0, hero: 0, costs: 0, fees: 0, chans: [] };
+    F.channels.forEach(function (c) {
+      var sales = 0, sales0 = 0, goods = 0, hours = 0, items = 0, hero = 0;
+      c.lines.forEach(function (line) {
+        var P = D.products[line[0]], par = line[1];
+        sales += linePrice(line, S) * c.pi * par;
+        sales0 += line[2] * c.pi * par;
+        goods += P.cost * par;
+        hours += P.min * par / 60;
+        if (P.cat !== "add-on") items += par;
+        hero += par * P.hero;
+      });
+      var v = S.v && S.v[c.id] != null ? +S.v[c.id] : 1;
+      var w = c.days / F.fmt_days;
+      var k = c.scales ? kSite : 1;
+      var orders = items / c.ipo;
+      t.base += sales * v * w;
+      t.design0 += sales0 * w;
+      t.site += sales * v * w * k;
+      t.site0 += sales0 * v * w * k;
+      t.goods += goods * v * w * k;
+      t.hours += hours * v * w * k;
+      t.items += items * v * w * k;
+      t.orders += orders * v * w * k;
+      t.hero += hero * v * w * k;
+      t.costs += sales * v * w * k * c.cost_pct / 100;
+      var fees = v > 0 ? c.fee * c.days : 0;  // no stall booked, no fee
+      t.fees += fees;
+      t.chans.push({
+        id: c.id, v: v, k: k, days: c.days, fees: fees, cost_pct: c.cost_pct,
+        day_sales: sales * v * k, day_orders: orders * v * k, day_items: items * v * k, day_hours: hours * v * k,
+        ticket: orders ? sales / orders : 0, goods_pct: sales ? 100 * goods / sales : 0, weight: sales * v * w * k
+      });
+    });
+    return t;
+  }
+
+  function annualPayment(principal, ratePct, years) {
+    var r = ratePct / 100 / 12, n = years * 12;
+    if (principal <= 0) return 0;
+    if (r === 0) return principal / years;
+    return 12 * principal * r / (1 - Math.pow(1 + r, -n));
+  }
+
+  function run(fid, site, S) {
+    S = S || {};
+    var F = D.formats[fid];
+    var kSite = (S.index != null ? +S.index : site.sales_index) + (F.index_gain || 0);
+    var M = menu(F, kSite, S);
+    var days = F.days, pidx = F.price_index;
+    var wageMult = S.wage != null ? +S.wage : 1;
+    var roles = F.roles.filter(function (r) { return !r.owner; }).map(function (r) {
+      var extra = S.baker && F.extra_baker && r.role === F.extra_baker.role ? F.extra_baker.hours : 0;
+      return { role: r.role, hours: r.hours + extra, wage: r.wage * wageMult, note: r.note };
+    });
+    var baseHours = sum(roles.map(function (r) { return r.hours; }));
+    var wage = baseHours ? sum(roles.map(function (r) { return r.hours * r.wage; })) / baseHours : 0;
+    var burden = 1 + F.burden_pct / 100;
+    var fs = F.fixed_share;
+    var steady = M.site * pidx * days;
+    var goodsPct = (M.site ? 100 * M.goods / M.site / pidx : 0) + op.cogs_buffer + (S.food || 0);
+    var varPct = sum(vals(F.var_costs));
+    var chanPct = M.site ? 100 * M.costs / M.site : 0;
+    var fixedBase = sum(vals(F.fixed_costs));
+    var sqft = site.sqft;
+    var rentPsf = S.rent != null ? +S.rent : site.rent_psf;
+    var nnnPsf = S.nnn != null ? +S.nnn : site.nnn_psf;
+    var flat = S.flat != null ? +S.flat : (site.rent_flat || 0);
+    var esc = site.escalation_pct / 100;
+    var managerBase = F.managed ? F.manager_salary * burden : 0;
+    var hired = S.manager ? D.manager_hire.salary * burden : 0;  // flat, as the plan quotes it
+    var eff = M.base ? M.site / M.base : 0;
+    var flexOn = S.flex !== false;
+    // Volume against the format's design day: what the crew's variable hours follow.
+    var R = (flexOn ? (M.design0 ? M.site0 / M.design0 : 0) : eff) / F.design_index;
+
+    function year(n) {
+      var vol = n === 1 ? op.ramp : 1;
+      var yf = vol * (n === 3 ? 1 + op.growth : 1);
+      var sales = steady * yf;
+      var mult = Math.pow(1 + op.infl, n - 1);
+      var share = fs + (1 - fs) * R * vol;
+      var hoursDay = baseHours * share;
+      var y = {
+        year: n, sales: sales, daily_sales: sales / days, hours_day: hoursDay, hours_share: share, vol: vol, yf: yf, mult: mult,
+        cogs: sales * goodsPct / 100,
+        hourly_labor: hoursDay * wage * burden * days * mult,
+        manager: managerBase * mult,
+        hired_manager: hired,
+        rent: (sqft * rentPsf + flat) * Math.pow(1 + esc, n - 1),
+        nnn: sqft * nnnPsf * mult,
+        utilities: sqft * F.utilities_psf * mult,
+        variable_opex: sales * varPct / 100,
+        channel_costs: sales * chanPct / 100 + M.fees * mult,
+        fixed_opex: fixedBase * mult
+      };
+      y.ebitda = sales - y.cogs - y.hourly_labor - y.manager - y.hired_manager - y.rent - y.nnn - y.utilities
+        - y.variable_opex - y.channel_costs - y.fixed_opex;
+      // Each channel's sales less the costs that are its own: food and packaging, the costs that
+      // run with sales, and its commissions and fees. The crew, the rent and the overheads are shared.
+      y.channels = M.chans.map(function (ch) {
+        var s = ch.weight * pidx * days * yf;
+        var goods = s * (ch.goods_pct / pidx + op.cogs_buffer + (S.food || 0)) / 100;
+        var variable = s * varPct / 100;
+        var own = s * ch.cost_pct / 100 + ch.fees * mult;
+        return { id: ch.id, sales: s, goods: goods, variable: variable, own: own, brings: s - goods - variable - own,
+                 share: M.site ? ch.weight / M.site : 0, orders: ch.day_orders * ch.days * (days / F.fmt_days) * vol };
+      });
+      return y;
+    }
+
+    var years = [year(1), year(2), year(3)];
+    var y1 = years[0], y2 = years[1], y3 = years[2];
+
+    var st = F.st;
+    var equipment = sum(F.equipment.map(function (e) { return e.cost; })) - (site.equipment_credit || 0);
+    var buildout = sqft * site.buildout_psf;
+    var occMonth = (y1.rent + y1.nnn) / 12;
+    var monthlyFixed = (y1.rent + y1.nnn + y1.hourly_labor + y1.manager + y1.utilities + y1.fixed_opex) / 12;
+    var lines = [];
+    lines.push(["Build-out", buildout]);
+    lines.push(["Design, engineering, permits and legal",
+                buildout * (site.soft_costs_pct != null ? site.soft_costs_pct : st.soft_costs_pct_of_buildout) / 100]);
+    lines.push(["Equipment", equipment]);
+    if (site.purchase_price) lines.push(["Purchase of the existing fit-out and lease", site.purchase_price]);
+    lines.push(["Furniture and fixtures", site.seats * st.furniture_per_seat + st.furniture_base]);
+    lines.push(["Signage", st.signage]);
+    lines.push(["Pre-opening payroll and training",
+                baseHours * 0.6 * wage * burden * 7 * st.preopening_payroll_weeks
+                + managerBase / 52 * (st.manager_preopening_weeks || 0)]);
+    lines.push(["Opening inventory", st.opening_inventory]);
+    lines.push(["Launch marketing", st.launch_marketing]);
+    Object.keys(F.startup_fees || {}).forEach(function (k) { lines.push([k, F.startup_fees[k]]); });
+    lines.push(["Security deposit", occMonth * st.deposit_months]);
+    lines.push(["Rent and NNN before opening", occMonth * (site.months_to_open || 0)]);
+    lines.push(["Contingency", (buildout + equipment) * st.contingency_pct / 100]);
+    lines.push(["Working capital reserve", monthlyFixed * st.working_capital_months]);
+    var startup = sum(lines.map(function (l) { return l[1]; }));
+    var loan = startup * F.fin.loan_share_pct / 100;
+    var equity = startup - loan;
+    var debt = annualPayment(loan, F.fin.rate_pct, F.fin.term_years);
+    years.forEach(function (y) { y.debt_service = debt; y.left = y.ebitda - debt; });
+
+    // Break-even on Year-2 costs, with every channel moving together from where it stands.
+    var crewCost = baseHours * wage * burden * days * (1 + op.infl);
+    var laborFixed = flexOn ? crewCost * fs : crewCost * (fs + (1 - fs) * R);
+    var fixedCash = y2.manager + y2.hired_manager + y2.rent + y2.nnn + y2.utilities + y2.fixed_opex
+      + M.fees * (1 + op.infl) + laborFixed;
+    var varRate = (goodsPct + varPct + chanPct) / 100 + (flexOn && steady ? crewCost * (1 - fs) * R / steady : 0);
+    var breakeven = varRate < 1 ? (fixedCash + debt) / (1 - varRate) : null;
+    var target = F.managed ? 0 : (F.owner_pay_target || 0);
+
+    var ceiling = null;
+    if (sqft > 0) {
+      ceiling = rentPsf + (y2.left - target) / (sqft * (1 + esc));
+      ceiling = ceiling <= 0 ? null : Math.min(ceiling, 400);
+    }
+
+    return {
+      format: fid, site: site.id, days: days, years: years, menu: M, roles: roles,
+      base_hours: baseHours, avg_wage: wage, burden: burden, fixed_share: fs, flex: flexOn, volume: R,
+      steady_sales: steady, goods_pct: goodsPct, var_pct: varPct, channel_pct: chanPct,
+      orders_daily: M.orders, ticket: M.orders ? M.site * pidx / M.orders : 0, hero_daily: M.hero, hands_on_hours: M.hours,
+      startup_lines: lines, startup: startup, loan: loan, equity: equity, debt_service: debt,
+      rolls_forward: occMonth * st.deposit_months + monthlyFixed * st.working_capital_months,
+      breakeven_sales: breakeven, breakeven_vs_steady: breakeven != null && steady ? breakeven / steady : null,
+      owner_pay_target: target || null, rent_psf: rentPsf, nnn_psf: nnnPsf, flat_rent: flat, rent_ceiling_psf: ceiling,
+      return_on_cash_y2: equity ? y2.left / equity : null,
+      payback_years: y3.ebitda > 0 ? startup / y3.ebitda : null,
+      sales_per_labor_hour_y2: y2.hours_day ? y2.daily_sales / y2.hours_day : null,
+      cash_limit: F.fin.owner_cash_limit || null
+    };
+  }
+
+  /* Where one lever, moved alone, brings a year's result to `goal`. The model is linear in each lever. */
+  function solve(fid, site, S, set, x0, step, n, goal) {
+    var at = function (x) { var T = JSON.parse(JSON.stringify(S)); set(T, x); return run(fid, site, T).years[n - 1].left; };
+    var a = at(x0), b = at(x0 + step);
+    var slope = (b - a) / step;
+    if (!isFinite(slope) || Math.abs(slope) < 1e-9) return null;
+    return x0 + ((goal || 0) - a) / slope;
+  }
+
+  return { run: run, solve: solve, linePrice: linePrice };
+}
+if (typeof module !== "undefined") module.exports = MiamiModel;
+
+</script>
+<script>
+(function () {
+"use strict";
+var M = MiamiModel(D);
+var SITES = {}, STAGES = {};
+D.sites.forEach(function (s) { SITES[s.id] = s; });
+D.stages.forEach(function (s) { STAGES[s.id] = s; });
+var HASH = { popup: "pop-up", kitchen: "roll-kitchen", filled: "filled" };
+var $ = function (id) { return document.getElementById(id); };
+var MINUS = "−", TIMES = "×", DOT = " · ";
+
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+function sum(xs) { var t = 0; xs.forEach(function (x) { t += x; }); return t; }
+function grp(x, d) { return Math.abs(x).toLocaleString("en-US", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); }
+function usd(x, d) { return x == null || !isFinite(x) ? "n/a" : (Math.round(x * Math.pow(10, d || 0)) < 0 ? MINUS : "") + "$" + grp(x, d); }
+function usdK(x) {
+  if (x == null || !isFinite(x)) return "n/a";
+  var a = Math.abs(x), sign = x < 0 && a >= 50 ? MINUS : "";
+  if (a >= 999500) return sign + "$" + (a / 1e6).toFixed(2) + "M";
+  if (a >= 9950) return sign + "$" + Math.round(a / 1000) + "K";
+  if (a >= 1000) return sign + "$" + (a / 1000).toFixed(1) + "K";
+  return sign + "$" + Math.round(a / 10) * 10;
+}
+function pct(x, d) { return x == null || !isFinite(x) ? "n/a" : (x < 0 ? MINUS : "") + grp(100 * x, d || 0) + "%"; }
+function qty(x) { return x >= 10 || Math.abs(x - Math.round(x)) < 0.05 ? grp(x) : grp(x, 1); }
+function signedUsd(x) { return (x < 0 ? MINUS : "+") + "$" + grp(x); }
+
+// -- state ------------------------------------------------------------------
+function freshLevers() { return { v: {}, price: 1, prices: {}, food: 0, wage: 1, baker: false, manager: false, flex: true, rent: {}, nnn: {}, flat: {} }; }
+var kitchenStage = D.stages.filter(function (s) { return s.sites.length > 1; })[0] || D.stages[D.stages.length - 1];
+var ST = { stage: STAGES.kitchen ? "kitchen" : D.stages[0].id, year: 2, kitchenSite: kitchenStage.sites[0], lev: {} };
+D.stages.forEach(function (s) { ST.lev[s.id] = freshLevers(); });
+
+function siteIdOf(stage) { return stage.sites.indexOf(ST.kitchenSite) >= 0 ? ST.kitchenSite : stage.sites[0]; }
+function stateOf(L, siteId) {
+  return { v: L.v, price: L.price, prices: L.prices, food: L.food, wage: L.wage, baker: L.baker, manager: L.manager, flex: L.flex,
+           rent: L.rent[siteId], nnn: L.nnn[siteId], flat: L.flat[siteId] };
+}
+function ctx() {
+  var stage = STAGES[ST.stage], siteId = siteIdOf(stage), L = ST.lev[ST.stage];
+  return { stage: stage, F: D.formats[stage.format], site: SITES[siteId], L: L, S: stateOf(L, siteId) };
+}
+function changed(L, siteId) {
+  return Object.keys(L.v).length > 0 || L.price !== 1 || Object.keys(L.prices).length > 0 || L.food !== 0 || L.wage !== 1 || L.baker || L.manager
+    || !L.flex || L.rent[siteId] != null || L.nnn[siteId] != null || L.flat[siteId] != null;
+}
+function chanOf(F, id) { return F.channels.filter(function (c) { return c.id === id; })[0]; }
+function yearOf(r) { return r.years[ST.year - 1]; }
+
+// -- the levers ---------------------------------------------------------------
+function leverDefs(c) {
+  var defs = [], site = c.site, sid = site.id;
+  c.F.channels.forEach(function (ch) {
+    defs.push({
+      id: "v-" + ch.id, group: "sell", ch: ch, name: ch.short, min: 0, max: 200, step: 5, plan: 100, swing: 20,
+      get: function (L) { return Math.round(100 * (L.v[ch.id] != null ? L.v[ch.id] : 1)); },
+      set: function (L, x) { if (x === 100) delete L.v[ch.id]; else L.v[ch.id] = x / 100; },
+      apply: function (S, x) { S.v = S.v || {}; S.v[ch.id] = Math.max(0, x) / 100; },
+      fmt: function (x) { return Math.round(x) + "%"; }, swingName: ch.short + " ±20%"
+    });
+  });
+  defs.push({
+    id: "price", group: "cost", signed: true, name: "Menu prices", min: -15, max: 15, step: 1, plan: 0, swing: 5,
+    get: function (L) { return Math.round((L.price - 1) * 100); },
+    set: function (L, x) { L.price = 1 + x / 100; },
+    apply: function (S, x) { S.price = 1 + x / 100; },
+    fmt: function (x) { var r = Math.round(x); return r ? (r > 0 ? "+" : MINUS) + Math.abs(r) + "%" : "as planned"; }, swingName: "Menu prices ±5%"
+  });
+  defs.push({
+    id: "food", group: "cost", signed: true, name: "Food and packaging", min: -3, max: 6, step: 0.5, plan: 0, swing: 3,
+    get: function (L) { return L.food; },
+    set: function (L, x) { L.food = x; },
+    apply: function (S, x) { S.food = x; },
+    fmt: function (x) { var r = Math.round(x * 2) / 2; return r ? (r > 0 ? "+" : MINUS) + Math.abs(r) + " pts" : "as planned"; }, swingName: "Food and packaging ±3 points of sales"
+  });
+  defs.push({
+    id: "wage", group: "cost", signed: true, name: "Wages", min: -10, max: 25, step: 1, plan: 0, swing: 10,
+    get: function (L) { return Math.round((L.wage - 1) * 100); },
+    set: function (L, x) { L.wage = 1 + x / 100; },
+    apply: function (S, x) { S.wage = 1 + x / 100; },
+    fmt: function (x) { var r = Math.round(x); return r ? (r > 0 ? "+" : MINUS) + Math.abs(r) + "%" : "as planned"; }, swingName: "Wages ±10%"
+  });
+  if (site.sqft > 0) {
+    defs.push({
+      id: "rent", group: "cost", name: "Base rent, per sq ft", min: 15, max: 130, step: 1, plan: site.rent_psf, swing: 10,
+      get: function (L) { return L.rent[sid] != null ? L.rent[sid] : site.rent_psf; },
+      set: function (L, x) { if (x === Math.round(site.rent_psf)) delete L.rent[sid]; else L.rent[sid] = x; },
+      apply: function (S, x) { S.rent = x; },
+      fmt: function (x) { return "$" + (Math.round(x * 100) / 100) + (site.rent_assumed && c.L.rent[sid] == null ? " assumed" : ""); }, swingName: "Base rent ±$10 a sq ft"
+    });
+    defs.push({
+      id: "nnn", group: "cost", name: "NNN charges, per sq ft", min: 0, max: 30, step: 1, plan: site.nnn_psf, swing: 0,
+      get: function (L) { return L.nnn[sid] != null ? L.nnn[sid] : site.nnn_psf; },
+      set: function (L, x) { if (x === Math.round(site.nnn_psf)) delete L.nnn[sid]; else L.nnn[sid] = x; },
+      apply: function (S, x) { S.nnn = x; },
+      fmt: function (x) { return "$" + (Math.round(x * 100) / 100); }
+    });
+  } else if (site.rent_flat) {
+    defs.push({
+      id: "flat", group: "cost", name: "Shared kitchen, a month", min: 1250, max: 4500, step: 50, plan: site.rent_flat / 12, swing: 500,
+      get: function (L) { return (L.flat[sid] != null ? L.flat[sid] : site.rent_flat) / 12; },
+      set: function (L, x) { if (x === Math.round(site.rent_flat / 12)) delete L.flat[sid]; else L.flat[sid] = x * 12; },
+      apply: function (S, x) { S.flat = x * 12; },
+      fmt: function (x) { return usd(x); }, swingName: "Shared kitchen ±$500 a month"
+    });
+  }
+  return defs;
+}
+var DEFS = [];
+
+function presetsFor(c) {
+  var ids = c.F.channels.map(function (ch) { return ch.id; });
+  var all = function (k) { return function (L) { ids.forEach(function (id) { L.v[id] = k; }); }; };
+  var list = [["Sales 20% low", all(0.8)], ["Sales 20% high", all(1.2)]];
+  if (ids.indexOf("window") >= 0) {
+    list.push(["Window at half", function (L) { L.v.window = 0.5; if (ids.indexOf("apps") >= 0) L.v.apps = 0.5; }]);
+    list.push(["Window alone", function (L) { ids.forEach(function (id) { if (id !== "window") L.v[id] = 0; }); }]);
+    if (ids.indexOf("apps") >= 0) list.push(["No delivery apps", function (L) { L.v.apps = 0; }]);
+  } else {
+    list.push(["Markets at 60%", function (L) { L.v.markets = 0.6; }]);
+    list.push(["Everything at 60%", all(0.6)]);
+  }
+  return list;
+}
+
+function buildLevers() {
+  var c = ctx();
+  DEFS = leverDefs(c);
+  var html = { sell: "", cost: "" };
+  DEFS.forEach(function (d) {
+    html[d.group] += '<div class="lev" id="lev-' + d.id + '"' + (d.ch ? ' style="--c: var(--c-' + d.ch.id + ')"' : "") + '>' +
+      '<div class="lev-top"><label for="rng-' + d.id + '">' + (d.ch ? '<i class="sw"></i>' : "") + '<span>' + esc(d.name) + '</span></label><output for="rng-' + d.id + '" id="out-' + d.id + '"></output></div>' +
+      '<div class="lev-track"><i class="mk plan" id="plan-' + d.id + '"></i><input class="rng' + (d.signed ? " signed" : "") + '" type="range" id="rng-' + d.id + '" min="' + d.min + '" max="' + d.max + '" step="' + d.step + '"><i class="mk zero" id="zero-' + d.id + '" hidden></i></div>' +
+      '<div class="lev-sub"><span id="sub-' + d.id + '"></span><b id="zt-' + d.id + '"></b></div></div>';
+  });
+  $("lev-sell").innerHTML = html.sell;
+  $("lev-cost").innerHTML = html.cost;
+  DEFS.forEach(function (d) {
+    $("rng-" + d.id).addEventListener("input", function (e) { d.set(ctx().L, +e.target.value); update(); });
+  });
+  var fs = Math.round(c.F.fixed_share * 100);
+  var crew = '<label class="check"><input type="checkbox" id="ck-flex"><span>Crew hours follow sales</span><small>' + fs + '% of the crew\'s hours are fixed; the other ' + (100 - fs) + '% rise and fall with volume. Untick to hold the crew at the plan\'s hours, as the business plan\'s stress table does when one channel moves.</small></label>';
+  if (c.F.extra_baker) crew += '<label class="check"><input type="checkbox" id="ck-baker"><span>A third baker, 40 hours a week</span><small>What it costs if production runs at test-batch speed.</small></label>';
+  crew += '<label class="check"><input type="checkbox" id="ck-manager"><span>Hire a manager at ' + usd(D.manager_hire.salary) + '</span><small>You step back; the plan has you running it, about ' + Math.round(ownerHours(c.F)) + ' hours a week.</small></label>';
+  $("lev-crew").innerHTML = crew;
+  [["flex", "flex"], ["baker", "baker"], ["manager", "manager"]].forEach(function (p) {
+    var el = $("ck-" + p[0]);
+    if (el) el.addEventListener("change", function (e) { ctx().L[p[1]] = e.target.checked; update(); });
+  });
+  $("presets").innerHTML = presetsFor(c).map(function (p, i) { return '<button type="button" class="btn" data-preset="' + i + '">' + esc(p[0]) + '</button>'; }).join("");
+  var multi = c.stage.sites.length > 1;
+  $("site-field").hidden = !multi;
+  if (multi) {
+    $("site-select").innerHTML = c.stage.sites.map(function (id) { return '<option value="' + esc(id) + '">' + esc(SITES[id].short || SITES[id].name) + '</option>'; }).join("");
+    $("site-select").value = c.site.id;
+  }
+}
+function ownerHours(F) { return sum(F.roles.filter(function (r) { return r.owner; }).map(function (r) { return r.hours; })) * F.days / 50; }
+
+function unitText(ch, cc) {
+  if (ch.unit === "orders") return qty(cc.day_orders) + " orders a " + ch.per;
+  if (ch.unit === "orders_week") return qty(cc.day_orders * (ch.days_week || 5)) + " orders a week";
+  if (ch.unit === "events") return qty(ch.days * cc.v) + " events a year";
+  return usd(cc.day_sales) + " a " + ch.per;
+}
+
+function updateLevers(c, cur) {
+  var y = yearOf(cur);
+  DEFS.forEach(function (d) {
+    var x = d.get(c.L), rng = $("rng-" + d.id), span = d.max - d.min;
+    if (document.activeElement !== rng) rng.value = x;
+    var p = Math.max(0, Math.min(1, (x - d.min) / span));
+    rng.style.setProperty("--p", (100 * p).toFixed(2) + "%");
+    $("out-" + d.id).textContent = d.fmt(x);
+    $("plan-" + d.id).style.setProperty("--x", Math.max(0, Math.min(1, (d.plan - d.min) / span)).toFixed(4));
+    var sub = "";
+    if (d.ch) {
+      var i = c.F.channels.indexOf(d.ch);
+      sub = unitText(d.ch, cur.menu.chans[i]) + DOT + usdK(y.channels[i].sales) + " a year";
+    } else if (d.id === "price") {
+      var roll = heroLine(c.F);
+      sub = roll ? "The single roll at " + usd(M.linePrice(roll, c.S), 2) : "";
+    } else if (d.id === "food") sub = pct(y.sales ? y.cogs / y.sales : 0, 1) + " of sales";
+    else if (d.id === "wage") sub = "Average " + usd(cur.avg_wage, 2) + " an hour";
+    else if (d.id === "rent") sub = usd(y.rent) + " a year";
+    else if (d.id === "nnn") sub = usd(y.nnn) + " a year";
+    else if (d.id === "flat") sub = usd(y.rent) + " a year";
+    $("sub-" + d.id).textContent = sub;
+    // Where this lever, moved alone, leaves nothing for the owner.
+    var x0 = M.solve(c.F.id, c.site, c.S, d.apply, x, d.step, ST.year, 0), zero = $("zero-" + d.id), zt = $("zt-" + d.id);
+    var show = x0 != null && x0 > d.min + 1e-9 && x0 < d.max - 1e-9;
+    zero.hidden = !show;
+    zt.textContent = show ? "$0 at " + d.fmt(x0).replace(" assumed", "") : "";
+    if (show) zero.style.setProperty("--x", ((x0 - d.min) / span).toFixed(4));
+  });
+  $("ck-flex").checked = c.L.flex;
+  if ($("ck-baker")) $("ck-baker").checked = c.L.baker;
+  $("ck-manager").checked = c.L.manager;
+  $("reset").hidden = !changed(c.L, c.site.id);
+}
+function heroLine(F) {
+  var found = null;
+  F.channels.forEach(function (ch) { ch.lines.forEach(function (l) { if (!found && D.products[l[0]].hero === 1 && D.products[l[0]].name === F.hero_name) found = l; }); });
+  return found;
+}
+
+// -- the stages across the top ----------------------------------------------
+var ARROW = '<svg viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h23M19 1.5 24 6l-5 4.5"/></svg>';
+function renderPath() {
+  var html = "";
+  D.stages.forEach(function (st, i) {
+    var site = SITES[siteIdOf(st)], r = M.run(st.format, site, {}), y = r.years[1], on = st.id === ST.stage;
+    var F = D.formats[st.format];
+    if (i) html += '<div class="hop">' + ARROW + (i === 1 ? '<span>then, if <a href="#gates">the gates</a> are met</span>' : '<span>then, after two quarters at plan</span>') + '</div>';
+    html += '<button type="button" class="stage' + (on ? " is-on" : "") + '" data-stage="' + st.id + '" aria-pressed="' + on + '">' +
+      '<span class="kick">' + esc(st.kicker) + '<i>' + esc(st.tag) + '</i></span>' +
+      '<span class="stage-name">' + esc(st.name) + '</span>' +
+      '<span class="stage-blurb">' + esc(st.blurb) + '</span>' +
+      '<span class="stage-stats">' +
+      '<span><small>Cash to open</small><b class="num">' + (F.growth_of ? '<em>no new lease</em>' : usd(r.startup)) + '</b></span>' +
+      '<span><small>Sales, Year 2</small><b class="num">' + usd(y.sales) + '</b></span>' +
+      '<span><small>Left for you</small><b class="num">' + usd(y.left) + ' <em>' + pct(y.sales ? y.left / y.sales : 0) + '</em></b></span>' +
+      '</span></button>';
+  });
+  $("path").innerHTML = html;
+}
+
+// -- the answer ---------------------------------------------------------------
+var ICON = {
+  good: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm3.6 5.3-4.1 4.6a.8.8 0 0 1-1.2 0L4.4 8.8a.8.8 0 1 1 1.2-1.1l1.3 1.4 3.5-3.9a.8.8 0 1 1 1.2 1.1Z"/></svg>',
+  warn: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8.9 1.6a1 1 0 0 0-1.8 0L.9 13a1 1 0 0 0 .9 1.5h12.4a1 1 0 0 0 .9-1.5L8.9 1.6ZM8 5.4c.5 0 .8.4.8.8v3.1a.8.8 0 1 1-1.6 0V6.2c0-.4.3-.8.8-.8Zm0 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>',
+  bad: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm2.9 8.8a.8.8 0 1 1-1.1 1.1L8 9.1l-1.8 1.8a.8.8 0 1 1-1.1-1.1L6.9 8 5.1 6.2a.8.8 0 1 1 1.1-1.1L8 6.9l1.8-1.8a.8.8 0 1 1 1.1 1.1L9.1 8l1.8 1.8Z"/></svg>'
+};
+function verdict(c, cur) {
+  var left = yearOf(cur).left, target = cur.owner_pay_target || 0;
+  if (left < 0) return ["bad", "Loses money"];
+  if (c.L.manager) return ["good", "Pays the manager and leaves a profit"];
+  if (target && left < target) return ["warn", "Under the " + usd(target) + " you should be paid"];
+  return ["good", target ? "Pays you more than the " + usd(target) + " target" : "Makes money"];
+}
+function renderAnswer(c, cur, plan) {
+  var y = yearOf(cur), v = verdict(c, cur), isChanged = changed(c.L, c.site.id);
+  $("ans-stage").textContent = c.stage.kicker + DOT + c.stage.name;
+  $("ans-site").textContent = c.site.sqft > 0 ? (c.site.short || c.site.name) : "A rented shared kitchen";
+  $("ans-label").textContent = (c.L.manager ? "Left after paying a manager" : "Left for you") + ", Year " + ST.year;
+  $("ans-fig").textContent = usd(y.left);
+  $("ans-pill").className = "pill " + v[0];
+  $("ans-pill").innerHTML = ICON[v[0]] + "<span>" + esc(v[1]) + "</span>";
+  $("ans-margin").textContent = pct(y.sales ? y.left / y.sales : 0, 1) + " of " + usd(y.sales) + " in sales";
+  var d = y.left - yearOf(plan).left, delta = $("ans-delta");
+  delta.hidden = !isChanged;
+  if (isChanged) delta.textContent = Math.abs(d) < 0.5 ? "The same as the plan." : usd(Math.abs(d)) + (d < 0 ? " less" : " more") + " than the plan's " + usd(yearOf(plan).left) + ".";
+  $("years").innerHTML = cur.years.map(function (yy) {
+    return '<button type="button" role="radio" aria-checked="' + (yy.year === ST.year) + '" data-year="' + yy.year + '"><small>Year ' + yy.year + '</small><b class="num">' + usd(yy.left) + '</b></button>';
+  }).join("");
+  var be = cur.breakeven_vs_steady, fill = $("be-fill");
+  if (be == null || !isFinite(be) || be <= 0) {
+    fill.style.width = "100%"; fill.className = "bad";
+    $("be-text").innerHTML = "<b>No level of sales covers these costs.</b> Every sale costs more than it brings in.";
+  } else {
+    fill.style.width = Math.min(100, 100 * be).toFixed(1) + "%";
+    fill.className = be >= 1 ? "bad" : be > 0.85 ? "warn" : "";
+    $("be-text").innerHTML = be >= 1
+      ? "<b>Covers its costs at " + pct(be) + " of these sales:</b> " + usd(cur.breakeven_sales) + " a year, more than it sells."
+      : "<b>Covers its costs at " + pct(be) + " of these sales.</b> They can fall " + pct(1 - be) + " before nothing is left for you.";
+  }
+  var base = c.F.growth_of ? M.run(c.F.growth_of, c.site, {}) : cur;
+  var back = cur.payback_years;
+  $("facts").innerHTML =
+    "<div><dt>" + (c.F.growth_of ? "Cash already in" : "Cash to open") + "</dt><dd class=\"num\">" + usd(base.startup) + "</dd></div>" +
+    "<div><dt>Year 2 return on it</dt><dd class=\"num\">" + pct(base.startup ? cur.years[1].left / base.startup : null) + "</dd></div>" +
+    "<div><dt>Sales a paid hour</dt><dd class=\"num\">" + usd(y.hours_day ? y.daily_sales / y.hours_day : null) + "</dd></div>";
+  $("mini-where").textContent = c.stage.kicker + DOT + "Year " + ST.year + DOT + (c.L.manager ? "left after a manager" : "left for you");
+  $("mini-fig").textContent = usd(y.left);
+  $("mini-pill").className = "pill " + v[0];
+  $("mini-pill").innerHTML = ICON[v[0]] + "<span>" + esc(v[0] === "good" ? "Pays" : v[0] === "warn" ? "Thin" : "Loses") + "</span>";
+}
+
+// -- the two bars -------------------------------------------------------------
+function niceStep(max) {
+  var steps = [5e3, 1e4, 2e4, 2.5e4, 5e4, 1e5, 2e5, 2.5e5, 5e5, 1e6];
+  for (var i = 0; i < steps.length; i++) if (max / steps[i] <= 6) return steps[i];
+  return 2e6;
+}
+function seg(o) {
+  var tip = JSON.stringify({ t: o.name, v: o.tipValue || usd(o.val), d: o.detail || "" });
+  return '<div class="seg' + (o.ghost ? " ghost" : "") + '" tabindex="0" role="img" aria-label="' + esc(o.name + ": " + usd(o.val)) + '" data-tip="' + esc(tip) + '" style="flex-grow:' + Math.max(o.val, 0).toFixed(2) + ';flex-basis:0;--c:' + o.color + ';--on:' + (o.on || "#fff") + '" data-full="' + esc(o.label + " " + usdK(o.val)) + '" data-short="' + esc(usdK(o.val)) + '"><span></span></div>';
+}
+function renderFlow(c, cur) {
+  var y = yearOf(cur), F = c.F;
+  var chans = y.channels.map(function (yc) {
+    var ch = chanOf(F, yc.id);
+    return { id: yc.id, name: ch.short, label: ch.short, val: yc.brings, yc: yc, color: "var(--c-" + yc.id + ")", on: "var(--on-c-" + yc.id + ", var(--on-c))",
+             detail: usd(yc.sales) + " in sales, less " + usd(yc.goods) + " of food and packaging, " + usd(yc.variable) + " of card fees, supplies and marketing" + (yc.own > 0.5 ? " and " + usd(yc.own) + " of its own commissions and fees" : "") };
+  });
+  var pos = chans.filter(function (x) { return x.val > 0.5; });
+  var negSum = -sum(chans.filter(function (x) { return x.val < -0.5; }).map(function (x) { return x.val; }));
+  var TC = sum(pos.map(function (x) { return x.val; }));
+  var occ = y.rent + y.nnn + y.utilities, mgr = y.manager + y.hired_manager;
+  var costs = [{ name: "Crew", label: "Crew", val: y.hourly_labor, n: 1, detail: qty(y.hours_day) + " paid hours a working day at an average " + usd(cur.avg_wage, 2) + ", with payroll taxes" }];
+  if (mgr > 0.5) costs.push({ name: "Manager", label: "Manager", val: mgr, n: 2, detail: "Salary with payroll taxes" });
+  costs.push(c.site.sqft > 0
+    ? { name: "Rent, NNN and utilities", label: "Rent", val: occ, n: 3, detail: usd(y.rent) + " base rent, " + usd(y.nnn) + " NNN, " + usd(y.utilities) + " utilities" }
+    : { name: "Shared kitchen", label: "Kitchen", val: occ, n: 3, detail: "The rented commissary station" });
+  costs.push({ name: "Overheads", label: "Overheads", val: y.fixed_opex, n: 4, detail: "Insurance, software, accounting, licenses, the van and other fixed costs" });
+  if (y.debt_service > 0.5) costs.push({ name: "Loan payments", label: "Loan", val: y.debt_service, n: 2 });
+  if (negSum > 0.5) costs.push({ name: "Channels that cost more than they bring", label: "Losing channels", val: negSum, n: 4 });
+  costs.forEach(function (x) { x.color = "var(--n-" + x.n + ")"; x.on = "var(--on-n-" + x.n + ")"; });
+  var SC = sum(costs.map(function (x) { return x.val; })), left = y.left, scale = Math.max(TC, SC, 1);
+  var w = function (v) { return (100 * v / scale).toFixed(3) + "%"; };
+  var row1 = pos.map(seg).join("");
+  if (left < -0.5) row1 += seg({ name: "Short of the costs", label: "Short", val: -left, color: "transparent", ghost: true, tipValue: usd(-left) });
+  var row2 = costs.map(seg).join("");
+  if (left > 0.5) row2 += seg({ name: c.L.manager ? "Left after the manager" : "Left for you", label: c.L.manager ? "Left" : "Yours", val: left, color: "var(--ink)", on: "var(--surface)", detail: pct(y.sales ? left / y.sales : 0, 1) + " of sales" });
+  var step = niceStep(scale), ticks = "";
+  for (var t = 0; t <= scale + 1; t += step) ticks += '<i style="left:' + w(t) + '"></i><span style="left:' + w(t) + '">' + (t ? usdK(t) : "$0") + '</span>';
+  var legend = function (items) { return '<div class="legend">' + items.map(function (x) { return '<span><i class="sw" style="--c:' + x.color + '"></i>' + esc(x.name) + '</span>'; }).join("") + '</div>'; };
+  var yours = left > 0.5 ? [{ name: c.L.manager ? "Left after the manager" : "Left for you", color: "var(--ink)" }] : [];
+  $("flow").innerHTML =
+    '<div class="flow-cap"><span>Brought in by the channels, after their own food, fees and commissions</span><b>' + usd(TC - negSum) + '</b></div>' +
+    '<div class="flow-bar" style="width:' + w(Math.max(TC, left < 0 ? SC : TC)) + '">' + row1 + '</div>' + legend(pos) +
+    '<div class="flow-cap"><span>What that pays for</span><b>' + usd(SC - negSum) + ' of shared costs</b></div>' +
+    '<div class="flow-bar" style="width:' + w(Math.max(SC, left > 0 ? TC : SC)) + '">' + row2 + '</div>' + legend(costs.concat(yours)) +
+    '<div class="axis" aria-hidden="true">' + ticks + '</div>';
+  fitLabels();
+  $("flow-lede").innerHTML = "In Year " + ST.year + " the " + (pos.length === 1 ? "one channel brings" : pos.length + " channels bring") + " in <b>" + usd(TC - negSum) + "</b> after their own costs. " +
+    "The crew, the " + (c.site.sqft > 0 ? "rent" : "shared kitchen") + " and the overheads take <b>" + usd(SC - negSum) + "</b>. " +
+    (left >= 0 ? "<b>" + usd(left) + "</b> is left " + (c.L.manager ? "after the manager." : "for you.") : "That leaves the kitchen <b class=\"neg\">" + usd(-left) + " short</b>.");
+
+  var rows = y.channels.map(function (yc, i) {
+    var ch = F.channels[i], cc = cur.menu.chans[i];
+    var own = [];
+    if (ch.cost_pct) own.push(Math.round(ch.cost_pct) + "% of sales");
+    if (ch.fee) own.push(usd(ch.fee) + " a " + ch.per);
+    if (ch.pi !== 1) own.push("prices at " + Math.round(ch.pi * 100) + "% of the window's");
+    return '<tr><th><span class="name"><i class="sw" style="--c:var(--c-' + ch.id + ')"></i>' + esc(ch.short) + '</span><small class="hide-s">' + esc(ch.note || "") + '</small></th>' +
+      '<td class="r">' + qty(ch.days) + '<small>' + esc(ch.days_label) + '</small></td>' +
+      '<td class="r">' + usd(cc.day_sales) + '<small>' + qty(cc.day_orders) + (ch.unit === "events" ? " packs and loaves at " : " orders at ") + usd(cc.ticket, 2) + '</small></td>' +
+      '<td class="r">' + usd(yc.sales) + '<small>' + pct(y.sales ? yc.sales / y.sales : 0) + ' of sales</small></td>' +
+      '<td>' + (own.length ? esc(own.join("; ")) : "none") + '</td>' +
+      '<td class="r' + (yc.brings < 0 ? " neg" : "") + '">' + usd(yc.brings) + '<small>' + pct(yc.sales ? yc.brings / yc.sales : 0) + ' of its sales</small></td>' +
+      '<td>' + (ch.scales ? "yes" : "no") + '</td></tr>';
+  }).join("");
+  $("chan-table").innerHTML = '<thead><tr><th style="width: 28%">Channel</th><th class="r">Days a year</th><th class="r">A day it trades</th><th class="r">Sales, Year ' + ST.year + '</th><th>Commissions and fees</th><th class="r">Brings in</th><th>Depends on the site</th></tr></thead><tbody>' + rows +
+    '<tr class="total"><th>All channels</th><td></td><td></td><td class="r">' + usd(y.sales) + '</td><td></td><td class="r">' + usd(TC - negSum) + '</td><td></td></tr></tbody>';
+  var away = sum(y.channels.filter(function (yc, i) { return !F.channels[i].scales; }).map(function (yc) { return yc.sales; }));
+  $("chan-note").innerHTML = "<b>" + pct(y.sales ? away / y.sales : 0) + " of sales</b> come through channels that sell the same wherever the kitchen sits. “Brings in” is a channel's sales less its food and packaging, the " + pct(cur.var_pct / 100, 1) + " of sales that goes on card fees, supplies, repairs and marketing, and its own commissions and fees. The crew that sells it is in the shared costs.";
+}
+function fitLabels() {
+  var segs = $("flow").querySelectorAll(".seg");
+  Array.prototype.forEach.call(segs, function (s) {
+    var span = s.firstChild, room = s.clientWidth;
+    span.textContent = s.getAttribute("data-full");
+    if (span.offsetWidth > room) span.textContent = s.getAttribute("data-short");
+    if (span.offsetWidth > room) span.textContent = "";
+  });
+}
+
+// -- rows with a bar ----------------------------------------------------------
+function barCell(v, max, cls) { return '<td class="bar"><i class="b ' + (cls || "") + '" style="width:' + (max > 0 ? Math.max(0, 100 * v / max) : 0).toFixed(2) + '%"></i></td>'; }
+
+function renderPnl(c, cur, plan) {
+  var y = yearOf(cur), p = yearOf(plan), isChanged = changed(c.L, c.site.id), leased = c.site.sqft > 0;
+  var lines = [
+    ["Food and packaging", "cogs"], ["Hourly crew, with payroll taxes", "hourly_labor"], ["Manager, with payroll taxes", "mgr"],
+    [leased ? "Base rent" : "Shared kitchen", "rent"], ["NNN charges", "nnn"], ["Utilities", "utilities"],
+    ["Card fees, repairs, supplies, marketing", "variable_opex"], ["Commissions, fundraiser shares, market fees", "channel_costs"],
+    ["Insurance, software, accounting and other fixed costs", "fixed_opex"], ["Loan payments", "debt_service"]
+  ];
+  var val = function (yy, k) { return k === "mgr" ? yy.manager + yy.hired_manager : yy[k]; };
+  var shown = lines.filter(function (l) { return Math.abs(val(y, l[1])) > 0.5 || Math.abs(val(p, l[1])) > 0.5; });
+  var max = Math.max.apply(null, shown.map(function (l) { return val(y, l[1]); }).concat([Math.max(y.left, 0), 1]));
+  var dcell = function (a, b) { var d = a - b; return isChanged ? '<td class="r">' + (Math.abs(d) < 0.5 ? "" : signedUsd(d)) + '</td>' : ""; };
+  var body = '<tr class="total"><th>Sales</th><td class="bar"></td><td class="r">' + usd(y.sales) + '</td><td class="r">100%</td>' + dcell(y.sales, p.sales) + '</tr>';
+  shown.forEach(function (l) {
+    var v = val(y, l[1]);
+    body += '<tr><th>' + esc(l[0]) + '</th>' + barCell(v, max) + '<td class="r">' + usd(v) + '</td><td class="r">' + pct(y.sales ? v / y.sales : 0, 1) + '</td>' + dcell(v, val(p, l[1])) + '</tr>';
+  });
+  body += '<tr class="total"><th>' + (c.L.manager ? "Left after the manager" : "Left for you") + '</th>' + barCell(y.left, max, "own") + '<td class="r' + (y.left < 0 ? " neg" : "") + '">' + usd(y.left) + '</td><td class="r">' + pct(y.sales ? y.left / y.sales : 0, 1) + '</td>' + dcell(y.left, p.left) + '</tr>';
+  $("pnl-table").innerHTML = '<thead><tr><th>Year ' + ST.year + '</th><th></th><th class="r">A year</th><th class="r">Of sales</th>' + (isChanged ? '<th class="r">Against the plan</th>' : "") + '</tr></thead><tbody>' + body + '</tbody>';
+  var top = shown.slice().sort(function (a, b) { return val(y, b[1]) - val(y, a[1]); })[0];
+  $("pnl-lede").innerHTML = "Of every $100 sold, <b>" + usd(100 * y.cogs / (y.sales || 1), 2) + "</b> buys food and packaging and <b>" + usd(100 * y.hourly_labor / (y.sales || 1), 2) + "</b> pays the crew. " +
+    (y.left >= 0 ? "<b>" + usd(100 * y.left / (y.sales || 1), 2) + "</b> is left " + (c.L.manager ? "after the manager." : "for you.") : "The costs come to more than the sales.");
+  $("pnl-note").textContent = (c.L.manager ? "" : "Nothing here pays you: what is left is your pay and your return. ") +
+    "No loan. Year 1 sells " + pct(D.op.ramp) + " of a steady year while it builds; Year 3 adds " + pct(D.op.growth) + " to prices; costs rise " + pct(D.op.infl) + " a year. Food and packaging is the recipes' cost at distributor prices plus " + D.op.cogs_buffer + " points of sales for waste, samples and price drift.";
+}
+
+function renderMoves(c, cur) {
+  var n = ST.year, rows = [];
+  DEFS.forEach(function (d) {
+    if (!d.swing) return;
+    var x = d.get(c.L), at = function (v) { var T = JSON.parse(JSON.stringify(c.S)); d.apply(T, v); return M.run(c.F.id, c.site, T).years[n - 1].left; };
+    var lo = at(d.ch ? Math.max(0, x - d.swing) : x - d.swing), hi = at(x + d.swing);
+    rows.push({ d: d, lo: lo, hi: hi, mag: Math.abs(hi - lo) / 2 });
+  });
+  rows.sort(function (a, b) { return b.mag - a.mag; });
+  var max = rows.length ? rows[0].mag : 1, left = yearOf(cur).left;
+  $("moves-table").innerHTML = '<thead><tr><th>Moved alone, from where it stands</th><th></th><th class="r">Changes what is left by</th><th class="r hide-s">Range</th></tr></thead><tbody>' +
+    rows.map(function (r) {
+      var worse = Math.min(r.lo, r.hi), better = Math.max(r.lo, r.hi);
+      return '<tr><th>' + esc(r.d.swingName) + '</th>' + barCell(r.mag, max, "swing") + '<td class="r">±' + usd(r.mag) + '</td><td class="r hide-s">' + usdK(worse) + ' to ' + usdK(better) + '</td></tr>';
+    }).join("") + '</tbody>';
+  var top = rows[0];
+  $("moves-lede").innerHTML = top ? "Each assumption moved alone, by a swing that could happen, around the current " + usd(left) + ". <b>" + esc(top.d.name) + "</b> matters most: its swing is worth " + usd(top.mag) + " a year either way." : "";
+}
+
+// -- the menu -----------------------------------------------------------------
+function productRows(c, cur) {
+  var y = yearOf(cur), F = c.F, map = {}, order = [];
+  F.channels.forEach(function (ch, i) {
+    var cc = cur.menu.chans[i], annual = cc.v * cc.k * ch.days * (F.days / F.fmt_days) * y.vol;
+    ch.lines.forEach(function (line) {
+      var pid = line[0], price = M.linePrice(line, c.S), m = map[pid];
+      if (!m) { m = map[pid] = { pid: pid, units: 0, sales: 0, base: line[2], listed: line[3], price: price }; order.push(m); }
+      m.units += line[1] * annual;
+      m.sales += line[1] * annual * price * ch.pi * F.price_index * (y.year === 3 ? 1 + D.op.growth : 1);
+    });
+  });
+  return order;
+}
+var MENU_ORDER = [];
+function buildMenu() {
+  var c = ctx(), plan = M.run(c.F.id, c.site, {});
+  var saved = ST.year; ST.year = 2;
+  var rows = productRows({ F: c.F, S: {} }, plan).sort(function (a, b) { return b.sales - a.sales; });
+  ST.year = saved;
+  MENU_ORDER = rows.map(function (r) { return r.pid; });
+  $("menu-table").innerHTML = '<thead><tr><th>Item</th><th class="r">Window price</th><th class="r">Food and packaging</th><th class="r">Margin on it</th><th class="r">Hands-on minutes</th><th class="r">Sold, <span class="yr"></span></th><th class="r">Sales, <span class="yr"></span></th></tr></thead><tbody>' +
+    rows.map(function (r) {
+      var P = D.products[r.pid];
+      return '<tr><th><label for="pr-' + r.pid + '">' + esc(P.name) + '</label></th>' +
+        '<td class="r">' + (r.listed ? '<input class="price" type="number" inputmode="decimal" min="0" step="0.25" id="pr-' + r.pid + '" data-pid="' + r.pid + '" data-base="' + r.base + '"><small id="eff-' + r.pid + '"></small>' : '<span id="pr-' + r.pid + '">' + usd(r.base, 2) + '</span>') + '</td>' +
+        '<td class="r">' + usd(P.cost, 2) + '</td><td class="r" id="mg-' + r.pid + '"></td><td class="r">' + grp(P.min, 1) + '</td>' +
+        '<td class="r" id="un-' + r.pid + '"></td><td class="r" id="sl-' + r.pid + '"></td></tr>';
+    }).join("") + '</tbody>';
+  Array.prototype.forEach.call($("menu-table").querySelectorAll("input.price"), function (inp) {
+    inp.addEventListener("input", function () {
+      var L = ctx().L, pid = inp.getAttribute("data-pid"), base = +inp.getAttribute("data-base"), x = parseFloat(inp.value);
+      if (!isFinite(x) || x < 0 || Math.abs(x - base) < 0.005) delete L.prices[pid]; else L.prices[pid] = x;
+      update();
+    });
+    inp.addEventListener("blur", function () { updateMenu(ctx(), LAST.cur, true); });
+  });
+}
+function updateMenu(c, cur, force) {
+  var rows = productRows(c, cur), by = {};
+  rows.forEach(function (r) { by[r.pid] = r; });
+  Array.prototype.forEach.call($("menu-table").querySelectorAll(".yr"), function (el) { el.textContent = "Year " + ST.year; });
+  MENU_ORDER.forEach(function (pid) {
+    var r = by[pid], P = D.products[pid]; if (!r) return;
+    var inp = $("pr-" + pid);
+    if (inp && inp.tagName === "INPUT") {
+      var over = c.L.prices[pid];
+      if (document.activeElement !== inp || force) inp.value = (over != null ? over : r.base).toFixed(2);
+      inp.classList.toggle("changed", over != null);
+      $("eff-" + pid).textContent = c.L.price !== 1 ? "now " + usd(r.price, 2) : "";
+    }
+    $("mg-" + pid).textContent = r.price > 0 ? pct(1 - P.cost / r.price) : "n/a";
+    $("un-" + pid).textContent = grp(r.units);
+    $("sl-" + pid).textContent = usd(r.sales);
+  });
+  var F = c.F, apps = chanOf(F, "apps"), fund = chanOf(F, "fundraisers"), groc = chanOf(F, "grocers"), bits = [];
+  if (apps && apps.pi !== 1) bits.push("delivery apps list everything " + Math.round((apps.pi - 1) * 100) + "% higher");
+  if (groc) bits.push("grocers pay " + Math.round(groc.pi * 100) + "% of the window price");
+  if (fund && fund.cost_pct) bits.push("a fundraising group keeps " + Math.round(fund.cost_pct) + "% of what its families buy");
+  $("menu-lede").innerHTML = "Change a price and the whole model follows, with the volume held. The single roll is <b>" + usd(M.linePrice(heroLine(F) || [0, 0, 0, false], c.S), 2) + "</b>; " +
+    "about <b>" + grp(cur.hero_daily) + "</b> classic rolls leave the kitchen on a working day, counting the ones in boxes.";
+  $("menu-note").textContent = "Food and packaging is each recipe's cost at distributor prices, before the model's " + D.op.cogs_buffer + "-point allowance. Hands-on minutes are at production batch sizes. " +
+    (bits.length ? bits.join("; ").replace(/^./, function (ch) { return ch.toUpperCase(); }) + "." : "");
+}
+
+// -- crew, cash, sites, gates -------------------------------------------------
+function renderCrew(c, cur) {
+  var y = yearOf(cur), F = c.F, wk = F.days / 50;
+  var owner = F.roles.filter(function (r) { return r.owner; })[0];
+  var rows = cur.roles.map(function (r) {
+    var cost = r.hours * y.hours_share * r.wage * cur.burden * cur.days * y.mult;
+    return '<tr><th>' + esc(r.role) + '<small>' + esc(r.note || "") + '</small></th><td class="r">' + grp(r.hours * y.hours_share * wk) + '</td><td class="r">' + usd(r.wage, 2) + '</td><td class="r">' + usd(cost) + '</td></tr>';
+  }).join("");
+  if (c.L.manager) rows += '<tr><th>Manager<small>hired, so you step back</small></th><td class="r">salaried</td><td class="r">' + usd(D.manager_hire.salary) + '</td><td class="r">' + usd(y.hired_manager) + '</td></tr>';
+  else if (owner) rows += '<tr><th>You<small>' + esc(owner.note || "") + '</small></th><td class="r">' + grp(owner.hours * wk) + '</td><td class="r">not paid</td><td class="r">' + usd(0) + '</td></tr>';
+  $("crew-table").innerHTML = '<thead><tr><th>Role</th><th class="r">Hours a week</th><th class="r">Wage</th><th class="r">Year ' + ST.year + ', with payroll taxes</th></tr></thead><tbody>' + rows +
+    '<tr class="total"><th>Paid crew</th><td class="r">' + grp(y.hours_day * wk) + '</td><td class="r">' + usd(cur.avg_wage, 2) + '</td><td class="r">' + usd(y.hourly_labor + y.hired_manager) + '</td></tr></tbody>';
+  var hands = cur.hands_on_hours * y.vol;
+  $("crew-stats").innerHTML =
+    '<div><small>Paid crew hours</small><b class="num">' + grp(y.hours_day, 1) + ' a day</b><span>' + grp(y.hours_day * wk) + ' a week over ' + grp(cur.days) + ' working days</span></div>' +
+    '<div><small>Hands-on work</small><b class="num">' + grp(hands, 1) + ' hours a day</b><span>' + pct(y.hours_day ? hands / y.hours_day : 0) + ' of the paid hours: mixing, shaping, baking, boxing</span></div>' +
+    '<div><small>Sales a paid hour</small><b class="num">' + usd(y.hours_day ? y.daily_sales / y.hours_day : null) + '</b><span>the number that makes the margin</span></div>' +
+    '<div><small>Orders</small><b class="num">' + grp(cur.orders_daily * y.vol) + ' a day</b><span>averaging ' + usd(cur.ticket, 2) + '</span></div>';
+  $("crew-lede").innerHTML = (c.L.flex ? "As sales move, " + Math.round((1 - F.fixed_share) * 100) + "% of the crew's hours move with them; these are the hours at the current volume." : "The crew is held at the plan's hours whatever the volume.") +
+    (c.L.baker ? " A third baker is added." : "") + " " + esc(F.hours_text) + ".";
+}
+
+function renderCash(c, cur) {
+  var F = c.F, r = F.growth_of ? M.run(F.growth_of, c.site, {}) : cur;
+  var lines = r.startup_lines.filter(function (l) { return Math.round(l[1]) !== 0; });
+  var max = Math.max.apply(null, lines.map(function (l) { return l[1]; }).concat([1]));
+  var back = { "Security deposit": "held by the landlord", "Working capital reserve": "yours unless Year 1 uses it" };
+  $("cash-table").innerHTML = '<thead><tr><th>' + (F.growth_of ? "Paid at Stage 2" : "Before the first sale") + '</th><th></th><th class="r">Cost</th></tr></thead><tbody>' +
+    lines.map(function (l) { return '<tr><th>' + esc(l[0]) + (back[l[0]] ? '<span class="tag">' + back[l[0]] + '</span>' : "") + '</th>' + barCell(l[1], max) + '<td class="r">' + usd(l[1]) + '</td></tr>'; }).join("") +
+    '<tr class="total"><th>Total</th><td class="bar"></td><td class="r">' + usd(r.startup) + '</td></tr></tbody>';
+  var txt = "";
+  if (F.growth_of) txt = "Stage 3 signs no second lease. The cash is what the kitchen cost at Stage 2; the growth adds crew and a leased van, which are in the running costs.";
+  else {
+    txt = "<b>" + usd(r.startup) + "</b>, all of it yours: the plan uses no loan. " + usd(r.rolls_forward) + " of it is the deposit and the reserve, which are not spent.";
+    var pop = STAGES.popup;
+    if (pop && c.stage.id !== "popup") {
+      var p = M.run(pop.format, SITES[pop.sites[0]], {}), spent = p.startup - p.rolls_forward, both = r.startup + spent;
+      txt += " With the " + usd(spent) + " the pop-up spends first, both stages take <b>" + usd(both) + "</b>" +
+        (r.cash_limit ? (both > r.cash_limit ? ", <b class=\"neg\">over</b> your " + usd(r.cash_limit) + " limit." : ", inside your " + usd(r.cash_limit) + " limit.") : ".");
+    } else if (c.stage.id === "popup") {
+      txt += " If the pop-up stops, about " + usd(r.startup - r.rolls_forward) + " is gone, less what the equipment fetches.";
+    }
+    if (cur.payback_years) txt += " Year 3 earns it back at a rate of " + grp(cur.payback_years, 1) + " years.";
+  }
+  $("cash-lede").innerHTML = txt;
+  var eq = sum(F.equipment.map(function (e) { return e.cost; }));
+  $("equip-sum").textContent = "Equipment list: " + usd(eq) + (c.site.equipment_credit ? ", less " + usd(c.site.equipment_credit) + " already owned or bought with the space" : "");
+  $("equip-table").innerHTML = "<tbody>" + F.equipment.map(function (e) { return "<tr><th>" + esc(e.item) + '</th><td class="r">' + usd(e.cost) + "</td></tr>"; }).join("") + "</tbody>";
+}
+
+function renderSites(c) {
+  var st = c.stage, multi = st.sites.length > 1;
+  $("sites-h").textContent = multi ? "Kitchen sites compared" : "The kitchen";
+  $("sites-wrap").hidden = !multi;
+  if (multi) {
+    var rows = st.sites.map(function (id) {
+      var s = SITES[id], r = M.run(c.F.id, s, stateOf(c.L, id)), y = yearOf(r), on = id === c.site.id;
+      var base = c.F.growth_of ? M.run(c.F.growth_of, s, {}) : r;
+      return '<tr class="' + (on ? "is-on" : "") + '"><th><label class="pick"><input type="radio" name="site" value="' + esc(id) + '"' + (on ? " checked" : "") + '><span>' + esc(s.short || s.name) + '</span></label></th>' +
+        '<td class="r">' + grp(s.sqft) + '<small>window rated ' + grp(s.sales_index + (c.F.index_gain || 0), 2) + '</small></td>' +
+        '<td class="r">$' + (Math.round(r.rent_psf * 100) / 100) + ' + $' + (Math.round(r.nnn_psf * 100) / 100) + '<small>' + (s.rent_assumed && c.L.rent[id] == null ? "assumed" : s.purchase_price ? "plus " + usdK(s.purchase_price) + " to buy it" : "") + '</small></td>' +
+        '<td class="r">' + usd(base.startup) + '</td>' +
+        '<td class="r' + (y.left < 0 ? " neg" : "") + '">' + usd(y.left) + '<small>' + pct(y.sales ? y.left / y.sales : 0) + ' of sales</small></td>' +
+        '<td class="r">' + pct(base.startup ? r.years[1].left / base.startup : null) + '</td>' +
+        '<td class="r">' + pct(r.breakeven_vs_steady) + '</td>' +
+        '<td class="r">' + (r.rent_ceiling_psf == null ? "none" : "$" + grp(r.rent_ceiling_psf)) + '</td></tr>';
+    }).join("");
+    $("sites-table").innerHTML = '<thead><tr><th style="min-width: 170px">Site</th><th class="r">Sq ft</th><th class="r">Rent + NNN<small>a sq ft</small></th><th class="r">Cash to open</th><th class="r">Left, Year ' + ST.year + '</th><th class="r">Return<small>Year 2, on the cash</small></th><th class="r">Covers its<br>costs at</th><th class="r">Most rent<br>it can carry</th></tr></thead><tbody>' + rows + '</tbody>';
+    Array.prototype.forEach.call($("sites-table").querySelectorAll("input[name=site]"), function (inp) {
+      inp.addEventListener("change", function () { ST.kitchenSite = inp.value; rebuild(); });
+    });
+    $("sites-lede").textContent = "The same assumptions at each candidate, with each site's own rent, size, build-out and window rating. The most rent a site can carry is the base rent at which Year 2 still leaves you " + usd(c.F.owner_pay_target) + ".";
+  } else {
+    $("sites-lede").textContent = c.site.area || "";
+  }
+  var s = c.site, items = [];
+  if (multi && s.area) items.push(["Where", s.name + ". " + s.area]);
+  if (s.kitchen) items.push(["What is there", s.kitchen]);
+  if (s.rent_basis) items.push(["Rent", s.rent_basis]);
+  if (s.space_note) items.push(["Space", s.space_note]);
+  if (s.equipment_credit_note) items.push(["Equipment credit", usd(s.equipment_credit) + ": " + s.equipment_credit_note]);
+  if (s.risks) items.push(["Open questions", s.risks]);
+  if (s.source) items.push(["Source", s.source]);
+  $("site-notes").innerHTML = items.map(function (it) { return "<dt>" + esc(it[0]) + "</dt><dd>" + esc(it[1]) + "</dd>"; }).join("");
+}
+
+function renderGates() {
+  var pop = STAGES.popup, kit = STAGES.kitchen, vals = {};
+  if (pop) {
+    var ps = SITES[pop.sites[0]], pf = D.formats[pop.format], p = M.run(pop.format, ps, {});
+    vals.popup_week = usd(Math.round(p.years[1].sales / 52 / 100) * 100);
+    var mk = chanOf(pf, "markets");
+    if (mk) {
+      var x0 = M.solve(pop.format, ps, { flex: false }, function (S, x) { S.v = { markets: x }; }, 1, 0.05, 2, 0);
+      vals.market_floor = x0 != null ? usd(Math.round(x0 * p.menu.chans[pf.channels.indexOf(mk)].day_sales / 10) * 10) : "n/a";
+    }
+  }
+  if (kit) {
+    var ks = SITES[kit.sites[0]], kf = D.formats[kit.format], k = M.run(kit.format, ks, {}), left = k.years[1].left;
+    var oc = chanOf(kf, "orders"), fc = chanOf(kf, "fundraisers"), roll = heroLine(kf);
+    if (oc) vals.kitchen_orders = grp(k.menu.chans[kf.channels.indexOf(oc)].day_orders * (oc.days_week || 5));
+    if (fc) vals.kitchen_events = grp(fc.days);
+    vals.baker_cost = usd(left - M.run(kit.format, ks, { baker: true }).years[1].left);
+    vals.price_5 = usd(M.run(kit.format, ks, { price: 1.05 }).years[1].left - left);
+    vals.roll_price = roll ? usd(roll[2], 2) : "";
+    vals.rent_ceiling = k.rent_ceiling_psf == null ? "no rent" : "$" + grp(k.rent_ceiling_psf);
+    vals.target = usd(kf.owner_pay_target);
+  }
+  var fill = function (t) { return t.replace(/\{(\w+)\}/g, function (m, key) { return vals[key] != null ? vals[key] : "n/a"; }); };
+  $("gates-table").innerHTML = '<thead><tr><th>Gate</th><th>Target</th><th>Why</th></tr></thead><tbody>' +
+    D.gates.map(function (g) { return "<tr><th>" + esc(g[0]) + "</th><td>" + esc(fill(g[1])) + "</td><td>" + esc(fill(g[2])) + "</td></tr>"; }).join("") + "</tbody>";
+}
+
+function renderFoot(c) {
+  var bits = [], call = $("callout");
+  call.hidden = !c.F.growth_note;
+  if (c.F.growth_note) call.innerHTML = "<b>A target, not an estimate.</b> " + esc(c.F.growth_note);
+  bits.push("<span>Every volume here is an estimate: no Miami bakery publishes its sales, and no rent, stall place or commissary price has been confirmed. The full reasoning and its sources are in the repo's <i>Miami bakery business plan</i>.</span>");
+  bits.push("<span>Built from <code>db/proforma.yaml</code> and the menu database by <code>tools/build_miami.py</code>; the page's arithmetic is checked against the pro forma on every build.</span>");
+  $("foot").innerHTML = bits.join("");
+}
+
+// -- tooltip ------------------------------------------------------------------
+var tip = $("tip");
+function showTip(el, x, y) {
+  var o; try { o = JSON.parse(el.getAttribute("data-tip")); } catch (e) { return; }
+  tip.textContent = "";
+  var a = document.createElement("small"); a.textContent = o.t; tip.appendChild(a);
+  var b = document.createElement("b"); b.textContent = o.v; tip.appendChild(b);
+  if (o.d) { var d = document.createElement("small"); d.textContent = o.d; tip.appendChild(d); }
+  tip.hidden = false;
+  var r = tip.getBoundingClientRect(), vw = document.documentElement.clientWidth;
+  tip.style.left = Math.max(8, Math.min(vw - r.width - 8, x - r.width / 2)) + "px";
+  tip.style.top = (y - r.height - 12 < 8 ? y + 18 : y - r.height - 12) + "px";
+}
+document.addEventListener("pointermove", function (e) {
+  var el = e.target.closest ? e.target.closest("[data-tip]") : null;
+  if (el) showTip(el, e.clientX, e.clientY); else if (!document.activeElement || !document.activeElement.hasAttribute("data-tip")) tip.hidden = true;
+});
+document.addEventListener("focusin", function (e) {
+  if (e.target.hasAttribute && e.target.hasAttribute("data-tip")) { var r = e.target.getBoundingClientRect(); showTip(e.target, r.left + r.width / 2, r.top); }
+});
+document.addEventListener("focusout", function () { tip.hidden = true; });
+window.addEventListener("scroll", function () { tip.hidden = true; }, true);
+
+// -- wiring -------------------------------------------------------------------
+var LAST = {};
+function update() {
+  var c = ctx(), cur = M.run(c.F.id, c.site, c.S), plan = M.run(c.F.id, c.site, {});
+  LAST = { c: c, cur: cur, plan: plan };
+  renderAnswer(c, cur, plan);
+  updateLevers(c, cur);
+  renderFlow(c, cur);
+  renderPnl(c, cur, plan);
+  renderMoves(c, cur);
+  updateMenu(c, cur);
+  renderCrew(c, cur);
+  renderCash(c, cur);
+  renderSites(c);
+}
+function rebuild() {
+  renderPath();
+  buildLevers();
+  buildMenu();
+  renderFoot(ctx());
+  update();
+}
+$("path").addEventListener("click", function (e) {
+  if (e.target.closest("a")) return;
+  var b = e.target.closest("[data-stage]");
+  if (!b) return;
+  ST.stage = b.getAttribute("data-stage");
+  try { history.replaceState(null, "", "#" + HASH[ST.stage]); } catch (err) { location.hash = HASH[ST.stage]; }
+  rebuild();
+});
+$("years").addEventListener("click", function (e) {
+  var b = e.target.closest("[data-year]");
+  if (b) { ST.year = +b.getAttribute("data-year"); update(); var again = $("years").querySelector('[data-year="' + ST.year + '"]'); if (again) again.focus(); }
+});
+$("presets").addEventListener("click", function (e) {
+  var b = e.target.closest("[data-preset]");
+  if (!b) return;
+  var c = ctx(), keep = ST.lev[ST.stage], L = freshLevers();
+  L.rent = keep.rent; L.nnn = keep.nnn; L.flat = keep.flat;
+  presetsFor(c)[+b.getAttribute("data-preset")][1](L);
+  ST.lev[ST.stage] = L;
+  update();
+});
+$("reset").addEventListener("click", function () { ST.lev[ST.stage] = freshLevers(); update(); updateMenu(ctx(), LAST.cur, true); });
+$("site-select").addEventListener("change", function (e) { ST.kitchenSite = e.target.value; rebuild(); });
+function fromHash() {
+  var h = (location.hash || "").slice(1), hit = Object.keys(HASH).filter(function (k) { return HASH[k] === h && STAGES[k]; })[0];
+  if (hit && hit !== ST.stage) { ST.stage = hit; rebuild(); }
+}
+window.addEventListener("hashchange", fromHash);
+var refit; window.addEventListener("resize", function () { clearTimeout(refit); refit = setTimeout(fitLabels, 80); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLabels);
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(function (es) { $("mini").hidden = es[0].isIntersecting || es[0].boundingClientRect.top > 0; }, { threshold: 0 }).observe($("ans-fig"));
+}
+
+// The mark: a roll's swirl.
+(function () {
+  var pts = [], turns = 2.6, n = 90;
+  for (var i = 0; i <= n; i++) { var t = i / n * turns * 2 * Math.PI, r = 2.5 + 16.5 * i / n; pts.push((23 + r * Math.cos(t - 1.2)).toFixed(2) + " " + (23 + r * Math.sin(t - 1.2)).toFixed(2)); }
+  $("swirl").setAttribute("d", "M" + pts.join("L"));
+})();
+var when = D.as_of ? new Date(D.as_of + "T12:00:00") : null;
+$("asof").textContent = "Model of " + (when && !isNaN(when) ? when.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : D.as_of) + ", " + D.market + ". Estimates throughout: no rent, stall place or volume here has been confirmed.";
+
+function start(saved) {
+  if (saved && saved.lev && STAGES[saved.stage]) {
+    ST.stage = saved.stage; ST.year = saved.year || 2;
+    if (SITES[saved.kitchenSite]) ST.kitchenSite = saved.kitchenSite;
+    D.stages.forEach(function (s) { if (saved.lev[s.id]) ST.lev[s.id] = Object.assign(freshLevers(), saved.lev[s.id]); });
+  }
+  var h = (location.hash || "").slice(1), hit = Object.keys(HASH).filter(function (k) { return HASH[k] === h && STAGES[k]; })[0];
+  if (hit) ST.stage = hit;
+  renderGates();
+  rebuild();
+}
+var hot = window.claude && window.claude.hot;
+if (hot && hot.snapshot) hot.snapshot(function () { return JSON.parse(JSON.stringify(ST)); });
+if (hot && hot.ready) hot.ready(start); else start(hot && hot.data ? hot.data : null);
+window.MiamiPage = { state: ST, model: M, update: update, rebuild: rebuild };
+})();
+</script>
+
+</body>
+</html>

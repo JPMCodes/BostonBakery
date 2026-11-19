@@ -290,7 +290,7 @@ The window is the largest risk and the one thing Stage 1 can't measure directly.
 | Gate | Target | Why |
 |---|---|---|
 | Sales | $5,000 or more a week for eight straight weeks between March and May | The design averages about $4,900 a week across the year, and the season should beat the average |
-| Markets | $1,500 or more a stall-day in season | The pop-up loses money at about $1,161 |
+| Markets | $1,500 or more a stall-day in season | With the crew held, the pop-up's second year leaves nothing at about $1,250 a stall-day and loses about $5,000 at $1,161 |
 | Pre-orders | 25 or more Saturday pickup orders a week by May; 40% of roll sales in boxes, trays and loaves | The best proxy for the window |
 | Offices and gifts | 12 or more orders a week from 30 or more accounts | Two-thirds of the kitchen's design |
 | Fundraisers | 5 run, averaging 120 units, 3 rebooked | The kitchen's design is 18 a year |

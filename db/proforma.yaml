@@ -380,6 +380,34 @@ labor:
       # per-sq-ft utilities allowance covers in a kitchen this small (about 6,700 kWh a month).
       fixed_costs_per_year: {insurance: 7500, software_pos: 5000, accounting_payroll_legal: 7000, licenses_music: 2500, waste_pest: 4800, linens_uniforms: 1500, vehicle: 7000, production_power: 4500}
       startup: {signage: 8000, opening_inventory: 9000, launch_marketing: 15000, furniture_base: 0}
+      # Stage 3 of the Miami plan: the same kitchen, filled. Targets, not estimates: no grocer has
+      # agreed. Read only by tools/build_miami.py, which lays these changes over this format for
+      # the Miami page; tools/proforma.py ignores it, so it adds no site to the pro forma.
+      growth_case:
+        label: "The same kitchen, filled: a second market team, more office orders and fundraisers, grocers' shelves"
+        note: "A second market team (124 stall-days), office orders up 60%, 30 fundraisers, loaves and frozen packs on grocers' shelves at 62% of the window price, and a window 10% busier as the name gets known. Crew added: 30 more baker hours a week, 12 more at the order desk, a second market crew and a 12-hour driver, with a leased van. No grocer has agreed and the volumes are targets, not estimates."
+        sales_index_gain: 0.1           # the window and the apps, as the name gets known
+        channel_days: {markets: 124, fundraisers: 30}
+        channel_volume: {orders: 1.6}   # times the design's menu
+        add_channels:
+          - id: grocers
+            name: "Grocers' shelves: loaves and frozen packs at wholesale"
+            days_per_year: 250
+            scales_with_site: false
+            items_per_order: 6
+            price_index: 0.62           # wholesale, as a share of the window price
+            note: "At 62% of the window price"
+            menu: {twist_loaf_cinnamon: 7, twist_loaf_dulce: 5, take_and_bake_6: 10}
+        channel_notes:                  # replace the design's notes, whose figures are Stage 2's
+          window: "The Stage 2 window, 10% busier as the name gets known"
+          markets: "A second market team: twice the stall-days"
+          orders: "60% more than the Stage 2 design"
+          fundraisers: "30 events a year instead of 18"
+          apps: "Rise with the window"
+        add_hours: {Baker: 5.1, Order desk and packing: 2.0, Market crew: 2.7, Dish and clean: 0.5}
+        add_roles:
+          - {role: Driver, hours: 2.0, wage: 17.00, note: "12 hours a week: grocers' and office drops in the leased van"}
+        fixed_costs_per_year: {vehicle: 12000, insurance: 8500}
 
 # What each format needs, zone by zone. Seats at about 15 sq ft each.
 space_program:

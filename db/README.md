@@ -55,9 +55,11 @@ The drinks stay `pending_test` until the roaster, matcha and chai suppliers are 
 | `proforma.yaml` | Pro forma inputs: candidate sites, staffing, space program, equipment, operating costs, startup costs, financing and sales scenarios |
 | `proforma.md` | Generated pro forma report. Do not edit by hand |
 | `viewer.html` | Generated Formula Book viewer: products, formulas, ingredients, labor and the pro forma. Open it in any browser. Do not edit by hand |
+| `miami.html` | Generated Miami page: the Miami plan's three stages as a model whose assumptions can be moved. Open it in any browser. Do not edit by hand |
 | `../tools/costing.py` | Validates everything and regenerates `costing.md` |
 | `../tools/proforma.py` | Runs the pro forma and regenerates `proforma.md` |
 | `../tools/build_viewer.py` | Regenerates `viewer.html` from the same data |
+| `../tools/build_miami.py` | Regenerates `miami.html`, from `../tools/miami_page.html` (the layout) and `../tools/miami_model.js` (the pro forma's arithmetic, ported so the page can recompute) |
 
 ## Run the checks
 
@@ -86,6 +88,12 @@ python3 tools/build_viewer.py
 ```
 
 This rebuilds `viewer.html`, a single self-contained page with the data built in. It works offline, with a switch between retail and distributor costs, search, and tabs for products, formulas, ingredients, labor and the pro forma. Rebuild it after every data change too.
+
+```bash
+python3 tools/build_miami.py
+```
+
+This rebuilds `miami.html`, the Miami plan on one page: the pop-up, the roll kitchen at each candidate site, and the kitchen filled. Each sales channel, the prices, food cost, wages and rent has a slider, and every figure on the page follows it; each slider marks the point at which nothing is left for the owner. The page recomputes the pro forma in the browser with `tools/miami_model.js`, and every build first checks that port against `tools/proforma.py` on each stage, site and scenario and on one case per slider (40 cases today) and stops if a figure differs by a cent. The check needs Node.js; without it the build warns and carries on. Change the model in `proforma.py` and `miami_model.js` together.
 
 The script stops on unknown items, bad units, a yield larger than its inputs, formula cycles, missing pack weights or densities, and declared allergens that don't match the ingredients. It warns, without failing, when an approved product uses a formula that isn't approved yet, or when an ingredient has no price in a channel.
 
@@ -119,6 +127,7 @@ A site's `sales_index` is the share of its format's design day it should reach o
 - **Add a site:** copy a site block in `proforma.yaml`, set its format, size, seats, rent, NNN, build-out cost per sq ft, `months_to_open` (rent is paid from lease signing) and `sales_index`, and say in `rent_basis` and `source` where the numbers came from. A space that needs its kitchen rebuilt can raise its `soft_costs_pct`; a business bought for its fit-out and lease carries the asking price in `purchase_price`. If no rent is published, set `rent_assumed: true` and explain the guess in `rent_basis`; the report and viewer show the most base rent the site can carry, so the guess can be checked against a broker's quote.
 - **Change a format:** a format can set its own `prices` (product id and price), used only for that format's menu; edit its `roles` (mark the owner's with `owner: true`; they carry no wage), its `menu` volumes, `days_per_year`, `items_per_order` (used only to turn sales into an order count) and `manager`. A format can replace individual lines of `fixed_costs_per_year`, `startup` and `financing` with its own: the roll bakery sets `loan_share_pct: 0`, because the owner pays for it in cash. `financing.owner_cash_limit` is the most the owner would put in; a site that needs more is flagged.
 - **Sales channels:** a format can list `channels` instead of one `menu`. Each channel has its own `menu` for a day it trades, `days_per_year`, and optionally `price_index` (a delivery-app markup or a wholesale discount), `cost_pct_of_sales` (a commission, or the share a fundraising group keeps), `fee_per_day` (a market stall) and `scales_with_site: false` for channels that sell the same wherever the kitchen is. The model averages the channels over the format's `days_per_year`; a site's `sales_index` moves only the channels that depend on the location. A format can also set its own `variable_costs_pct_of_sales`, `startup_fees` (named one-off startup lines) and `fixed_share` (the share of paid hours that doesn't flex with sales).
+- **A growth case:** a format can carry a `growth_case`, the changes that turn it into a later stage: `channel_days`, `channel_volume` (a multiple of a channel's menu), `add_channels`, `channel_notes`, `add_hours` by role, `add_roles`, `fixed_costs_per_year` and `sales_index_gain`. `tools/proforma.py` ignores it, so it adds no site to `proforma.md`; `tools/build_miami.py` lays it over the format to make the Miami page's Stage 3, which is a target and is labeled as one.
 - **Another city:** the file's own wages, payroll burden, utilities and fixed costs are Boston's. A site with `market: miami` uses the `markets.miami` block instead: `wages` by role name, `burden_pct`, `utilities_per_sqft_year`, any `fixed_costs_per_year` or `startup` lines it names, `price_index` (local menu prices as a share of the database's; food cost in dollars stays the same), `closed_days_per_year` (for storms, on top of the format's days) and `startup_fees` (one-off local charges, added as their own startup lines). To model another city, add a block under `markets` with its sources in `sources` and point its sites at it.
 - **Food cost and utilities:** `cogs_buffer_pts` is added to each menu's cost at distributor prices; it and `utilities_per_sqft_year` were raised on 2026-11-10 to match restaurant norms. Lower them only on the evidence of real invoices.
 - **Treat the outputs as estimates:** the design-day volumes and sales indexes are judgment calls, and no site's rent or condition has been confirmed with a broker.
