@@ -92,6 +92,8 @@ The full menu, with lunch, seats and catering, needs about 2,000–2,500 sq ft, 
 | Site | Format | Sq ft | Base rent / NNN per sq ft | Most base rent it can carry | Steady sales a year | Orders a day | Base rent / with NNN, % of sales | Startup cost | Owner's cash | Cash after debt, Year 1 | EBITDA, Year 2 | Cash after debt, Year 2 | Return on the owner's cash, Year 2 | Break-even sales a day | Payback |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Dadeland Plaza, 9455–9569 S Dixie Hwy, Pinecrest | Roll house | 1,004 | $55.00 (assumed) / $12.00 | $57 | $482,034 | 215 | 11.8% / 14.4% | $411,242 | $411,242 | $14,575 | $61,712 (13%) | $61,712 (the owner's pay) | 15% | $2,030 (166 orders) | 6.5 yrs |
+| Dadeland Plaza, 830 sq ft unit, Pinecrest | Roll house | 830 | $55.00 (assumed) / $12.00 | $74 | $482,034 | 215 | 9.8% / 11.9% | $307,857 | $307,857 | $28,843 | $76,408 (16%) | $76,408 (the owner's pay) | 25% | $1,890 (155 orders) | 3.9 yrs |
+| Restaurant for sale on US-1, Palmetto Bay | Roll house | 2,000 | $21.72 / $0.00 | $20 | $457,932 | 204 | 9.8% / 9.8% | $471,460 | $471,460 | $12,415 | $57,152 (12%) | $57,152 (the owner's pay) | 12% | $1,943 (159 orders) | 8.0 yrs |
 
 Break-even is the daily sales at which Year-2 cash flow after debt service is zero. Payback is the startup cost divided by Year-3 EBITDA. The most base rent a site can carry is the rent at which Year-2 cash after debt service falls to zero, or, for an owner-run format, to the owner's target pay, with its NNN unchanged; an assumed rent is a placeholder until a broker quotes one. The site scan's rent test is base rent at or under 8% of sales; NNN charges come on top. Year-1 cash after debt has to fit inside the working capital reserve. The owner would put in up to $500,000 without a loan. A site paid for in cash has no debt service, so its EBITDA and its cash after debt are the same. Sites outside Boston use their market's wages, payroll burden, utilities, insurance and prices: see Markets below.
 
@@ -567,6 +569,127 @@ The owner isn't paid in this P&L and works about 7 hours a day. Paying the owner
 | **Total** | **$411,242** |
 
 Paid for in cash, with no loan: $411,242 from the owner, a 15% return on it in Year 2.
+
+## Dadeland Plaza, 830 sq ft unit, Pinecrest
+
+The same center as the 1,004 sq ft unit, US-1 just south of Dadeland Mall. 830 sq ft, 0 seats, roll house format. Sales index 1 of the format's design day.
+
+- **Kitchen:** Listed as an 830 sq ft NNN unit, available March 1, 2026. Three small food shops at 9471 S Dixie Hwy in this center closed in 2026 (Smoothie Spot, Kids Deli, Cannonball Cafe), so a fitted bay may be among the vacancies; whether this unit is one of them is not confirmed
+- **Rent:** Rent on request. $55 a sq ft and $12 NNN assumed, as for the 1,004 sq ft unit
+- **Most base rent it can carry:** $74 a sq ft in the base case, after paying the owner $60,000
+- **Space:** 160 sq ft under the program: no seats, a tighter packing area and the take-and-bake freezer in the back; a pickup-first shop
+- **Time to open:** about 4 months from lease signing, paying rent throughout
+- **Local costs:** Miami-Dade: Coral Gables, South Miami, Pinecrest: paid crew average $17.93 an hour, 11% payroll burden, utilities $15 a sq ft, 2 more days closed a year
+- **Equipment credit:** $10,000, assumed value of a small food bay's sinks, grease trap and refrigeration
+- **Risks:** Counts only if it is a former food bay with drains and a grease trap (raw retail space is out); rent unknown; no seats; Paris Baguette has leased a shop nearly across US-1 at 9600 S Dixie Hwy
+- **Source:** Crexi and CommercialCafe listings (snippets, 2026); Yelp closure notices for 9471 S Dixie Hwy (snippets, April–October 2026)
+
+| Scenario | Sales a day, steady | Orders a day | Sales, Year 2 | EBITDA, Year 2 | Cash after debt, Year 2 | Cinnamon rolls a day, with boxes |
+|---|---|---|---|---|---|---|
+| Conservative | $2,096 | 172 | $385,627 | $21,551 (6%) | $21,551 | 231 |
+| Base | $2,620 | 215 | $482,034 | $76,408 (16%) | $76,408 | 289 |
+| Upside | $3,144 | 258 | $578,441 | $131,265 (23%) | $131,265 | 347 |
+
+**Base case, three years**
+
+| Line | Year 1 | Year 2 | Year 3 | Year 2, % of sales |
+|---|---|---|---|---|
+| Sales | $385,627 | $482,034 | $496,495 | 100% |
+| Food and packaging | $78,616 | $98,271 | $101,219 | 20% |
+| Hourly crew, with payroll taxes | $146,516 | $164,034 | $168,955 | 34% |
+| Base rent | $45,650 | $47,020 | $48,430 | 10% |
+| NNN charges | $9,960 | $10,259 | $10,567 | 2% |
+| Utilities | $12,450 | $12,824 | $13,208 | 3% |
+| Card fees, repairs, supplies, marketing, delivery, other | $35,092 | $43,865 | $45,181 | 9% |
+| Insurance, software, accounting, licenses, waste, linens, phone | $28,500 | $29,355 | $30,236 | 6% |
+| **EBITDA** | **$28,843** | **$76,408** | **$78,700** | **16%** |
+| **Left for the owner (no loan)** | **$28,843** | **$76,408** | **$78,700** | **16%** |
+| Paid crew hours a day | 40 | 44 | 44 | |
+
+Prime cost (food, packaging and hourly crew, before any owner pay) is 54% of Year-2 sales; sales per paid crew hour are $60. Break-even is $1,890 a day, about 155 orders (72% of the steady state). Each extra $100 a day of sales adds about $10,470 a year of EBITDA once the crew flexes.
+
+The owner isn't paid in this P&L and works about 7 hours a day. Paying the owner $60,000 a year takes $2,463 a day, about 202 orders.
+
+**Startup cost**
+
+| Item | Cost |
+|---|---|
+| Build-out | $49,800 |
+| Design, engineering, permits and legal | $7,470 |
+| Equipment | $122,500 |
+| Furniture and fixtures | $3,000 |
+| Signage | $8,000 |
+| Pre-opening payroll and training | $10,906 |
+| Opening inventory | $6,000 |
+| Launch marketing | $10,000 |
+| Security deposit | $13,902 |
+| Rent and NNN before opening | $18,537 |
+| Contingency | $17,230 |
+| Working capital reserve | $40,513 |
+| **Total** | **$307,857** |
+
+Paid for in cash, with no loan: $307,857 from the owner, a 25% return on it in Year 2.
+
+## Restaurant for sale on US-1, Palmetto Bay
+
+US-1 in Palmetto Bay, the village just south of Pinecrest; the broker withholds the address. 2,000 sq ft, 8 seats, roll house format. Sales index 0.95 of the format's design day.
+
+- **Kitchen:** Operating full-service restaurant with hoods, a cooler and a grease trap; 32 seats, expandable to 45 (broker listing)
+- **Rent:** $3,620 a month "with water included" in the sale listing ($43,440 a year); whether that covers taxes and CAM isn't stated, so no NNN is added. Size not stated: 2,000 sq ft assumed from a possibly matching listing
+- **Most base rent it can carry:** $20 a sq ft in the base case, after paying the owner $60,000
+- **Space:** About 1,000 sq ft over the program if it is 2,000 sq ft: room to keep more of the 32 seats or a bigger pickup area
+- **Time to open:** about 3 months from lease signing, paying rent throughout
+- **Local costs:** Miami-Dade: Coral Gables, South Miami, Pinecrest: paid crew average $17.93 an hour, 11% payroll burden, utilities $15 a sq ft, 2 more days closed a year
+- **Equipment credit:** $25,000, assumed value of the restaurant's cooler, sinks, tables and grease trap
+- **Purchase price:** $149,000 asked for the existing fit-out and lease
+- **Risks:** Address, size, lease term and NNN unconfirmed; $149,000 buys a full-service kitchen the bakery only partly needs; a big space raises utilities and cleaning; the research rated no Palmetto Bay location, so the 0.95 sales index (Pinecrest US-1's) is a judgment; outside the three towns first asked about
+- **Source:** Tower Business Brokers listing (snippet; 24 days on market, capture date unknown); research_notes/Miami roll house design/spaces.md
+
+| Scenario | Sales a day, steady | Orders a day | Sales, Year 2 | EBITDA, Year 2 | Cash after debt, Year 2 | Cinnamon rolls a day, with boxes |
+|---|---|---|---|---|---|---|
+| Conservative | $1,991 | 163 | $366,346 | $5,038 (1%) | $5,038 | 220 |
+| Base | $2,489 | 204 | $457,932 | $57,152 (12%) | $57,152 | 275 |
+| Upside | $2,987 | 245 | $549,519 | $109,266 (20%) | $109,266 | 329 |
+
+**Base case, three years**
+
+| Line | Year 1 | Year 2 | Year 3 | Year 2, % of sales |
+|---|---|---|---|---|
+| Sales | $366,346 | $457,932 | $471,670 | 100% |
+| Food and packaging | $74,686 | $93,357 | $96,158 | 20% |
+| Hourly crew, with payroll taxes | $143,968 | $160,753 | $165,576 | 35% |
+| Base rent | $43,440 | $44,743 | $46,085 | 10% |
+| Utilities | $30,000 | $30,900 | $31,827 | 7% |
+| Card fees, repairs, supplies, marketing, delivery, other | $33,337 | $41,672 | $42,922 | 9% |
+| Insurance, software, accounting, licenses, waste, linens, phone | $28,500 | $29,355 | $30,236 | 6% |
+| **EBITDA** | **$12,415** | **$57,152** | **$58,867** | **12%** |
+| **Left for the owner (no loan)** | **$12,415** | **$57,152** | **$58,867** | **12%** |
+| Paid crew hours a day | 39 | 43 | 43 | |
+
+Prime cost (food, packaging and hourly crew, before any owner pay) is 55% of Year-2 sales; sales per paid crew hour are $58. Break-even is $1,943 a day, about 159 orders (78% of the steady state). Each extra $100 a day of sales adds about $10,470 a year of EBITDA once the crew flexes.
+
+The owner isn't paid in this P&L and works about 7 hours a day. Paying the owner $60,000 a year takes $2,516 a day, about 206 orders.
+
+**Startup cost**
+
+| Item | Cost |
+|---|---|
+| Build-out | $80,000 |
+| Design, engineering, permits and legal | $12,000 |
+| Equipment | $107,500 |
+| Purchase of the existing fit-out and lease | $149,000 |
+| Furniture and fixtures | $6,600 |
+| Signage | $8,000 |
+| Pre-opening payroll and training | $10,906 |
+| Opening inventory | $6,000 |
+| Launch marketing | $10,000 |
+| Security deposit | $10,860 |
+| Rent and NNN before opening | $10,860 |
+| Contingency | $18,750 |
+| Working capital reserve | $40,985 |
+| **Total** | **$471,460** |
+
+Paid for in cash, with no loan: $471,460 from the owner, a 12% return on it in Year 2.
 
 ## Staffing at each format's design volume
 

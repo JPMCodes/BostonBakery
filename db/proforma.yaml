@@ -456,6 +456,50 @@ sites:
     rent_basis: "Rate undisclosed (NNN). $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (1,600 sq ft, August 2026); $12 NNN assumed from the strip-center CAM range"
     risks: "Rent, availability and food infrastructure unconfirmed (the landlord's page is undated); if it is a raw retail bay, the county may charge road impact and sewer connection fees for the change to food use; Paris Baguette has leased its first South Florida shop nearly across US-1 at 9600 S Dixie Hwy. Pinecrest's 2009 use table permits retail bakeries and restaurants by right in all its business districts; the July 2026 zoning rewrite is unverified"
     source: "Gator Investments property page and Crexi listing (snippets, undated); PropertyShark (Downtown Dadeland, 2026-08-16); Village of Pinecrest use table (2009, read)"
+  - id: pinecrest_dadeland_830
+    name: "Dadeland Plaza, 830 sq ft unit, Pinecrest"
+    short: "Pinecrest: Dadeland 830"
+    area: "The same center as the 1,004 sq ft unit, US-1 just south of Dadeland Mall"
+    market: miami
+    format: roll_house
+    sqft: 830
+    seats: 0
+    rent_psf: 55.00
+    rent_assumed: true
+    nnn_psf: 12.00
+    escalation_pct: 3
+    buildout_psf: 60              # if it is one of the closed food bays: oven power and venting, a bakery layout
+    equipment_credit: 10000
+    equipment_credit_note: "assumed value of a small food bay's sinks, grease trap and refrigeration"
+    months_to_open: 4
+    sales_index: 1.0
+    space_note: "160 sq ft under the program: no seats, a tighter packing area and the take-and-bake freezer in the back; a pickup-first shop"
+    kitchen: "Listed as an 830 sq ft NNN unit, available March 1, 2026. Three small food shops at 9471 S Dixie Hwy in this center closed in 2026 (Smoothie Spot, Kids Deli, Cannonball Cafe), so a fitted bay may be among the vacancies; whether this unit is one of them is not confirmed"
+    rent_basis: "Rent on request. $55 a sq ft and $12 NNN assumed, as for the 1,004 sq ft unit"
+    risks: "Counts only if it is a former food bay with drains and a grease trap (raw retail space is out); rent unknown; no seats; Paris Baguette has leased a shop nearly across US-1 at 9600 S Dixie Hwy"
+    source: "Crexi and CommercialCafe listings (snippets, 2026); Yelp closure notices for 9471 S Dixie Hwy (snippets, April–October 2026)"
+  - id: palmetto_bay_us1
+    name: "Restaurant for sale on US-1, Palmetto Bay"
+    short: "Palmetto Bay: US-1"
+    area: "US-1 in Palmetto Bay, the village just south of Pinecrest; the broker withholds the address"
+    market: miami
+    format: roll_house
+    sqft: 2000                    # not stated; a possibly matching listing gives 2,000 sq ft
+    seats: 8
+    rent_psf: 21.72               # $3,620 a month over the assumed 2,000 sq ft
+    nnn_psf: 0
+    escalation_pct: 3
+    buildout_psf: 40              # a working restaurant kitchen: oven power, bakery layout, refresh
+    equipment_credit: 25000
+    equipment_credit_note: "assumed value of the restaurant's cooler, sinks, tables and grease trap"
+    purchase_price: 149000
+    months_to_open: 3
+    sales_index: 0.95
+    space_note: "About 1,000 sq ft over the program if it is 2,000 sq ft: room to keep more of the 32 seats or a bigger pickup area"
+    kitchen: "Operating full-service restaurant with hoods, a cooler and a grease trap; 32 seats, expandable to 45 (broker listing)"
+    rent_basis: "$3,620 a month \"with water included\" in the sale listing ($43,440 a year); whether that covers taxes and CAM isn't stated, so no NNN is added. Size not stated: 2,000 sq ft assumed from a possibly matching listing"
+    risks: "Address, size, lease term and NNN unconfirmed; $149,000 buys a full-service kitchen the bakery only partly needs; a big space raises utilities and cleaning; the research rated no Palmetto Bay location, so the 0.95 sales index (Pinecrest US-1's) is a judgment; outside the three towns first asked about"
+    source: "Tower Business Brokers listing (snippet; 24 days on market, capture date unknown); research_notes/Miami roll house design/spaces.md"
   # Bakery-café sites: the bigger shop, kept for comparison.
   - id: cambridge
     name: "1105 Massachusetts Ave, Cambridge"
