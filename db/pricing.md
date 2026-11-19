@@ -26,6 +26,32 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Cookie & Brownie Box (12), catering (draft) | **$50.00** | $12.43–$17.88 | $0.97–$1.66 | 27–39% | $30.46–$36.60 (61–73%) |
 | Coffee Traveler (96 oz), catering (draft) | **$40.00** | $6.74–$13.65 | $6.84–$12.62 | 34–66% | $13.74–$26.42 (34–66%) |
 
+## Miami roll house prices
+
+Set 2026-11-19 for the Miami roll house format (`labor.formats.roll_house.prices` in [`proforma.yaml`](proforma.yaml)); the suggested prices above stay Boston's. Benchmarks are from [`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md): Coral Gables croissants at $5.50 (Bachour) and $5.95 (Pura Vida), Chip City's $4.99 cookie, a Miami iced-latte median of about $6, Keik's $8.99–$9.99 weekend rolls, and Knaus Berry Farm's $1.45–$2 rolls and $8.90 half-dozen at its Redland farm.
+
+| Product | Boston | Miami | Why |
+|---|---|---|---|
+| Cinnamon Roll | $4.75 | **$5.25** | Still under a Coral Gables croissant and half Keik's roll |
+| Guava & Cheese Roll (draft) | — | **$5.75** | Cream cheese and guava; the pastelito flavor in the hero roll |
+| Cinnamon Roll 4-Pack | $18.00 | **$19.00** | $4.75 a roll |
+| Cinnamon Roll Box (6) (draft) | — | **$27.00** | $4.50 a roll |
+| Cinnamon Roll Box (12) (draft) | — | **$50.00** | About $4.17 a roll, the office and family order |
+| Take-and-Bake Cinnamon Rolls (6) (draft) | — | **$24.00** | $3 under the baked box: the customer proofs and bakes |
+| Chocolate Chip Walnut Cookie | $4.50 | **$4.75** | Under Chip City's $4.99 |
+| Brownie | $4.50 | **$4.75** | Level with the cookie |
+| Cookie & Brownie Box (12) | $50.00 | **$52.00** | |
+| Iced coffee (cold brew), 16 oz | $4.00 | **$4.75** | |
+| Iced latte, 16 oz | $5.00 | **$5.75** | Under the Miami median of about $6 |
+| Latte (café con leche), 12 oz | $4.75 | **$5.25** | Under the US average of $5.54 (Q2 2026) |
+| Drip coffee, 12 oz | $3.50 | **$3.75** | |
+| Espresso (cortadito) | $3.50 | **$3.25** | Closer to the Cuban-café anchor |
+| Matcha latte | $5.25 | **$5.75** | |
+| Strawberry-chamomile lemonade, kids | $3.50 | **$3.75** | |
+| Coffee Traveler (96 oz) | $40.00 | **$42.00** | |
+
+The box ladder is the point: a roll costs $5.25 alone and about $4.17 in a dozen, so the box is the better buy and the bakery bakes to pre-orders. The four-pack is the pinch point against Knaus's $8.90 half-dozen, but Knaus is a seasonal farm stand about 25 miles south with lines and a purchase limit.
+
 The margins above are after food and packaging only. Prep labor per item, and prime cost with it, are in the Prep labor section of [`costing.md`](costing.md) and in [`production.md`](production.md).
 
 The cost range runs from the distributor estimate to the retail estimate. Packaging is costed for to-go orders; served on a plate for here, it drops out. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.

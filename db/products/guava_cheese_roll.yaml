@@ -1,0 +1,46 @@
+id: guava_cheese_roll
+name: Guava & Cheese Roll
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "The signature milk-dough roll filled with sweet cream cheese and diced guava paste, finished with the buttermilk glaze. About 4 1/4 oz finished. Proposed for Miami."
+batch_units: 12
+waste_pct: 5
+
+build:
+  - {item: dough_signature, qty: 90, unit: g}
+  - {item: filling_guava_cheese, qty: 30, unit: g}
+  - {item: glaze_buttermilk, qty: 10, unit: g, note: "a lighter drizzle than the cinnamon roll so the guava shows"}
+  - {item: box_pastry_4x4, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: paper_wax_square, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  shape: "As the cinnamon roll: roll one dough batch to 16×13 inches, spread the cheese layer, scatter the guava, roll up from the long side and cut 12 slices with floss."
+  bake: "Same pan and temperatures as the cinnamon roll; pull at 190°F in the bread of the center roll. The cheese layer should be set, not liquid, at the cut."
+  glaze: "Drizzle 10 g at 95–100°F roll temperature in lines, so the guava stays visible."
+  hold: "Sell the day it's baked."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 5.75
+  rationale: "Miami roll house price: 50 cents over the Miami cinnamon roll for the cream cheese and guava. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "First bake: does the cheese layer set without leaking at 30 g a roll?"
+    - "Guava dice size and amount: visible in every slice without sinking to the pan."
+    - "Same-day hold at room temperature, and whether leftovers must be refrigerated."
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll house at a suggested $5.75."
+
+par_daily: 0
+labor:
+  unit_min: 1.7
+  note: "As the cinnamon roll, plus scattering the guava."

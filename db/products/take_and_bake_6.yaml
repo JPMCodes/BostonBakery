@@ -1,0 +1,44 @@
+id: take_and_bake_6
+name: Take-and-Bake Cinnamon Rolls (6)
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "Six shaped, unbaked cinnamon rolls, frozen in a foil pan with a cup of buttermilk glaze and baking instructions. Thaw and proof overnight, bake 25–30 minutes. For holidays, summer and anyone who wants them warm at home."
+waste_pct: 2
+
+build:
+  - {item: dough_signature, qty: 540, unit: g, note: "six rolls at 90 g"}
+  - {item: filling_cinnamon, qty: 132, unit: g, note: "six rolls at 22 g"}
+  - {item: glaze_buttermilk, qty: 84, unit: g, note: "in the cup; six rolls at 14 g"}
+  - {item: foil_pan_lid_6, qty: 1, unit: each}
+  - {item: cup_portion_4oz, qty: 1, unit: each}
+  - {item: lid_portion_4oz, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 2, unit: each, note: "contents and allergens; thaw-proof-bake instructions"}
+
+production:
+  shape: "Shape and cut as for the cinnamon roll, set six rolls 2 × 3 in the foil pan, cover and blast-freeze unproofed. Portion and lid the glaze cup; tape it under the dome."
+  hold: "Frozen at 0°F or below, up to 4 weeks. Customer: thaw covered in the refrigerator overnight, proof 1–2 hours at room temperature until doubled, bake at 350°F for 25–30 minutes to 190°F in the center, rewarm the glaze 15 seconds and glaze warm."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 24.00
+  rationale: "Miami roll house: $3 under the baked 6-box, because the customer does the proofing and baking. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Freeze-thaw test: does the dough proof and bake to 4 oz rolls as good as fresh after 1, 2 and 4 weeks frozen?"
+    - "Home-oven test with the printed instructions, in a foil pan."
+    - "Glaze cup: does the cooked glaze keep frozen and rewarm smooth?"
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll house at a suggested $24.00."
+
+par_daily: 0
+labor:
+  unit_min: 7.5
+  note: "Shape and pan six rolls, portion the glaze cup, label, wrap and freeze."

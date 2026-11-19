@@ -1,0 +1,38 @@
+id: cinnamon_roll_12box
+name: Cinnamon Roll Box (12)
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "A dozen cinnamon rolls in a quarter-sheet window box: the office, school and family-gathering order. Pre-order by 2 pm the day before; mixed dozens with guava-and-cheese rolls price the same."
+waste_pct: 0
+
+build:
+  - {item: cinnamon_roll, qty: 12, unit: each}
+  - {item: box_catering_quarter, qty: 1, unit: each}
+  - {item: paper_wax_square, qty: 3, unit: each, note: "one under each row"}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  pack: "Box twelve glazed rolls, three rows of four, on dry-wax sheets once the glaze sets; label with the order name, ingredients, allergens and date."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 50.00
+  rationale: "Miami roll house: about $4.17 a roll, the best price per roll on the menu. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Confirm twelve 4 oz rolls fit the 14 × 10 × 4 in box without the glaze touching the lid."
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll house at a suggested $50.00."
+
+par_daily: 0
+labor:
+  unit_min: 1.2
+  note: "Fold, fill and label the box."

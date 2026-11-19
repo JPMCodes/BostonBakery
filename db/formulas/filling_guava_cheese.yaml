@@ -1,0 +1,37 @@
+id: filling_guava_cheese
+name: Guava and Cream Cheese Filling
+kind: filling
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [guava_cheese_roll]
+yield:
+  grams: 360
+  description: "12 rolls at 30 g: about 19 g of cheese layer and 11 g of guava"
+
+ingredients:
+  - {stage: Cheese layer, item: cream_cheese, qty: 170, unit: g, note: "soft, 65–70°F"}
+  - {stage: Cheese layer, item: sugar_granulated, qty: 35, unit: g}
+  - {stage: Cheese layer, item: egg_yolk, qty: 1, unit: each, note: "sets the layer so it doesn't run in the bake"}
+  - {stage: Cheese layer, item: flour_ap, qty: 8, unit: g}
+  - {stage: Cheese layer, item: vanilla_extract, qty: 3, unit: g}
+  - {stage: Cheese layer, item: salt_fine, qty: 1, unit: g}
+  - {stage: Guava, item: guava_paste, qty: 125, unit: g, note: "cold, cut in 1/4-inch dice"}
+
+method:
+  - "Cheese layer: beat the cream cheese smooth, then the sugar, yolk, flour, vanilla and salt, just until combined. Don't whip in air."
+  - "Spread the cheese layer over the cold rolled-out dough, leaving the same 1/2-inch bare strip as the cinnamon roll. Scatter the diced guava evenly over it, press it in lightly, then roll, cut and pan as for the cinnamon roll."
+
+notes:
+  - "The Miami version of the hero roll: the same dough and glaze around the flavors of a pastelito de guayaba y queso."
+  - "Cheese-filled pastries are normally sold the day they're baked. Confirm with the health inspector whether leftovers must be refrigerated."
+  - "Option to test: brush the hot rolls with guava paste melted with a little water before glazing, for shine and color."
+
+history:
+  - date: 2026-11-19
+    change: "Drafted for the Miami roll house; not yet baked."
+
+labor:
+  batch_min: 10
+  production_batches: 3
+  note: "Three batches: soften and mix the cheese layer, dice the guava."

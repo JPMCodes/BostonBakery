@@ -119,6 +119,83 @@ labor:
       # A smaller shop with fewer staff: these replace the same lines below and in startup.
       fixed_costs_per_year: {insurance: 6000, software_pos: 3600, accounting_payroll_legal: 7000, licenses_music: 2000, waste_pest: 4800, linens_uniforms: 1500}
       startup: {signage: 8000, opening_inventory: 5000, launch_marketing: 8000, furniture_base: 4000}
+    # The roll bakery redesigned for Miami (2026-11-19): the research found Miami buys
+    # cinnamon rolls as weekend events and by the dozen (Knaus Berry Farm's rationed
+    # dozens and pre-orders, Keik's weekend-only rolls), suburban trade peaks on weekends,
+    # summer sales dip 20–40%, and specialty prices run above Boston's. So it opens four
+    # mornings a week, sells boxes by pre-order, adds a guava-and-cheese roll and a
+    # take-and-bake pack, prices at Miami specialty levels and drops the scones, muffins
+    # and coffee cake. Report: reports/Miami roll house design.md.
+    roll_house:
+      label: "Roll house: rolls by the box, pre-order pickup and an iced-first coffee bar; about 4 seats"
+      hours: "7:00 am to 1:00 pm, Thursday to Sunday; Friday to Sunday from June to September"
+      # Thursday to Sunday for 35 weeks (140 days), Friday to Sunday for 17 summer weeks
+      # less a two-week break in September (45), less Thanksgiving, Christmas and New
+      # Year's Day when they fall on open days (2), plus pickup-only pre-order days the
+      # day before Thanksgiving, on December 24 and for Three Kings (3).
+      days_per_year: 186
+      design_index: 1.0         # staffed for this format's design day: an average open day
+      items_per_order: 1.6      # assumption: a box counts as one item, like a coffee
+      hero: cinnamon_roll
+      manager: false            # the owner runs it, sells the catering and pre-orders, and doesn't bake
+      owner_pay_target: 60000
+      financing: {loan_share_pct: 0}
+      # Paid hours are an average open day. They include the Wednesday dough and prep
+      # day spread over the four open days; the bakers shape the afternoon before and
+      # retard overnight, so the morning is baking, glazing and boxing.
+      roles:
+        - {role: "Owner, manager", hours: 7, owner: true, note: "pre-orders, catering and school accounts, the schedule and the books; the market stall in the test phase"}
+        - {role: Lead baker, hours: 10, wage: 25.00, note: "5 am start: bakes and glazes the retarded rolls, then mixes and shapes tomorrow's; 40 hours a week with the Wednesday prep day"}
+        - {role: Baker and prep, hours: 9.5, wage: 20.00, note: "boxes the pre-orders, cookies and brownies, fillings and the take-and-bake packs"}
+        - {role: Barista, hours: 7, wage: 16.50, note: "iced-first bar; plus tips"}
+        - {role: Counter, hours: 9, wage: 15.50, note: "one on Thursday and Friday, two at the weekend; register and pickup shelf; plus tips"}
+        - {role: Peak help, hours: 5, wage: 15.50, note: "weekend pickup rush and line management; none on quiet days"}
+        - {role: Dish and close, hours: 3, wage: 15.50, note: ""}
+      # Miami prices: under Coral Gables croissants ($5.50–5.95), Chip City's $4.99 cookie
+      # and the Miami iced-latte median (about $6), well under Keik's $9–10 roll; boxes
+      # step the price per roll down to about $4.17 in the dozen.
+      prices:
+        cinnamon_roll: 5.25
+        guava_cheese_roll: 5.75
+        cinnamon_roll_4pack: 19.00
+        cinnamon_roll_6box: 27.00
+        cinnamon_roll_12box: 50.00
+        take_and_bake_6: 24.00
+        cookie_chocolate_chip: 4.75
+        brownie: 4.75
+        cookie_brownie_box: 52.00
+        iced_coffee: 4.75
+        iced_latte: 5.75
+        latte: 5.25
+        drip_coffee: 3.75
+        espresso: 3.25
+        matcha_latte: 5.75
+        lemonade_kids: 3.75
+        coffee_traveler: 42.00
+      # Design day: an average open day at a site with sales index 1.0. Weekends run
+      # well above it and Thursdays below. Boxes and pre-orders are about 41% of sales.
+      menu:
+        cinnamon_roll: 85
+        guava_cheese_roll: 40
+        cinnamon_roll_4pack: 18
+        cinnamon_roll_6box: 12
+        cinnamon_roll_12box: 5
+        take_and_bake_6: 4
+        cookie_chocolate_chip: 22
+        brownie: 10
+        cookie_brownie_box: 0.7
+        iced_coffee: 40
+        iced_latte: 34
+        latte: 20
+        drip_coffee: 22
+        espresso: 14
+        matcha_latte: 6
+        lemonade_kids: 10
+        oat_milk_swap: 16
+        almond_milk_swap: 3
+        coffee_traveler: 0.8
+      fixed_costs_per_year: {insurance: 6000, software_pos: 4800, accounting_payroll_legal: 7000, licenses_music: 2000, waste_pest: 4800, linens_uniforms: 1500}
+      startup: {signage: 8000, opening_inventory: 6000, launch_marketing: 10000, furniture_base: 3000}
 
 # What each format needs, zone by zone. Seats at about 15 sq ft each.
 space_program:
@@ -137,6 +214,15 @@ space_program:
     - {zone: "Dish and sanitation: 3-bay sink, dishwasher, mop sink", sqft: 70}
     - {zone: "Coffee bar, pastry case, register", sqft: 150}
     - {zone: "Seating, 8 seats", sqft: 110}
+    - {zone: "Restroom and office nook", sqft: 70}
+    - {zone: "Entry and queue", sqft: 60}
+  roll_house:
+    - {zone: "Bakery production: 40-qt mixer, bench, sheeter, double-stack oven, proofer-retarder, speed racks", sqft: 380}
+    - {zone: "Cold, freezer and dry storage, with the take-and-bake freezer", sqft: 140}
+    - {zone: "Box packing table and pre-order pickup shelf", sqft: 80}
+    - {zone: "Dish and sanitation: 3-bay sink, dishwasher, mop sink", sqft: 70}
+    - {zone: "Coffee bar, pastry case, register", sqft: 130}
+    - {zone: "Seating, 4 seats", sqft: 60}
     - {zone: "Restroom and office nook", sqft: 70}
     - {zone: "Entry and queue", sqft: 60}
 
@@ -178,6 +264,22 @@ equipment:
     - {item: "Speed racks, sheet pans, roll pans, smallwares", cost: 7000}
     - {item: "Induction burners for glaze, scales, food processor", cost: 2500}
     - {item: "Point-of-sale hardware", cost: 2500}
+  roll_house:
+    - {item: "Double-stack convection oven, electric", cost: 20000}
+    - {item: "40-qt planetary mixer", cost: 16000}
+    - {item: "Reversible dough sheeter", cost: 7000}
+    - {item: "Proofer-retarder cabinet (overnight retard for the morning bake)", cost: 9000}
+    - {item: "Two reach-in refrigerators and a reach-in freezer", cost: 12000}
+    - {item: "Second reach-in freezer for take-and-bake packs", cost: 6000}
+    - {item: "Compact two-group espresso machine and grinder", cost: 15000}
+    - {item: "Batch brewer, hot water, cold brew system, water filtration", cost: 6000}
+    - {item: "Pastry case", cost: 9000}
+    - {item: "Sinks, stainless tables, shelving", cost: 9000}
+    - {item: "Undercounter dishwasher", cost: 6500}
+    - {item: "Speed racks, sheet pans, roll pans, smallwares", cost: 9000}
+    - {item: "Box packing table and pre-order pickup shelf", cost: 2500}
+    - {item: "Induction burners for glaze, scales, food processor", cost: 2500}
+    - {item: "Point-of-sale hardware, with an online-order printer", cost: 3000}
 
 startup:
   soft_costs_pct_of_buildout: 15   # design, engineering, permits, legal (research: soft costs run 30–40% of a full restaurant build; less on a second-generation space). A site can override it with soft_costs_pct.
@@ -327,19 +429,20 @@ sites:
     rent_basis: "$2,200 a month ($26,400 a year) in the sale listing; NNN not stated, $6 assumed; lease runs to July 5, 2034"
     risks: "A franchise resale, so the landlord and franchisor must accept a new concept; asking price is an unconfirmed snippet; Lakon Paris Patisserie is next door at 407 Washington St; very small"
     source: "BizQuest BW2520885 (snippet, seen 2026-11-10); Boston Licensing Board records"
-  # Miami-Dade roll bakery candidates (research 2026-11-19). Each uses the miami market's
-  # wages, payroll burden, utilities and storm days. Sales indexes follow the traffic
-  # research's ranking against the Boston sites (Brighton 0.95, Jamaica Plain 1.1).
-  # Three more Miami spaces were modeled and dropped because they lose money in the base
-  # case: see reports/Miami roll bakery feasibility.md.
+  # Miami-Dade sites (research 2026-11-19). Each uses the miami market's wages, payroll
+  # burden, utilities and storm days, and the roll house format designed for Miami.
+  # Sales indexes follow the traffic research's ranking against the Boston sites
+  # (Brighton 0.95, Jamaica Plain 1.1). As a Boston-style roll bakery, Dadeland Plaza
+  # left the owner about $9K and three more Miami spaces lost money: see
+  # reports/Miami roll bakery feasibility.md and reports/Miami roll house design.md.
   - id: pinecrest_dadeland
     name: "Dadeland Plaza, 9455–9569 S Dixie Hwy, Pinecrest"
     short: "Pinecrest: Dadeland Plaza"
     area: "US-1 at the Dadeland end of Pinecrest, just south of Dadeland Mall"
     market: miami
-    format: roll_bakery
+    format: roll_house
     sqft: 1004
-    seats: 6
+    seats: 4
     rent_psf: 55.00
     rent_assumed: true
     nnn_psf: 12.00
@@ -348,7 +451,7 @@ sites:
     equipment_credit: 0
     months_to_open: 5
     sales_index: 1.0
-    space_note: "About 70 sq ft over the program"
+    space_note: "Fits the roll house program with about 14 sq ft to spare; the center's lot gives pickup parking"
     kitchen: "Listed by the landlord as a 1,004 sq ft \"restaurant / retail\" unit; the center has several second-generation restaurant spaces. Drains, grease trap and ventilation not confirmed"
     rent_basis: "Rate undisclosed (NNN). $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (1,600 sq ft, August 2026); $12 NNN assumed from the strip-center CAM range"
     risks: "Rent, availability and food infrastructure unconfirmed (the landlord's page is undated); if it is a raw retail bay, the county may charge road impact and sewer connection fees for the change to food use; Paris Baguette has leased its first South Florida shop nearly across US-1 at 9600 S Dixie Hwy. Pinecrest's 2009 use table permits retail bakeries and restaurants by right in all its business districts; the July 2026 zoning rewrite is unverified"

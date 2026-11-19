@@ -69,6 +69,8 @@ def validate(cfg: dict) -> list[str]:
                    for r in paid if not is_number(r.get("hours")) or not is_number(r.get("wage"))]
         errors += [f"{where}: menu volume for '{pid}' must be a number of 0 or more"
                    for pid, par in (f.get("menu") or {}).items() if not is_number(par)]
+        errors += [f"{where}: price for '{pid}' must be a positive number"
+                   for pid, price in (f.get("prices") or {}).items() if not is_number(price, 0.01)]
         if not is_number(f.get("items_per_order", 2.0), 0.1):
             errors.append(f"{where}: items_per_order must be a positive number")
     markets = cfg.get("markets") or {}
@@ -120,11 +122,14 @@ def hero_units(book: Book, volumes: dict, hero: str | None) -> float:
     return sum(float(par) * inside(pid) for pid, par in volumes.items())
 
 
-def menu_day(book: Book, volumes: dict | None = None, items_per_order: float = 2.0, hero: str | None = None) -> dict:
+def menu_day(book: Book, volumes: dict | None = None, items_per_order: float = 2.0, hero: str | None = None,
+             prices: dict | None = None) -> dict:
     """A format's design day: sales, food cost, prep hours and an estimated order count.
 
     `volumes` maps product ids to units a day; without it, every product's par_daily is used.
+    `prices` replaces a product's suggested retail price for this format only.
     """
+    prices = prices or {}
     if volumes is None:
         volumes = {pid: float(doc.get("par_daily") or 0) for pid, doc in book.products.items()}
     sales = goods = hours = items = 0.0
@@ -133,7 +138,7 @@ def menu_day(book: Book, volumes: dict | None = None, items_per_order: float = 2
         if pid not in book.products:
             raise DBError(f"proforma.yaml: a format's menu lists '{pid}', which is not a product")
         doc, par = book.products[pid], float(par)
-        price = float(doc["pricing"].get("suggested_retail_usd") or 0)
+        price = float(prices.get(pid, doc["pricing"].get("suggested_retail_usd") or 0))
         sales += price * par
         goods += (book.product_cost(pid, CHANNEL) or 0) * par
         hours += book.product_labor(pid) * par / 60
@@ -357,7 +362,7 @@ def build(book: Book | None = None) -> dict:
     if errors:
         raise DBError("; ".join(errors))
     formats = cfg["labor"]["formats"]
-    menus = {fmt: menu_day(book, f.get("menu"), float(f.get("items_per_order", 2.0)), f.get("hero"))
+    menus = {fmt: menu_day(book, f.get("menu"), float(f.get("items_per_order", 2.0)), f.get("hero"), f.get("prices"))
              for fmt, f in formats.items()}
     results: dict[str, dict] = {}
     for s in cfg["sites"]:
