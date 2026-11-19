@@ -1,0 +1,45 @@
+id: twist_loaf_cinnamon
+name: Cinnamon Twist Loaf
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "The signature dough rolled with cinnamon filling, split and twisted, baked in a paper mould and glazed: a trenza that keeps three days, for gifts, offices and the Friday table."
+waste_pct: 3
+
+build:
+  - {item: dough_signature, qty: 450, unit: g}
+  - {item: filling_cinnamon, qty: 110, unit: g}
+  - {item: glaze_buttermilk, qty: 35, unit: g}
+  - {item: mold_loaf_paper, qty: 1, unit: each}
+  - {item: bag_loaf_clear, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  shape: "Roll the dough to 12×10 inches, fill, roll up from the long side, split the log lengthwise and twist the halves cut side up. Set in the paper mould."
+  bake: "340°F for 35–42 minutes, to 190°F in the center."
+  finish: "Glaze warm in lines. Bag and tie once fully cool."
+  hold: "Bagged at room temperature, three days; the tangzhong keeps the crumb soft. Freeze unglazed for up to four weeks."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 19.00
+  rationale: "Miami price: a gift loaf under a dozen premium cookies or doughnuts. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Three-day keeping test, bagged."
+    - "Loaf weight and bake time in the paper mould."
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll kitchen at a suggested $19.00."
+
+par_daily: 0
+labor:
+  unit_min: 5
+  at_scale_unit_min: 2.8
+  note: "Sheet, fill, roll, split, twist, mould, bake handling, glaze, bag and label."

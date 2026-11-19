@@ -1,0 +1,47 @@
+id: roll_of_the_week_grande
+name: Roll of the Week (Grande)
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "A grande roll with a filling and topping that change every week. Costed here as the launch flavor: dulce de leche swirled through the roll and over the glaze, with crushed María cookies."
+batch_units: 12
+waste_pct: 5
+
+build:
+  - {item: dough_signature, qty: 180, unit: g}
+  - {item: filling_cinnamon, qty: 30, unit: g, note: "a lighter layer under the dulce de leche"}
+  - {item: dulce_de_leche, qty: 40, unit: g, note: "25 g rolled in, 15 g warmed and drizzled"}
+  - {item: glaze_buttermilk, qty: 18, unit: g}
+  - {item: cookies_maria, qty: 10, unit: g, note: "crushed, over the drizzle"}
+  - {item: box_pastry_6x6, qty: 1, unit: each, note: "to go"}
+  - {item: paper_wax_square, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  shape: "As the grande roll; pipe the dulce de leche in lines over the cinnamon filling before rolling."
+  finish: "Glaze, drizzle with warmed dulce de leche and scatter the cookie crumble while the glaze is wet."
+  rotation: "One flavor a week, announced on Monday. Candidates: cafecito glaze, guava and queso, key lime, coconut and tres leches, golfeado-style papelón and salty white cheese, pistachio, Nutella and plantain."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 9.50
+  rationale: "Miami price: level with Keik's and Roll & Dough's loaded rolls. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Does pastry-grade dulce de leche stay in the spiral or run out in the bake?"
+    - "A topping cost ceiling for the rotation: this flavor adds about 30 cents over the plain grande."
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll kitchen at a suggested $9.50, costed as dulce de leche and María."
+
+par_daily: 0
+labor:
+  unit_min: 2.1
+  at_scale_unit_min: 1.1
+  note: "As the grande roll, plus the swirl, drizzle and crumble."

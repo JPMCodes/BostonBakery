@@ -41,4 +41,5 @@ history:
 labor:
   batch_min: 26
   production_batches: 2
+  at_scale: {batch_min: 40, production_batches: 4, note: "Production kitchen: four pans at once."}
   note: "Two pans at once: melt, whip, fold, pan, load and unload, clean up. Cutting is in the brownie product."

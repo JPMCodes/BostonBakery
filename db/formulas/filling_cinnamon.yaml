@@ -35,4 +35,5 @@ history:
 labor:
   batch_min: 8
   production_batches: 3
+  at_scale: {batch_min: 12, production_batches: 11, note: "Production kitchen: eleven batches (about 2.9 kg) in the 20-qt mixer."}
   note: "Three batches: scale and beat the filling."

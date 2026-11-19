@@ -71,6 +71,22 @@ def validate(cfg: dict) -> list[str]:
                    for pid, par in (f.get("menu") or {}).items() if not is_number(par)]
         errors += [f"{where}: price for '{pid}' must be a positive number"
                    for pid, price in (f.get("prices") or {}).items() if not is_number(price, 0.01)]
+        for c in f.get("channels") or []:
+            cw = f"{where}: channel {c.get('id', '?')}"
+            if not c.get("id") or not c.get("name") or not isinstance(c.get("menu"), dict):
+                errors.append(f"{cw}: needs an id, a name and a menu")
+                continue
+            errors += [f"{cw}: {key} must be a number of 0 or more"
+                       for key in ("days_per_year", "cost_pct_of_sales", "fee_per_day")
+                       if (key == "days_per_year" or key in c) and not is_number(c.get(key))]
+            errors += [f"{cw}: menu volume for '{pid}' must be a number of 0 or more"
+                       for pid, par in c["menu"].items() if not is_number(par)]
+            if "price_index" in c and not is_number(c["price_index"], 0.01):
+                errors.append(f"{cw}: price_index must be positive")
+        if f.get("channels") and not is_number(f.get("days_per_year"), 1):
+            errors.append(f"{where}: a format with channels needs its own days_per_year")
+        if "fixed_share" in f and not (is_number(f["fixed_share"]) and f["fixed_share"] <= 1):
+            errors.append(f"{where}: fixed_share must be between 0 and 1")
         if not is_number(f.get("items_per_order", 2.0), 0.1):
             errors.append(f"{where}: items_per_order must be a positive number")
     markets = cfg.get("markets") or {}
@@ -95,7 +111,7 @@ def validate(cfg: dict) -> list[str]:
         if "rent_assumed" in site and not isinstance(site["rent_assumed"], bool):
             errors.append(f"{where}: rent_assumed must be true or false")
         errors += [f"{where}: {key} must be a number of 0 or more"
-                   for key in ("months_to_open", "soft_costs_pct", "equipment_credit", "purchase_price")
+                   for key in ("months_to_open", "soft_costs_pct", "equipment_credit", "purchase_price", "rent_flat_per_year")
                    if key in site and not is_number(site[key])]
     if len(cfg["operating"].get("ramp_year1_pct") or []) != 12:
         errors.append("proforma.yaml: operating.ramp_year1_pct needs 12 monthly values")
@@ -123,11 +139,13 @@ def hero_units(book: Book, volumes: dict, hero: str | None) -> float:
 
 
 def menu_day(book: Book, volumes: dict | None = None, items_per_order: float = 2.0, hero: str | None = None,
-             prices: dict | None = None) -> dict:
+             prices: dict | None = None, at_scale: bool = False, price_index: float = 1.0) -> dict:
     """A format's design day: sales, food cost, prep hours and an estimated order count.
 
     `volumes` maps product ids to units a day; without it, every product's par_daily is used.
-    `prices` replaces a product's suggested retail price for this format only.
+    `prices` replaces a product's suggested retail price for this format only, and `price_index`
+    marks every price up or down (a delivery-app menu). `at_scale` counts prep minutes at the
+    database's production-kitchen batch sizes.
     """
     prices = prices or {}
     if volumes is None:
@@ -138,10 +156,10 @@ def menu_day(book: Book, volumes: dict | None = None, items_per_order: float = 2
         if pid not in book.products:
             raise DBError(f"proforma.yaml: a format's menu lists '{pid}', which is not a product")
         doc, par = book.products[pid], float(par)
-        price = float(prices.get(pid, doc["pricing"].get("suggested_retail_usd") or 0))
+        price = float(prices.get(pid, doc["pricing"].get("suggested_retail_usd") or 0)) * price_index
         sales += price * par
         goods += (book.product_cost(pid, CHANNEL) or 0) * par
-        hours += book.product_labor(pid) * par / 60
+        hours += book.product_labor(pid, at_scale=at_scale) * par / 60
         by_category[doc["category"]] = by_category.get(doc["category"], 0) + price * par
         if doc["category"] != "add-on":  # a milk swap or a scoop rides on another item
             items += par
@@ -158,6 +176,66 @@ def menu_day(book: Book, volumes: dict | None = None, items_per_order: float = 2
         "ticket": sales / orders,
         "hero_units": hero_units(book, volumes, hero),
         "hero_name": book.products[hero]["name"] if hero in book.products else None,
+    }
+
+
+def format_menu(book: Book, f: dict, site_index: float = 1.0) -> dict:
+    """A format's design day; for a format with sales channels, its average operating day at a site.
+
+    Each channel has its own menu for a day it trades and the number of days a year it trades; they are
+    averaged over the format's operating days. A channel with scales_with_site: false (a market stall,
+    office orders) sells the same wherever the kitchen is; the others scale with the site's sales index.
+    `sales` stays at the index-1.0 design day and `eff_index` is the site's blended index, so
+    sales × eff_index is the site's average operating day.
+    """
+    ipo = float(f.get("items_per_order", 2.0))
+    at_scale = bool(f.get("production_scale"))
+    if not f.get("channels"):
+        return menu_day(book, f.get("menu"), ipo, f.get("hero"), f.get("prices"), at_scale)
+    days = float(f["days_per_year"])
+    base = site = goods = hours = items = orders = hero = costs = fees = 0.0
+    by_category: dict[str, float] = {}
+    channels = []
+    for c in f["channels"]:
+        m = menu_day(book, c["menu"], float(c.get("items_per_order", ipo)), f.get("hero"),
+                     {**(f.get("prices") or {}), **(c.get("prices") or {})}, at_scale, float(c.get("price_index", 1.0)))
+        w = float(c["days_per_year"]) / days  # channel days per operating day
+        k = site_index if c.get("scales_with_site", True) else 1.0
+        cost_pct = float(c.get("cost_pct_of_sales", 0))
+        base += m["sales"] * w
+        site += m["sales"] * w * k
+        goods += m["sales"] * m["goods_pct"] / 100 * w * k
+        hours += m["hands_on_hours"] * w * k
+        items += m["items"] * w * k
+        orders += m["orders"] * w * k
+        hero += m["hero_units"] * w * k
+        costs += m["sales"] * w * k * cost_pct / 100
+        fees += float(c.get("fee_per_day", 0)) * float(c["days_per_year"])
+        for cat, v in m["by_category"].items():
+            by_category[cat] = by_category.get(cat, 0) + v * w * k
+        channels.append({"id": c["id"], "name": c["name"], "days": float(c["days_per_year"]),
+                         "day_sales": m["sales"] * k, "day_orders": m["orders"] * k, "ticket": m["ticket"],
+                         "weight": m["sales"] * w * k, "cost_pct": cost_pct, "fee_per_day": float(c.get("fee_per_day", 0)),
+                         "scales_with_site": bool(c.get("scales_with_site", True)), "note": c.get("note", "")})
+    if not base or not orders:
+        raise DBError("a format's channels have no volumes, so there are no sales to project")
+    for ch in channels:
+        ch["share"] = ch.pop("weight") / site
+    eff = site / base
+    return {
+        "sales": base,
+        "eff_index": eff,
+        "goods_pct": 100 * goods / site,
+        "hands_on_hours": hours,
+        "by_category": by_category,
+        "items": items,
+        "orders": orders,
+        "ticket": site / orders,
+        "hero_units": hero / eff,
+        "hero_name": book.products[f["hero"]]["name"] if f.get("hero") in book.products else None,
+        "channels": channels,
+        "channel_cost_pct": 100 * costs / site,
+        "channel_fees_year": fees,
     }
 
 
@@ -205,16 +283,22 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
     burden = 1 + burden_pct / 100
     utilities_psf = float(mkt.get("utilities_per_sqft_year", cfg["utilities_per_sqft_year"]))
     price = float(mkt.get("price_index", 1.0))  # local menu prices as a share of the database's
-    fixed_share = float(lab["fixed_share"])
+    fixed_share = float(fmt_cfg.get("fixed_share", lab["fixed_share"]))
     ramp = sum(op["ramp_year1_pct"]) / len(op["ramp_year1_pct"]) / 100
     infl = float(op["cost_inflation_pct"]) / 100
     growth = float(op["price_growth_pct"]) / 100
-    level = float(site["sales_index"]) * float(scenario["sales_factor"])  # share of the format's design day
+    # Share of the format's design day. A format with channels blends the site's index over the
+    # channels that depend on the location (format_menu's eff_index).
+    level = float(menu.get("eff_index", site["sales_index"])) * float(scenario["sales_factor"])
     steady = menu["sales"] * price * level * days
     goods_pct = menu["goods_pct"] / price + float(op["cogs_buffer_pts"])
-    var_pct = sum(float(v) for v in cfg["variable_costs_pct_of_sales"].values())
+    var_costs = {**cfg["variable_costs_pct_of_sales"], **(fmt_cfg.get("variable_costs_pct_of_sales") or {})}
+    var_pct = sum(float(v) for v in var_costs.values())
+    channel_pct = float(menu.get("channel_cost_pct", 0))    # commissions and shares paid on channel sales
+    channel_fees = float(menu.get("channel_fees_year", 0))  # stall fees, paid whatever the sales
     fixed_base = sum(float(v) for v in fixed_costs.values())
     sqft = float(site["sqft"])
+    flat_rent = float(site.get("rent_flat_per_year", 0))    # a commissary or a licence, not priced by area
     managed = bool(fmt_cfg.get("manager", True))
     manager_base = float(mkt.get("manager_salary", lab["manager"]["salary"])) * burden if managed else 0.0
 
@@ -228,10 +312,11 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
             "cogs": sales * goods_pct / 100,
             "hourly_labor": hours_day * wage * burden * days * mult,
             "manager": manager_base * mult,
-            "rent": sqft * float(site["rent_psf"]) * (1 + float(site["escalation_pct"]) / 100) ** (n - 1),
+            "rent": (sqft * float(site["rent_psf"]) + flat_rent) * (1 + float(site["escalation_pct"]) / 100) ** (n - 1),
             "nnn": sqft * float(site["nnn_psf"]) * mult,
             "utilities": sqft * utilities_psf * mult,
             "variable_opex": sales * var_pct / 100,
+            "channel_costs": sales * channel_pct / 100 + channel_fees * mult,
             "fixed_opex": fixed_base * mult,
         }
         ebitda = sales - sum(lines.values())
@@ -257,7 +342,7 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
                                              + manager_base / 52 * float(st.get("manager_preopening_weeks", 0))),
         "Opening inventory": float(st["opening_inventory"]),
         "Launch marketing": float(st["launch_marketing"]),
-        **{label: float(v) for label, v in (mkt.get("startup_fees") or {}).items()},
+        **{label: float(v) for label, v in {**(fmt_cfg.get("startup_fees") or {}), **(mkt.get("startup_fees") or {})}.items()},
         "Security deposit": occupancy_month * float(st["deposit_months"]),
         "Rent and NNN before opening": occupancy_month * float(site.get("months_to_open", 0)),
         "Contingency": (buildout + equipment) * float(st["contingency_pct"]) / 100,
@@ -277,8 +362,8 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
     design_sales = menu["sales"] * price * float(fmt_cfg["design_index"]) * days
     crew_cost = base_hours * wage * burden * days * (1 + infl)
     fixed_cash = (y2["manager"] + y2["rent"] + y2["nnn"] + y2["utilities"] + y2["fixed_opex"]
-                  + crew_cost * fixed_share)
-    var_rate = (goods_pct + var_pct) / 100 + crew_cost * (1 - fixed_share) / design_sales
+                  + channel_fees * (1 + infl) + crew_cost * fixed_share)
+    var_rate = (goods_pct + var_pct + channel_pct) / 100 + crew_cost * (1 - fixed_share) / design_sales
     breakeven = (fixed_cash + debt_service) / (1 - var_rate)
     breakeven_ebitda = fixed_cash / (1 - var_rate)
     target = owner_target(fmt_cfg)
@@ -300,6 +385,12 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
         "utilities_psf": utilities_psf,
         "price_index": price,
         "fixed_costs": fixed_costs,
+        "variable_costs": var_costs,
+        "fixed_share": fixed_share,
+        "no_premises": sqft <= 0,
+        "flat_rent": flat_rent,
+        "channels": [{**ch, "sales_year": steady * ch["share"], "day_sales": ch["day_sales"] * price * float(scenario["sales_factor"])}
+                     for ch in menu.get("channels") or []],
         "steady_sales": steady,
         "steady_daily": steady / days,
         "ticket": ticket,
@@ -339,6 +430,8 @@ def rent_ceiling(cfg: dict, menu: dict, site: dict, scenario: dict) -> float | N
     A managed format must still cover its loan; an owner-run one must also leave the owner's target pay.
     """
     target = owner_target(cfg["labor"]["formats"][site["format"]])
+    if float(site["sqft"]) <= 0:  # no leased area to price
+        return None
 
     def spare(rent: float) -> float:
         return model(cfg, menu, dict(site, rent_psf=rent), scenario)["years"][1]["cash_after_debt"] - target
@@ -362,11 +455,11 @@ def build(book: Book | None = None) -> dict:
     if errors:
         raise DBError("; ".join(errors))
     formats = cfg["labor"]["formats"]
-    menus = {fmt: menu_day(book, f.get("menu"), float(f.get("items_per_order", 2.0)), f.get("hero"), f.get("prices"))
-             for fmt, f in formats.items()}
+    menus = {fmt: format_menu(book, f) for fmt, f in formats.items()}
     results: dict[str, dict] = {}
     for s in cfg["sites"]:
-        menu = menus[s["format"]]
+        f = formats[s["format"]]
+        menu = format_menu(book, f, float(s["sales_index"])) if f.get("channels") else menus[s["format"]]
         results[s["id"]] = {}
         for sc in cfg["scenarios"]:
             r = model(cfg, menu, s, sc)
@@ -399,6 +492,7 @@ LINE_LABELS = [
     ("nnn", "NNN charges"),
     ("utilities", "Utilities"),
     ("variable_opex", "Card fees, repairs, supplies, marketing, delivery, other"),
+    ("channel_costs", "Delivery commissions, fundraiser shares and market fees"),
     ("fixed_opex", "Insurance, software, accounting, licenses, waste, linens, phone"),
 ]
 

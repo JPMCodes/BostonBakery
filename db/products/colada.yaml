@@ -1,0 +1,41 @@
+id: colada
+name: Colada (to share)
+category: drink
+status: draft
+version: "1.0"
+approved_on: null
+description: "Miami's office coffee: two double shots whipped with sugar into a sweet espresso with its foam, in a small cup with six thimble cups for sharing."
+waste_pct: 2
+
+build:
+  - {item: espresso_double, qty: 2, unit: each}
+  - {item: sugar_granulated, qty: 20, unit: g}
+  - {item: cup_hot_4oz, qty: 1, unit: each}
+  - {item: lid_hot_4oz, qty: 1, unit: each}
+  - {item: cup_thimble, qty: 6, unit: each}
+
+production:
+  build:
+    - "Whip the first drops of espresso with the sugar to a pale foam (espumita), then pour in the rest of both double shots and stir."
+    - "Lid the cup and hand it over with a stack of six thimble cups."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 4.25
+  rationale: "Miami price: a specialty-coffee colada; Cuban walk-up windows sell one for less. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Sugar level and roast for a colada that suits the house espresso."
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll kitchen at a suggested $4.25."
+
+par_daily: 0
+labor:
+  unit_min: 0.4
+  note: "Both doubles pull at once on a two-group machine, so most of the time is already in the two shots; add whipping the foam, the lid and the cups."

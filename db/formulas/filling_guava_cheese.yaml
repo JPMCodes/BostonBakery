@@ -34,4 +34,5 @@ history:
 labor:
   batch_min: 10
   production_batches: 3
+  at_scale: {batch_min: 22, production_batches: 11, note: "Production kitchen: eleven batches; the guava paste is diced on a wire cutter."}
   note: "Three batches: soften and mix the cheese layer, dice the guava."

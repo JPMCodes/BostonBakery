@@ -41,4 +41,5 @@ history:
 par_daily: 0
 labor:
   unit_min: 7.5
+  at_scale_unit_min: 4.2
   note: "Shape and pan six rolls, portion the glaze cup, label, wrap and freeze."

@@ -43,4 +43,5 @@ history:
 labor:
   batch_min: 25
   production_batches: 1
+  at_scale: {batch_min: 40, production_batches: 4, note: "Production kitchen: four batches (96 cookies) in the 60-qt mixer."}
   note: "Scale, mix and clean up for 24 cookies. Portioning is in the cookie product."

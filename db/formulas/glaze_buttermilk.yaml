@@ -44,4 +44,5 @@ history:
 labor:
   batch_min: 15
   production_batches: 3
+  at_scale: {batch_min: 24, production_batches: 11, note: "Production kitchen: eleven batches (about 2.5 kg) cooked in one 12-qt pot; it foams to four times its volume."}
   note: "Three batches cooked together: stir, cool and finish."

@@ -1,0 +1,46 @@
+id: cinnamon_roll_grande
+name: Grande Cinnamon Roll
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "The signature roll at twice the size: about 8 oz finished, baked on its own so the sides brown, with the buttermilk glaze. Miami's event rolls sell at this size for $9–10."
+batch_units: 12
+waste_pct: 5
+
+build:
+  - {item: dough_signature, qty: 180, unit: g}
+  - {item: filling_cinnamon, qty: 44, unit: g}
+  - {item: glaze_buttermilk, qty: 28, unit: g}
+  - {item: box_pastry_6x6, qty: 1, unit: each, note: "to go"}
+  - {item: paper_wax_square, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  shape: "Roll two dough batches to 16×13 inches each as for the classic roll; cut 6 slices of 2 2/3 inches from each log. Proof and bake in 5-inch foil rounds or a jumbo tin with room between rolls."
+  bake: "325°F for 28–34 minutes, to 190°F in the center. Tent with foil if the tops brown early."
+  glaze: "Glaze at 95–100°F roll temperature, 28 g each."
+  hold: "As the classic roll: sell the day it's baked."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 8.50
+  rationale: "Miami price: under Keik's $8.99–9.99 weekend rolls and Roll & Dough's market rolls at about $10. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Bake time and pan for a 180 g dough piece; the center must reach 190°F without the edges drying."
+    - "Finished weight and bake loss at this size."
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll kitchen at a suggested $8.50."
+
+par_daily: 0
+labor:
+  unit_min: 1.8
+  at_scale_unit_min: 0.9
+  note: "As the classic roll, with a pan for each roll."

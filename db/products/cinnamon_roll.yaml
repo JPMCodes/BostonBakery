@@ -70,4 +70,6 @@ history:
 par_daily: 60
 labor:
   unit_min: 1.5
+  at_scale_unit_min: 0.7
+  at_scale_note: "Production kitchen: a sheeter and 132-roll runs; sheet, fill, roll, cut, pan, bake handling and glaze. To confirm on the first production runs."
   note: "Roll out, fill, roll up, cut and pan; bake handling; glaze."

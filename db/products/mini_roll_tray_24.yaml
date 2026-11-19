@@ -1,0 +1,43 @@
+id: mini_roll_tray_24
+name: Mini Roll Party Tray (24)
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "Twenty-four mini cinnamon rolls baked as one pull-apart slab in a foil tray, glazed and lidded. The office, classroom and party tray. Pre-order by 2 pm the day before."
+waste_pct: 2
+
+build:
+  - {item: dough_signature, qty: 720, unit: g, note: "24 pieces of 30 g"}
+  - {item: filling_cinnamon, qty: 180, unit: g}
+  - {item: glaze_buttermilk, qty: 130, unit: g}
+  - {item: foil_quarter_sheet_lid, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  shape: "Roll the dough to a 24×9 inch strip about 1/4 inch thick, fill, roll up from the long side into a thin log and cut 24 slices of 1 inch. Set them 4×6 in the foil tray, touching."
+  bake: "350°F for 18–22 minutes, to 190°F in a center roll."
+  glaze: "Glaze the whole slab in the tray at 95–100°F; lid once set."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 38.00
+  rationale: "Miami price: about $1.58 a mini. Nothing Bundt Cakes sells a dozen bundtinis for $18.50–27, and The Salty a catering dozen for $50–58. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Does a 30 g piece bake through without drying at the tray's edges?"
+    - "Do 24 minis fit a quarter-sheet foil tray under its dome lid once glazed?"
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll kitchen at a suggested $38.00."
+
+par_daily: 0
+labor:
+  unit_min: 9
+  at_scale_unit_min: 4.5
+  note: "Sheet, fill, roll thin, cut 24, tray, bake handling, glaze the slab, lid and label."

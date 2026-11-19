@@ -49,4 +49,5 @@ history:
 labor:
   batch_min: 38
   production_batches: 3
+  at_scale: {batch_min: 48, production_batches: 11, note: "Production kitchen: eleven batches (about 12 kg, 132 rolls) in a 60-qt mixer. Scale, cook the tangzhong in one pot, load and watch the mix, divide for the sheeter, clean up. To confirm on the first production runs."}
   note: "Three batches together in a 20-qt mixer: scale, cook the tangzhong, load and watch the mix, bulk handling, clean up. Feeds the cinnamon rolls and every sandwich roll."

@@ -1,0 +1,44 @@
+id: roll_cake_9in
+name: Celebration Roll Cake (9-inch)
+category: catering
+status: draft
+version: "1.0"
+approved_on: null
+description: "One giant cinnamon roll coiled in a 9-inch round, glazed, boxed on a cake board and ready for candles. Serves 8–10. Pre-order 48 hours ahead."
+waste_pct: 2
+
+build:
+  - {item: dough_signature, qty: 800, unit: g}
+  - {item: filling_cinnamon, qty: 195, unit: g}
+  - {item: glaze_buttermilk, qty: 150, unit: g}
+  - {item: cake_board_10in, qty: 1, unit: each}
+  - {item: box_cake_10in, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  shape: "Roll the dough to 20×12 inches, fill, and cut six strips of 2 inches along the long side. Coil the first strip in the center of a lined 9-inch round and wrap the rest around it, filling side in."
+  bake: "325°F for 40–50 minutes, to 190°F in the center; tent with foil after 25 minutes."
+  glaze: "Glaze at 95–100°F; set 30 minutes before boxing."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 45.00
+  rationale: "Miami price: against a Nothing Bundt Cakes 8- or 10-inch cake and a custom supermarket cake. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Bake-through at the center of a 9-inch coil."
+    - "A message card or plaque that suits a glazed top."
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll kitchen at a suggested $45.00."
+
+par_daily: 0
+labor:
+  unit_min: 10
+  at_scale_unit_min: 6
+  note: "Sheet, fill, cut strips, coil, bake handling, glaze, board, box and label."

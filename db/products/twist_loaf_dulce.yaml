@@ -1,0 +1,44 @@
+id: twist_loaf_dulce
+name: Dulce de Leche Twist Loaf
+category: pastry
+status: draft
+version: "1.0"
+approved_on: null
+description: "The twist loaf filled with dulce de leche and a little cinnamon sugar. Keeps three days."
+waste_pct: 3
+
+build:
+  - {item: dough_signature, qty: 450, unit: g}
+  - {item: dulce_de_leche, qty: 120, unit: g}
+  - {item: filling_cinnamon, qty: 30, unit: g}
+  - {item: glaze_buttermilk, qty: 30, unit: g}
+  - {item: mold_loaf_paper, qty: 1, unit: each}
+  - {item: bag_loaf_clear, qty: 1, unit: each}
+  - {item: label_grab_and_go, qty: 1, unit: each}
+
+production:
+  shape: "As the cinnamon twist loaf: spread the cinnamon filling thinly, pipe the dulce de leche over it, roll, split and twist."
+  bake: "340°F for 35–42 minutes, to 190°F in the center."
+  hold: "Bagged at room temperature, three days."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 21.00
+  rationale: "Miami price: $2 over the cinnamon loaf for the dulce de leche. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Does the dulce de leche hold in the twist, and does the loaf keep three days?"
+
+history:
+  - date: 2026-11-19
+    version: "1.0"
+    change: "Drafted for the Miami roll kitchen at a suggested $21.00."
+
+par_daily: 0
+labor:
+  unit_min: 5
+  at_scale_unit_min: 2.8
+  note: "As the cinnamon twist loaf."

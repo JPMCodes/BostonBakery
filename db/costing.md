@@ -13,8 +13,12 @@ Prices as of 2026-11-19. **Retail est.** = US grocery or small-pack estimates; *
 | Brownie | pastry | draft | $4.50 | $1.41 | $1.01 | $0.07 / $0.02 | 31% / 22% | egg, milk, soy, wheat |
 | Chocolate Chip Walnut Cookie | pastry | draft | $4.50 | $1.84 | $1.20 | $0.08 / $0.03 | 41% / 27% | egg, milk, soy, tree nuts, wheat |
 | Cinnamon Roll | pastry | approved | $4.75 | $1.11 | $0.63 | $0.47 / $0.34 | 23% / 13% | egg, milk, wheat |
+| Cinnamon Twist Loaf | pastry | draft | $19.00 | $3.62 | $1.68 | $0.69 / $0.38 | 19% / 9% | egg, milk, wheat |
+| Dulce de Leche Twist Loaf | pastry | draft | $21.00 | $4.62 | $2.23 | $0.69 / $0.38 | 22% / 11% | egg, milk, wheat |
+| Grande Cinnamon Roll | pastry | draft | $8.50 | $1.91 | $1.09 | $0.63 / $0.51 | 22% / 13% | egg, milk, wheat |
 | Guava & Cheese Roll | pastry | draft | $5.75 | $1.28 | $0.76 | $0.47 / $0.34 | 22% / 13% | egg, milk, wheat |
 | Mini Vanilla Scone | pastry | pending_test | $2.25 | $0.27 | $0.15 | $0.07 / $0.02 | 12% / 7% | egg, milk, wheat |
+| Roll of the Week (Grande) | pastry | draft | $9.50 | $2.34 | $1.34 | $0.63 / $0.51 | 25% / 14% | egg, milk, wheat |
 | Sour Cream Coffee Cake Slice | pastry | draft | $4.50 | $0.90 | $0.54 | $0.11 / $0.06 | 20% / 12% | egg, milk, tree nuts, wheat |
 | Breakfast Sandwich | sandwich | approved | $8.50 | $1.70 | $0.83 | $0.25 / $0.12 | 20% / 10% | egg, milk, wheat |
 | Fennel Sausage Breakfast Sandwich | sandwich | approved | $10.25 | $2.41 | $1.20 | $0.25 / $0.12 | 23% / 12% | egg, milk, wheat |
@@ -28,6 +32,7 @@ Prices as of 2026-11-19. **Retail est.** = US grocery or small-pack estimates; *
 | Hummus Scoop | add-on | draft | $3.50 | $1.11 | $0.59 | $0.14 / $0.04 | 32% / 17% | sesame |
 | Oat Milk (swap) | add-on | draft | $1.00 | $0.85 | $0.65 | none | 85% / 65% | none |
 | Chai Latte (12 oz) | drink | pending_test | $4.75 | $2.64 | $1.58 | $0.42 / $0.25 | 56% / 33% | milk |
+| Colada (to share) | drink | draft | $4.25 | $2.91 | $1.41 | $0.30 / $0.15 | 69% / 33% | none |
 | Drip Coffee (12 oz) | drink | pending_test | $3.50 | $2.05 | $1.04 | $0.42 / $0.25 | 59% / 30% | none |
 | Espresso (double) | drink | pending_test | $3.50 | $1.47 | $0.71 | $0.18 / $0.10 | 42% / 20% | none |
 | Iced Coffee (16 oz cold brew) | drink | pending_test | $4.00 | $1.82 | $0.94 | $0.23 / $0.15 | 46% / 23% | none |
@@ -36,11 +41,13 @@ Prices as of 2026-11-19. **Retail est.** = US grocery or small-pack estimates; *
 | Matcha Latte (12 oz) | drink | pending_test | $5.25 | $1.67 | $1.06 | $0.42 / $0.25 | 32% / 20% | milk |
 | Strawberry Chamomile Lemonade | drink | draft | $3.50 | $1.54 | $0.77 | $0.23 / $0.15 | 44% / 22% | none |
 | Breakfast Pastry Box (12) | catering | draft | $50.00 | $11.81 | $6.31 | $1.74 / $1.01 | 24% / 13% | egg, milk, wheat |
+| Celebration Roll Cake (9-inch) | catering | draft | $45.00 | $7.78 | $3.81 | $2.13 / $1.23 | 17% / 8% | egg, milk, wheat |
 | Cinnamon Roll 4-Pack | catering | draft | $18.00 | $3.78 | $1.88 | $1.35 / $0.77 | 21% / 10% | egg, milk, wheat |
 | Cinnamon Roll Box (12) | catering | draft | $50.00 | $8.88 | $4.21 | $1.59 / $0.91 | 18% / 8% | egg, milk, wheat |
 | Cinnamon Roll Box (6) | catering | draft | $27.00 | $5.11 | $2.51 | $1.47 / $0.85 | 19% / 9% | egg, milk, wheat |
 | Coffee Traveler (96 oz) | catering | draft | $40.00 | $26.26 | $13.58 | $12.62 / $6.84 | 66% / 34% | milk |
 | Cookie & Brownie Box (12) | catering | draft | $50.00 | $19.54 | $13.40 | $1.66 / $0.97 | 39% / 27% | egg, milk, soy, tree nuts, wheat |
+| Mini Roll Party Tray (24) | catering | draft | $38.00 | $6.71 | $3.38 | $1.63 / $1.06 | 18% / 9% | egg, milk, wheat |
 | Take-and-Bake Cinnamon Rolls (6) | catering | draft | $24.00 | $5.19 | $2.42 | $1.47 / $0.74 | 22% / 10% | egg, milk, wheat |
 | Whole Sour Cream Coffee Cake | catering | draft | $45.00 | $13.33 | $8.31 | $1.33 / $0.91 | 30% / 18% | egg, milk, tree nuts, wheat |
 
@@ -81,11 +88,18 @@ Hands-on minutes per unit sold at $21.00 an hour (`db/settings.yaml`), including
 | Cookie & Brownie Box (12) | catering | 0.5 | 16.0 | $5.60 | 38% | 0.1 | 1% |
 | Hummus Scoop | add-on | 6 | 1.3 | $0.46 | 30% | 0.1 | 1% |
 | Coffee Traveler (96 oz) | catering | 1 | 4.2 | $1.46 | 38% | 0.1 | 0% |
+| Cinnamon Twist Loaf | pastry | 0 | 12.4 | $4.36 | 32% | 0.0 | 0% |
+| Dulce de Leche Twist Loaf | pastry | 0 | 11.5 | $4.02 | 30% | 0.0 | 0% |
+| Grande Cinnamon Roll | pastry | 0 | 5.2 | $1.81 | 34% | 0.0 | 0% |
 | Guava & Cheese Roll | pastry | 0 | 3.4 | $1.19 | 34% | 0.0 | 0% |
+| Roll of the Week (Grande) | pastry | 0 | 5.1 | $1.79 | 33% | 0.0 | 0% |
 | Almond Milk (swap) | add-on | 8 | 0.0 | $0.00 | 78% | 0.0 | 0% |
 | Oat Milk (swap) | add-on | 30 | 0.0 | $0.00 | 65% | 0.0 | 0% |
+| Colada (to share) | drink | 0 | 2.4 | $0.86 | 53% | 0.0 | 0% |
+| Celebration Roll Cake (9-inch) | catering | 0 | 25.0 | $8.75 | 28% | 0.0 | 0% |
 | Cinnamon Roll Box (12) | catering | 0 | 38.0 | $13.31 | 35% | 0.0 | 0% |
 | Cinnamon Roll Box (6) | catering | 0 | 19.3 | $6.76 | 34% | 0.0 | 0% |
+| Mini Roll Party Tray (24) | catering | 0 | 22.4 | $7.85 | 30% | 0.0 | 0% |
 | Take-and-Bake Cinnamon Rolls (6) | catering | 0 | 17.3 | $6.04 | 35% | 0.0 | 0% |
 | **Total** | | | | | | **23.4** | 100% |
 
@@ -102,8 +116,12 @@ Minutes per unit before the waste allowance. "Own steps" are the shaping, finish
 | Brownie | 1.0 | Brownies (quarter-sheet pan) 0.88; own steps 0.15 |
 | Chocolate Chip Walnut Cookie | 1.4 | Chocolate Chip Walnut Cookie Dough 1.04; own steps 0.35 |
 | Cinnamon Roll | 3.1 | Signature Milk Dough 1.04; Cinnamon Filling 0.22; Cooked Buttermilk Glaze 0.31; own steps 1.50 |
+| Cinnamon Twist Loaf | 12.1 | Signature Milk Dough 5.21; Cinnamon Filling 1.11; Cooked Buttermilk Glaze 0.76; own steps 5.00 |
+| Dulce de Leche Twist Loaf | 11.2 | Signature Milk Dough 5.21; Cinnamon Filling 0.30; Cooked Buttermilk Glaze 0.66; own steps 5.00 |
+| Grande Cinnamon Roll | 4.9 | Signature Milk Dough 2.08; Cinnamon Filling 0.44; Cooked Buttermilk Glaze 0.61; own steps 1.80 |
 | Guava & Cheese Roll | 3.2 | Signature Milk Dough 1.04; Guava and Cream Cheese Filling 0.28; Cooked Buttermilk Glaze 0.22; own steps 1.70 |
 | Mini Vanilla Scone | 0.8 | Vanilla Bean Scone Dough 0.42; Vanilla Bean Glaze 0.08; own steps 0.30 |
+| Roll of the Week (Grande) | 4.9 | Signature Milk Dough 2.08; Cinnamon Filling 0.30; Cooked Buttermilk Glaze 0.39; own steps 2.10 |
 | Sour Cream Coffee Cake Slice | 1.9 | Sour Cream Coffee Cake (12-cup bundt) 1.79; own steps 0.10 |
 | Breakfast Sandwich | 4.6 | Sandwich Roll 1.59; own steps 3.00 |
 | Fennel Sausage Breakfast Sandwich | 5.1 | Sandwich Roll 1.59; own steps 3.50 |
@@ -188,6 +206,54 @@ Batch of 24: Chocolate Chip Walnut Cookie Dough (formula) 4,080 g, Glassine bag 
 
 Batch of 12: Signature Milk Dough (formula) 1,080 g, Cinnamon Filling (formula) 264 g, Cooked Buttermilk Glaze (formula) 168 g, Bakery box 4×4×4 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
 
+### Cinnamon Twist Loaf (`twist_loaf_cinnamon`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 450 g | $2.01 | $0.78 |
+| Cinnamon Filling (formula) | 110 g | $0.63 | $0.37 |
+| Cooked Buttermilk Glaze (formula) | 35 g | $0.20 | $0.11 |
+| Paper loaf baking mould | 1 each | $0.56 | $0.32 |
+| Clear loaf bag with tie | 1 each | $0.10 | $0.04 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 3% | $0.09 | $0.04 |
+| **Unit cost** | | **$3.62** | **$1.68** |
+| Prep labor | 12.4 min | $4.36 | $4.36 |
+| **Prime cost (unit cost + labor)** | | **$7.97** | **$6.04** |
+
+### Dulce de Leche Twist Loaf (`twist_loaf_dulce`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 450 g | $2.01 | $0.78 |
+| Dulce de leche (pastry grade) | 120 g | $1.46 | $0.82 |
+| Cinnamon Filling (formula) | 30 g | $0.17 | $0.10 |
+| Cooked Buttermilk Glaze (formula) | 30 g | $0.17 | $0.10 |
+| Paper loaf baking mould | 1 each | $0.56 | $0.32 |
+| Clear loaf bag with tie | 1 each | $0.10 | $0.04 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 3% | $0.11 | $0.05 |
+| **Unit cost** | | **$4.62** | **$2.23** |
+| Prep labor | 11.5 min | $4.02 | $4.02 |
+| **Prime cost (unit cost + labor)** | | **$8.64** | **$6.25** |
+
+### Grande Cinnamon Roll (`cinnamon_roll_grande`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 180 g | $0.80 | $0.31 |
+| Cinnamon Filling (formula) | 44 g | $0.25 | $0.15 |
+| Cooked Buttermilk Glaze (formula) | 28 g | $0.16 | $0.09 |
+| Bakery box 6×6×3 in (kraft window) | 1 each | $0.60 | $0.49 |
+| Dry-wax paper square | 1 each | $0.02 | $0.01 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Waste allowance (food only) | 5% | $0.06 | $0.03 |
+| **Unit cost** | | **$1.91** | **$1.09** |
+| Prep labor | 5.2 min | $1.81 | $1.81 |
+| **Prime cost (unit cost + labor)** | | **$3.72** | **$2.90** |
+
+Batch of 12: Signature Milk Dough (formula) 2,160 g, Cinnamon Filling (formula) 528 g, Cooked Buttermilk Glaze (formula) 336 g, Bakery box 6×6×3 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
+
 ### Guava & Cheese Roll (`guava_cheese_roll`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -219,6 +285,25 @@ Batch of 12: Signature Milk Dough (formula) 1,080 g, Guava and Cream Cheese Fill
 | **Prime cost (unit cost + labor)** | | **$0.56** | **$0.44** |
 
 Batch of 24: Vanilla Bean Scone Dough (formula) 744 g, Vanilla Bean Glaze (formula) 170.2 g, Glassine bag 1/2 lb 24 each, Napkin (kraft luncheon) 24 each.
+
+### Roll of the Week (Grande) (`roll_of_the_week_grande`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 180 g | $0.80 | $0.31 |
+| Cinnamon Filling (formula) | 30 g | $0.17 | $0.10 |
+| Dulce de leche (pastry grade) | 40 g | $0.49 | $0.27 |
+| Cooked Buttermilk Glaze (formula) | 18 g | $0.10 | $0.06 |
+| María cookies | 10 g | $0.07 | $0.05 |
+| Bakery box 6×6×3 in (kraft window) | 1 each | $0.60 | $0.49 |
+| Dry-wax paper square | 1 each | $0.02 | $0.01 |
+| Napkin (kraft luncheon) | 1 each | $0.01 | $0.01 |
+| Waste allowance (food only) | 5% | $0.08 | $0.04 |
+| **Unit cost** | | **$2.34** | **$1.34** |
+| Prep labor | 5.1 min | $1.79 | $1.79 |
+| **Prime cost (unit cost + labor)** | | **$4.14** | **$3.13** |
+
+Batch of 12: Signature Milk Dough (formula) 2,160 g, Cinnamon Filling (formula) 360 g, Dulce de leche (pastry grade) 480 g, Cooked Buttermilk Glaze (formula) 216 g, María cookies 120 g, Bakery box 6×6×3 in (kraft window) 12 each, Dry-wax paper square 12 each, Napkin (kraft luncheon) 12 each.
 
 ### Sour Cream Coffee Cake Slice (`coffee_cake_slice`), per unit
 
@@ -454,6 +539,20 @@ Batch of 10: House Hummus (formula) 1,000 g, Extra-virgin olive oil 50 g, Portio
 | Prep labor | 1.2 min | $0.43 | $0.43 |
 | **Prime cost (unit cost + labor)** | | **$3.07** | **$2.01** |
 
+### Colada (to share) (`colada`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Double Espresso (formula) | 2 each | $2.52 | $1.20 |
+| Granulated sugar | 20 g | $0.04 | $0.03 |
+| Espresso cup 4 oz (to go) | 1 each | $0.12 | $0.07 |
+| Espresso cup lid | 1 each | $0.06 | $0.03 |
+| Thimble cup 3/4 oz | 6 each | $0.12 | $0.05 |
+| Waste allowance (food only) | 2% | $0.05 | $0.02 |
+| **Unit cost** | | **$2.91** | **$1.41** |
+| Prep labor | 2.4 min | $0.86 | $0.86 |
+| **Prime cost (unit cost + labor)** | | **$3.77** | **$2.27** |
+
 ### Drip Coffee (12 oz) (`drip_coffee`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -562,6 +661,21 @@ Batch of 10: House Hummus (formula) 1,000 g, Extra-virgin olive oil 50 g, Portio
 | Prep labor | 27.9 min | $9.77 | $9.77 |
 | **Prime cost (unit cost + labor)** | | **$21.58** | **$16.08** |
 
+### Celebration Roll Cake (9-inch) (`roll_cake_9in`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 800 g | $3.58 | $1.38 |
+| Cinnamon Filling (formula) | 195 g | $1.12 | $0.66 |
+| Cooked Buttermilk Glaze (formula) | 150 g | $0.84 | $0.48 |
+| Cake board 10 in round | 1 each | $0.80 | $0.32 |
+| Cake box 10 × 10 × 5 in | 1 each | $1.30 | $0.90 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 2% | $0.11 | $0.05 |
+| **Unit cost** | | **$7.78** | **$3.81** |
+| Prep labor | 25.0 min | $8.75 | $8.75 |
+| **Prime cost (unit cost + labor)** | | **$16.53** | **$12.56** |
+
 ### Cinnamon Roll 4-Pack (`cinnamon_roll_4pack`), per unit
 
 | Item | Qty | Retail est. | Distributor est. |
@@ -633,6 +747,20 @@ Batch of 10: House Hummus (formula) 1,000 g, Extra-virgin olive oil 50 g, Portio
 | **Unit cost** | | **$19.54** | **$13.40** |
 | Prep labor | 16.0 min | $5.60 | $5.60 |
 | **Prime cost (unit cost + labor)** | | **$25.14** | **$19.00** |
+
+### Mini Roll Party Tray (24) (`mini_roll_tray_24`), per unit
+
+| Item | Qty | Retail est. | Distributor est. |
+|---|---|---|---|
+| Signature Milk Dough (formula) | 720 g | $3.22 | $1.24 |
+| Cinnamon Filling (formula) | 180 g | $1.03 | $0.61 |
+| Cooked Buttermilk Glaze (formula) | 130 g | $0.73 | $0.42 |
+| Foil quarter-sheet pan with dome lid | 1 each | $1.60 | $1.05 |
+| Grab-and-go label | 1 each | $0.03 | $0.01 |
+| Waste allowance (food only) | 2% | $0.10 | $0.05 |
+| **Unit cost** | | **$6.71** | **$3.38** |
+| Prep labor | 22.4 min | $7.85 | $7.85 |
+| **Prime cost (unit cost + labor)** | | **$14.56** | **$11.23** |
 
 ### Take-and-Bake Cinnamon Rolls (6) (`take_and_bake_6`), per unit
 
@@ -1344,6 +1472,14 @@ Latest price per ingredient and channel. Sources are in `db/ingredient_prices.cs
 | Guava paste | `guava_paste` | $6.37 | $5.32 |  |
 | Window box for 6 rolls | `box_6pack` | n/a | n/a |  |
 | Foil pan with dome lid (6 rolls) | `foil_pan_lid_6` | n/a | n/a |  |
+| Dulce de leche (pastry grade) | `dulce_de_leche` | $12.18 | $6.81 |  |
+| María cookies | `cookies_maria` | $6.50 | $4.79 |  |
+| Bakery box 6×6×3 in (kraft window) | `box_pastry_6x6` | n/a | n/a |  |
+| Foil quarter-sheet pan with dome lid | `foil_quarter_sheet_lid` | n/a | n/a |  |
+| Cake board 10 in round | `cake_board_10in` | n/a | n/a |  |
+| Paper loaf baking mould | `mold_loaf_paper` | n/a | n/a |  |
+| Clear loaf bag with tie | `bag_loaf_clear` | n/a | n/a |  |
+| Thimble cup 3/4 oz | `cup_thimble` | n/a | n/a |  |
 
 ## Warnings
 

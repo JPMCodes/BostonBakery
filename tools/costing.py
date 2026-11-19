@@ -149,7 +149,7 @@ class Book:
         self._check_cycles()
         self._check_product_cycles()
         self._formula_costs: dict[tuple[str, str], float | None] = {}
-        self._formula_labor: dict[str, float] = {}
+        self._formula_labor: dict[tuple[str, bool], float] = {}
 
     def _check_cycles(self) -> None:
         """Fail if any formula uses itself, directly or through other formulas."""
@@ -295,36 +295,45 @@ class Book:
 
     # -- labor --------------------------------------------------------------
 
-    def formula_labor(self, fid: str) -> float:
+    def formula_labor(self, fid: str, at_scale: bool = False) -> float:
         """Hands-on minutes for one batch of a formula as written, sub-recipes included.
 
         labor.batch_min is the hands-on time for one production run, which
         makes labor.production_batches batches of the formula at once.
+        With at_scale, labor.at_scale (its own batch_min and production_batches,
+        for a production-kitchen run in a bigger mixer) is used where a formula has it.
         """
-        if fid in self._formula_labor:
-            return self._formula_labor[fid]
+        key = (fid, at_scale)
+        if key in self._formula_labor:
+            return self._formula_labor[key]
         doc = self.formulas[fid]
         lab = doc.get("labor") or {}
+        if at_scale and lab.get("at_scale"):
+            lab = lab["at_scale"]
         own = float(lab.get("batch_min", 0)) / float(lab.get("production_batches", 1) or 1)
-        total = own + sum(self.line_labor(line) for line in doc["ingredients"])
-        self._formula_labor[fid] = total
+        total = own + sum(self.line_labor(line, at_scale) for line in doc["ingredients"])
+        self._formula_labor[key] = total
         return total
 
-    def line_labor(self, line: dict) -> float:
+    def line_labor(self, line: dict, at_scale: bool = False) -> float:
         """Hands-on minutes carried by one formula or product line."""
         item, qty, unit = line["item"], float(line["qty"]), line["unit"]
         if line.get("credit") or item in self.ingredients:
             return 0.0
         if item in self.products:
-            return self.product_labor(item, with_waste=False) * qty
+            return self.product_labor(item, with_waste=False, at_scale=at_scale) * qty
         yld = self.formulas[item]["yield"]
-        return self.formula_labor(item) * qty / (yld["grams"] if unit == "g" else yld["units"])
+        return self.formula_labor(item, at_scale) * qty / (yld["grams"] if unit == "g" else yld["units"])
 
-    def product_labor(self, pid: str, with_waste: bool = True) -> float:
-        """Hands-on minutes per unit sold: the product's own steps plus its sub-recipes."""
+    def product_labor(self, pid: str, with_waste: bool = True, at_scale: bool = False) -> float:
+        """Hands-on minutes per unit sold: the product's own steps plus its sub-recipes.
+
+        With at_scale, labor.at_scale_unit_min replaces labor.unit_min where a product has it.
+        """
         doc = self.products[pid]
-        own = float((doc.get("labor") or {}).get("unit_min", 0))
-        total = own + sum(self.line_labor(line) for line in doc["build"])
+        lab = doc.get("labor") or {}
+        own = float(lab.get("at_scale_unit_min", lab.get("unit_min", 0)) if at_scale else lab.get("unit_min", 0))
+        total = own + sum(self.line_labor(line, at_scale) for line in doc["build"])
         return total * (1 + doc.get("waste_pct", 0) / 100) if with_waste else total
 
     def labor_cost(self, minutes: float) -> float:
@@ -418,6 +427,9 @@ class Book:
                 warnings.append(f"{doc['_path']}: no labor.batch_min, so its prep minutes count as zero")
             elif not is_number(lab.get("batch_min")) or not is_number(lab.get("production_batches", 1), strict=True):
                 errors.append(f"{doc['_path']}: labor.batch_min must be 0 or more and labor.production_batches above 0")
+            elif "at_scale" in lab and (not is_number((lab["at_scale"] or {}).get("batch_min"))
+                                        or not is_number((lab["at_scale"] or {}).get("production_batches"), strict=True)):
+                errors.append(f"{doc['_path']}: labor.at_scale needs batch_min of 0 or more and production_batches above 0")
             check_lines(doc, "ingredients")
             grams = [self.line_grams(line) for line in doc.get("ingredients") or []]
             if None not in grams and doc["yield"]["grams"] > sum(grams) + 0.5:
@@ -434,8 +446,8 @@ class Book:
             lab = doc.get("labor")
             if lab is None:
                 warnings.append(f"{doc['_path']}: no labor.unit_min, so its own prep minutes count as zero")
-            elif not is_number(lab.get("unit_min")):
-                errors.append(f"{doc['_path']}: labor.unit_min must be 0 or more")
+            elif not is_number(lab.get("unit_min")) or not is_number(lab.get("at_scale_unit_min", 0)):
+                errors.append(f"{doc['_path']}: labor.unit_min and labor.at_scale_unit_min must be 0 or more")
             if "par_daily" in doc and not is_number(doc["par_daily"]):
                 errors.append(f"{doc['_path']}: par_daily must be 0 or more")
             check_lines(doc, "build", in_product=True)
