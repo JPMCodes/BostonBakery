@@ -434,8 +434,10 @@ def render(data: dict) -> str:
         "[`reports/Boston bakery small-shop sites.md`](../reports/Boston%20bakery%20small-shop%20sites.md), "
         "[`reports/Boston bakery site shortlist.md`](../reports/Boston%20bakery%20site%20shortlist.md), "
         "[`reports/Boston bakery site scan.md`](../reports/Boston%20bakery%20site%20scan.md)"
-        + (" and [`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md)"
+        + (", [`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md)"
            if "miami" in markets else "")
+        + (" and [`reports/Miami roll house design.md`](../reports/Miami%20roll%20house%20design.md)"
+           if "roll_house" in formats else "")
         + ", and none has been confirmed with a broker.",
         "",
         "## Formats",
@@ -780,6 +782,10 @@ def assumptions_section(data: dict, short: dict, days_of: dict, hours_of: dict, 
            "[`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md) and its notes in "
            "[`research_notes/Miami roll bakery feasibility/`](../research_notes/Miami%20roll%20bakery%20feasibility/)."]
           if "miami" in (cfg.get("markets") or {}) else []),
+        *(["- The Miami roll house format, its products, prices and sites: "
+           "[`reports/Miami roll house design.md`](../reports/Miami%20roll%20house%20design.md) and its notes in "
+           "[`research_notes/Miami roll house design/`](../research_notes/Miami%20roll%20house%20design/)."]
+          if "roll_house" in formats else []),
         "- Format benchmarks, wages, payroll burden, occupancy and margin norms: "
         "[`digest_5_unit_economics_boston_costs.md`](../research_notes/Boston%20bakery%20market%20matrix/digests/digest_5_unit_economics_boston_costs.md).",
         "- Equipment, hood and build-out cost ranges: "
