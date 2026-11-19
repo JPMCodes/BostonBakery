@@ -9,7 +9,7 @@
 # come from the reports in reports/ (site scan, 2026-11-07; shortlist, 2026-11-08);
 # none has been confirmed with a broker.
 
-as_of: 2026-11-10
+as_of: 2026-11-19
 
 operating:
   days_per_year: 360            # default: open daily, closed five holidays; a format can set its own
@@ -119,47 +119,43 @@ labor:
       # A smaller shop with fewer staff: these replace the same lines below and in startup.
       fixed_costs_per_year: {insurance: 6000, software_pos: 3600, accounting_payroll_legal: 7000, licenses_music: 2000, waste_pest: 4800, linens_uniforms: 1500}
       startup: {signage: 8000, opening_inventory: 5000, launch_marketing: 8000, furniture_base: 4000}
-    # The roll bakery redesigned for Miami (2026-11-19): the research found Miami buys
-    # cinnamon rolls as weekend events and by the dozen (Knaus Berry Farm's rationed
-    # dozens and pre-orders, Keik's weekend-only rolls), suburban trade peaks on weekends,
-    # summer sales dip 20–40%, and specialty prices run above Boston's. So it opens four
-    # mornings a week, sells boxes by pre-order, adds a guava-and-cheese roll and a
-    # take-and-bake pack, prices at Miami specialty levels and drops the scones, muffins
-    # and coffee cake. Report: reports/Miami roll house design.md.
-    roll_house:
-      label: "Roll house: rolls by the box, pre-order pickup and an iced-first coffee bar; about 4 seats"
-      hours: "7:00 am to 1:00 pm, Thursday to Sunday; Friday to Sunday from June to September"
-      # Thursday to Sunday for 35 weeks (140 days), Friday to Sunday for 17 summer weeks
-      # less a two-week break in September (45), less Thanksgiving, Christmas and New
-      # Year's Day when they fall on open days (2), plus pickup-only pre-order days the
-      # day before Thanksgiving, on December 24 and for Three Kings (3).
-      days_per_year: 186
-      design_index: 1.0         # staffed for this format's design day: an average open day
-      items_per_order: 1.6      # assumption: a box counts as one item, like a coffee
+    # The Miami business, designed from first principles (2026-11-19). Plan:
+    # reports/Miami bakery business plan.md. Two stages share one product line and
+    # one price list. Wages in both are Miami's (Florida's minimum is $15.00).
+    #
+    # Stage 1, the pop-up: prove the demand before any lease. Production in a rented
+    # shared kitchen; sales at two farmers markets, a Saturday pre-order pickup,
+    # office orders and school fundraisers. The owner works the stall.
+    roll_popup:
+      label: "Pop-up: markets, pre-order drops, office orders and fundraisers from a rented commissary kitchen"
+      hours: "Markets on Saturday and Sunday; pre-order pickup on Saturday; office orders Wednesday to Friday"
+      days_per_year: 190        # four working days a week for 48 weeks, less two
+      design_index: 1.0
+      items_per_order: 1.5
       hero: cinnamon_roll
-      manager: false            # the owner runs it, sells the catering and pre-orders, and doesn't bake
+      manager: false
       owner_pay_target: 60000
       financing: {loan_share_pct: 0}
-      # Paid hours are an average open day. They include the Wednesday dough and prep
-      # day spread over the four open days; the bakers shape the afternoon before and
-      # retard overnight, so the morning is baking, glazing and boxing.
+      production_scale: true    # prep minutes at the database's production-kitchen batch sizes
+      fixed_share: 0.5          # the market crew and the helper are scheduled to the orders
       roles:
-        - {role: "Owner, manager", hours: 7, owner: true, note: "pre-orders, catering and school accounts, the schedule and the books; the market stall in the test phase"}
-        - {role: Lead baker, hours: 10, wage: 25.00, note: "5 am start: bakes and glazes the retarded rolls, then mixes and shapes tomorrow's; 40 hours a week with the Wednesday prep day"}
-        - {role: Baker and prep, hours: 9.5, wage: 20.00, note: "boxes the pre-orders, cookies and brownies, fillings and the take-and-bake packs"}
-        - {role: Barista, hours: 7, wage: 16.50, note: "iced-first bar; plus tips"}
-        - {role: Counter, hours: 9, wage: 15.50, note: "one on Thursday and Friday, two at the weekend; register and pickup shelf; plus tips"}
-        - {role: Peak help, hours: 5, wage: 15.50, note: "weekend pickup rush and line management; none on quiet days"}
-        - {role: Dish and close, hours: 3, wage: 15.50, note: ""}
-      # Miami prices: under Coral Gables croissants ($5.50–5.95), Chip City's $4.99 cookie
-      # and the Miami iced-latte median (about $6), well under Keik's $9–10 roll; boxes
-      # step the price per roll down to about $4.17 in the dozen.
+        - {role: "Owner, manager", hours: 8, owner: true, note: "sells the office and fundraiser accounts, runs pre-orders and works the market stall"}
+        - {role: Production lead, hours: 7.6, wage: 25.00, note: "30 hours a week: mixes, shapes and bakes in the commissary before dawn on market days"}
+        - {role: Baker's helper, hours: 4.5, wage: 18.00, note: "18 hours a week: panning, glazing, boxing, take-and-bake packs"}
+        - {role: Market crew, hours: 3.6, wage: 16.50, note: "one person beside the owner at each market; plus tips"}
+        - {role: Packing and delivery, hours: 2.0, wage: 17.00, note: "8 hours a week: boxes the pre-orders, runs the office drops"}
       prices:
         cinnamon_roll: 5.25
         guava_cheese_roll: 5.75
+        cinnamon_roll_grande: 8.50
+        roll_of_the_week_grande: 9.50
         cinnamon_roll_4pack: 19.00
         cinnamon_roll_6box: 27.00
         cinnamon_roll_12box: 50.00
+        mini_roll_tray_24: 38.00
+        roll_cake_9in: 45.00
+        twist_loaf_cinnamon: 19.00
+        twist_loaf_dulce: 21.00
         take_and_bake_6: 24.00
         cookie_chocolate_chip: 4.75
         brownie: 4.75
@@ -169,33 +165,221 @@ labor:
         latte: 5.25
         drip_coffee: 3.75
         espresso: 3.25
+        colada: 4.25
         matcha_latte: 5.75
         lemonade_kids: 3.75
         coffee_traveler: 42.00
-      # Design day: an average open day at a site with sales index 1.0. Weekends run
-      # well above it and Thursdays below. Boxes and pre-orders are about 41% of sales.
-      menu:
-        cinnamon_roll: 85
-        guava_cheese_roll: 40
-        cinnamon_roll_4pack: 18
-        cinnamon_roll_6box: 12
-        cinnamon_roll_12box: 5
-        take_and_bake_6: 4
-        cookie_chocolate_chip: 22
-        brownie: 10
-        cookie_brownie_box: 0.7
-        iced_coffee: 40
-        iced_latte: 34
-        latte: 20
-        drip_coffee: 22
-        espresso: 14
-        matcha_latte: 6
-        lemonade_kids: 10
-        oat_milk_swap: 16
-        almond_milk_swap: 3
-        coffee_traveler: 0.8
-      fixed_costs_per_year: {insurance: 6000, software_pos: 4800, accounting_payroll_legal: 7000, licenses_music: 2000, waste_pest: 4800, linens_uniforms: 1500}
-      startup: {signage: 8000, opening_inventory: 6000, launch_marketing: 10000, furniture_base: 3000}
+      channels:
+        - id: markets
+          name: "Farmers markets and pop-ups"
+          days_per_year: 80     # stall-days: two markets a week in season, one in summer, a few festivals
+          scales_with_site: false
+          fee_per_day: 110      # stall fees run from about $65 to $150
+          note: "About 235 rolls a stall-day. Roll & Dough, a Miami pop-up, has sold about 300 in a Saturday for about $3,100."
+          menu:
+            cinnamon_roll: 60
+            guava_cheese_roll: 35
+            cinnamon_roll_grande: 12
+            roll_of_the_week_grande: 35
+            cinnamon_roll_4pack: 14
+            cinnamon_roll_6box: 6
+            twist_loaf_cinnamon: 7
+            twist_loaf_dulce: 5
+            cookie_chocolate_chip: 16
+            brownie: 6
+            iced_coffee: 34
+            lemonade_kids: 14
+        - id: drops
+          name: "Saturday pre-order pickup"
+          days_per_year: 46
+          scales_with_site: false
+          items_per_order: 1.2
+          note: "Boxes ordered online by Thursday, picked up at the kitchen door or a partner's shop"
+          menu:
+            cinnamon_roll_4pack: 14
+            cinnamon_roll_6box: 10
+            cinnamon_roll_12box: 2
+            mini_roll_tray_24: 2
+            twist_loaf_cinnamon: 4
+            twist_loaf_dulce: 3
+            take_and_bake_6: 4
+            roll_cake_9in: 1
+        - id: orders
+          name: "Office, gift and party orders"
+          days_per_year: 150
+          scales_with_site: false
+          items_per_order: 3
+          cost_pct_of_sales: 4  # courier drops beyond the delivery fee charged, and catering-platform commission on part
+          note: "About two orders a day at first: trays of mini rolls, dozens, loaves"
+          menu:
+            mini_roll_tray_24: 2
+            cinnamon_roll_12box: 1
+            twist_loaf_cinnamon: 1
+            twist_loaf_dulce: 1
+            cookie_brownie_box: 0.3
+            roll_cake_9in: 0.3
+        - id: fundraisers
+          name: "School, league and church fundraisers"
+          days_per_year: 8      # events a year
+          scales_with_site: false
+          items_per_order: 1
+          cost_pct_of_sales: 30 # the group's share of each pack sold
+          note: "Frozen take-and-bake packs and loaves sold by the group's families and delivered in one drop"
+          menu:
+            take_and_bake_6: 130
+            twist_loaf_cinnamon: 25
+      variable_costs_pct_of_sales: {marketing: 3.0, delivery_net: 0, repairs_maintenance: 0.5}
+      fixed_costs_per_year: {insurance: 3500, software_pos: 3000, accounting_payroll_legal: 4500, licenses_music: 1500, waste_pest: 0, linens_uniforms: 600, internet_phone: 1200, vehicle: 7000}
+      startup: {signage: 1500, opening_inventory: 5000, launch_marketing: 6000, furniture_base: 0}
+      startup_fees: {"Brand, packaging design, website and ordering system": 10000, "Company set-up, permits and trademark": 5000}
+    # Stage 2, the roll kitchen: the pop-up's channels move into the business's own
+    # small kitchen, which adds a walk-up window four mornings a week and delivery apps.
+    # Open only once Stage 1 has met its gates.
+    roll_kitchen:
+      label: "Roll kitchen: a production kitchen with a walk-up window, selling boxes through five channels; no seats"
+      hours: "Window 7:00 am to 1:00 pm Thursday to Sunday (Friday to Sunday June to September); office orders Tuesday to Friday; markets at weekends"
+      days_per_year: 296        # Tuesday to Sunday for 50 weeks, less four holidays
+      design_index: 1.0
+      items_per_order: 1.7
+      hero: cinnamon_roll
+      manager: false
+      owner_pay_target: 60000
+      financing: {loan_share_pct: 0}
+      production_scale: true
+      # Hours are per average working day; weekly hours are in each note.
+      roles:
+        - {role: "Owner, manager", hours: 8, owner: true, note: "sells and looks after the office, gift and fundraiser accounts; runs the schedule, the books and marketing"}
+        - {role: Production lead, hours: 6.8, wage: 25.00, note: "40 hours a week, Tuesday to Saturday: dough, fillings, shaping; daytime hours, with the rolls retarded overnight"}
+        - {role: Baker, hours: 6.8, wage: 19.50, note: "40 hours a week, Wednesday to Sunday: the 5 am bake-off, glazing, market and window loads"}
+        - {role: Order desk and packing, hours: 4.1, wage: 18.50, note: "24 hours a week: pre-orders, boxes, labels, office drops staged for the courier"}
+        - {role: Window crew, hours: 8.2, wage: 15.50, note: "one on Thursday and Friday, two or three at the weekend, including the bar; plus tips"}
+        - {role: Market crew, hours: 2.7, wage: 16.50, note: "one or two at a stall, about 62 stall-days a year; plus tips"}
+        - {role: Dish and clean, hours: 2.0, wage: 15.00, note: "12 hours a week"}
+      prices:
+        cinnamon_roll: 5.25
+        guava_cheese_roll: 5.75
+        cinnamon_roll_grande: 8.50
+        roll_of_the_week_grande: 9.50
+        cinnamon_roll_4pack: 19.00
+        cinnamon_roll_6box: 27.00
+        cinnamon_roll_12box: 50.00
+        mini_roll_tray_24: 38.00
+        roll_cake_9in: 45.00
+        twist_loaf_cinnamon: 19.00
+        twist_loaf_dulce: 21.00
+        take_and_bake_6: 24.00
+        cookie_chocolate_chip: 4.75
+        brownie: 4.75
+        cookie_brownie_box: 52.00
+        iced_coffee: 4.75
+        iced_latte: 5.75
+        latte: 5.25
+        drip_coffee: 3.75
+        espresso: 3.25
+        colada: 4.25
+        matcha_latte: 5.75
+        lemonade_kids: 3.75
+        coffee_traveler: 42.00
+      channels:
+        - id: window
+          name: "Walk-up window and pre-order pickup"
+          days_per_year: 184    # Thursday to Sunday, Friday to Sunday in summer, a two-week break in September
+          scales_with_site: true
+          note: "About 139 orders a window day at $14: in a year, about what an average cinnamon-roll franchise shop sells"
+          menu:
+            cinnamon_roll: 52
+            guava_cheese_roll: 22
+            cinnamon_roll_grande: 7
+            roll_of_the_week_grande: 14
+            cinnamon_roll_4pack: 12
+            cinnamon_roll_6box: 8
+            cinnamon_roll_12box: 2
+            mini_roll_tray_24: 2
+            roll_cake_9in: 1
+            twist_loaf_cinnamon: 4
+            twist_loaf_dulce: 3
+            take_and_bake_6: 3
+            cookie_chocolate_chip: 12
+            brownie: 5
+            iced_coffee: 26
+            iced_latte: 21
+            latte: 12
+            drip_coffee: 9
+            espresso: 10
+            colada: 3
+            matcha_latte: 3
+            lemonade_kids: 6
+            oat_milk_swap: 9
+            almond_milk_swap: 2
+        - id: markets
+          name: "Farmers markets and pop-ups"
+          days_per_year: 62     # stall-days
+          scales_with_site: false
+          items_per_order: 1.5
+          fee_per_day: 110
+          note: "About 235 rolls a stall-day"
+          menu:
+            cinnamon_roll: 60
+            guava_cheese_roll: 35
+            cinnamon_roll_grande: 12
+            roll_of_the_week_grande: 35
+            cinnamon_roll_4pack: 14
+            cinnamon_roll_6box: 6
+            twist_loaf_cinnamon: 7
+            twist_loaf_dulce: 5
+            cookie_chocolate_chip: 16
+            brownie: 6
+            iced_coffee: 34
+            lemonade_kids: 14
+        - id: orders
+          name: "Office, gift and party orders"
+          days_per_year: 190    # Tuesday to Friday
+          scales_with_site: false
+          items_per_order: 3
+          cost_pct_of_sales: 5  # courier drops beyond the delivery fee charged, and catering-platform commission on part
+          note: "About 22 orders a week at about $85: trays of mini rolls with a colada for the 3:05 break, dozens, loaves, roll cakes"
+          menu:
+            mini_roll_tray_24: 3.5
+            cinnamon_roll_12box: 1.6
+            cinnamon_roll_6box: 1
+            twist_loaf_cinnamon: 1.5
+            twist_loaf_dulce: 1.5
+            roll_cake_9in: 0.5
+            colada: 2.5
+            coffee_traveler: 0.9
+            cookie_brownie_box: 0.4
+        - id: fundraisers
+          name: "School, league and church fundraisers"
+          days_per_year: 18     # events a year
+          scales_with_site: false
+          items_per_order: 1
+          cost_pct_of_sales: 30
+          note: "The group keeps 30% of each $24 pack and $19 loaf; one frozen drop per event"
+          menu:
+            take_and_bake_6: 130
+            twist_loaf_cinnamon: 25
+        - id: apps
+          name: "Delivery apps"
+          days_per_year: 184
+          scales_with_site: true
+          items_per_order: 2.2
+          price_index: 1.15     # app menu prices 15% over the window's
+          cost_pct_of_sales: 27 # commission of 25–30%
+          note: "About 11 orders a window day"
+          menu:
+            cinnamon_roll: 6
+            guava_cheese_roll: 3
+            roll_of_the_week_grande: 3
+            cinnamon_roll_4pack: 3
+            cinnamon_roll_6box: 2
+            cookie_chocolate_chip: 3
+            iced_latte: 3
+            iced_coffee: 2
+      variable_costs_pct_of_sales: {marketing: 3.0, delivery_net: 0}
+      # production_power: the ovens, proofers and five refrigeration units draw more than the
+      # per-sq-ft utilities allowance covers in a kitchen this small (about 6,700 kWh a month).
+      fixed_costs_per_year: {insurance: 7500, software_pos: 5000, accounting_payroll_legal: 7000, licenses_music: 2500, waste_pest: 4800, linens_uniforms: 1500, vehicle: 7000, production_power: 4500}
+      startup: {signage: 8000, opening_inventory: 9000, launch_marketing: 15000, furniture_base: 0}
 
 # What each format needs, zone by zone. Seats at about 15 sq ft each.
 space_program:
@@ -216,15 +400,15 @@ space_program:
     - {zone: "Seating, 8 seats", sqft: 110}
     - {zone: "Restroom and office nook", sqft: 70}
     - {zone: "Entry and queue", sqft: 60}
-  roll_house:
-    - {zone: "Bakery production: 40-qt mixer, bench, sheeter, double-stack oven, proofer-retarder, speed racks", sqft: 380}
-    - {zone: "Cold, freezer and dry storage, with the take-and-bake freezer", sqft: 140}
-    - {zone: "Box packing table and pre-order pickup shelf", sqft: 80}
+  roll_popup: []                # no premises: a rented shared kitchen
+  roll_kitchen:
+    - {zone: "Production: 60-qt mixer, bench, sheeter, double-stack oven, two proofer-retarders, speed racks", sqft: 400}
+    - {zone: "Cold, freezer and dry storage, with the take-and-bake freezers", sqft: 170}
+    - {zone: "Packing and order staging, with box storage", sqft: 110}
     - {zone: "Dish and sanitation: 3-bay sink, dishwasher, mop sink", sqft: 70}
-    - {zone: "Coffee bar, pastry case, register", sqft: 130}
-    - {zone: "Seating, 4 seats", sqft: 60}
+    - {zone: "Walk-up window, coffee bar and pickup shelves", sqft: 110}
     - {zone: "Restroom and office nook", sqft: 70}
-    - {zone: "Entry and queue", sqft: 60}
+    - {zone: "Market kit and delivery staging by the back door", sqft: 50}
 
 # Equipment by format: estimates at new dealer prices before delivery and install.
 # Research anchors: double rack oven $55.6–57.0K, mixer $3–15K, proofing $5–10K,
@@ -264,22 +448,34 @@ equipment:
     - {item: "Speed racks, sheet pans, roll pans, smallwares", cost: 7000}
     - {item: "Induction burners for glaze, scales, food processor", cost: 2500}
     - {item: "Point-of-sale hardware", cost: 2500}
-  roll_house:
-    - {item: "Double-stack convection oven, electric", cost: 20000}
-    - {item: "40-qt planetary mixer", cost: 16000}
-    - {item: "Reversible dough sheeter", cost: 7000}
-    - {item: "Proofer-retarder cabinet (overnight retard for the morning bake)", cost: 9000}
-    - {item: "Two reach-in refrigerators and a reach-in freezer", cost: 12000}
-    - {item: "Second reach-in freezer for take-and-bake packs", cost: 6000}
-    - {item: "Compact two-group espresso machine and grinder", cost: 15000}
-    - {item: "Batch brewer, hot water, cold brew system, water filtration", cost: 6000}
-    - {item: "Pastry case", cost: 9000}
-    - {item: "Sinks, stainless tables, shelving", cost: 9000}
-    - {item: "Undercounter dishwasher", cost: 6500}
-    - {item: "Speed racks, sheet pans, roll pans, smallwares", cost: 9000}
-    - {item: "Box packing table and pre-order pickup shelf", cost: 2500}
-    - {item: "Induction burners for glaze, scales, food processor", cost: 2500}
+  # The pop-up bakes on the commissary's ovens, mixer and sheeter.
+  roll_popup:
+    - {item: "Market kit: two tents, tables, display cases, coolers, banners", cost: 8000}
+    - {item: "Speed racks, sheet pans, roll pans, loaf moulds, smallwares", cost: 6000}
+    - {item: "Insulated carriers and two chest freezers for take-and-bake packs", cost: 3000}
+    - {item: "Point-of-sale hardware, label printer", cost: 2000}
+  # The roll kitchen buys its heavy equipment used (Miami asking prices, 2026: double-stack
+  # convection ovens $3,300–7,990, 60-qt Hobart mixers $4,350–8,500, sheeters from $1,995,
+  # roll-in proofers about $5,200–5,500) and its refrigeration, dishwasher and espresso machine new.
+  roll_kitchen:
+    - {item: "Double-stack convection oven, electric, used and serviced", cost: 7500}
+    - {item: "60-qt planetary mixer, used", cost: 8500}
+    - {item: "20-qt planetary mixer for fillings and glaze, used", cost: 2500}
+    - {item: "Reversible dough sheeter, used", cost: 3000}
+    - {item: "Two proofer-retarder cabinets, used", cost: 11000}
+    - {item: "Three reach-in refrigerators and two reach-in freezers, new", cost: 16000}
+    - {item: "Compact two-group espresso machine and grinder", cost: 12000}
+    - {item: "Batch brewer, cold brew system, water filtration", cost: 5000}
+    - {item: "Window counter, small pastry case and pickup shelves", cost: 6000}
+    - {item: "Sinks, stainless tables, shelving, used", cost: 5000}
+    - {item: "Undercounter dishwasher, new", cost: 6500}
+    - {item: "Speed racks, sheet pans, roll pans, loaf moulds, smallwares", cost: 10000}
+    - {item: "Packing table, label printers, box storage", cost: 3000}
+    - {item: "Induction burners and a 12-qt pot for glaze, scales, food processor", cost: 2500}
     - {item: "Point-of-sale hardware, with an online-order printer", cost: 3000}
+    - {item: "Market kit: two tents, tables, display cases, coolers, banners", cost: 8000}
+    - {item: "Insulated carriers", cost: 2000}
+    - {item: "Delivery, electrical hook-ups and installation of the used equipment", cost: 8000}
 
 startup:
   soft_costs_pct_of_buildout: 15   # design, engineering, permits, legal (research: soft costs run 30–40% of a full restaurant build; less on a second-generation space). A site can override it with soft_costs_pct.
@@ -301,7 +497,7 @@ startup:
 # startup lines) stay as above. Research: reports/Miami roll bakery feasibility.md.
 markets:
   miami:
-    label: "Miami-Dade: Coral Gables, South Miami, Pinecrest"
+    label: "Miami-Dade"
     note: "Florida's minimum wage reached $15.00 on September 30, 2026, the same as Massachusetts', so counter pay converges with Boston's; skilled baking pay runs about 5–10% lower. Florida has no paid-leave or sick-leave mandate and a lighter unemployment tax. Power costs about half Boston's per kWh, but the air conditioning runs all year. Menu prices are left at the database's, which sit at or below Coral Gables specialty bakeries (croissants $5.50–5.95) and two to five times Cuban-bakery prices."
     wages: {Lead baker: 23.00, Baker and prep: 19.00, Barista: 16.00, Counter: 15.25, Peak help: 15.00, Dish and close: 15.00, Line cook: 18.00, Baristas: 16.00, Dish and porter: 15.00}
     burden_pct: 11                 # FICA and FUTA, Florida reemployment tax (2.7% on $7,000), workers' comp; no state paid leave
@@ -429,77 +625,121 @@ sites:
     rent_basis: "$2,200 a month ($26,400 a year) in the sale listing; NNN not stated, $6 assumed; lease runs to July 5, 2034"
     risks: "A franchise resale, so the landlord and franchisor must accept a new concept; asking price is an unconfirmed snippet; Lakon Paris Patisserie is next door at 407 Washington St; very small"
     source: "BizQuest BW2520885 (snippet, seen 2026-11-10); Boston Licensing Board records"
-  # Miami-Dade sites (research 2026-11-19). Each uses the miami market's wages, payroll
-  # burden, utilities and storm days, and the roll house format designed for Miami.
-  # Sales indexes follow the traffic research's ranking against the Boston sites
-  # (Brighton 0.95, Jamaica Plain 1.1). As a Boston-style roll bakery, Dadeland Plaza
-  # left the owner about $9K and three more Miami spaces lost money: see
-  # reports/Miami roll bakery feasibility.md and reports/Miami roll house design.md.
-  - id: pinecrest_dadeland
-    name: "Dadeland Plaza, 9455–9569 S Dixie Hwy, Pinecrest"
-    short: "Pinecrest: Dadeland Plaza"
-    area: "US-1 at the Dadeland end of Pinecrest, just south of Dadeland Mall"
+  # Miami-Dade (research 2026-11-19; plan: reports/Miami bakery business plan.md). Every
+  # site uses the miami market's payroll burden, utilities and storm days. Stage 1 is the
+  # pop-up; the others are candidate kitchens for Stage 2, each credited $15,000 for the
+  # pop-up's kit. The sales index scales only the window and delivery-app channels:
+  # markets, office orders and fundraisers sell the same wherever the kitchen is.
+  # Earlier Miami formats (the Boston-style roll bakery and the window-only roll house)
+  # are in reports/Miami roll bakery feasibility.md and reports/Miami roll house design.md.
+  - id: miami_popup
+    name: "Stage 1: commissary kitchen and market stalls"
+    short: "Stage 1: pop-up"
+    area: "A rented shared kitchen west of South Miami; stalls at the Pinecrest Sunday market and a Saturday market; pickup and office drops in Coral Gables, South Miami and Pinecrest"
     market: miami
-    format: roll_house
-    sqft: 1004
-    seats: 4
-    rent_psf: 55.00
-    rent_assumed: true
-    nnn_psf: 12.00
+    format: roll_popup
+    sqft: 0                       # no premises of its own
+    seats: 0
+    rent_psf: 0
+    nnn_psf: 0
+    rent_flat_per_year: 30000     # $2,500 a month
     escalation_pct: 3
-    buildout_psf: 110             # "restaurant / retail": food infrastructure not confirmed
-    equipment_credit: 0
-    months_to_open: 5
+    buildout_psf: 0
+    months_to_open: 1
     sales_index: 1.0
-    space_note: "Fits the roll house program with about 14 sq ft to spare; the center's lot gives pickup parking"
-    kitchen: "Listed by the landlord as a 1,004 sq ft \"restaurant / retail\" unit; the center has several second-generation restaurant spaces. Drains, grease trap and ventilation not confirmed"
-    rent_basis: "Rate undisclosed (NNN). $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (1,600 sq ft, August 2026); $12 NNN assumed from the strip-center CAM range"
-    risks: "Rent, availability and food infrastructure unconfirmed (the landlord's page is undated); if it is a raw retail bay, the county may charge road impact and sewer connection fees for the change to food use; Paris Baguette has leased its first South Florida shop nearly across US-1 at 9600 S Dixie Hwy. Pinecrest's 2009 use table permits retail bakeries and restaurants by right in all its business districts; the July 2026 zoning rewrite is unverified"
-    source: "Gator Investments property page and Crexi listing (snippets, undated); PropertyShark (Downtown Dadeland, 2026-08-16); Village of Pinecrest use table (2009, read)"
+    kitchen: "My Kitchen8 at 9351 SW 56 St (Miller Drive) lists a deck oven, a convection oven, a dough sheeter and a mixer, cold and dry storage and 24-hour access, on six-month or annual terms. The Food Factory in Kendall lists convection ovens, mixers and a blast freezer. Mixer sizes aren't published"
+    rent_basis: "$2,500 a month assumed for a station with storage and about 25 kitchen hours a week. Published rates: $1,350–1,750 a month at Miami Kitchen Incubator in north-west Miami and $21–45 an hour elsewhere; My Kitchen8 quotes on request"
+    risks: "Commissary price, pre-dawn oven time and mixer size unconfirmed; market places aren't guaranteed, and Roll & Dough and Roll Model already sell rolls at the Merrick Park Sunday market; summer markets are slow; the owner works every market"
+    source: "Commissary and market listings (snippets, 2025–26): research_notes/Miami bakery business plan/production_space.md and channels.md"
   - id: pinecrest_dadeland_830
     name: "Dadeland Plaza, 830 sq ft unit, Pinecrest"
-    short: "Pinecrest: Dadeland 830"
-    area: "The same center as the 1,004 sq ft unit, US-1 just south of Dadeland Mall"
+    short: "Pinecrest: Dadeland Plaza"
+    area: "US-1 at the Dadeland end of Pinecrest, just south of Dadeland Mall; Nothing Bundt Cakes trades in the same center"
     market: miami
-    format: roll_house
+    format: roll_kitchen
     sqft: 830
     seats: 0
     rent_psf: 55.00
     rent_assumed: true
     nnn_psf: 12.00
     escalation_pct: 3
-    buildout_psf: 60              # if it is one of the closed food bays: oven power and venting, a bakery layout
-    equipment_credit: 10000
-    equipment_credit_note: "assumed value of a small food bay's sinks, grease trap and refrigeration"
+    buildout_psf: 75              # if it is one of the closed food bays: oven power and venting, a bakery layout, a window in impact-rated glass
+    equipment_credit: 15000
+    equipment_credit_note: "the pop-up's market kit, racks, pans and carriers move in"
     months_to_open: 4
     sales_index: 1.0
-    space_note: "160 sq ft under the program: no seats, a tighter packing area and the take-and-bake freezer in the back; a pickup-first shop"
-    kitchen: "Listed as an 830 sq ft NNN unit, available March 1, 2026. Three small food shops at 9471 S Dixie Hwy in this center closed in 2026 (Smoothie Spot, Kids Deli, Cannonball Cafe), so a fitted bay may be among the vacancies; whether this unit is one of them is not confirmed"
-    rent_basis: "Rent on request. $55 a sq ft and $12 NNN assumed, as for the 1,004 sq ft unit"
-    risks: "Counts only if it is a former food bay with drains and a grease trap (raw retail space is out); rent unknown; no seats; Paris Baguette has leased a shop nearly across US-1 at 9600 S Dixie Hwy"
-    source: "Crexi and CommercialCafe listings (snippets, 2026); Yelp closure notices for 9471 S Dixie Hwy (snippets, April–October 2026)"
+    space_note: "150 sq ft under the program: box stock and the market kit go to a storage unit or the van"
+    kitchen: "Listed as an 830 sq ft NNN unit, available March 1, 2026. Three small food shops at 9471 S Dixie Hwy in this center closed in 2026 (Smoothie Spot, Kids Deli, Cannonball Cafe), so a fitted bay may be among the vacancies; whether this unit is one of them isn't confirmed"
+    rent_basis: "Rent on request. $55 a sq ft assumed from Pinecrest Center's $55 NNN and Downtown Dadeland's $60 NNN (August 2026); $12 NNN assumed from the $8–15 strip-center range a 2026 broker guide gives"
+    risks: "Counts only if it is a former food bay with drains and a grease trap (raw retail space is out); rent unknown; Nothing Bundt Cakes at 9487 S Dixie Hwy may hold a bakery exclusive in the center; Paris Baguette has leased a shop nearly across US-1; a walk-up window needs the landlord's and the village's consent"
+    source: "Crexi and CommercialCafe listings (snippets, 2026); Yelp closure notices for 9471 S Dixie Hwy (snippets, April–October 2026); Village of Pinecrest use table (2009, read)"
+  - id: kendall_drive_cafe
+    name: "Café for sale on N Kendall Drive, Kendall"
+    short: "Kendall Drive café"
+    area: "North Kendall Drive (SW 88 St), the main road through Kendall; the broker withholds the address"
+    market: miami
+    format: roll_kitchen
+    sqft: 1200
+    seats: 0
+    rent_psf: 40.00
+    rent_assumed: true
+    nnn_psf: 10.00
+    escalation_pct: 3
+    buildout_psf: 55              # a working café: oven power, a bakery layout, the window
+    equipment_credit: 35000
+    equipment_credit_note: "the pop-up's kit ($15,000) and an assumed $20,000 for the café's refrigeration, sinks, espresso bar and counters"
+    purchase_price: 95000
+    months_to_open: 3
+    sales_index: 0.95
+    space_note: "About 220 sq ft over the program"
+    kitchen: "Operating café of about 1,200 sq ft with a hood, a grease trap and an active permit (MLS A11987504)"
+    rent_basis: "Rent not published. $40 a sq ft and $10 NNN assumed: Kendall shop space asks about $30–45 a sq ft"
+    risks: "Address, rent and lease term unknown; the price has fallen from $150,000 in March 2026 to $95,000, so ask why it hasn't sold; its ZIP code straddles SW 137 Ave, so it may sit far west; Nothing Bundt Cakes (12030 SW 88 St) and Crumbl trade in Kendall"
+    source: "MLS A11987504 on broker sites (snippets, March–May 2026): research_notes/Miami bakery business plan/sites_spokes.md"
   - id: palmetto_bay_us1
     name: "Restaurant for sale on US-1, Palmetto Bay"
     short: "Palmetto Bay: US-1"
     area: "US-1 in Palmetto Bay, the village just south of Pinecrest; the broker withholds the address"
     market: miami
-    format: roll_house
+    format: roll_kitchen
     sqft: 2000                    # not stated; a possibly matching listing gives 2,000 sq ft
-    seats: 8
+    seats: 0
     rent_psf: 21.72               # $3,620 a month over the assumed 2,000 sq ft
     nnn_psf: 0
     escalation_pct: 3
-    buildout_psf: 40              # a working restaurant kitchen: oven power, bakery layout, refresh
-    equipment_credit: 25000
-    equipment_credit_note: "assumed value of the restaurant's cooler, sinks, tables and grease trap"
+    buildout_psf: 45              # a working restaurant kitchen: oven power, a bakery layout, the window
+    equipment_credit: 40000
+    equipment_credit_note: "the pop-up's kit ($15,000) and an assumed $25,000 for the restaurant's cooler, sinks, tables and grease trap"
     purchase_price: 149000
     months_to_open: 3
     sales_index: 0.95
-    space_note: "About 1,000 sq ft over the program if it is 2,000 sq ft: room to keep more of the 32 seats or a bigger pickup area"
-    kitchen: "Operating full-service restaurant with hoods, a cooler and a grease trap; 32 seats, expandable to 45 (broker listing)"
+    space_note: "About 1,000 sq ft over the program if it is 2,000 sq ft: room for stock, the market kit and a second production line later"
+    kitchen: "Operating full-service restaurant with hoods, a cooler and a grease trap; 32 seats (broker listing)"
     rent_basis: "$3,620 a month \"with water included\" in the sale listing ($43,440 a year); whether that covers taxes and CAM isn't stated, so no NNN is added. Size not stated: 2,000 sq ft assumed from a possibly matching listing"
-    risks: "Address, size, lease term and NNN unconfirmed; $149,000 buys a full-service kitchen the bakery only partly needs; a big space raises utilities and cleaning; the research rated no Palmetto Bay location, so the 0.95 sales index (Pinecrest US-1's) is a judgment; outside the three towns first asked about"
-    source: "Tower Business Brokers listing (snippet; 24 days on market, capture date unknown); research_notes/Miami roll house design/spaces.md"
+    risks: "Address, size, lease term and NNN unconfirmed; $149,000 buys a full-service kitchen the bakery only partly needs; the research rated no Palmetto Bay location, so the 0.95 window index (Pinecrest US-1's) is a judgment"
+    source: "Tower Business Brokers listing (snippet; 24 days on market, capture date unknown): research_notes/Miami roll house design/spaces.md"
+  - id: coral_way_cafeteria
+    name: "Cafeteria for sale by Coral Gables (ZIP 33145)"
+    short: "Coral Way cafeteria"
+    area: "Listed as Coral Gables; one copy of the listing gives ZIP 33145, the Coral Way corridor just east of the city line"
+    market: miami
+    format: roll_kitchen
+    sqft: 1100                    # not published; assumed
+    seats: 0
+    rent_psf: 35.53               # $3,257 a month over the assumed 1,100 sq ft
+    nnn_psf: 0
+    escalation_pct: 3
+    buildout_psf: 55
+    equipment_credit: 35000
+    equipment_credit_note: "the pop-up's kit ($15,000) and an assumed $20,000 for the cafeteria's refrigeration, sinks and counters"
+    purchase_price: 199000
+    months_to_open: 3
+    sales_index: 0.9
+    space_note: "About 120 sq ft over the program, if it is 1,100 sq ft"
+    kitchen: "Cafeteria trading since 2008 with a hood and exhaust system and free parking; furniture and fixtures included"
+    rent_basis: "$3,257 a month ($39,084 a year) in the sale listing; the lease ends in September 2027, with renewal options. Size not published: 1,100 sq ft assumed"
+    risks: "The $199,000 asked buys a going business (claimed sales $165,000 and cash flow $65,000) that the bakery would close; ten months are left on the lease before its options; address and size unknown"
+    source: "BusinessesForSale listing and MLS A11871490 (snippets, 2026): research_notes/Miami bakery business plan/sites_spokes.md"
   # Bakery-café sites: the bigger shop, kept for comparison.
   - id: cambridge
     name: "1105 Massachusetts Ave, Cambridge"

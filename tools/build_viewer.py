@@ -734,10 +734,11 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     ["nnn", "NNN charges"],
     ["utilities", "Utilities"],
     ["variable_opex", "Card fees, repairs, supplies, marketing"],
+    ["channel_costs", "Delivery commissions, fundraiser shares, market fees"],
     ["fixed_opex", "Insurance, software, accounting, other fixed"]
   ];
   const COST_WORDS = { card_processing: "card fees", repairs_maintenance: "repairs", supplies_cleaning: "supplies", delivery_net: "delivery apps, net", miscellaneous: "other",
-    software_pos: "point of sale and software", accounting_payroll_legal: "accounting, payroll and legal", licenses_music: "licenses and music", waste_pest: "trash and pest control", linens_uniforms: "linens and uniforms", internet_phone: "internet and phone" };
+    software_pos: "point of sale and software", production_power: "extra power for ovens and refrigeration", vehicle: "vehicle and van hire", accounting_payroll_legal: "accounting, payroll and legal", licenses_music: "licenses and music", waste_pest: "trash and pest control", linens_uniforms: "linens and uniforms", internet_phone: "internet and phone" };
   const costWord = (k) => COST_WORDS[k] || k.replace(/_/g, " ");
   const tile = (label, value, sub, isNeg) => `<div class="tile"><span class="t-label">${esc(label)}</span><span class="t-value${isNeg ? " neg" : ""}">${value}</span>${sub ? `<span class="t-sub">${sub}</span>` : ""}</div>`;
 
@@ -757,7 +758,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       ["cost", "Food and packaging", y.cogs],
       ["labor", managed ? "Crew and manager" : "Paid crew", y.hourly_labor + y.manager],
       ["pack", "Rent and NNN", y.rent + y.nnn],
-      ["opex", "Utilities and other costs", y.utilities + y.variable_opex + y.fixed_opex]
+      ["opex", "Utilities and other costs", y.utilities + y.variable_opex + (y.channel_costs || 0) + y.fixed_opex]
     ];
     const costs = parts.reduce((s, x) => s + x[2], 0);
     const denom = Math.max(y.sales, costs);
@@ -789,8 +790,8 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       const space = PF.space[k].reduce((a, z) => a + z.sqft, 0), equip = PF.equipment[k].reduce((a, e) => a + e.cost, 0);
       return `<tr><td>${esc(fmtName(k))}<span class="note">${esc(i < 0 ? "" : label.slice(i + 1).trim() + ". ")}${fmtManaged(k) ? "Hired manager" : "Owner-run"}; ${loanShare(k) ? loanShare(k) + "% loan" : "paid for in cash"}; ${esc(fmtHours(k))}</span></td>
         <td class="n">${dollars(m.sales)}</td><td class="n">${whole(m.orders)}</td><td class="n hide-sm">$${m.ticket.toFixed(2)}</td>
-        <td class="n hide-sm">${(m.goods_pct + op.cogs_buffer_pts).toFixed(0)}%</td><td class="n hide-sm">${c.hours}</td>
-        <td class="n">${space.toLocaleString("en-US")}</td><td class="n hide-sm">${kd(equip)}</td></tr>`;
+        <td class="n hide-sm">${(m.goods_pct + op.cogs_buffer_pts).toFixed(0)}%</td><td class="n hide-sm">${+c.hours.toFixed(1)}</td>
+        <td class="n">${space ? space.toLocaleString("en-US") : "shared kitchen"}</td><td class="n hide-sm">${kd(equip)}</td></tr>`;
     }).join("");
     const top = `<div class="summary"><span>Each format has a design day: its products' daily volumes times their prices. A site's sales index scales that day to the site, and the scenario scales it again. Food cost is the menu's at distributor prices plus ${op.cogs_buffer_pts} points. Estimates as of ${esc(PF.asOf)}; no site has been confirmed with a broker.</span></div>
       <section class="group pf"><div class="group-head"><h2>Formats</h2></div>
@@ -802,10 +803,10 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     const cmpRow = (s) => {
       const q = PF.results[s.id][sc], q2 = q.years[1], [cls, text] = verdict(q);
       return `<tr class="click${s.id === site.id ? " cur" : ""}" data-site="${esc(s.id)}" tabindex="0"${s.id === site.id ? ` aria-current="true"` : ""}>
-        <td>${esc(s.short || s.name)}<span class="note">${esc(fmtName(s.format))}, ${s.sqft.toLocaleString("en-US")} sq ft</span></td>
+        <td>${esc(s.short || s.name)}<span class="note">${esc(fmtName(s.format))}, ${q.no_premises ? "shared kitchen" : s.sqft.toLocaleString("en-US") + " sq ft"}</span></td>
         <td class="n">${big(q.steady_sales)}</td>
         <td class="n hide-sm">${whole(q.orders_daily)}</td>
-        <td class="n hide-sm">$${Number(s.rent_psf).toFixed(0)}${s.rent_assumed ? "*" : ""} / ${q.rent_ceiling_psf == null ? "none" : "$" + q.rent_ceiling_psf.toFixed(0)}</td>
+        <td class="n hide-sm">${q.no_premises ? kd(q.flat_rent) + " a year" : `$${Number(s.rent_psf).toFixed(0)}${s.rent_assumed ? "*" : ""} / ${q.rent_ceiling_psf == null ? "none" : "$" + q.rent_ceiling_psf.toFixed(0)}`}</td>
         <td class="n hide-sm">${kd(q.startup)}<span class="note">${q.loan > 0 ? kd(q.equity) + " yours" : "all cash"}</span></td>
         <td class="n${neg(q2.cash_after_debt)}">${kd(q2.cash_after_debt)}${q.managed ? "" : "†"}</td>
         <td class="n hide-sm${neg(q2.cash_after_debt)}">${pct(q2.cash_after_debt, q.equity)}</td>
@@ -872,20 +873,22 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     <p class="small" style="margin-top:6px">${funding} ${y1cash}${managed ? "" : " The owner draws nothing in Year 1 on these figures."}</p>`;
 
     const zones = PF.space[site.format];
-    const ztotal = zones.reduce((a, z) => a + z.sqft, 0), zmax = Math.max(...zones.map((z) => z.sqft));
+    const ztotal = zones.reduce((a, z) => a + z.sqft, 0), zmax = Math.max(1, ...zones.map((z) => z.sqft));
     const spare = site.sqft - ztotal;
-    const space = `<div class="tbl-wrap"><table><thead><tr><th>Zone</th><th class="n">Sq ft</th><th class="hide-sm"><span class="sr-only">Size</span></th></tr></thead><tbody>
+    const space = !zones.length ? `<p class="small">No premises of its own: it bakes in a rented shared kitchen and sells from stalls, pickup points and deliveries.</p>` : `<div class="tbl-wrap"><table><thead><tr><th>Zone</th><th class="n">Sq ft</th><th class="hide-sm"><span class="sr-only">Size</span></th></tr></thead><tbody>
       ${zones.map((z) => `<tr><td>${esc(z.zone)}</td><td class="n">${z.sqft.toLocaleString("en-US")}</td><td class="hide-sm"><div class="zone" aria-hidden="true"><span style="width:${Math.round((80 * z.sqft) / zmax)}px"></span></div></td></tr>`).join("")}
       <tr class="total"><td>${esc(fmtName(site.format))} program</td><td class="n">${ztotal.toLocaleString("en-US")}</td><td class="hide-sm"></td></tr>
       <tr><td>This site<span class="note">${site.space_note ? esc(site.space_note) : spare >= 0 ? `${spare.toLocaleString("en-US")} sq ft to spare for seats or storage` : `${(-spare).toLocaleString("en-US")} sq ft short: trim seats or storage`}</span></td><td class="n">${site.sqft.toLocaleString("en-US")}</td><td class="hide-sm"></td></tr>
     </tbody></table></div>`;
 
+    const chRows = r.channels.map((x) => `<tr><td>${esc(x.name)}<span class="note">${esc(x.note || "")}${x.scales_with_site ? "" : `${x.note ? ". " : ""}Sells the same wherever the kitchen is`}</span></td><td class="n hide-sm">${whole(x.days)}</td><td class="n hide-sm">${dollars(x.day_sales)}</td><td class="n">${kd(x.sales_year)}</td><td class="n">${Math.round(x.share * 100)}%</td><td class="n hide-sm">${x.cost_pct ? Math.round(x.cost_pct) + "%" : x.fee_per_day ? dollars(x.fee_per_day) + " a day" : "none"}</td></tr>`).join("");
+    const channels = r.channels.length ? `<div><h4>Where the sales come from</h4><div class="tbl-wrap"><table><thead><tr><th>Channel</th><th class="n hide-sm">Days a year</th><th class="n hide-sm">Sales on a channel day</th><th class="n">Sales a year</th><th class="n">Share</th><th class="n hide-sm">Commission, share or fee</th></tr></thead><tbody>${chRows}</tbody></table></div><p class="muted small" style="margin-top:6px">Steady-state sales in this scenario. Commissions, the share a fundraising group keeps and stall fees are their own line in the P&L.</p></div>` : "";
     const c = PF.crews[site.format];
-    const staff = `<div class="tbl-wrap"><table><thead><tr><th>Role</th><th class="n">Hours a day</th><th class="n">Wage</th><th class="hide-sm">Covers</th></tr></thead><tbody>
+    const staff = `<div class="tbl-wrap"><table><thead><tr><th>Role</th><th class="n">${r.channels.length ? "Hours a working day" : "Hours a day"}</th><th class="n">Wage</th><th class="hide-sm">Covers</th></tr></thead><tbody>
       ${f.roles.map((x) => `<tr><td>${esc(x.role)}</td><td class="n">${x.hours}</td><td class="n">${x.owner ? "owner" : "$" + Number((r.wages || {})[x.role] ?? x.wage).toFixed(2)}</td><td class="hide-sm small">${esc(x.note || "")}</td></tr>`).join("")}
-      <tr class="total"><td>Paid crew</td><td class="n">${c.hours}</td><td class="n">$${r.avg_wage.toFixed(2)}</td><td class="hide-sm small">average wage${mktOf(site) !== "boston" ? ", " + esc(mktLabel(mktOf(site)).split(":")[0]) : ""}</td></tr>
+      <tr class="total"><td>Paid crew</td><td class="n">${+c.hours.toFixed(1)}</td><td class="n">$${r.avg_wage.toFixed(2)}</td><td class="hide-sm small">average wage${mktOf(site) !== "boston" ? ", " + esc(mktLabel(mktOf(site)).split(":")[0]) : ""}</td></tr>
     </tbody></table></div>
-    <p class="muted small" style="margin-top:6px">Scheduled for ${Math.round(f.design_index * 100)}% of the format's design day, which the menu counts as ${menu.hands_on_hours.toFixed(1)} hands-on prep and bar hours. ${Math.round(lab.fixed_share * 100)}% of the paid hours stay fixed and the rest flex with sales. ${managed ? `Plus a ${esc(lab.manager.title.toLowerCase())} at ${dollars(lab.manager.salary)}.` : `The owner works about ${c.owner_hours} hours a day and isn't paid in the P&L.`} Payroll taxes and workers' comp add ${r.burden_pct}% to all pay.</p>`;
+    <p class="muted small" style="margin-top:6px">Scheduled for ${Math.round(f.design_index * 100)}% of the format's design day, which the menu counts as ${menu.hands_on_hours.toFixed(1)} hands-on prep and bar hours${f.production_scale ? " at production-kitchen batch sizes" : ""}. ${Math.round(r.fixed_share * 100)}% of the paid hours stay fixed and the rest flex with sales. ${managed ? `Plus a ${esc(lab.manager.title.toLowerCase())} at ${dollars(lab.manager.salary)}.` : `The owner works about ${c.owner_hours} hours a day and isn't paid in the P&L.`} Payroll taxes and workers' comp add ${r.burden_pct}% to all pay.</p>`;
 
     const eq = PF.equipment[site.format], eqTotal = eq.reduce((a, e) => a + e.cost, 0);
     const equipment = `<div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="n">Cost</th></tr></thead><tbody>
@@ -896,9 +899,10 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
 
     const ceiling = r.rent_ceiling_psf == null ? "none" : "$" + r.rent_ceiling_psf.toFixed(0);
     const detail = `<section class="group pf"><div class="group-head"><h2>${esc(site.name)}</h2><span class="count">${esc(scen.name)}</span></div>${siteChips}
-      <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats} seats. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft${site.rent_assumed ? " (assumed; none published)" : ""} plus about $${Number(site.nnn_psf).toFixed(2)} NNN; the most base rent it can carry${managed ? "" : ` and still pay the owner ${kd(r.owner_pay_target)}`} is ${ceiling}. Sales index ${site.sales_index} of the format's design day. About ${site.months_to_open || 0} months from lease to opening.${mktOf(site) !== "boston" ? ` ${esc(mktLabel(mktOf(site)).split(":")[0])} costs: crew $${r.avg_wage.toFixed(2)} an hour on average, ${r.burden_pct}% payroll taxes, utilities $${r.utilities_psf} a sq ft${r.price_index !== 1 ? `, menu prices ${Math.round(r.price_index * 100)}% of the database's` : ""}.` : ""}</span></div>
+      <div class="chips"><span class="pill ${vcls}">${vtext}</span><span class="muted small">${esc(site.area || "")}. ${esc(fmtName(site.format))}, ${r.no_premises ? `no premises of its own: a shared kitchen at ${dollars(r.flat_rent)} a year (assumed)` : `${site.sqft.toLocaleString("en-US")} sq ft, ${site.seats ? site.seats + " seats" : "no seats"}. Rent $${Number(site.rent_psf).toFixed(2)} a sq ft${site.rent_assumed ? " (assumed; none published)" : ""} plus about $${Number(site.nnn_psf).toFixed(2)} NNN; the most base rent it can carry${managed ? "" : ` and still pay the owner ${kd(r.owner_pay_target)}`} is ${ceiling}`}. Sales index ${site.sales_index}${r.channels.length ? " on the channels that depend on the location" : " of the format's design day"}. About ${site.months_to_open || 0} month${site.months_to_open === 1 ? "" : "s"} ${r.no_premises ? "to start" : "from lease to opening"}.${mktOf(site) !== "boston" ? ` ${esc(mktLabel(mktOf(site)).split(":")[0])} costs: crew $${r.avg_wage.toFixed(2)} an hour on average, ${r.burden_pct}% payroll taxes, utilities $${r.utilities_psf} a sq ft${r.price_index !== 1 ? `, menu prices ${Math.round(r.price_index * 100)}% of the database's` : ""}.` : ""}</span></div>
       ${facts.length ? `<dl class="specs small">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""}
       ${tiles}
+      ${channels}
       <div><h4>Where Year-2 sales go</h4>${costBar(y2, managed, borrowed)}</div>
       <div><h4>Three years</h4>${pl}</div>
       <div class="cols">
@@ -916,7 +920,8 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       `Wages, NNN charges and fixed costs rise ${op.cost_inflation_pct}% a year; base rent rises at each site's escalation.`,
       `Food and packaging: each menu's cost at distributor prices (${FORMATS.map((k) => `${lower(k)} ${PF.menus[k].goods_pct.toFixed(1)}%`).join(", ")} of sales) plus ${op.cogs_buffer_pts} points for waste beyond the recipes' allowances, comps, staff meals and price drift.`,
       `Crew: scheduled by format, ${Math.round(lab.fixed_share * 100)}% of paid hours fixed and the rest flexing with sales; ${lab.burden_pct}% payroll taxes and workers' comp. ${FORMATS.map((k) => fmtManaged(k) ? `The ${lower(k)} has a ${lab.manager.title.toLowerCase()} at ${dollars(lab.manager.salary)}` : `the ${lower(k)} is owner-run, with no owner pay in its costs and a target of ${dollars(fmtCfg(k).owner_pay_target)}`).join("; ")}.`,
-      `Variable costs, ${varTotal.toFixed(1)}% of sales: ${Object.entries(PF.variable).map(([k, v]) => `${costWord(k)} ${v}%`).join(", ")}.`,
+      `Variable costs, ${varTotal.toFixed(1)}% of sales: ${Object.entries(PF.variable).map(([k, v]) => `${costWord(k)} ${v}%`).join(", ")}.${FORMATS.filter((k) => fmtCfg(k).variable_costs_pct_of_sales).map((k) => ` The ${lower(k)} sets its own: ${Object.entries(fmtCfg(k).variable_costs_pct_of_sales).map(([key, v]) => `${costWord(key)} ${v}%`).join(", ")}.`).join("")}`,
+      ...FORMATS.filter((k) => (fmtCfg(k).channels || []).length).map((k) => `${fmtName(k)} channels: ${PF.menus[k].channels.map((x) => `${x.name.toLowerCase()} ${whole(x.days)} days at ${dollars(x.day_sales)}${x.cost_pct ? `, ${Math.round(x.cost_pct)}% paid away` : ""}${x.fee_per_day ? `, ${dollars(x.fee_per_day)} a day in fees` : ""}`).join("; ")}. A site's sales index moves only the window and delivery apps.`),
       `Fixed costs a year: ${FORMATS.map((k) => `${lower(k)} ${dollars(fixedOf(k))}`).join("; ")}. The bakery-café's lines: ${Object.entries(PF.fixed).map(([k, v]) => `${costWord(k)} ${dollars(v)}`).join(", ")}.`,
       `Utilities: $${PF.utilitiesPsf} a sq ft a year.`,
       ...Object.entries(PF.markets).filter(([m, x]) => m !== "boston" && x.wages).map(([m, x]) => `${mktLabel(m)}: wages ${Object.entries(x.wages).map(([role, w]) => `${role.toLowerCase()} $${Number(w).toFixed(2)}`).join(", ")}${x.burden_pct != null ? `; ${x.burden_pct}% payroll taxes` : ""}${x.utilities_per_sqft_year != null ? `; utilities $${x.utilities_per_sqft_year} a sq ft` : ""}${x.fixed_costs_per_year ? "; " + Object.entries(x.fixed_costs_per_year).map(([k, v]) => `${costWord(k)} ${dollars(v)}`).join(", ") : ""}${x.price_index != null && x.price_index !== 1 ? `; menu prices ${Math.round(x.price_index * 100)}% of the database's` : ""}${x.closed_days_per_year ? `; ${x.closed_days_per_year} more days closed a year` : ""}${x.startup_fees ? "; " + Object.entries(x.startup_fees).map(([k, v]) => `${k.toLowerCase()} ${dollars(v)}`).join(", ") : ""}. ${x.note || ""}`.trim()),

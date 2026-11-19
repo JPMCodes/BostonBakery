@@ -26,18 +26,24 @@ Suggested counter prices, set 2026-11-06 and updated 2026-11-07. Benchmarks come
 | Cookie & Brownie Box (12), catering (draft) | **$50.00** | $12.43–$17.88 | $0.97–$1.66 | 27–39% | $30.46–$36.60 (61–73%) |
 | Coffee Traveler (96 oz), catering (draft) | **$40.00** | $6.74–$13.65 | $6.84–$12.62 | 34–66% | $13.74–$26.42 (34–66%) |
 
-## Miami roll house prices
+## Miami prices
 
-Set 2026-11-19 for the Miami roll house format (`labor.formats.roll_house.prices` in [`proforma.yaml`](proforma.yaml)); the suggested prices above stay Boston's. Benchmarks are from [`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md): Coral Gables croissants at $5.50 (Bachour) and $5.95 (Pura Vida), Chip City's $4.99 cookie, a Miami iced-latte median of about $6, Keik's $8.99–$9.99 weekend rolls, and Knaus Berry Farm's $1.45–$2 rolls and $8.90 half-dozen at its Redland farm.
+Set 2026-11-19 for the two Miami formats (`labor.formats.roll_popup.prices` and `roll_kitchen.prices` in [`proforma.yaml`](proforma.yaml)); the suggested prices above stay Boston's. Benchmarks are from [`reports/Miami bakery business plan.md`](../reports/Miami%20bakery%20business%20plan.md): Coral Gables croissants at $5.50 (Bachour) and $5.95 (Pura Vida); golfeados, the Venezuelan cousin of the cinnamon roll, at $5.65–$6.89 on delivery apps and four for $21.90; Keik's $8.99–$9.99 weekend rolls; The Salty's catering dozens at $50–$58; Nothing Bundt Cakes' dozen bundtinis at $18.50–$27; Cinnabon's four-pack at $17.59; Chip City's $4.99 cookie; a Miami iced-latte median of about $6; and Knaus Berry Farm's $1.45–$2 rolls at its Redland farm.
 
 | Product | Boston | Miami | Why |
 |---|---|---|---|
-| Cinnamon Roll | $4.75 | **$5.25** | Still under a Coral Gables croissant and half Keik's roll |
+| Cinnamon Roll | $4.75 | **$5.25** | Under a Coral Gables croissant and a golfeado |
 | Guava & Cheese Roll (draft) | — | **$5.75** | Cream cheese and guava; the pastelito flavor in the hero roll |
+| Grande Cinnamon Roll, 8 oz (draft) | — | **$8.50** | Miami's event rolls sell at this size for $9–10 |
+| Roll of the Week, grande (draft) | — | **$9.50** | Level with Keik's and Roll & Dough's loaded rolls |
 | Cinnamon Roll 4-Pack | $18.00 | **$19.00** | $4.75 a roll |
 | Cinnamon Roll Box (6) (draft) | — | **$27.00** | $4.50 a roll |
-| Cinnamon Roll Box (12) (draft) | — | **$50.00** | About $4.17 a roll, the office and family order |
-| Take-and-Bake Cinnamon Rolls (6) (draft) | — | **$24.00** | $3 under the baked box: the customer proofs and bakes |
+| Cinnamon Roll Box (12) (draft) | — | **$50.00** | About $4.17 a roll; The Salty's dozen is $50–58 |
+| Mini Roll Party Tray (24) (draft) | — | **$38.00** | About $1.58 a mini; two dozen bundtinis cost $37–54 |
+| Celebration Roll Cake, 9-inch (draft) | — | **$45.00** | Against a decorated 10-inch bundt cake or a custom supermarket cake |
+| Cinnamon Twist Loaf (draft) | — | **$19.00** | A gift loaf that keeps three days |
+| Dulce de Leche Twist Loaf (draft) | — | **$21.00** | $2 over the cinnamon loaf |
+| Take-and-Bake Cinnamon Rolls (6) (draft) | — | **$24.00** | $3 under the baked box; the fundraiser pack |
 | Chocolate Chip Walnut Cookie | $4.50 | **$4.75** | Under Chip City's $4.99 |
 | Brownie | $4.50 | **$4.75** | Level with the cookie |
 | Cookie & Brownie Box (12) | $50.00 | **$52.00** | |
@@ -46,11 +52,12 @@ Set 2026-11-19 for the Miami roll house format (`labor.formats.roll_house.prices
 | Latte (café con leche), 12 oz | $4.75 | **$5.25** | Under the US average of $5.54 (Q2 2026) |
 | Drip coffee, 12 oz | $3.50 | **$3.75** | |
 | Espresso (cortadito) | $3.50 | **$3.25** | Closer to the Cuban-café anchor |
+| Colada, to share (draft) | — | **$4.25** | The office's 3:05 coffee; Cuban windows sell one for less |
 | Matcha latte | $5.25 | **$5.75** | |
 | Strawberry-chamomile lemonade, kids | $3.50 | **$3.75** | |
 | Coffee Traveler (96 oz) | $40.00 | **$42.00** | |
 
-The box ladder is the point: a roll costs $5.25 alone and about $4.17 in a dozen, so the box is the better buy and the bakery bakes to pre-orders. The four-pack is the pinch point against Knaus's $8.90 half-dozen, but Knaus is a seasonal farm stand about 25 miles south with lines and a purchase limit.
+Every roll format costs 8–14% of its Miami price in food and packaging at distributor estimates. The box ladder is the point: a roll costs $5.25 alone and about $4.17 in a dozen, so the box is the better buy and the bakery bakes to pre-orders. Delivery-app menus are priced 15% higher. Stage 1 of the plan tests $5.25 against $5.75 for the single roll: prices 5% higher across the menu are worth about $26,000 a year to the roll kitchen.
 
 The margins above are after food and packaging only. Prep labor per item, and prime cost with it, are in the Prep labor section of [`costing.md`](costing.md) and in [`production.md`](production.md).
 

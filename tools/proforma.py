@@ -530,8 +530,8 @@ def render(data: dict) -> str:
         "[`reports/Boston bakery site scan.md`](../reports/Boston%20bakery%20site%20scan.md)"
         + (", [`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md)"
            if "miami" in markets else "")
-        + (" and [`reports/Miami roll house design.md`](../reports/Miami%20roll%20house%20design.md)"
-           if "roll_house" in formats else "")
+        + (" and [`reports/Miami bakery business plan.md`](../reports/Miami%20bakery%20business%20plan.md)"
+           if "roll_kitchen" in formats else "")
         + ", and none has been confirmed with a broker.",
         "",
         "## Formats",
@@ -547,7 +547,7 @@ def render(data: dict) -> str:
         out.append(
             f"| {short[fmt]} | {hours_of[fmt]}; {days_of[fmt]:g} days a year | {usd(m['sales'])} | {m['orders']:.0f} | "
             f"${m['ticket']:.2f} | {m['goods_pct'] + buffer:.1f}% | {m['hands_on_hours']:.1f} | {c['hours']:g} | "
-            f"{space:,.0f} sq ft | {usd(equip)} |"
+            f"{f'{space:,.0f} sq ft' if space else 'a rented shared kitchen'} | {usd(equip)} |"
         )
     out.append("")
     for fmt, f in formats.items():
@@ -560,13 +560,30 @@ def render(data: dict) -> str:
                 else f" Financed {share:g}% with a {fin['term_years']}-year loan at {fin['rate_pct']}%.")
         hero = f" About {m['hero_units']:.0f} {m['hero_name'].lower()}s a day, counting boxes." if m["hero_name"] else ""
         out.append(f"- **{f['label']}.** {who}{hero}")
+    for fmt, f in formats.items():
+        m = menus[fmt]
+        if not m.get("channels"):
+            continue
+        out += ["", f"**{short[fmt]}: sales channels on its design day** (an average working day; a site's sales "
+                "index moves only the channels marked as depending on the location)", "",
+                "| Channel | Days a year | Sales on a channel day | Orders | Sales a year | Share | Commission or share paid | "
+                "Fee a day | Depends on the location |", "|---|---|---|---|---|---|---|---|---|"]
+        out += [f"| {ch['name']} | {ch['days']:g} | {usd(ch['day_sales'])} | {ch['day_orders']:.0f} | "
+                f"{usd(ch['day_sales'] * ch['days'])} | {100 * ch['share']:.0f}% | "
+                f"{(str(round(ch['cost_pct'])) + '%') if ch['cost_pct'] else 'none'} | "
+                f"{usd(ch['fee_per_day']) if ch['fee_per_day'] else 'none'} | {'yes' if ch['scales_with_site'] else 'no'} |"
+                for ch in m["channels"]]
+        notes = [f"- **{ch['name']}:** {ch['note']}" for ch in m["channels"] if ch.get("note")]
+        if notes:
+            out += ["", *notes]
     out += [
         "",
         "## How sales are projected",
         "",
         "Each format has a design day: its products' daily volumes times their prices. The bakery-café uses every "
-        "product's `par_daily`; the roll bakery uses the short menu and volumes listed under its format in "
-        "`proforma.yaml`. A site's `sales_index` scales its format's design day to the site, and each scenario "
+        "product's `par_daily`; the other formats use the menus and volumes listed under them in "
+        "`proforma.yaml`. A format with sales channels gives each channel its own menu and trading days and averages "
+        "them over its working days. A site's `sales_index` scales its format's design day to the site, and each scenario "
         "scales it again. The order counts divide the items sold by an assumed items per order, so treat them as "
         f"rough. Year 1 ramps from {op['ramp_year1_pct'][0]}% to {op['ramp_year1_pct'][-1]}% of the steady state, "
         f"averaging {sum(op['ramp_year1_pct']) / 12:.0f}%; Year 3 adds {op['price_growth_pct']}% of price growth. "
@@ -587,6 +604,9 @@ def render(data: dict) -> str:
     out += ["", "## Space needed", ""]
     for fmt, zones in cfg["space_program"].items():
         total = sum(float(z["sqft"]) for z in zones)
+        if not zones:
+            out += [f"**{formats[fmt]['label']}:** no premises of its own; it bakes in a rented shared kitchen.", ""]
+            continue
         out += [f"**{formats[fmt]['label']}: about {total:,.0f} sq ft**", "", "| Zone | Sq ft |", "|---|---|"]
         out += [f"| {z['zone']} | {float(z['sqft']):,.0f} |" for z in zones]
         out += [f"| **Total** | **{total:,.0f}** |", ""]
@@ -636,8 +656,9 @@ def compare_row(s: dict, r: dict, short: dict, owner_note: str) -> str:
     payback = f"{r['payback_years']:.1f} yrs" if r["payback_years"] else "n/a"
     return (
             f"| {s['name']} | {short[s['format']]} | {float(s['sqft']):,.0f} | "
-            f"${float(s['rent_psf']):.2f}{' (assumed)' if s.get('rent_assumed') else ''} / ${float(s['nnn_psf']):.2f} | "
-            f"{'none' if r['rent_ceiling_psf'] is None else usd(r['rent_ceiling_psf'])} | "
+            + (f"{usd(r['flat_rent'])} a year for the kitchen | n/a | " if r["no_premises"] else
+               f"${float(s['rent_psf']):.2f}{' (assumed)' if s.get('rent_assumed') else ''} / ${float(s['nnn_psf']):.2f} | "
+               f"{'none' if r['rent_ceiling_psf'] is None else usd(r['rent_ceiling_psf'])} | ") +
             f"{usd(r['steady_sales'])} | {r['orders_daily']:.0f} | {r['base_rent_pct_y2']:.1f}% / {r['rent_pct_y2']:.1f}% | "
             f"{usd(r['startup'])} | "
             f"{usd(r['equity'])}{' (over the limit)' if r['over_cash_limit'] else ''} | "
@@ -668,15 +689,20 @@ def site_sections(data: dict, site_order: list, short: dict, local: dict) -> lis
             "",
             f"## {s['name']}",
             "",
-            f"{s.get('area', '')}. {float(s['sqft']):,.0f} sq ft, {s['seats']} seats, {short[s['format']].lower()} format. "
-            f"Sales index {float(s['sales_index']):g} of the format's design day.",
+            f"{s.get('area', '')}. "
+            + ("No premises of its own" if base["no_premises"] else
+               f"{float(s['sqft']):,.0f} sq ft, {str(s['seats']) + ' seats' if s['seats'] else 'no seats'}")
+            + f", {short[s['format']].lower()} format. Sales index {float(s['sales_index']):g}"
+            + (" on the channels that depend on the location." if base["channels"] else " of the format's design day."),
             "",
             f"- **Kitchen:** {s.get('kitchen', '')}",
             f"- **Rent:** {s.get('rent_basis', '')}",
-            f"- **Most base rent it can carry:** {ceiling} in the base case"
-            + ("" if managed else f", after paying the owner {usd(base['owner_pay_target'])}"),
+            *([] if base["no_premises"] else
+              [f"- **Most base rent it can carry:** {ceiling} in the base case"
+               + ("" if managed else f", after paying the owner {usd(base['owner_pay_target'])}")]),
             *([f"- **Space:** {s['space_note']}"] if s.get("space_note") else []),
-            f"- **Time to open:** about {s.get('months_to_open', 0):g} months from lease signing, paying rent throughout",
+            f"- **Time to open:** about {s.get('months_to_open', 0):g} month{'' if s.get('months_to_open') == 1 else 's'} "
+            f"from {'taking the kitchen' if base['no_premises'] else 'lease signing'}, paying rent throughout",
             *([f"- **Local costs:** {market_costs(cfg, market_id(s), base)}"] if market_id(s) in local else []),
             *([f"- **Equipment credit:** {usd(float(s['equipment_credit']))}, "
                f"{s.get('equipment_credit_note', 'equipment already in place')}"] if s.get("equipment_credit") else []),
@@ -696,6 +722,11 @@ def site_sections(data: dict, site_order: list, short: dict, local: dict) -> lis
                 f"| {sc['name']} | {usd(r['steady_daily'])} | {r['orders_daily']:.0f} | {usd(y2['sales'])} | "
                 f"{usd(y2['ebitda'])} ({pct(y2['ebitda'], y2['sales'])}) | {usd(y2['cash_after_debt'])} | {last} |"
             )
+        if base["channels"]:
+            out += ["", "**Sales by channel, base case, steady state**", "",
+                    "| Channel | Days a year | Sales on a channel day | Sales a year | Share |", "|---|---|---|---|---|"]
+            out += [f"| {ch['name']} | {ch['days']:g} | {usd(ch['day_sales'])} | {usd(ch['sales_year'])} | "
+                    f"{100 * ch['share']:.0f}% |" for ch in base["channels"]]
         out += ["", "**Base case, three years**", "", "| Line | Year 1 | Year 2 | Year 3 | Year 2, % of sales |",
                 "|---|---|---|---|---|"]
         ys = base["years"]
@@ -755,7 +786,7 @@ def market_costs(cfg: dict, mid: str, r: dict) -> str:
     """One sentence on a market's local costs, from a site's base-case result."""
     m = (cfg.get("markets") or {}).get(mid) or {}
     parts = [f"paid crew average ${r['avg_wage']:.2f} an hour", f"{r['burden_pct']:g}% payroll burden",
-             f"utilities ${r['utilities_psf']:g} a sq ft"]
+             *([] if r.get("no_premises") else [f"utilities ${r['utilities_psf']:g} a sq ft"])]
     if m.get("fixed_costs_per_year"):
         parts.append("; ".join(f"{k.replace('_', ' ')} {usd(float(v))}" for k, v in m["fixed_costs_per_year"].items()))
     if r["price_index"] != 1:
@@ -780,7 +811,8 @@ def staffing_section(data: dict, short: dict, local: dict) -> list[str]:
                             for mid in extra)
         out += [f"**{f['label']}**: {c['hours']:g} paid hours a day, average ${c['avg_wage']:.2f} an hour"
                 f"{local_avg} before payroll burden, {lead}. The menu database counts "
-                f"{menus[fmt]['hands_on_hours']:.1f} hands-on prep and bar hours on a design day; the rest of the "
+                f"{menus[fmt]['hands_on_hours']:.1f} hands-on prep and bar hours on a design day"
+                f"{' at production-kitchen batch sizes' if f.get('production_scale') else ''}; the rest of the "
                 "schedule is setup, cleaning, the register and slow periods.", "",
                 "| Role | Hours a day | Wage | " + "".join(f"{market_label(cfg, mid)} wage | " for mid in extra) + "Covers |",
                 "|---|---|---|" + "---|" * len(extra) + "---|"]
@@ -817,7 +849,16 @@ def assumptions_section(data: dict, short: dict, days_of: dict, hours_of: dict, 
         "## Other assumptions",
         "",
         "- **Days and hours:** " + "; ".join(f"{short[fmt].lower()} {days_of[fmt]:g} days a year, {hours_of[fmt]}" for fmt in formats) + ".",
-        "- **Variable costs, % of sales:** " + ", ".join(f"{k.replace('_', ' ')} {v}%" for k, v in var.items()) + ".",
+        "- **Variable costs, % of sales:** " + ", ".join(f"{k.replace('_', ' ')} {v}%" for k, v in var.items()) + "."
+        + "".join(f" The {short[fmt].lower()} sets its own: "
+                  + ", ".join(f"{k.replace('_', ' ')} {v}%" for k, v in f["variable_costs_pct_of_sales"].items()) + "."
+                  for fmt, f in formats.items() if f.get("variable_costs_pct_of_sales")),
+        *(["- **Channel costs:** commissions, the share a fundraising group keeps and market stall fees are their own "
+           "P&L line, set by channel under each format in `proforma.yaml`."]
+          if any(f.get("channels") for f in formats.values()) else []),
+        "- **Fixed and flexing hours:** " + "; ".join(
+            f"{short[fmt].lower()} {round(100 * float(f.get('fixed_share', lab['fixed_share'])))}% of paid hours fixed"
+            for fmt, f in formats.items()) + "; the rest flex with sales.",
         "- **Fixed costs a year:** " + ", ".join(f"{k.replace('_', ' ')} {usd(float(v))}" for k, v in fixed.items())
         + f". Totals by format: {fixed_by_format}.",
         f"- **Utilities:** ${cfg['utilities_per_sqft_year']} a sq ft a year.",
@@ -836,6 +877,10 @@ def assumptions_section(data: dict, short: dict, days_of: dict, hours_of: dict, 
         "- **Not included:** income taxes, depreciation, owner's pay in an owner-run format, owner's draw beyond the "
         "manager line in a managed one, and any landlord build-out allowance or free rent, which would lower the "
         "startup cost.",
+        *(["- **Production-kitchen labor:** formats marked `production_scale` count prep minutes at the database's "
+           "production batch sizes (a 60-quart mixer run of 132 rolls), not its 36-roll test batches. Paid hours are set "
+           "by role and don't depend on this count."]
+          if any(f.get("production_scale") for f in formats.values()) else []),
     ]
     if local:
         out += ["", "## Markets", "",
@@ -876,10 +921,11 @@ def assumptions_section(data: dict, short: dict, days_of: dict, hours_of: dict, 
            "[`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md) and its notes in "
            "[`research_notes/Miami roll bakery feasibility/`](../research_notes/Miami%20roll%20bakery%20feasibility/)."]
           if "miami" in (cfg.get("markets") or {}) else []),
-        *(["- The Miami roll house format, its products, prices and sites: "
-           "[`reports/Miami roll house design.md`](../reports/Miami%20roll%20house%20design.md) and its notes in "
-           "[`research_notes/Miami roll house design/`](../research_notes/Miami%20roll%20house%20design/)."]
-          if "roll_house" in formats else []),
+        *(["- The Miami business plan, its two stages, channels, products and sites: "
+           "[`reports/Miami bakery business plan.md`](../reports/Miami%20bakery%20business%20plan.md) and its notes in "
+           "[`research_notes/Miami bakery business plan/`](../research_notes/Miami%20bakery%20business%20plan/). Earlier "
+           "Miami designs: [`reports/Miami roll house design.md`](../reports/Miami%20roll%20house%20design.md)."]
+          if "roll_kitchen" in formats else []),
         "- Format benchmarks, wages, payroll burden, occupancy and margin norms: "
         "[`digest_5_unit_economics_boston_costs.md`](../research_notes/Boston%20bakery%20market%20matrix/digests/digest_5_unit_economics_boston_costs.md).",
         "- Equipment, hood and build-out cost ranges: "
