@@ -106,7 +106,7 @@ A hypothetical 930 sq ft second-generation café in Miami (build-out $50 a sq ft
 | $40 + $14 | $14K | $27K | $53K | $79K | $103K |
 | $45 + $15 | $9K | $22K | $47K | $73K | $97K |
 | $55 + $16 | −$2K | $11K | $37K | $63K | $86K |
-| $65 + $18 | −$13K | −$0K | $25K | $51K | $75K |
+| $65 + $18 | −$13K | $0K | $25K | $51K | $75K |
 
 ## Boston sites for comparison (same model, Boston costs)
 
