@@ -766,7 +766,7 @@ def site_sections(data: dict, site_order: list, short: dict, local: dict) -> lis
                 f"a day, about {base['owner_target_orders_daily']:.0f} orders.",
             ]
         out += ["", "**Startup cost**", "", "| Item | Cost |", "|---|---|"]
-        out += [f"| {k} | {usd(v)} |" for k, v in base["startup_lines"].items()]
+        out += [f"| {k} | {usd(v)} |" for k, v in base["startup_lines"].items() if round(v)]
         out += [
             f"| **Total** | **{usd(base['startup'])}** |",
             "",

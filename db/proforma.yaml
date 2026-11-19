@@ -210,7 +210,7 @@ labor:
           scales_with_site: false
           items_per_order: 3
           cost_pct_of_sales: 4  # courier drops beyond the delivery fee charged, and catering-platform commission on part
-          note: "About two orders a day at first: trays of mini rolls, dozens, loaves"
+          note: "About two orders a working day at first: trays of mini rolls, dozens, loaves"
           menu:
             mini_roll_tray_24: 2
             cinnamon_roll_12box: 1
@@ -337,7 +337,7 @@ labor:
           scales_with_site: false
           items_per_order: 3
           cost_pct_of_sales: 5  # courier drops beyond the delivery fee charged, and catering-platform commission on part
-          note: "About 22 orders a week at about $85: trays of mini rolls with a colada for the 3:05 break, dozens, loaves, roll cakes"
+          note: "About 18 orders a week at about $88: trays of mini rolls with a colada for the 3:05 break, dozens, loaves, roll cakes"
           menu:
             mini_roll_tray_24: 3.5
             cinnamon_roll_12box: 1.6

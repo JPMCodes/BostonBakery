@@ -240,5 +240,40 @@ Each channel's sales less its own food and packaging (with the buffer), the 9.6%
 | Delivery apps | $48,182 | $7,990 | $4,625 | $13,009 | $4,265 | $18,292 | 38% |
 | **All channels** | $668,463 | | | | | **$354,516** | 53% |
 
-Shared costs in Year 2: production lead, baker and cleaning $111,797; rent and NNN $57,278; utilities $12,824; insurance, software and other fixed costs $43,466. Contribution less shared costs is about $129,152; the model's own figure is $129,152 (the difference is rounding in the crew's flex with sales).
+Shared costs in Year 2: production lead, baker and cleaning $111,797; rent and NNN $57,278; utilities $12,824; insurance, software and other fixed costs $43,466. Contribution less shared costs is $129,152, the model's figure for what is left for the owner.
+
+## Where $100 of sales goes, by design, at Dadeland Plaza
+
+Year 2, base case. The first two columns are quoted from the earlier designs' results files (1,004 sq ft unit); the roll kitchen is in the 830 sq ft unit.
+
+| | Boston-style roll bakery | Window-only roll house | Roll kitchen, Stage 2 | Stage 3 illustration |
+|---|---|---|---|---|
+| Sales a year | $526,430 | $482,034 | $668,463 | $989,540 |
+| Food and packaging | $24.5 | $20.4 | $18.5 | $18.6 |
+| Hourly crew, with payroll taxes | $43.3 | $34.0 | $29.2 | $27.7 |
+| Rent and NNN | $13.2 | $14.4 | $8.6 | $5.8 |
+| Utilities | $2.9 | $3.2 | $1.9 | $1.3 |
+| Card fees, repairs, supplies, marketing | $9.1 | $9.1 | $9.6 | $9.6 |
+| Commissions, fundraiser shares, market fees | $0.0 | $0.0 | $6.4 | $6.7 |
+| Insurance, software and other fixed costs | $5.3 | $6.1 | $6.5 | $5.0 |
+| Left for the owner | $1.6 | $12.8 | $19.3 | $25.2 |
+| Left for the owner, dollars | $8,641 | $61,712 | $129,152 | $249,797 |
+| Paid crew hours a year | 11,132 | 8,004 | 8,996 | 12,831 |
+| Sales per paid crew hour | $47 | $60 | $74 | $77 |
+| Break-even, share of base sales | 96% | 77% | 65% | 54% |
+
+## Derived figures quoted in the plan
+
+- A third baker (40 hours a week) costs $44,571 a year.
+- Dropping the delivery apps costs $22,557 a year.
+- Each tenth of a point on the window's index is worth $23,282 a year.
+- Prices 5% higher are worth $26,495 a year.
+- A manager at $70,000 costs $77,700 with payroll taxes.
+- A fundraising group's 30% of an event is $1,078.
+- Markets at 60% of the pop-up's design are $1,161 a stall-day.
+- The pop-up's deposit and working capital reserve, which roll forward, are $27,456; the rest of its startup cost is $55,996.
+- Both stages together, after the pop-up's deposit and reserve roll forward: Dadeland Plaza, 830 sq ft unit, Pinecrest $368,716; Café for sale on N Kendall Drive, Kendall $445,310; Restaurant for sale on US-1, Palmetto Bay $514,770; Cafeteria for sale by Coral Gables (ZIP 33145) $527,930.
+- Stage 2 rent and NNN at Dadeland Plaza: Year 1 $55,610, Year 2 $57,278, Year 3 $58,997; deposit and rent before opening $32,439.
+- Share of Stage 2 sales outside the window: 46%; in channels that don't depend on the site: 39%.
+- Office orders: 18 a week over 47.5 working weeks.
 
