@@ -30,6 +30,17 @@ REQUIRED = ("operating", "variable_costs_pct_of_sales", "fixed_costs_per_year", 
             "labor", "space_program", "equipment", "startup", "financing", "scenarios", "sites")
 SITE_FIELDS = ("id", "name", "format", "sqft", "seats", "rent_psf", "nnn_psf", "escalation_pct",
                "buildout_psf", "sales_index")
+DEFAULT_MARKET = "boston"  # a site without a `market` uses the file's own inputs, which are Boston's
+MARKET_NUMBERS = ("burden_pct", "utilities_per_sqft_year", "price_index", "closed_days_per_year", "manager_salary")
+
+
+def market_id(site: dict) -> str:
+    return site.get("market", DEFAULT_MARKET)
+
+
+def market(cfg: dict, site: dict) -> dict:
+    """The site's market overrides: wages by role, payroll burden, utilities, fixed costs, prices and fees."""
+    return (cfg.get("markets") or {}).get(market_id(site)) or {}
 
 
 def load() -> dict:
@@ -60,11 +71,25 @@ def validate(cfg: dict) -> list[str]:
                    for pid, par in (f.get("menu") or {}).items() if not is_number(par)]
         if not is_number(f.get("items_per_order", 2.0), 0.1):
             errors.append(f"{where}: items_per_order must be a positive number")
+    markets = cfg.get("markets") or {}
+    for mid, m in markets.items():
+        where = f"proforma.yaml: market {mid}"
+        errors += [f"{where}: {key} must be a number of 0 or more"
+                   for key in MARKET_NUMBERS if key in m and not is_number(m[key])]
+        errors += [f"{where}: wage for '{role}' must be a number of 0 or more"
+                   for role, w in (m.get("wages") or {}).items() if not is_number(w)]
+        errors += [f"{where}: {group} line '{k}' must be a number of 0 or more"
+                   for group in ("fixed_costs_per_year", "startup", "startup_fees")
+                   for k, v in (m.get(group) or {}).items() if not is_number(v)]
+        if "price_index" in m and not is_number(m["price_index"], 1e-9):
+            errors.append(f"{where}: price_index must be positive")
     for site in cfg["sites"]:
         where = f"proforma.yaml: site {site.get('id', '?')}"
         errors += [f"{where}: missing '{f}'" for f in SITE_FIELDS if f not in site]
         if site.get("format") not in formats:
             errors.append(f"{where}: format '{site.get('format')}' is not under labor.formats")
+        if "market" in site and site["market"] not in markets:
+            errors.append(f"{where}: market '{site['market']}' is not under markets")
         if "rent_assumed" in site and not isinstance(site["rent_assumed"], bool):
             errors.append(f"{where}: rent_assumed must be true or false")
         errors += [f"{where}: {key} must be a number of 0 or more"
@@ -140,13 +165,18 @@ def annual_payment(principal: float, rate_pct: float, years: float) -> float:
     return 12 * principal * r / (1 - (1 + r) ** -n)
 
 
-def crew(cfg: dict, fmt: str) -> dict:
-    """Paid crew hours a day and their average wage at the format's design volume, plus the owner's hours."""
+def crew(cfg: dict, fmt: str, mkt: dict | None = None) -> dict:
+    """Paid crew hours a day and their average wage at the format's design volume, plus the owner's hours.
+
+    A market's `wages` replace the format's wage for each role it names.
+    """
     roles = cfg["labor"]["formats"][fmt]["roles"]
+    local = (mkt or {}).get("wages") or {}
     paid = [r for r in roles if not r.get("owner")]
+    pay = {r["role"]: float(local.get(r["role"], r["wage"])) for r in paid}
     hours = sum(float(r["hours"]) for r in paid)
-    wages = sum(float(r["hours"]) * float(r["wage"]) for r in paid)
-    return {"hours": hours, "avg_wage": wages / hours,
+    total = sum(float(r["hours"]) * pay[r["role"]] for r in paid)
+    return {"hours": hours, "avg_wage": total / hours, "wages": pay,
             "owner_hours": sum(float(r["hours"]) for r in roles if r.get("owner"))}
 
 
@@ -158,25 +188,30 @@ def owner_target(fmt_cfg: dict) -> float:
 def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
     op, lab = cfg["operating"], cfg["labor"]
     fmt_cfg = lab["formats"][site["format"]]
+    mkt = market(cfg, site)  # local overrides; empty for the file's own (Boston) inputs
     fin = {**cfg["financing"], **(fmt_cfg.get("financing") or {})}
-    st = {**cfg["startup"], **(fmt_cfg.get("startup") or {})}
-    fixed_costs = {**cfg["fixed_costs_per_year"], **(fmt_cfg.get("fixed_costs_per_year") or {})}
-    days = float(fmt_cfg.get("days_per_year", op["days_per_year"]))
-    team = crew(cfg, site["format"])
+    st = {**cfg["startup"], **(fmt_cfg.get("startup") or {}), **(mkt.get("startup") or {})}
+    fixed_costs = {**cfg["fixed_costs_per_year"], **(fmt_cfg.get("fixed_costs_per_year") or {}),
+                   **(mkt.get("fixed_costs_per_year") or {})}
+    days = float(fmt_cfg.get("days_per_year", op["days_per_year"])) - float(mkt.get("closed_days_per_year", 0))
+    team = crew(cfg, site["format"], mkt)
     base_hours, wage = team["hours"], team["avg_wage"]
-    burden = 1 + float(lab["burden_pct"]) / 100
+    burden_pct = float(mkt.get("burden_pct", lab["burden_pct"]))
+    burden = 1 + burden_pct / 100
+    utilities_psf = float(mkt.get("utilities_per_sqft_year", cfg["utilities_per_sqft_year"]))
+    price = float(mkt.get("price_index", 1.0))  # local menu prices as a share of the database's
     fixed_share = float(lab["fixed_share"])
     ramp = sum(op["ramp_year1_pct"]) / len(op["ramp_year1_pct"]) / 100
     infl = float(op["cost_inflation_pct"]) / 100
     growth = float(op["price_growth_pct"]) / 100
     level = float(site["sales_index"]) * float(scenario["sales_factor"])  # share of the format's design day
-    steady = menu["sales"] * level * days
-    goods_pct = menu["goods_pct"] + float(op["cogs_buffer_pts"])
+    steady = menu["sales"] * price * level * days
+    goods_pct = menu["goods_pct"] / price + float(op["cogs_buffer_pts"])
     var_pct = sum(float(v) for v in cfg["variable_costs_pct_of_sales"].values())
     fixed_base = sum(float(v) for v in fixed_costs.values())
     sqft = float(site["sqft"])
     managed = bool(fmt_cfg.get("manager", True))
-    manager_base = float(lab["manager"]["salary"]) * burden if managed else 0.0
+    manager_base = float(mkt.get("manager_salary", lab["manager"]["salary"])) * burden if managed else 0.0
 
     def year(n: int) -> dict:
         vol = ramp if n == 1 else 1.0
@@ -190,7 +225,7 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
             "manager": manager_base * mult,
             "rent": sqft * float(site["rent_psf"]) * (1 + float(site["escalation_pct"]) / 100) ** (n - 1),
             "nnn": sqft * float(site["nnn_psf"]) * mult,
-            "utilities": sqft * float(cfg["utilities_per_sqft_year"]) * mult,
+            "utilities": sqft * utilities_psf * mult,
             "variable_opex": sales * var_pct / 100,
             "fixed_opex": fixed_base * mult,
         }
@@ -217,6 +252,7 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
                                              + manager_base / 52 * float(st.get("manager_preopening_weeks", 0))),
         "Opening inventory": float(st["opening_inventory"]),
         "Launch marketing": float(st["launch_marketing"]),
+        **{label: float(v) for label, v in (mkt.get("startup_fees") or {}).items()},
         "Security deposit": occupancy_month * float(st["deposit_months"]),
         "Rent and NNN before opening": occupancy_month * float(site.get("months_to_open", 0)),
         "Contingency": (buildout + equipment) * float(st["contingency_pct"]) / 100,
@@ -233,7 +269,7 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
 
     # Break-even on Year-2 costs: sales where cash after debt service is zero.
     y2 = years[1]
-    design_sales = menu["sales"] * float(fmt_cfg["design_index"]) * days
+    design_sales = menu["sales"] * price * float(fmt_cfg["design_index"]) * days
     crew_cost = base_hours * wage * burden * days * (1 + infl)
     fixed_cash = (y2["manager"] + y2["rent"] + y2["nnn"] + y2["utilities"] + y2["fixed_opex"]
                   + crew_cost * fixed_share)
@@ -245,13 +281,20 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
 
     y3 = years[2]
     reserve = startup_lines["Working capital reserve"]
-    ticket = menu["ticket"]
+    ticket = menu["ticket"] * price
     return {
         "site": site["id"],
         "scenario": scenario["id"],
         "format": site["format"],
+        "market": market_id(site),
         "days": days,
         "managed": managed,
+        "wages": team["wages"],
+        "avg_wage": wage,
+        "burden_pct": burden_pct,
+        "utilities_psf": utilities_psf,
+        "price_index": price,
+        "fixed_costs": fixed_costs,
         "steady_sales": steady,
         "steady_daily": steady / days,
         "ticket": ticket,
@@ -324,7 +367,9 @@ def build(book: Book | None = None) -> dict:
             r = model(cfg, menu, s, sc)
             r["rent_ceiling_psf"] = rent_ceiling(cfg, menu, s, sc)
             results[s["id"]][sc["id"]] = r
-    return {"config": cfg, "menus": menus, "results": results, "crews": {fmt: crew(cfg, fmt) for fmt in formats}}
+    return {"config": cfg, "menus": menus, "results": results, "crews": {fmt: crew(cfg, fmt) for fmt in formats},
+            "market_crews": {mid: {fmt: crew(cfg, fmt, m) for fmt in formats}
+                             for mid, m in (cfg.get("markets") or {}).items()}}
 
 
 # -- report ------------------------------------------------------------------
@@ -353,9 +398,21 @@ LINE_LABELS = [
 ]
 
 
+def market_label(cfg: dict, mid: str) -> str:
+    return ((cfg.get("markets") or {}).get(mid) or {}).get("label") or ("Boston area" if mid == DEFAULT_MARKET else mid)
+
+
 def render(data: dict) -> str:
     cfg, menus, results = data["config"], data["menus"], data["results"]
     sites = {s["id"]: s for s in cfg["sites"]}
+    markets = cfg.get("markets") or {}
+    # Sites in market order: the file's own (Boston) market first, then each market as listed.
+    market_ids = [DEFAULT_MARKET] + [m for m in markets if m != DEFAULT_MARKET]
+    by_market = {mid: [sid for sid in results if market_id(sites[sid]) == mid] for mid in market_ids}
+    by_market = {mid: ids for mid, ids in by_market.items() if ids}
+    local = {mid: m for mid, m in markets.items() if mid != DEFAULT_MARKET and any(
+        k in m for k in ("wages", "burden_pct", "utilities_per_sqft_year", "fixed_costs_per_year", "price_index",
+                         "closed_days_per_year", "startup", "startup_fees", "manager_salary"))}
     op, fin, lab = cfg["operating"], cfg["financing"], cfg["labor"]
     cash_limit = fin.get("owner_cash_limit")
     formats = lab["formats"]
@@ -370,9 +427,11 @@ def render(data: dict) -> str:
         "Generated by `tools/proforma.py` from `db/proforma.yaml` and the menu database. Do not edit by hand; "
         "change the inputs and rerun the script. All figures are estimates; the sites come from "
         "[`reports/Boston bakery small-shop sites.md`](../reports/Boston%20bakery%20small-shop%20sites.md), "
-        "[`reports/Boston bakery site shortlist.md`](../reports/Boston%20bakery%20site%20shortlist.md) and "
-        "[`reports/Boston bakery site scan.md`](../reports/Boston%20bakery%20site%20scan.md), and none "
-        "has been confirmed with a broker.",
+        "[`reports/Boston bakery site shortlist.md`](../reports/Boston%20bakery%20site%20shortlist.md), "
+        "[`reports/Boston bakery site scan.md`](../reports/Boston%20bakery%20site%20scan.md)"
+        + (" and [`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md)"
+           if "miami" in markets else "")
+        + ", and none has been confirmed with a broker.",
         "",
         "## Formats",
         "",
@@ -438,22 +497,43 @@ def render(data: dict) -> str:
     ]
 
     # Site comparison
+    out += ["", "## Sites compared, base scenario"]
+    owner_note = " (the owner's pay)"
+    for mid, ids in by_market.items():
+        out += [
+            *(["", f"### {market_label(cfg, mid)}"] if len(by_market) > 1 else []),
+            "",
+            "| Site | Format | Sq ft | Base rent / NNN per sq ft | Most base rent it can carry | Steady sales a year | "
+            "Orders a day | Base rent / with NNN, % of sales | Startup cost | Owner's cash | Cash after debt, Year 1 | "
+            "EBITDA, Year 2 | Cash after debt, Year 2 | Return on the owner's cash, Year 2 | Break-even sales a day | Payback |",
+            "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        ]
+        out += [compare_row(sites[sid], results[sid]["base"], short, owner_note) for sid in ids]
     out += [
         "",
-        "## Sites compared, base scenario",
-        "",
-        "| Site | Format | Sq ft | Base rent / NNN per sq ft | Most base rent it can carry | Steady sales a year | "
-        "Orders a day | Base rent / with NNN, % of sales | Startup cost | Owner's cash | Cash after debt, Year 1 | "
-        "EBITDA, Year 2 | Cash after debt, Year 2 | Return on the owner's cash, Year 2 | Break-even sales a day | Payback |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "Break-even is the daily sales at which Year-2 cash flow after debt service is zero. Payback is the "
+        "startup cost divided by Year-3 EBITDA. The most base rent a site can carry is the rent at which Year-2 cash "
+        "after debt service falls to zero, or, for an owner-run format, to the owner's target pay, with its NNN "
+        "unchanged; an assumed rent is a placeholder until a broker quotes one. The site scan's rent test is base "
+        "rent at or under 8% of sales; NNN charges come on top. Year-1 cash after debt has to fit inside the "
+        "working capital reserve."
+        + (f" The owner would put in up to {usd(float(cash_limit))} without a loan." if cash_limit else "")
+        + " A site paid for in cash has no debt service, so its EBITDA and its cash after debt are the same."
+        + ("" if not local else " Sites outside Boston use their market's wages, payroll burden, utilities, "
+           "insurance and prices: see Markets below."),
     ]
-    owner_note = " (the owner's pay)"
-    for sid, by_sc in results.items():
-        r = by_sc["base"]
-        s = sites[sid]
-        y1, y2 = r["years"][0], r["years"][1]
-        payback = f"{r['payback_years']:.1f} yrs" if r["payback_years"] else "n/a"
-        out.append(
+    site_order = [sid for ids in by_market.values() for sid in ids]
+    out += site_sections(data, site_order, short, local)
+    out += staffing_section(data, short, local)
+    out += equipment_section(cfg, formats)
+    out += assumptions_section(data, short, days_of, hours_of, local)
+    return "\n".join(out) + "\n"
+
+
+def compare_row(s: dict, r: dict, short: dict, owner_note: str) -> str:
+    y1, y2 = r["years"][0], r["years"][1]
+    payback = f"{r['payback_years']:.1f} yrs" if r["payback_years"] else "n/a"
+    return (
             f"| {s['name']} | {short[s['format']]} | {float(s['sqft']):,.0f} | "
             f"${float(s['rent_psf']):.2f}{' (assumed)' if s.get('rent_assumed') else ''} / ${float(s['nnn_psf']):.2f} | "
             f"{'none' if r['rent_ceiling_psf'] is None else usd(r['rent_ceiling_psf'])} | "
@@ -466,20 +546,15 @@ def render(data: dict) -> str:
             f"{pct(y2['cash_after_debt'], r['equity'])} | "
             f"{usd(r['breakeven_daily'])} ({r['breakeven_orders_daily']:.0f} orders) | {payback} |"
         )
-    out += [
-        "",
-        "Break-even is the daily sales at which Year-2 cash flow after debt service is zero. Payback is the "
-        "startup cost divided by Year-3 EBITDA. The most base rent a site can carry is the rent at which Year-2 cash "
-        "after debt service falls to zero, or, for an owner-run format, to the owner's target pay, with its NNN "
-        "unchanged; an assumed rent is a placeholder until a broker quotes one. The site scan's rent test is base "
-        "rent at or under 8% of sales; NNN charges come on top. Year-1 cash after debt has to fit inside the "
-        "working capital reserve."
-        + (f" The owner would put in up to {usd(float(cash_limit))} without a loan." if cash_limit else "")
-        + " A site paid for in cash has no debt service, so its EBITDA and its cash after debt are the same.",
-    ]
 
-    # Per site
-    for sid, by_sc in results.items():
+
+def site_sections(data: dict, site_order: list, short: dict, local: dict) -> list[str]:
+    cfg, menus, results = data["config"], data["menus"], data["results"]
+    sites = {s["id"]: s for s in cfg["sites"]}
+    formats, fin = cfg["labor"]["formats"], cfg["financing"]
+    out: list[str] = []
+    for sid in site_order:
+        by_sc = results[sid]
         s = sites[sid]
         base = by_sc["base"]
         f = formats[s["format"]]
@@ -501,6 +576,7 @@ def render(data: dict) -> str:
             + ("" if managed else f", after paying the owner {usd(base['owner_pay_target'])}"),
             *([f"- **Space:** {s['space_note']}"] if s.get("space_note") else []),
             f"- **Time to open:** about {s.get('months_to_open', 0):g} months from lease signing, paying rent throughout",
+            *([f"- **Local costs:** {market_costs(cfg, market_id(s), base)}"] if market_id(s) in local else []),
             *([f"- **Equipment credit:** {usd(float(s['equipment_credit']))}, "
                f"{s.get('equipment_credit_note', 'equipment already in place')}"] if s.get("equipment_credit") else []),
             *([f"- **Purchase price:** {usd(float(s['purchase_price']))} asked for the existing fit-out and lease"]
@@ -571,39 +647,72 @@ def render(data: dict) -> str:
                      f"{usd(float(base['owner_cash_limit']))} the owner would put in." if base["over_cash_limit"] else "")),
         ]
 
-    # Staffing and equipment
-    out += ["", "## Staffing at each format's design volume", ""]
+    return out
+
+
+def market_costs(cfg: dict, mid: str, r: dict) -> str:
+    """One sentence on a market's local costs, from a site's base-case result."""
+    m = (cfg.get("markets") or {}).get(mid) or {}
+    parts = [f"paid crew average ${r['avg_wage']:.2f} an hour", f"{r['burden_pct']:g}% payroll burden",
+             f"utilities ${r['utilities_psf']:g} a sq ft"]
+    if m.get("fixed_costs_per_year"):
+        parts.append("; ".join(f"{k.replace('_', ' ')} {usd(float(v))}" for k, v in m["fixed_costs_per_year"].items()))
+    if r["price_index"] != 1:
+        parts.append(f"menu prices at {100 * r['price_index']:.0f}% of the database's")
+    if m.get("closed_days_per_year"):
+        parts.append(f"{float(m['closed_days_per_year']):g} more days closed a year")
+    if m.get("startup_fees"):
+        parts.append("; ".join(f"{k.lower()} {usd(float(v))}" for k, v in m["startup_fees"].items()))
+    return f"{market_label(cfg, mid)}: " + ", ".join(parts)
+
+
+def staffing_section(data: dict, short: dict, local: dict) -> list[str]:
+    cfg, menus = data["config"], data["menus"]
+    lab, formats = cfg["labor"], cfg["labor"]["formats"]
+    out = ["", "## Staffing at each format's design volume", ""]
     for fmt, f in formats.items():
         c = data["crews"][fmt]
         lead = (f"plus a general manager at {usd(float(lab['manager']['salary']))}" if f.get("manager", True)
                 else f"plus the owner for about {c['owner_hours']:g} hours a day, unpaid in the P&L")
-        out += [f"**{f['label']}**: {c['hours']:g} paid hours a day, average ${c['avg_wage']:.2f} an hour "
-                f"before {lab['burden_pct']}% payroll burden, {lead}. The menu database counts "
+        extra = [mid for mid, m in local.items() if m.get("wages")]
+        local_avg = "".join(f"; at {market_label(cfg, mid)} wages ${data['market_crews'][mid][fmt]['avg_wage']:.2f}"
+                            for mid in extra)
+        out += [f"**{f['label']}**: {c['hours']:g} paid hours a day, average ${c['avg_wage']:.2f} an hour"
+                f"{local_avg} before payroll burden, {lead}. The menu database counts "
                 f"{menus[fmt]['hands_on_hours']:.1f} hands-on prep and bar hours on a design day; the rest of the "
                 "schedule is setup, cleaning, the register and slow periods.", "",
-                "| Role | Hours a day | Wage | Covers |", "|---|---|---|---|"]
-        out += [f"| {r['role']} | {float(r['hours']):g} | {'owner' if r.get('owner') else '$%.2f' % float(r['wage'])} | {r.get('note', '')} |"
-                for r in f["roles"]]
+                "| Role | Hours a day | Wage | " + "".join(f"{market_label(cfg, mid)} wage | " for mid in extra) + "Covers |",
+                "|---|---|---|" + "---|" * len(extra) + "---|"]
+        for r in f["roles"]:
+            cells = ["owner" if r.get("owner") else "$%.2f" % float(r["wage"])]
+            cells += ["owner" if r.get("owner") else "$%.2f" % data["market_crews"][mid][fmt]["wages"][r["role"]]
+                      for mid in extra]
+            out.append(f"| {r['role']} | {float(r['hours']):g} | " + " | ".join(cells) + f" | {r.get('note', '')} |")
         out.append("")
-    out += [
-        f"{round(100 * float(lab['fixed_share']))}% of paid hours are treated as fixed; the rest flex with sales.",
-        "",
-        "## Equipment",
-        "",
-    ]
+    out += [f"{round(100 * float(lab['fixed_share']))}% of paid hours are treated as fixed; the rest flex with sales."]
+    return out
+
+
+def equipment_section(cfg: dict, formats: dict) -> list[str]:
+    out = ["", "## Equipment", ""]
     for fmt, items in cfg["equipment"].items():
         total = sum(float(e["cost"]) for e in items)
         out += [f"**{formats[fmt]['label']}: {usd(total)}**", "", "| Item | Cost |", "|---|---|"]
         out += [f"| {e['item']} | {usd(float(e['cost']))} |" for e in items]
         out.append("")
+    return out
 
-    # Assumptions
+
+def assumptions_section(data: dict, short: dict, days_of: dict, hours_of: dict, local: dict) -> list[str]:
+    cfg = data["config"]
+    op, fin, lab, formats = cfg["operating"], cfg["financing"], cfg["labor"], cfg["labor"]["formats"]
+    cash_limit = fin.get("owner_cash_limit")
     var = cfg["variable_costs_pct_of_sales"]
     fixed = cfg["fixed_costs_per_year"]
     fixed_by_format = "; ".join(
         f"{short[fmt].lower()} {usd(sum(float(v) for v in {**fixed, **(f.get('fixed_costs_per_year') or {})}.values()))}"
         for fmt, f in formats.items())
-    out += [
+    out = [
         "## Other assumptions",
         "",
         "- **Days and hours:** " + "; ".join(f"{short[fmt].lower()} {days_of[fmt]:g} days a year, {hours_of[fmt]}" for fmt in formats) + ".",
@@ -611,6 +720,7 @@ def render(data: dict) -> str:
         "- **Fixed costs a year:** " + ", ".join(f"{k.replace('_', ' ')} {usd(float(v))}" for k, v in fixed.items())
         + f". Totals by format: {fixed_by_format}.",
         f"- **Utilities:** ${cfg['utilities_per_sqft_year']} a sq ft a year.",
+        f"- **Payroll burden:** {lab['burden_pct']}% on all pay.",
         "- **Financing:** " + "; ".join(
             f"{short[fmt].lower()} "
             + ("paid in cash, with no loan" if not float({**fin, **(f.get('financing') or {})}['loan_share_pct'])
@@ -625,6 +735,35 @@ def render(data: dict) -> str:
         "- **Not included:** income taxes, depreciation, owner's pay in an owner-run format, owner's draw beyond the "
         "manager line in a managed one, and any landlord build-out allowance or free rent, which would lower the "
         "startup cost.",
+    ]
+    if local:
+        out += ["", "## Markets", "",
+                "The inputs above are Boston's. A site in another market replaces them with that market's own:"]
+        for mid, m in local.items():
+            out += ["", f"**{market_label(cfg, mid)}.** {m.get('note', '')}".rstrip(), ""]
+            rows = []
+            if m.get("wages"):
+                rows += [f"| Wage: {role} | ${float(w):.2f} an hour |" for role, w in m["wages"].items()]
+            if "burden_pct" in m:
+                rows.append(f"| Payroll burden | {float(m['burden_pct']):g}% (Boston {lab['burden_pct']}%) |")
+            if "utilities_per_sqft_year" in m:
+                rows.append(f"| Utilities | ${float(m['utilities_per_sqft_year']):g} a sq ft a year "
+                            f"(Boston ${cfg['utilities_per_sqft_year']}) |")
+            rows += [f"| {k.replace('_', ' ').capitalize()} | {usd(float(v))} a year |"
+                     for k, v in (m.get("fixed_costs_per_year") or {}).items()]
+            if "price_index" in m:
+                rows.append(f"| Menu prices | {100 * float(m['price_index']):.0f}% of the database's |")
+            if m.get("closed_days_per_year"):
+                rows.append(f"| Extra days closed | {float(m['closed_days_per_year']):g} a year |")
+            rows += [f"| {k.replace('_', ' ').capitalize()} (startup) | {usd(float(v))} |"
+                     for k, v in (m.get("startup") or {}).items()]
+            rows += [f"| {k} (startup) | {usd(float(v))} |" for k, v in (m.get("startup_fees") or {}).items()]
+            if "manager_salary" in m:
+                rows.append(f"| General manager's salary | {usd(float(m['manager_salary']))} |")
+            out += ["| Input | Value |", "|---|---|", *rows]
+            if m.get("sources"):
+                out += ["", "Sources: " + m["sources"]]
+    out += [
         "",
         "## Sources",
         "",
@@ -632,13 +771,18 @@ def render(data: dict) -> str:
         "[its candidates CSV](../reports/Boston%20bakery%20site%20scan%20candidates.csv), "
         "[`reports/Boston bakery site shortlist.md`](../reports/Boston%20bakery%20site%20shortlist.md) and "
         "[`reports/Boston bakery small-shop sites.md`](../reports/Boston%20bakery%20small-shop%20sites.md).",
+        *(["- Miami sites, rents and local costs: "
+           "[`reports/Miami roll bakery feasibility.md`](../reports/Miami%20roll%20bakery%20feasibility.md) and its notes in "
+           "[`research_notes/Miami roll bakery feasibility/`](../research_notes/Miami%20roll%20bakery%20feasibility/)."]
+          if "miami" in (cfg.get("markets") or {}) else []),
         "- Format benchmarks, wages, payroll burden, occupancy and margin norms: "
         "[`digest_5_unit_economics_boston_costs.md`](../research_notes/Boston%20bakery%20market%20matrix/digests/digest_5_unit_economics_boston_costs.md).",
         "- Equipment, hood and build-out cost ranges: "
         "[`gapfill_model_economics.md`](../research_notes/Boston%20bakery%20market%20matrix/gapfill_model_economics.md).",
         "- Menu sales, food cost and prep hours: [`costing.md`](costing.md) and [`production.md`](production.md).",
     ]
-    return "\n".join(out) + "\n"
+    return out
+
 
 
 def main() -> int:
