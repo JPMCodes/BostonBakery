@@ -2,7 +2,7 @@
 
 Yes on the product and the format; no on the route. A roll-led box kitchen with no seats is still the best baking business I can find for you in Miami's southern suburbs. Every rival concept that fits $500,000 of cash leaves less, because none matches its two advantages: food and packaging at 18% of sales against about 30%, and rent at a tenth of sales because the bay is small. But the plan as written has three faults this research exposed. It signs a five-year lease on a window nobody has measured, and on my own odds for that window the kitchen is worth an expected $69,783 a year to you, not the plan's $129,152. It would measure demand at the top of a cinnamon-roll craze. And it builds a kitchen when two operating bakeries are for sale inside your budget. The fixes are to measure the window in a host shop before any lease, to keep the bay small and the lease short, and to check the two purchases while the pop-up runs.
 
-*Prepared November 19, 2026. Six research threads are in [research_notes/Miami bakery concept comparison](../research_notes/Miami%20bakery%20concept%20comparison/); the model runs are in [model_results.md](../research_notes/Miami%20bakery%20concept%20comparison/model_results.md). Model figures are Year 2, with no owner's pay in the costs and no loan, from the repo's pro forma. Rows marked "benchmarked" are not designs: they put published sales and cost ratios for that kind of bakery through the same arithmetic as the roll kitchen. Every research fact here comes from search-result text, because the sites refused page reads in this session; listing figures are sellers' claims. Judgment is marked as mine. This report tests the [Miami bakery business plan](Miami%20bakery%20business%20plan.md) and changes parts of it.*
+*Prepared November 19, 2026. Six research threads are in [research_notes/Miami bakery concept comparison](../research_notes/Miami%20bakery%20concept%20comparison/); the model runs are in [model_results.md](../research_notes/Miami%20bakery%20concept%20comparison/model_results.md). Model figures are Year 2, with no owner's pay in the costs and no loan, from the repo's pro forma. Rows marked "benchmarked" are not designs: they put published sales and cost ratios for that kind of bakery through the same arithmetic as the roll kitchen. Every research fact here comes from search-result text, because the sites refused page reads in this session; listing figures are sellers' claims. Judgment is marked as mine. This report tests the [Miami bakery business plan](Miami%20bakery%20business%20plan.md) and changes parts of it. Section 9, on why other bakeries keep opening in the same towns, was added on November 22.*
 
 ## 1. The verdict, question by question
 
@@ -40,7 +40,7 @@ Yes on the product and the format; no on the route. A roll-led box kitchen with 
 
 *Model output. Sales ranges come from published averages: Great Harvest's single-site bakery-cafés ($907,502), Einstein's franchises ($1,081,015) and PopUp Bagels without a drive-through ($984,569), Cortadito Coffee House (about $1.33 million a store), Gigi's Cupcakes (about $400,000) and Great American Cookies ($539,902), each marked down for an independent ([Franchise Chatter](https://www.franchisechatter.com/2024/07/05/fdd-talk-great-harvest-franchise-costs-fees-average-revenues-and-or-profits-2024-review/); [Franzy](https://franzy.com/franchises/einstein-bros-bagels); [Franchise Times](https://www.franchisetimes.com/franchise_finance/bagels-are-trending-meet-the-franchisors-and-investors-capitalizing-on-the-breakfast-staple/article_afe31b76-6bf1-4fbb-a9c8-b42d39076021.html); [QSR](https://www.qsrmagazine.com/story/why-cortadito-coffee-house-is-one-to-watch/); [Restaurant Business](https://restaurantbusinessonline.com/future-50-2014/gigis-cupcakes); [Lexpress](https://lexpress-franchise.com/en-us/franchise/great-american-cookies/)). Food and crew shares are the trade's usual ranges. The crew is sized for the middle case and flexes as the roll kitchen's does.*
 
-The bagel shop is the only rival that pays, and it is the one whose opening closed this year. H&H opened at Suniland in Pinecrest in February with a line onto the sidewalk, Call Your Mother opens on Miracle Mile in December, and Mitch's is planned for Alhambra Circle ([Axios Miami](https://www.axios.com/local/miami/2026/04/21/hh-bagels-opens-in-miami-pinecrest); [Axios Miami](https://www.axios.com/local/miami/2026/09/15/dc-bagel-shop-call-your-mother-to-open-in-miami)). Its $523,881 is also over your limit. On my odds for the window the roll kitchen's expected $69,783 sits under the bagel shop's middle case, but that case has had no such discount: it assumes an independent takes $850,000 against three brands.
+The bagel shop is the only rival that pays, and it is the one whose opening closed this year. H&H opened at Suniland in Pinecrest in February with a line onto the sidewalk, Call Your Mother opens on Miracle Mile in December, Mitch's is planned for Alhambra Circle, and PopUp Bagels is listed for 5828 Sunset Dr in South Miami ([Axios Miami](https://www.axios.com/local/miami/2026/04/21/hh-bagels-opens-in-miami-pinecrest); [Axios Miami](https://www.axios.com/local/miami/2026/09/15/dc-bagel-shop-call-your-mother-to-open-in-miami); [Miami New Times](https://www.miaminewtimes.com/food-drink/most-anticipated-miami-restaurant-openings-of-2026-40509886/)). Its $523,881 is also over your limit. On my odds for the window the roll kitchen's expected $69,783 sits under the bagel shop's middle case, but that case has had no such discount: it assumes an independent takes $850,000 against three brands.
 
 **Concepts I did not model, and why.**
 
@@ -177,7 +177,47 @@ Bakeries sell for about 2.2–2.8 times the owner's earnings, with a median pric
 - **Against Miami now:** the pop-up misses its gates in a craze year. If rolls don't sell in 2027, they won't in 2029.
 - **For a bigger bet:** the residency clears $1,500 a morning for six weeks, which is the design at full strength.
 
-## 9. First calls, revised
+## 9. Why other bakeries keep opening
+
+*Added November 22, 2026, from [openings_profiles.md](../research_notes/Miami%20bakery%20openings%20and%20survival/openings_profiles.md), [closures_economics.md](../research_notes/Miami%20bakery%20openings%20and%20survival/closures_economics.md) and [model_results.md](../research_notes/Miami%20bakery%20openings%20and%20survival/model_results.md).*
+
+Sixteen bakeries have opened or announced in the five towns since 2017. About nine have an owner who bakes, five or six are chains or franchises, and four started with no premises. The research found no independent whose owner manages while hired bakers bake, which is this plan's structure. The nearest, Sundays Croissanterie, sells croissants made by a wholesaler, and earlier research has it closed ([The Infatuation](https://theinfatuation.com/miami/reviews/sundays-croissanterie)).
+
+| Bakery | Who bakes | How it is set up | Signs of health |
+|---|---|---|---|
+| Honey Veil, 5748 Sunset Dr | The family: two sisters, with their mother's sourdough | A market stall in October 2024, then a trailer selling matcha at the university, then a shop in December 2025 | Described as busy; two more points listed, unconfirmed |
+| Madruga, Coral Gables | The owner from 2017; by 2019 she managed more than she baked | One shop, open five days a week; no wholesale and no second shop, by choice | Open nine years |
+| Cécile, 5744 Sunset Dr | The owner, the French pastry chef who founded Atelier Monnier | A bakery-café with brunch | About 1,170 Google reviews averaging 4.6 |
+| Casa Bake, Ophelia, Façade | Their chef and baker owners | A warehouse unit; an RV supplied from a commissary three mornings a week; a café with a chef's menu | Ophelia and Façade have announced second sites |
+| Maman, Miracle Mile and 5801 Sunset Dr | Hired bakers in a regional kitchen | A private-equity-backed chain of more than 50 company-owned cafés; 11 in South Florida in 22 months, on 10-year leases | Growing on investors' money |
+
+*Sources: Honey Veil ([Miami New Times](https://www.miaminewtimes.com/food-drink/miamis-hottest-matcha-pop-up-just-secured-a-permanent-shop-23884619/); [Time Out](https://www.timeout.com/miami/news/miamis-newest-matcha-obsession-was-born-in-a-family-group-chat-082225)); Madruga ([Coral Gables Magazine](https://coralgablesmagazine.com/naomi-harris-and-madruga-bakery/); [Edible South Florida](https://ediblesouthflorida.ediblecommunities.com/eat/waking-early-whole-grain-loaves)); Cécile ([SoMi Magazine](https://somimag.com/whats-new-in-town-8/); [Wanderlog](https://wanderlog.com/place/details/1331448/cecile-bakery--cafe)); Casa Bake, Ophelia and Façade ([Miami New Times](https://www.miaminewtimes.com/food-drink/miami-french-bakery-casa-bake-goes-viral-on-instagram-for-croissants-20510632/); [Miami New Times](https://www.miaminewtimes.com/food-drink/miami-is-going-nuts-over-new-rv-bakery-in-coconut-grove-23244219/); [CBS Miami](https://www.cbsnews.com/miami/news/facade-bakery-cafe-coral-gables-miami)); Maman ([CNBC via NBC Washington](https://www.nbcwashington.com/news/business/money-report/couple-spent-all-of-our-money-to-open-a-new-york-cafe-their-business-brought-in-nearly-50-million-last-year/3644071/); [Resident](https://resident.com/press-releases/2025/11/29/bonjour-brickell-bay-maman-opens-second-brickell-location-december-1); [World Coffee Portal](https://www.worldcoffeeportal.com/news/new-yorks-maman-secures-new-investment-to-accelerate-growth/)).*
+
+**What the owner's hands are worth.**
+
+| Roll kitchen at Dadeland Plaza | Left at the design | Expected, on my odds for the window |
+|---|---|---|
+| The plan: hired production lead and baker; you manage and sell | $129,152 | $69,783 |
+| You are the production lead, with 10 more hired hours a week at the order desk | $175,722 | $113,432 |
+| Two owners, one at the bench and one on orders and accounts | $211,789 | $147,237 |
+
+*Model output.* The production lead costs $57,142 a year with payroll taxes. In the pop-up the same change lifts Year 1 from $15,195 to $50,879 and Year 2 from $39,440 to $80,279.
+
+**What a café needs.**
+
+| Bakery-café (benchmarked) | Cash to open | Sales: low / middle / high | Left for the owners: low / middle / high | Break-even sales |
+|---|---|---|---|---|
+| Owner-run, 1,500 sq ft, two owners working and unpaid | $644,142 | $800,000 / $1,100,000 / $1,400,000 | −$6,094 / $141,983 / $290,060 | $812,347 |
+| The same café with a hired head baker and a hired manager | $680,701 | $800,000 / $1,100,000 / $1,400,000 | −$184,043 / −$57,756 / $68,532 | $1,237,201 |
+| 3,000 sq ft with a kitchen menu and a hired manager | $1,440,559 | $1,500,000 / $2,500,000 / $3,500,000 | −$245,339 / $223,212 / $691,762 | $2,023,613 |
+
+*Model output at usual café cost shares: food and packaging 29%, rent of $70–$75 a sq ft with $15 NNN. Maman's cafés average about $1.8 million by one estimate.* A café pays its owners only when they work in it or when it sells well over $2 million, and it costs more than your limit either way.
+
+**Are they doing poorly?** No Miami owner publishes sales or pay, so nobody outside knows. The signals split by structure. Owner-baker starts are expanding (Honey Veil, Ophelia, Façade, Caracas Bakery), and Madruga has lasted nine years without growing. What closed was big leases and single-product hype (Misha's, Chip City) and Bachour's two restaurant spin-offs. Long-running places close when the lease resets: one landlord says that when old leases expire, "landlords double the rent" ([CoStar](https://www.costar.com/article/123573420/five-years-after-pandemic-boom-miamis-restaurant-scene-may-have-bitten-off-more-than-it-can-chew)). A rough count from press coverage gives six or seven bakery and dessert openings against seven or eight closures in these towns in 2024–26; that is not a census.
+
+**What it means.** The idea is not dead. The version with a hired production lead is the thin one, and it is the one structure with no local survivor. The path that works here is this plan's Stage 1 with the founder baking: Honey Veil went from a stall to a shop in 14 months. Baking through the pop-up and the first year, then hiring the lead as Madruga's owner did, is worth about $47,000 a year while it lasts, and it keeps production, where Roll & Dough failed, in your hands.
+
+## 10. First calls, revised
 
 | Who | Ask |
 |---|---|
@@ -189,7 +229,7 @@ Bakeries sell for about 2.2–2.8 times the owner's earnings, with a median pric
 
 The plan's other first calls stand: the commissaries, the market operators, two schools, a used-equipment dealer.
 
-## 10. What this research could not see
+## 11. What this research could not see
 
 - No page was read; every fact is from search-result text, and listing snippets often mix figures from neighboring listings.
 - No Miami source measures sales by neighborhood, bookings for event carts, or what weight-loss drugs do to bakery buying here.
