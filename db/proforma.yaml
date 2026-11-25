@@ -9,7 +9,7 @@
 # come from the reports in reports/ (site scan, 2026-11-07; shortlist, 2026-11-08);
 # none has been confirmed with a broker.
 
-as_of: 2026-11-19
+as_of: 2026-11-25
 
 operating:
   days_per_year: 360            # default: open daily, closed five holidays; a format can set its own
@@ -409,6 +409,116 @@ labor:
           - {role: Driver, hours: 2.0, wage: 17.00, note: "12 hours a week: grocers' and office drops in the leased van"}
         fixed_costs_per_year: {vehicle: 12000, insurance: 8500}
 
+    # The burger-and-bakery hybrid (2026-11-25): a counter burger shop whose buns and cinnamon
+    # rolls are baked in the shop from the signature dough, with breakfast sandwiches in the
+    # morning. Report: reports/Miami burger bakery hybrid.md. Index 1.0 is about $1.0 million a
+    # year, the median of a better-burger franchise's counter shops (MOOYAH, $1.02 million in
+    # 2025); Miami burger counters offered for sale report $0.6–0.8 million.
+    burger_bakery:
+      label: "Burger and bakery: smashed burgers on buns baked in the shop, fries, breakfast sandwiches and the cinnamon roll; about 20 seats"
+      hours: "7:00 am to 9:00 pm, seven days; breakfast until 10:30"
+      days_per_year: 360
+      design_index: 1.0
+      items_per_order: 3.2
+      hero: cinnamon_roll
+      manager: false
+      owner_pay_target: 60000
+      financing: {loan_share_pct: 0}
+      production_scale: true
+      # The recipes cost out at 16% of sales. Burger chains report 29–32% for food and paper
+      # (Shake Shack 28.8% in Q2 2026; the restaurant association's limited-service median is
+      # 32.4%), on bigger patties than these. This format adds 9.5 points, not the bakery's 5.5,
+      # which puts its burger lines near 27% and the whole menu near 26%: fries discarded after
+      # seven minutes, remakes, refills, free condiments, meals for a bigger crew, beef-price drift.
+      cogs_buffer_pts: 9.5
+      # Hours are per average day. The owner works the floor; the crew is sized so that the
+      # shop runs without the owner on the griddle or the bench.
+      roles:
+        - {role: "Owner, manager", hours: 7, owner: true, note: "about 50 hours a week: the breakfast counter, the pass at the lunch rush, then ordering, the schedule and the books; not on the bench or the griddle"}
+        - {role: Baker, hours: 7.5, wage: 22.00, note: "5:00 am to 12:30 pm, seven days, shared by a lead baker and a second baker: the dough, two bun bakes, the rolls and the boxes"}
+        - {role: Grill cooks, hours: 20.75, wage: 18.00, note: "one from 6:30 am for breakfast, two on the line at the lunch and dinner peaks, one between and to close"}
+        - {role: Shift lead, hours: 7.2, wage: 19.00, note: "runs the counter and the pass from 4:00 pm to close, and the mornings on the owner's days off"}
+        - {role: Counter, hours: 5.5, wage: 15.50, note: "the register, drinks and the pickup shelf from 11:00 am, and a second pair of hands on weekend evenings; plus tips"}
+        - {role: Prep and dish, hours: 4, wage: 15.50, note: "10:00 am to 2:00 pm: beef portions, onions, sauce, bacon, pans"}
+      prices:
+        cinnamon_roll: 5.25
+        cinnamon_roll_4pack: 19.00
+        cinnamon_roll_6box: 27.00
+        cinnamon_roll_12box: 50.00
+        mini_roll_tray_24: 38.00
+        iced_coffee: 4.75
+        drip_coffee: 3.75
+        lemonade_kids: 3.75
+        coffee_traveler: 42.00
+      channels:
+        - id: counter
+          name: "Lunch and dinner at the counter, eaten in or carried out"
+          days_per_year: 360
+          scales_with_site: true
+          note: "About 100 burgers a day, fries with two in three, and a roll with about one order in four"
+          menu:
+            burger_classic: 60
+            burger_single: 40
+            fries: 65
+            fountain_soda: 52
+            lemonade_kids: 8
+            iced_coffee: 4
+            cinnamon_roll: 14
+            cinnamon_roll_4pack: 3
+            cinnamon_roll_6box: 1
+            add_bacon: 10
+            add_patty: 4
+        - id: breakfast
+          name: "Breakfast, 7:00 to 10:30 am"
+          days_per_year: 360
+          scales_with_site: true
+          items_per_order: 2.2
+          note: "About 30 egg sandwiches a morning on the house roll, with coffee and warm rolls"
+          menu:
+            breakfast_sandwich: 10
+            breakfast_sandwich_bacon: 14
+            breakfast_sandwich_fennel_sausage: 6
+            drip_coffee: 16
+            iced_coffee: 9
+            cinnamon_roll: 10
+            cinnamon_roll_4pack: 1
+            fountain_soda: 2
+        - id: apps
+          name: "Delivery apps"
+          days_per_year: 360
+          scales_with_site: true
+          items_per_order: 2.6
+          price_index: 1.2      # app menu prices 20% over the counter's; Miami burger shops run about 30% over
+          cost_pct_of_sales: 27 # commission of 25–30%
+          note: "About 20 orders a day: 18% of sales, under the 20–30% that quick-service chains report"
+          menu:
+            burger_classic: 18
+            burger_single: 8
+            fries: 17
+            fountain_soda: 4
+            cinnamon_roll: 4
+            cinnamon_roll_4pack: 1
+            add_bacon: 3
+            add_patty: 1
+        - id: orders
+          name: "Pre-ordered boxes and trays of rolls"
+          days_per_year: 250
+          scales_with_site: false
+          items_per_order: 1.5
+          cost_pct_of_sales: 3  # courier drops beyond the delivery fee charged
+          note: "About two or three orders a weekday: dozens, half-dozens and trays of minis for offices and parties"
+          menu:
+            cinnamon_roll_12box: 1.0
+            cinnamon_roll_6box: 1.2
+            mini_roll_tray_24: 1.0
+            coffee_traveler: 0.3
+      variable_costs_pct_of_sales: {marketing: 2.5, delivery_net: 0, repairs_maintenance: 2.0}
+      # hood_grease_service: quarterly hood cleaning and grease-trap pump-outs. kitchen_gas_power:
+      # the griddle, fryers, exhaust and ovens draw more than the per-sq-ft utilities allowance.
+      fixed_costs_per_year: {insurance: 11000, software_pos: 6500, accounting_payroll_legal: 9000, licenses_music: 3000, waste_pest: 7200, linens_uniforms: 3000, hood_grease_service: 4800, kitchen_gas_power: 9000}
+      startup: {launch_marketing: 15000}
+      startup_fees: {"Licences, grease permit and inspections": 4000}
+
 # What each format needs, zone by zone. Seats at about 15 sq ft each.
 space_program:
   cafe:
@@ -437,6 +547,15 @@ space_program:
     - {zone: "Walk-up window, coffee bar and pickup shelves", sqft: 110}
     - {zone: "Restroom and office nook", sqft: 70}
     - {zone: "Market kit and delivery staging by the back door", sqft: 50}
+  burger_bakery:
+    - {zone: "Hot line under the grease hood: griddle, two fryers, dressing table and pass", sqft: 180}
+    - {zone: "Bakery in view of the counter: mixer, bench, sheeter, double-stack oven, proofer, racks", sqft: 260}
+    - {zone: "Cold, freezer and dry storage", sqft: 170}
+    - {zone: "Dish and sanitation: 3-bay sink, dishwasher, mop sink", sqft: 80}
+    - {zone: "Order counter, roll case, drinks and the delivery pickup shelf", sqft: 150}
+    - {zone: "Seating, 20 seats", sqft: 300}
+    - {zone: "Restroom and office nook", sqft: 110}
+    - {zone: "Entry, queue and circulation", sqft: 150}
 
 # Equipment by format: estimates at new dealer prices before delivery and install.
 # Research anchors: double rack oven $55.6–57.0K, mixer $3–15K, proofing $5–10K,
@@ -504,6 +623,27 @@ equipment:
     - {item: "Market kit: two tents, tables, display cases, coolers, banners", cost: 8000}
     - {item: "Insulated carriers", cost: 2000}
     - {item: "Delivery, electrical hook-ups and installation of the used equipment", cost: 8000}
+  # The burger bakery buys its bakery equipment used, as the roll kitchen does, and its line new.
+  # A site's equipment_credit stands for what its kitchen already has. Griddles of 36 in list at
+  # $2,400–10,900 (2026); the fryer and refrigeration figures are estimates.
+  burger_bakery:
+    - {item: "48 in gas griddle, thermostatic, on a refrigerated base", cost: 11000}
+    - {item: "Two 50 lb gas fryers with a filter, and a fry dump station", cost: 9000}
+    - {item: "Refrigerated dressing table and a pass with heat lamps", cost: 6000}
+    - {item: "Double-stack convection oven, electric, used and serviced", cost: 7500}
+    - {item: "40-qt planetary mixer, used", cost: 6500}
+    - {item: "Reversible dough sheeter, used", cost: 3000}
+    - {item: "Proofer-retarder cabinet, used", cost: 5500}
+    - {item: "Two reach-in refrigerators and two reach-in freezers, new", cost: 13000}
+    - {item: "Ice machine, about 500 lb a day", cost: 4500}
+    - {item: "Batch brewer, cold brew system, water filtration", cost: 5000}
+    - {item: "Order counter, roll case and pickup shelves", cost: 8000}
+    - {item: "Sinks, stainless tables, shelving, used", cost: 5000}
+    - {item: "Undercounter dishwasher, new", cost: 6500}
+    - {item: "Speed racks, sheet pans, roll pans, smash presses, smallwares", cost: 8000}
+    - {item: "Induction burner and pot for glaze, scales, food processor", cost: 2000}
+    - {item: "Point-of-sale hardware: two stations, a kitchen screen, an online-order printer", cost: 5000}
+    - {item: "Delivery, gas and electrical hook-ups, hood and fire-suppression re-certification", cost: 12000}
 
 startup:
   soft_costs_pct_of_buildout: 15   # design, engineering, permits, legal (research: soft costs run 30–40% of a full restaurant build; less on a second-generation space). A site can override it with soft_costs_pct.
@@ -768,6 +908,78 @@ sites:
     rent_basis: "$3,257 a month ($39,084 a year) in the sale listing; the lease ends in September 2027, with renewal options. Size not published: 1,100 sq ft assumed"
     risks: "The $199,000 asked buys a going business (claimed sales $165,000 and cash flow $65,000) that the bakery would close; ten months are left on the lease before its options; address and size unknown"
     source: "BusinessesForSale listing and MLS A11871490 (snippets, 2026): research_notes/Miami bakery business plan/sites_spokes.md"
+  # Burger-and-bakery sites: small restaurants with a grease hood, sold as a business. Every
+  # figure is a seller's or broker's claim from search-result text (2026-11-25):
+  # research_notes/Miami burger bakery hybrid/sites_rules.md. Two more were modeled and removed:
+  # the Kendall Drive café (left $50,451, under the owner's $60,000 target, on the same road as Lala's Burgers)
+  # and the Coral Way cafeteria ($525,835 to open, over the cash limit, on a lease that ends in
+  # September 2027). Their runs are in research_notes/Miami burger bakery hybrid/model_results.md.
+  - id: sm_dadeland_restaurant
+    name: "Restaurant for sale near Downtown Dadeland, South Miami"
+    short: "South Miami: Dadeland"
+    area: "Listed as South Miami, near Downtown Dadeland; the broker withholds the address"
+    market: miami
+    format: burger_bakery
+    sqft: 1230
+    seats: 12
+    rent_psf: 53.39               # $5,472.52 a month, all-inclusive
+    nnn_psf: 0
+    escalation_pct: 3
+    buildout_psf: 50              # a working kitchen: the bakery corner, oven power, a new counter, hood changes for a griddle and fryers
+    equipment_credit: 35000
+    equipment_credit_note: "an assumed $35,000 for the restaurant's refrigeration, sinks, tables and cooking line, until the equipment list is seen"
+    purchase_price: 199000
+    months_to_open: 3
+    sales_index: 0.95
+    space_note: "About 170 sq ft under the program, so about 12 seats"
+    kitchen: "Turnkey restaurant of 1,230 sq ft with a 15 ft hood; the broker offers owner financing"
+    rent_basis: "$5,472.52 a month \"all-inclusive\" in the sale listing ($65,670 a year, about $53 a sq ft); lease term not stated"
+    risks: "Address, lease term, seats and equipment unknown; $199,000 is the highest price among the small kitchens; the hood's type and fire-suppression tag need checking; Skinny Louie's smash burgers opened at 6022 S Dixie Hwy in February 2026"
+    source: "BusinessBroker.net listing through We Sell Restaurants (snippet, November 2026): research_notes/Miami burger bakery hybrid/sites_rules.md"
+  - id: pinecrest_124th_pizzeria
+    name: "Pizzeria for sale, 8237 SW 124th St, Pinecrest"
+    short: "Pinecrest: SW 124th St"
+    area: "SW 124th St just off US-1 in Pinecrest, by the Suniland shops"
+    market: miami
+    format: burger_bakery
+    sqft: 1200                    # not published; assumed
+    seats: 12
+    rent_psf: 36.00               # $3,600 a month over the assumed 1,200 sq ft
+    nnn_psf: 0
+    escalation_pct: 3
+    buildout_psf: 70              # a pizzeria: the hood may not be rated for a griddle and fryers
+    equipment_credit: 25000
+    equipment_credit_note: "an assumed $25,000 for the pizzeria's refrigeration, mixer, sinks and tables"
+    purchase_price: 130000
+    months_to_open: 4
+    sales_index: 0.85
+    space_note: "About 200 sq ft under the program if it is 1,200 sq ft, so about 12 seats"
+    kitchen: "Operating pizzeria, \"fully upgraded with brand-new equipment\", licences in place; the sale includes the company (MLS A12050150)"
+    rent_basis: "$3,600 a month in the sale listing ($43,200 a year); whether taxes and common charges are extra isn't stated. Size not published: 1,200 sq ft assumed"
+    risks: "The price has fallen from $180,000 in July 2026 to $130,000, and the seller claims sales of only $25,000–30,000 a month, a third of what the burger shop needs; a side street, not US-1 frontage; a pizza hood may need replacing for a griddle and fryers; size, lease term and extra charges unknown"
+    source: "MLS A12050150 on broker sites (snippets, August 2026): research_notes/Miami burger bakery hybrid/sites_rules.md"
+  - id: palmetto_bay_us1_burger
+    name: "Restaurant for sale on US-1, Palmetto Bay"
+    short: "Palmetto Bay: US-1, burger shop"
+    area: "US-1 in Palmetto Bay, the village just south of Pinecrest; the broker withholds the address"
+    market: miami
+    format: burger_bakery
+    sqft: 2000                    # not stated; a possibly matching listing gives 2,000 sq ft
+    seats: 32
+    rent_psf: 21.72               # $3,620 a month over the assumed 2,000 sq ft
+    nnn_psf: 0
+    escalation_pct: 3
+    buildout_psf: 40              # a working restaurant: the bakery corner, oven power, a counter in place of table service
+    equipment_credit: 50000
+    equipment_credit_note: "an assumed $50,000 for the restaurant's hoods and line, cooler, sinks, tables and its 32 seats of furniture"
+    purchase_price: 149000
+    months_to_open: 3
+    sales_index: 0.9
+    space_note: "About 600 sq ft over the program if it is 2,000 sq ft: 32 seats and room for the bakery in view"
+    kitchen: "Operating full-service restaurant, opened 2022, with hoods, a cooler and a grease trap; 32 seats, expandable to 45"
+    rent_basis: "$3,620 a month \"with water included\" in the sale listing ($43,440 a year); whether that covers taxes and common charges isn't stated. Size not stated: 2,000 sq ft assumed from a possibly matching listing"
+    risks: "Address, size, lease term and extra charges unconfirmed; the county may charge a road impact fee if a sit-down restaurant becomes a counter one; Babe's Meat & Counter, a destination burger, trades in Palmetto Bay; no research rated the location, so the 0.9 index is a judgment"
+    source: "Tower Business Brokers listing (snippet; capture date unknown): research_notes/Miami burger bakery hybrid/sites_rules.md"
   # Bakery-café sites: the bigger shop, kept for comparison.
   - id: cambridge
     name: "1105 Massachusetts Ave, Cambridge"

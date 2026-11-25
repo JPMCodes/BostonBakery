@@ -1,0 +1,40 @@
+id: fountain_soda
+name: Fountain Soda (16 oz)
+category: drink
+status: draft
+version: "1.0"
+approved_on: null
+description: "Fountain soda over ice, 16 oz."
+waste_pct: 15
+
+build:
+  - {item: soda_syrup, qty: 70, unit: g, note: "about 1 3/4 fl oz of syrup: 11 fl oz of soda at 5 to 1"}
+  - {item: water_filtered, qty: 255, unit: g, note: "carbonated at the dispenser"}
+  - {item: ice, qty: 150, unit: g}
+  - {item: cup_cold_16oz, qty: 1, unit: each}
+  - {item: lid_cold_sip, qty: 1, unit: each}
+
+production:
+  build:
+    - "Hand over the cup; the customer fills it."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 2.95
+  rationale: "Miami burger shop price. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Sign a syrup contract and confirm the dispenser comes with it. The 15% waste allowance stands for refills and foam."
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop at a suggested $2.95."
+
+par_daily: 0
+labor:
+  unit_min: 0.15
+  note: "Hand over the cup; a share of changing syrup boxes."

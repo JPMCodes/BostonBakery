@@ -1,0 +1,36 @@
+id: add_bacon
+name: Bacon (add to a burger)
+category: add-on
+status: draft
+version: "1.0"
+approved_on: null
+description: "Add-on for either burger: two slices of applewood bacon."
+batch_units: 1
+waste_pct: 3
+
+build:
+  - {item: bacon_sliced, qty: 2, unit: each, note: "two slices, about 44 g raw"}
+
+production:
+  build:
+    - "Re-crisp two slices of the morning's bacon on the griddle and lay them on the patties."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 2.25
+  rationale: "Miami burger shop price. See db/pricing.md."
+
+validation:
+  tested: []
+  pending: []
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop at a suggested $2.25."
+
+par_daily: 0
+labor:
+  unit_min: 0.3
+  note: "Re-crisp and place; a share of baking the bacon."

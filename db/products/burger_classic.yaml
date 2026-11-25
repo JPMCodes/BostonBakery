@@ -1,0 +1,59 @@
+id: burger_classic
+name: Classic Double Cheeseburger
+category: sandwich
+status: draft
+version: "1.0"
+approved_on: null
+description: "Two 3 oz smashed patties of fresh ground chuck, two slices of American cheese, dill pickles, shaved onion and house sauce, on a bun baked that day from the signature milk dough."
+batch_units: 1
+waste_pct: 3
+
+build:
+  - {item: burger_bun, qty: 1, unit: each}
+  - {item: beef_ground_80_20, qty: 170, unit: g, note: "two 85 g (3 oz) balls, smashed thin on the griddle"}
+  - {item: cheese_american_sliced, qty: 2, unit: each}
+  - {item: pickle_dill_chips, qty: 20, unit: g, note: "4 chips"}
+  - {item: onion_yellow, qty: 15, unit: g, note: "shaved paper-thin, raw"}
+  - {item: sauce_burger, qty: 20, unit: g}
+  - {item: butter_unsalted, qty: 4, unit: g, note: "to toast the cut sides of the bun"}
+  - {item: salt_fine, qty: 1, unit: g}
+  - {item: wrap_foil_insulated, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each, note: "one bag an order, costed on the burger"}
+  - {item: napkin_kraft, qty: 2, unit: each}
+
+production:
+  prep:
+    - "Portion the beef into 85 g balls, loosely packed, and hold them refrigerated on parchment-lined trays. Shave the onion. Slice the buns from the day's bake."
+  build:
+    - "Griddle at 425–450°F. Butter and toast the cut sides of the bun at the cooler end."
+    - "Set two balls on the hot griddle, smash each flat within 10 seconds to about 4 1/2 in, and salt. Cook about 90 seconds, until the edges are lacy and brown."
+    - "Scrape, flip, lay a slice of cheese on each patty and cook 45 seconds more. Stack the patties."
+    - "Sauce both halves of the bun. Stack: bottom bun, pickles, the patties, onion, top bun."
+  packaging: "To go: wrap in insulated foil and bag with napkins. For here: serve it in the wrap on a tray."
+
+qa:
+  - "Patties at 155°F or above."
+  - "No bun older than the day's bake."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 11.50
+  rationale: "Miami burger shop price. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Test the bun under a burger: does the milk dough hold two patties and the sauce for ten minutes in the wrap without going soft?"
+    - "Choose the beef supplier and grind, and check two 3 oz patties against the 4 1/4 in bun."
+    - "Taste the sauce and set its amount."
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop at a suggested $11.50."
+
+par_daily: 0
+labor:
+  unit_min: 2.2
+  note: "Portion the beef, smash, flip, cheese, toast, dress and wrap."

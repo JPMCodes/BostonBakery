@@ -269,6 +269,7 @@ PAGE = r"""<title>BostonBakery Formula Book</title>
   --header-rule: #8a3443;
   --pastry: #8a4b1f;
   --sandwich: #b0452b;
+  --side: #a03a6a;
   --salad: #2c6e73;
   --soup: #7d6400;
   --catering: #5d4a8a;
@@ -337,6 +338,7 @@ main { padding-block: 18px 40px; display: flex; flex-direction: column; gap: 22p
 .chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .03em; border: 1px solid var(--rule); color: var(--ink-2); background: var(--surface); text-transform: lowercase; }
 .cat-pastry { color: var(--pastry); border-color: currentColor; }
 .cat-sandwich { color: var(--sandwich); border-color: currentColor; }
+.cat-side { color: var(--side); border-color: currentColor; }
 .cat-salad { color: var(--salad); border-color: currentColor; }
 .cat-soup { color: var(--soup); border-color: currentColor; }
 .cat-add-on { color: var(--add-on); border-color: currentColor; }
@@ -479,7 +481,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
     { id: "labor", label: "Labor", count: Math.round(DATA.products.reduce((s, p) => s + p.laborHoursDay, 0)) + " h/day" },
     { id: "proforma", label: "Pro forma", count: DATA.proforma.sites.length + (DATA.proforma.sites.length === 1 ? " site" : " sites") }
   ];
-  const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["salad", "Salads"], ["soup", "Soups"], ["add-on", "Add-ons"], ["drink", "Drinks"], ["catering", "Pre-order & catering"]];
+  const CATS = [["pastry", "Pastry"], ["sandwich", "Sandwiches"], ["side", "Sides"], ["salad", "Salads"], ["soup", "Soups"], ["add-on", "Add-ons"], ["drink", "Drinks"], ["catering", "Pre-order & catering"]];
   const STATUS = { approved: "Approved", pending_test: "Pending test", draft: "Draft", retired: "Retired" };
   const PF = DATA.proforma;
   const state = { view: "products", channel: "distributor_est", query: "", open: new Set(), cat: "all", lcat: "all",
@@ -790,10 +792,10 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       const space = PF.space[k].reduce((a, z) => a + z.sqft, 0), equip = PF.equipment[k].reduce((a, e) => a + e.cost, 0);
       return `<tr><td>${esc(fmtName(k))}<span class="note">${esc(i < 0 ? "" : label.slice(i + 1).trim() + ". ")}${fmtManaged(k) ? "Hired manager" : "Owner-run"}; ${loanShare(k) ? loanShare(k) + "% loan" : "paid for in cash"}; ${esc(fmtHours(k))}</span></td>
         <td class="n">${dollars(m.sales)}</td><td class="n">${whole(m.orders)}</td><td class="n hide-sm">$${m.ticket.toFixed(2)}</td>
-        <td class="n hide-sm">${(m.goods_pct + op.cogs_buffer_pts).toFixed(0)}%</td><td class="n hide-sm">${+c.hours.toFixed(1)}</td>
+        <td class="n hide-sm">${(m.goods_pct + (fmtCfg(k).cogs_buffer_pts ?? op.cogs_buffer_pts)).toFixed(0)}%</td><td class="n hide-sm">${+c.hours.toFixed(1)}</td>
         <td class="n">${space ? space.toLocaleString("en-US") : "shared kitchen"}</td><td class="n hide-sm">${kd(equip)}</td></tr>`;
     }).join("");
-    const top = `<div class="summary"><span>Each format has a design day: its products' daily volumes times their prices. A site's sales index scales that day to the site, and the scenario scales it again. Food cost is the menu's at distributor prices plus ${op.cogs_buffer_pts} points. Estimates as of ${esc(PF.asOf)}; no site has been confirmed with a broker.</span></div>
+    const top = `<div class="summary"><span>Each format has a design day: its products' daily volumes times their prices. A site's sales index scales that day to the site, and the scenario scales it again. Food cost is the menu's at distributor prices plus ${op.cogs_buffer_pts} points${FORMATS.filter((k) => fmtCfg(k).cogs_buffer_pts != null).map((k) => ` (${fmtName(k).toLowerCase()}: ${fmtCfg(k).cogs_buffer_pts})`).join("")}. Estimates as of ${esc(PF.asOf)}; no site has been confirmed with a broker.</span></div>
       <section class="group pf"><div class="group-head"><h2>Formats</h2></div>
       <div class="tbl-wrap"><table><thead><tr><th>Format</th><th class="n">Sales on a design day</th><th class="n">Orders</th><th class="n hide-sm">Average order</th><th class="n hide-sm">Food and packaging</th><th class="n hide-sm">Paid crew hours a day</th><th class="n">Space, sq ft</th><th class="n hide-sm">Equipment</th></tr></thead><tbody>${fmtRows}</tbody></table></div>
       <p class="muted small">Order counts divide the items sold by an assumed items per order, so treat them as rough. An owner-run format's costs include no pay for the owner: what's left after loan payments is the owner's pay.</p></section>`;
@@ -918,7 +920,7 @@ footer { padding-block: 0 32px; color: var(--ink-2); font-size: 13px; }
       `Open: ${FORMATS.map((k) => `${lower(k)} ${fmtDays(k)} days a year, ${fmtHours(k)}`).join("; ")}.`,
       `Year 1 ramps month by month from ${ramp[0]}% to ${ramp[ramp.length - 1]}% of steady sales, ${Math.round(rampAvg)}% on average. Year 3 adds ${op.price_growth_pct}% in menu prices.`,
       `Wages, NNN charges and fixed costs rise ${op.cost_inflation_pct}% a year; base rent rises at each site's escalation.`,
-      `Food and packaging: each menu's cost at distributor prices (${FORMATS.map((k) => `${lower(k)} ${PF.menus[k].goods_pct.toFixed(1)}%`).join(", ")} of sales) plus ${op.cogs_buffer_pts} points for waste beyond the recipes' allowances, comps, staff meals and price drift.`,
+      `Food and packaging: each menu's cost at distributor prices (${FORMATS.map((k) => `${lower(k)} ${PF.menus[k].goods_pct.toFixed(1)}%`).join(", ")} of sales) plus ${op.cogs_buffer_pts} points for waste beyond the recipes' allowances, comps, staff meals and price drift.${FORMATS.filter((k) => fmtCfg(k).cogs_buffer_pts != null).map((k) => ` The ${lower(k)} adds ${fmtCfg(k).cogs_buffer_pts} points instead.`).join("")}`,
       `Crew: scheduled by format, ${Math.round(lab.fixed_share * 100)}% of paid hours fixed and the rest flexing with sales; ${lab.burden_pct}% payroll taxes and workers' comp. ${FORMATS.map((k) => fmtManaged(k) ? `The ${lower(k)} has a ${lab.manager.title.toLowerCase()} at ${dollars(lab.manager.salary)}` : `the ${lower(k)} is owner-run, with no owner pay in its costs and a target of ${dollars(fmtCfg(k).owner_pay_target)}`).join("; ")}.`,
       `Variable costs, ${varTotal.toFixed(1)}% of sales: ${Object.entries(PF.variable).map(([k, v]) => `${costWord(k)} ${v}%`).join(", ")}.${FORMATS.filter((k) => fmtCfg(k).variable_costs_pct_of_sales).map((k) => ` The ${lower(k)} sets its own: ${Object.entries(fmtCfg(k).variable_costs_pct_of_sales).map(([key, v]) => `${costWord(key)} ${v}%`).join(", ")}.`).join("")}`,
       ...FORMATS.filter((k) => (fmtCfg(k).channels || []).length).map((k) => `${fmtName(k)} channels: ${PF.menus[k].channels.map((x) => `${x.name.toLowerCase()} ${whole(x.days)} days at ${dollars(x.day_sales)}${x.cost_pct ? `, ${Math.round(x.cost_pct)}% paid away` : ""}${x.fee_per_day ? `, ${dollars(x.fee_per_day)} a day in fees` : ""}`).join("; ")}. A site's sales index moves only the window and delivery apps.`),

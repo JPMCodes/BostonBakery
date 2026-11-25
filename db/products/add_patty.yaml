@@ -1,0 +1,37 @@
+id: add_patty
+name: Extra Patty with Cheese (add to a burger)
+category: add-on
+status: draft
+version: "1.0"
+approved_on: null
+description: "Add-on for either burger: one more 3 oz smashed patty with a slice of American cheese."
+batch_units: 1
+waste_pct: 3
+
+build:
+  - {item: beef_ground_80_20, qty: 85, unit: g}
+  - {item: cheese_american_sliced, qty: 1, unit: each}
+
+production:
+  build:
+    - "Smash and cook with the burger's own patties."
+
+allergens_declared: [milk]
+
+pricing:
+  suggested_retail_usd: 3.50
+  rationale: "Miami burger shop price. See db/pricing.md."
+
+validation:
+  tested: []
+  pending: []
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop at a suggested $3.50."
+
+par_daily: 0
+labor:
+  unit_min: 0.5
+  note: "One more ball on the griddle."

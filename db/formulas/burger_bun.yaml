@@ -1,0 +1,38 @@
+id: burger_bun
+name: Burger Bun
+kind: roll
+status: pending_test
+version: "1.0"
+approved_on: null
+used_by: [burger_classic, burger_single]
+yield:
+  units: 1
+  grams: 81
+  description: "1 bun: 90 g dough bakes to about 81 g, about 4 1/4 in across"
+
+ingredients:
+  - {item: dough_signature, qty: 90, unit: g}
+
+method:
+  - "Shape tight balls from 90 g pieces of chilled dough, as for the sandwich roll. Set them seam side down, 6 per parchment-lined half-sheet or 15 per full sheet."
+  - "Rest 10 minutes, then press each ball flat with a palm to about 3 1/2 in across, so it proofs and bakes wide instead of tall."
+  - "Proof 45–75 minutes, until about doubled and a gentle poke springs back slowly."
+  - "Brush with egg wash: the white saved from the dough's yolk plus 1 tablespoon water."
+  - "Bake at 350°F on a light aluminum sheet for 16–20 minutes, to 190°F inside, tops deep golden."
+  - "Cool fully before slicing. Toast the cut sides on the buttered griddle to order."
+
+notes:
+  - "This is the approved sandwich roll pressed flat: one dough batch makes 12 buns."
+  - "Egg wash uses a by-product white, so it is not costed."
+  - "Bake twice a day, before lunch and before dinner, so no bun is more than about six hours old."
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop. The dough and the round roll are approved; the pressed shape hasn't been baked or tested under a burger."
+
+labor:
+  batch_min: 0.55
+  production_batches: 1
+  at_scale: {batch_min: 0.3, production_batches: 1, note: "Per bun, from a 40-qt batch: divide, round, press, pan 15 to a full sheet, egg wash, bake handling. To confirm on the first production runs."}
+  note: "Per bun: shape, press, pan, egg wash, bake handling."

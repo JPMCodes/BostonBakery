@@ -1,0 +1,51 @@
+id: breakfast_sandwich_bacon
+name: Bacon, Egg & Cheddar Breakfast Sandwich
+category: sandwich
+status: draft
+version: "1.0"
+approved_on: null
+description: "The breakfast sandwich plus two slices of applewood bacon: bacon, fried egg, sliced cheddar and harissa sauce on the house sandwich roll."
+batch_units: 12
+waste_pct: 3
+
+build:
+  - {item: sandwich_roll, qty: 1, unit: each}
+  - {item: bacon_sliced, qty: 2, unit: each, note: "two slices, about 44 g raw, cooked crisp"}
+  - {item: butter_unsalted, qty: 5, unit: g, note: "for toasting the roll and frying the egg"}
+  - {item: egg_large, qty: 1, unit: each}
+  - {item: cheese_cheddar_sliced, qty: 21, unit: g, note: "1 slice, 3/4 oz"}
+  - {item: harissa_sauce, qty: 15, unit: g, note: "1 tablespoon"}
+  - {item: wrap_foil_insulated, qty: 1, unit: each, note: "to go; for here, plate it"}
+  - {item: label_sandwich, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  prep:
+    - "Bake the bacon on parchment-lined sheet pans at 375°F for 15–18 minutes, until crisp. Hold it warm; re-crisp on the griddle to order."
+  build:
+    - "Split the roll and toast the cut sides in the butter."
+    - "Fry the egg. Lay the cheddar on the egg and cover for about 30 seconds to melt."
+    - "Spread the harissa on the top half. Stack: bottom roll, bacon, egg and cheese, top roll."
+  packaging: "To go: wrap in insulated foil, seal with the sandwich label, and bag with a napkin. For here: serve it on a plate."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 9.75
+  rationale: "Miami burger shop price. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Test-build it, and try it with American cheese and ketchup in place of cheddar and harissa for the customer who wants a plain bacon, egg and cheese."
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop at a suggested $9.75."
+
+par_daily: 0
+labor:
+  unit_min: 3.3
+  note: "As the breakfast sandwich, plus panning and re-crisping the bacon."

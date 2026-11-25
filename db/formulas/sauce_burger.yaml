@@ -1,0 +1,31 @@
+id: sauce_burger
+name: Burger Sauce
+kind: sauce
+status: draft
+version: "1.0"
+approved_on: null
+used_by: [burger_classic, burger_single]
+yield:
+  grams: 1280
+  description: "64 double burgers at 20 g"
+
+ingredients:
+  - {item: mayonnaise, qty: 800, unit: g}
+  - {item: ketchup, qty: 240, unit: g}
+  - {item: mustard_yellow, qty: 80, unit: g}
+  - {item: pickle_dill_chips, qty: 160, unit: g, note: "minced fine"}
+  - {item: black_pepper, qty: 2, unit: g}
+
+method:
+  - "Mince the pickles fine. Whisk everything together."
+  - "Refrigerate covered and dated in squeeze bottles; use within 5 days."
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the burgers."
+
+labor:
+  batch_min: 10
+  production_batches: 1
+  note: "Mince, whisk, bottle and date."

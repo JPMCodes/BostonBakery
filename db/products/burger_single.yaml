@@ -1,0 +1,51 @@
+id: burger_single
+name: Single Cheeseburger
+category: sandwich
+status: draft
+version: "1.0"
+approved_on: null
+description: "One 3 oz smashed patty of fresh ground chuck with American cheese, dill pickles, shaved onion and house sauce, on the house bun."
+batch_units: 1
+waste_pct: 3
+
+build:
+  - {item: burger_bun, qty: 1, unit: each}
+  - {item: beef_ground_80_20, qty: 85, unit: g, note: "one 3 oz ball, smashed thin on the griddle"}
+  - {item: cheese_american_sliced, qty: 1, unit: each}
+  - {item: pickle_dill_chips, qty: 15, unit: g, note: "3 chips"}
+  - {item: onion_yellow, qty: 10, unit: g, note: "shaved paper-thin, raw"}
+  - {item: sauce_burger, qty: 15, unit: g}
+  - {item: butter_unsalted, qty: 4, unit: g, note: "to toast the cut sides of the bun"}
+  - {item: salt_fine, qty: 0.5, unit: g}
+  - {item: wrap_foil_insulated, qty: 1, unit: each}
+  - {item: bag_kraft_6lb, qty: 1, unit: each, note: "one bag an order, costed on the burger"}
+  - {item: napkin_kraft, qty: 1, unit: each}
+
+production:
+  build:
+    - "As the Classic Double, with one patty and one slice of cheese."
+  packaging: "To go: wrap in insulated foil and bag with a napkin. For here: serve it in the wrap on a tray."
+
+qa:
+  - "Patty at 155°F or above."
+
+allergens_declared: [egg, milk, wheat]
+
+pricing:
+  suggested_retail_usd: 7.95
+  rationale: "Miami burger shop price. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Check one 3 oz patty against the 81 g bun: if the bun is too much bread, bake a 70 g bun for the single."
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop at a suggested $7.95."
+
+par_daily: 0
+labor:
+  unit_min: 1.8
+  note: "As the double, with one patty."

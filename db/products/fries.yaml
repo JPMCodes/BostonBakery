@@ -1,0 +1,44 @@
+id: fries
+name: Fries
+category: side
+status: draft
+version: "1.0"
+approved_on: null
+description: "Skin-on 3/8 in fries, fried to order and salted; about 5 oz cooked, with ketchup."
+batch_units: 1
+waste_pct: 8
+
+build:
+  - {item: fries_frozen, qty: 200, unit: g, note: "7 oz frozen; about 140 g (5 oz) cooked"}
+  - {item: oil_high_oleic_sunflower, qty: 18, unit: g, note: "the oil the fries take up plus each portion's share of the oil changes"}
+  - {item: salt_fine, qty: 1.5, unit: g}
+  - {item: ketchup, qty: 30, unit: g}
+  - {item: bag_fry, qty: 1, unit: each}
+
+production:
+  build:
+    - "Fry from frozen at 350°F for about 3 minutes, until golden and crisp. Shake, salt at once and bag."
+  hold: "Sell within 7 minutes of the fryer; discard what's left. The 8% waste allowance covers it."
+  oil: "Filter the oil every night. Change it when it darkens or smokes, about every 5–7 days."
+
+allergens_declared: []
+
+pricing:
+  suggested_retail_usd: 4.75
+  rationale: "Miami burger shop price. See db/pricing.md."
+
+validation:
+  tested: []
+  pending:
+    - "Choose the fry: taste frozen skin-on fries against fresh-cut, and time the extra labor of cutting, soaking and blanching."
+    - "Confirm the chosen fries are uncoated and the fryer oil is used for potatoes only."
+
+history:
+  - date: 2026-11-25
+    version: "1.0"
+    change: "Drafted for the Miami burger-and-bakery shop at a suggested $4.75."
+
+par_daily: 0
+labor:
+  unit_min: 0.7
+  note: "Drop, shake, salt and bag; a share of filtering the oil."

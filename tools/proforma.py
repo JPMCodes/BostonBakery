@@ -89,6 +89,8 @@ def validate(cfg: dict) -> list[str]:
             errors.append(f"{where}: fixed_share must be between 0 and 1")
         if not is_number(f.get("items_per_order", 2.0), 0.1):
             errors.append(f"{where}: items_per_order must be a positive number")
+        if "cogs_buffer_pts" in f and not is_number(f["cogs_buffer_pts"]):
+            errors.append(f"{where}: cogs_buffer_pts must be a number of 0 or more")
     markets = cfg.get("markets") or {}
     for mid, m in markets.items():
         where = f"proforma.yaml: market {mid}"
@@ -291,7 +293,7 @@ def model(cfg: dict, menu: dict, site: dict, scenario: dict) -> dict:
     # channels that depend on the location (format_menu's eff_index).
     level = float(menu.get("eff_index", site["sales_index"])) * float(scenario["sales_factor"])
     steady = menu["sales"] * price * level * days
-    goods_pct = menu["goods_pct"] / price + float(op["cogs_buffer_pts"])
+    goods_pct = menu["goods_pct"] / price + float(fmt_cfg.get("cogs_buffer_pts", op["cogs_buffer_pts"]))
     var_costs = {**cfg["variable_costs_pct_of_sales"], **(fmt_cfg.get("variable_costs_pct_of_sales") or {})}
     var_pct = sum(float(v) for v in var_costs.values())
     channel_pct = float(menu.get("channel_cost_pct", 0))    # commissions and shares paid on channel sales
@@ -519,6 +521,8 @@ def render(data: dict) -> str:
     days_of = {fmt: float(f.get("days_per_year", op["days_per_year"])) for fmt, f in formats.items()}
     hours_of = {fmt: f.get("hours", op.get("hours", "")) for fmt, f in formats.items()}
     buffer = float(op["cogs_buffer_pts"])
+    buffer_of = {fmt: float(f.get("cogs_buffer_pts", buffer)) for fmt, f in formats.items()}
+    own_buffer = "".join(f" The {short[fmt].lower()} adds {b:g} points instead." for fmt, b in buffer_of.items() if b != buffer)
 
     out = [
         "# Pro forma",
@@ -546,7 +550,7 @@ def render(data: dict) -> str:
         equip = sum(float(e["cost"]) for e in cfg["equipment"][fmt])
         out.append(
             f"| {short[fmt]} | {hours_of[fmt]}; {days_of[fmt]:g} days a year | {usd(m['sales'])} | {m['orders']:.0f} | "
-            f"${m['ticket']:.2f} | {m['goods_pct'] + buffer:.1f}% | {m['hands_on_hours']:.1f} | {c['hours']:g} | "
+            f"${m['ticket']:.2f} | {m['goods_pct'] + buffer_of[fmt]:.1f}% | {m['hands_on_hours']:.1f} | {c['hours']:g} | "
             f"{f'{space:,.0f} sq ft' if space else 'a rented shared kitchen'} | {usd(equip)} |"
         )
     out.append("")
@@ -588,7 +592,7 @@ def render(data: dict) -> str:
         f"rough. Year 1 ramps from {op['ramp_year1_pct'][0]}% to {op['ramp_year1_pct'][-1]}% of the steady state, "
         f"averaging {sum(op['ramp_year1_pct']) / 12:.0f}%; Year 3 adds {op['price_growth_pct']}% of price growth. "
         f"Food cost is the menu's cost at distributor prices plus {buffer:g} points for waste beyond the recipes' "
-        "allowances, comps, staff meals and price drift.",
+        f"allowances, comps, staff meals and price drift.{own_buffer}",
         "",
         "| Category | " + " | ".join(f"{short[fmt]}, share of sales" for fmt in formats) + " |",
         "|---|" + "---|" * len(formats),

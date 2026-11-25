@@ -15,6 +15,10 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Brownie](products/brownie.yaml) | draft | $4.50 | Thick fudgy brownie with bittersweet chocolate, Dutch cocoa, a shot of house espresso and chips; 16 to a quarter-sheet pan |
 | [Breakfast Sandwich](products/breakfast_sandwich.yaml) | approved | $8.50 | Fried egg, cheddar and harissa on the house sandwich roll. Approved 2026-11-06 |
 | [Fennel Sausage Breakfast Sandwich](products/breakfast_sandwich_fennel_sausage.yaml) | approved | $10.25 | The breakfast sandwich plus a 2 oz fennel pork sausage patty. Approved 2026-11-07; the sausage hasn't been chosen or test-built yet |
+| [Bacon, Egg & Cheddar Breakfast Sandwich](products/breakfast_sandwich_bacon.yaml) | draft | $9.75 | The breakfast sandwich plus two slices of applewood bacon; drafted for the Miami burger shop |
+| [Classic Double Cheeseburger](products/burger_classic.yaml) | draft | $11.50 | Two 3 oz smashed patties, American cheese, pickles, onion and house sauce on a bun baked from the signature dough; drafted for the Miami burger shop |
+| [Single Cheeseburger](products/burger_single.yaml) | draft | $7.95 | One patty on the same bun |
+| [Fries](products/fries.yaml) | draft | $4.75 | Skin-on 3/8 in fries, about 5 oz cooked, with ketchup |
 | [Harissa Chicken Sandwich](products/harissa_chicken_sandwich.yaml) | draft | $12.50 | Roast chicken, harissa mayo, arugula and pickled red onion on a nigella-seeded oval house roll |
 | [Ham, Cheddar & Olive Tapenade](products/ham_cheddar_tapenade.yaml) | draft | $12.50 | Hardwood-smoked ham, melted cheddar, house olive tapenade and arugula on a cheddar-crusted oval house roll |
 | [Fennel Herb Salad Bowl](products/fennel_herb_bowl.yaml) | draft | $12.50 | Farro, arugula, shaved fennel, orange, parsley, dill and mint, Parmesan and pepitas; lemon-Dijon vinaigrette on the side. Same-day sale |
@@ -22,6 +26,8 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Red Lentil & Aleppo Pepper Soup](products/red_lentil_soup.yaml) | draft | $7.00 | Vegan one-pot red lentil soup with carrot, cumin, Aleppo pepper and lemon, finished with Aleppo oil; 300 g in a 12 oz cup |
 | [Chicken Salad Scoop](products/add_chicken_salad.yaml) | draft | $4.50 | Add-on for either salad: 100 g of lemon-herb chicken salad in its own lidded, labeled cup |
 | [Hummus Scoop](products/add_hummus.yaml) | draft | $3.50 | Add-on for either salad: 100 g of house hummus with an olive oil drizzle, in its own lidded, labeled cup |
+| [Bacon (add to a burger)](products/add_bacon.yaml) | draft | $2.25 | Two slices on either burger |
+| [Extra Patty with Cheese](products/add_patty.yaml) | draft | $3.50 | One more 3 oz patty and a slice of American cheese |
 | [Oat Milk (swap)](products/oat_milk_swap.yaml) | draft | $1.00 | Barista oat milk in place of whole milk in any milk drink, costed net of the milk it replaces |
 | [Almond Milk (swap)](products/almond_milk_swap.yaml) | draft | $1.00 | Barista almond milk, the same way; adds tree nuts |
 | [Drip Coffee (12 oz)](products/drip_coffee.yaml) | pending_test | $3.50 | Specialty filter coffee from the batch brewer |
@@ -32,6 +38,7 @@ The bakery's source of truth for ingredients, prices, formulas and approved prod
 | [Matcha Latte (12 oz)](products/matcha_latte.yaml) | pending_test | $5.25 | 3 g premium latte-grade matcha, unsweetened |
 | [Chai Latte (12 oz)](products/chai_latte.yaml) | pending_test | $4.75 | Premium chai concentrate 1:1 with milk |
 | [Strawberry Chamomile Lemonade](products/lemonade_kids.yaml) | draft | $3.50 | Caffeine-free kids' lemonade made on chamomile tea, 16 oz with ice |
+| [Fountain Soda (16 oz)](products/fountain_soda.yaml) | draft | $2.95 | Fountain soda over ice; the dispenser fills it |
 | [Cinnamon Roll 4-Pack](products/cinnamon_roll_4pack.yaml) | draft | $18.00 | Pre-order: four rolls in a window gift box |
 | [Whole Sour Cream Coffee Cake](products/coffee_cake_whole.yaml) | draft | $45.00 | Pre-order: the whole 12-cup bundt, serves 16 |
 | [Breakfast Pastry Box (12)](products/pastry_box_dozen.yaml) | draft | $50.00 | Catering: 4 cinnamon rolls, 4 scones, 4 muffins |
@@ -102,7 +109,7 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 - **Ids:** lowercase `snake_case`. Ingredients, formulas and products share one namespace, so a line can point at any of them. Never rename an id that's in use; retire it and add a new one.
 - **Quantities:** formula and product lines use grams (`g`) or counts (`each`).
 - **Price packs:** `pack_unit` can be `g`, `kg`, `oz`, `lb`, `ml`, `l`, `fl_oz`, `qt`, `gal` or `each`. Volume packs need `density_g_per_ml`; count packs need `each_g`.
-- **Product categories:** every product has a `category` of `pastry`, `sandwich`, `salad`, `soup`, `add-on`, `drink` or `catering`, which sets its place in the cost report.
+- **Product categories:** every product has a `category` of `pastry`, `sandwich`, `side`, `salad`, `soup`, `add-on`, `drink` or `catering`, which sets its place in the cost report.
 - **Packaging:** cups, lids and other packaging are ingredients with `category` `packaging`, priced per `each`. The report shows them separately, and a product's `waste_pct` applies to its food lines only, not its packaging. Food products are costed with their to-go packaging; for-here orders on a plate skip it.
 - **`price_ref`:** costs an item as one unit of another. An egg yolk costs one whole egg, and its white goes to egg wash.
 - **Allergens:** semicolon-separated, using US major-allergen names (milk, egg, wheat, soy, peanuts, tree nuts, fish, shellfish, sesame). Every product must list `allergens_declared`, and it must match its ingredients.
@@ -121,6 +128,7 @@ The script stops on unknown items, bad units, a yield larger than its inputs, fo
 - **`roll_bakery`, the smaller first shop:** the cinnamon roll, a short pastry case and coffee. The owner manages it, a hired lead baker bakes, and it is paid for in cash. Its design day is the short `menu` listed under the format (product id and units a day). Its costs include no pay for the owner, so cash after loan payments is the owner's pay, measured against `owner_pay_target`.
 - **`roll_popup`, Stage 1 of the Miami plan:** no premises. It bakes in a rented shared kitchen (the site's `rent_flat_per_year`) and sells at farmers markets, a Saturday pre-order pickup, to offices and through school fundraisers.
 - **`roll_kitchen`, Stage 2 of the Miami plan:** its own small production kitchen with a walk-up window and no seats, selling through five channels. Both Miami formats share one price list (`prices`) and count prep minutes at production scale. Plan: [`reports/Miami bakery business plan.md`](../reports/Miami%20bakery%20business%20plan.md).
+- **`burger_bakery`, the Miami burger-and-bakery hybrid:** a counter burger shop that bakes its buns and the cinnamon roll from the signature dough and serves breakfast sandwiches, with four channels (counter, breakfast, delivery apps, pre-ordered boxes). The owner works the floor and a hired baker bakes. It sets its own `cogs_buffer_pts`. Report: [`reports/Miami burger bakery hybrid.md`](../reports/Miami%20burger%20bakery%20hybrid.md).
 
 A site's `sales_index` is the share of its format's design day it should reach once it's established, and each scenario scales sales again. From those the script builds three years of P&L (Year 1 ramps up month by month), the startup cost and its financing, break-even in dollars and orders, payback, and the most base rent the site can carry.
 
@@ -129,7 +137,7 @@ A site's `sales_index` is the share of its format's design day it should reach o
 - **Sales channels:** a format can list `channels` instead of one `menu`. Each channel has its own `menu` for a day it trades, `days_per_year`, and optionally `price_index` (a delivery-app markup or a wholesale discount), `cost_pct_of_sales` (a commission, or the share a fundraising group keeps), `fee_per_day` (a market stall) and `scales_with_site: false` for channels that sell the same wherever the kitchen is. The model averages the channels over the format's `days_per_year`; a site's `sales_index` moves only the channels that depend on the location. A format can also set its own `variable_costs_pct_of_sales`, `startup_fees` (named one-off startup lines) and `fixed_share` (the share of paid hours that doesn't flex with sales).
 - **A growth case:** a format can carry a `growth_case`, the changes that turn it into a later stage: `channel_days`, `channel_volume` (a multiple of a channel's menu), `add_channels`, `channel_notes`, `add_hours` by role, `add_roles`, `fixed_costs_per_year` and `sales_index_gain`. `tools/proforma.py` ignores it, so it adds no site to `proforma.md`; `tools/build_miami.py` lays it over the format to make the Miami page's Stage 3, which is a target and is labeled as one.
 - **Another city:** the file's own wages, payroll burden, utilities and fixed costs are Boston's. A site with `market: miami` uses the `markets.miami` block instead: `wages` by role name, `burden_pct`, `utilities_per_sqft_year`, any `fixed_costs_per_year` or `startup` lines it names, `price_index` (local menu prices as a share of the database's; food cost in dollars stays the same), `closed_days_per_year` (for storms, on top of the format's days) and `startup_fees` (one-off local charges, added as their own startup lines). To model another city, add a block under `markets` with its sources in `sources` and point its sites at it.
-- **Food cost and utilities:** `cogs_buffer_pts` is added to each menu's cost at distributor prices; it and `utilities_per_sqft_year` were raised on 2026-11-10 to match restaurant norms. Lower them only on the evidence of real invoices.
+- **Food cost and utilities:** `cogs_buffer_pts` is added to each menu's cost at distributor prices; it and `utilities_per_sqft_year` were raised on 2026-11-10 to match restaurant norms. Lower them only on the evidence of real invoices. A format can set its own `cogs_buffer_pts`: the burger shop adds 9.5 points, because burger chains report food and paper at 29–32% of sales against the 16% its recipes cost out at.
 - **Treat the outputs as estimates:** the design-day volumes and sales indexes are judgment calls, and no site's rent or condition has been confirmed with a broker.
 
 ## Updating prices

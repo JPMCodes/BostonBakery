@@ -63,6 +63,25 @@ The margins above are after food and packaging only. Prep labor per item, and pr
 
 The cost range runs from the distributor estimate to the retail estimate. Packaging is costed for to-go orders; served on a plate for here, it drops out. Margins exclude labor, rent, card fees and utilities; the research puts a typical Boston bakery at 3–9% net profit after those. Both products sit far below the 25–35% food-cost benchmark in the report, so the market and labor set these prices, not cost-plus: at a 30% food-cost target the roll would price at $1–$2.
 
+## Miami burger shop prices (draft)
+
+Set 2026-11-25 for the burger-and-bakery format (`labor.formats.burger_bakery` in [`proforma.yaml`](proforma.yaml)), which also sells the cinnamon roll, its boxes, the two approved breakfast sandwiches, coffee and lemonade at the Miami prices above. Benchmarks are from [`research_notes/Miami burger bakery hybrid/local_burger_market.md`](../research_notes/Miami%20burger%20bakery%20hybrid/local_burger_market.md) and [`burger_economics.md`](../research_notes/Miami%20burger%20bakery%20hybrid/burger_economics.md); most local in-store prices could not be read, so several anchors are delivery-app prices, which run about 30% over the counter's.
+
+| Product | Price | Food and packaging | Share of price | Why |
+|---|---|---|---|---|
+| Classic Double Cheeseburger (draft) | **$11.50** | $2.33–$4.09 | 20–36% | Shake Shack's double is $12.29–13.89 on delivery apps; 7th Street Burger's is $9.50; a Kendall smash-burger restaurant charges $4 to double a patty |
+| Single Cheeseburger (draft) | **$7.95** | $1.34–$2.45 | 17–31% | Level with the $7.95 single at a Coconut Grove smash-burger counter; bar-and-grill burgers run $10–12 |
+| Fries (draft) | **$4.75** | $0.66–$1.61 | 14–34% | Between 7th Street's $4.50 and the $6 a Kendall smash-burger restaurant charges |
+| Fountain Soda, 16 oz (draft) | **$2.95** | $0.53–$0.64 | 18–22% | Under the house lemonade |
+| Bacon, Egg & Cheddar Breakfast Sandwich (draft) | **$9.75** | $1.33–$2.63 | 14–27% | Between the $8.50 egg sandwich and the $10.25 sausage one; Cuban-bread egg sandwiches run $6.50–11 |
+| Bacon, add to a burger (draft) | **$2.25** | $0.50–$0.93 | 22–41% |  |
+| Extra patty with cheese (draft) | **$3.50** | $0.93–$1.54 | 27–44% | Under the $4 a Kendall smash-burger restaurant charges |
+
+- **Beef is the cost:** the double carries $1.59 of beef at $4.25 a lb delivered, two-thirds of its cost. Wholesale 81% lean ground beef was $3.14–3.56 a lb at the packer in September and October 2026, and the cattle herd is at a record low.
+- **The house bun costs $0.16** in ingredients, against $0.48–0.75 for a bought potato roll and $0.69–1.00 for brioche. The baker's time takes most of the difference back: see the report.
+- **The recipes understate a burger shop's real cost.** They come to 16% of the format's sales; burger chains report 29–32% for food and paper. The pro forma adds 9.5 points for this format, which puts it near 26%.
+- **Delivery-app menus are priced 20% higher** and pay a commission of about 27%.
+
 ## Food packaging
 
 | Product | To-go packaging | Per unit |
