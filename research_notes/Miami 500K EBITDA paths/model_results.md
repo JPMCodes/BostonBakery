@@ -60,22 +60,60 @@ Nothing is drawn for your own pay in this table. The lowest cash point is $198,5
 
 ## 5. Buying $500,000 of EBITDA with a loan
 
-Arithmetic only: a 10-year loan at 10.5%, the pro forma's rate, with $500,000 down. The multiples are illustrations until checked against the research.
+An SBA 7(a) purchase loan: 10 years at 10% (prime at 7.00% in November 2026 plus the 3-point cap), at least 10% of the cost in equity, and earnings on the last tax return of at least 1.25 times the payments. Here the buyer puts in $400,000, keeps $100,000 in reserve, and borrows the price plus 6% for closing costs and working capital.
 
-| Price, as a multiple of EBITDA | Price | Loan | Loan payments a year | EBITDA left after the payments | Cover: EBITDA over payments |
-|---|---|---|---|---|---|
-| 3 | $1,500,000 | $1,000,000 | $161,922 | $338,078 | 3.09 |
-| 3.5 | $1,750,000 | $1,250,000 | $202,402 | $297,598 | 2.47 |
-| 4 | $2,000,000 | $1,500,000 | $242,883 | $257,117 | 2.06 |
-| 4.5 | $2,250,000 | $1,750,000 | $283,363 | $216,637 | 1.76 |
-| 5 | $2,500,000 | $2,000,000 | $323,844 | $176,156 | 1.54 |
+| Price, as a multiple of EBITDA | Price | Loan | Loan payments a year | Left after the payments | Cover | Left if earnings fall 20% | Cover then |
+|---|---|---|---|---|---|---|---|
+| 3 | $1,500,000 | $1,190,000 | $188,711 | $311,289 | 2.65 | $211,289 | 2.12 |
+| 3.5 | $1,750,000 | $1,455,000 | $230,735 | $269,265 | 2.17 | $169,265 | 1.73 |
+| 4 | $2,000,000 | $1,720,000 | $272,759 | $227,241 | 1.83 | $127,241 | 1.47 |
+| 4.5 | $2,250,000 | $1,985,000 | $314,783 | $185,217 | 1.59 | $85,217 | 1.27 |
+| 5 | $2,500,000 | $2,250,000 | $356,807 | $143,193 | 1.40 | $43,193 | 1.12 |
+
+About half of each early payment is principal, so the owner's stake grows as the loan falls; after year 10 the whole $500,000 is the owner's.
 
 And what $500,000 buys with no loan:
 
 | Price, as a multiple of the owner's earnings | Owner's earnings bought |
 |---|---|
-| 2.2 | $227,273 |
-| 2.5 | $200,000 |
-| 2.8 | $178,571 |
-| 3.5 | $142,857 |
+| 2 | $250,000 |
+| 2.4 | $208,333 |
+| 2.7 | $185,185 |
+| 3.1 | $161,290 |
+
+## 6. Routes the research found, on one footing
+
+Each with $400,000 in and the rest borrowed as above. Where the seller's figure is the owner's own earnings across several sites, an area manager ($105,450) is deducted to reach EBITDA. Listing figures are sellers' claims read from search-result text.
+
+| Route | Price or cost | Earnings claimed | EBITDA after a manager | Price over EBITDA | Loan | Loan payments a year | Left after payments | Cover | Time |
+|---|---|---|---|---|---|---|---|---|---|
+| Buy a typical business with $500,000 of EBITDA, at 3.5 times | $1,750,000 | $500,000 | $500,000 | 3.5 | $1,455,000 | $230,735 | $269,265 | 2.17 | 6–12 months to find and close |
+| The same, at 4.5 times | $2,250,000 | $500,000 | $500,000 | 4.5 | $1,985,000 | $314,783 | $185,217 | 1.59 | 6–12 months |
+| Buy: a South Florida ice cream and dessert brand (three trucks, two shops, a commissary) | $1,100,000 | $311,000 | $311,000 | 3.5 | $766,000 | $121,473 | $189,527 | 2.56 | 3–6 months |
+| Buy: three Crumbl stores around Tampa Bay | $1,850,000 | $819,826 | $714,376 | 2.6 | $1,561,000 | $247,545 | $466,831 | 2.89 | 3–6 months |
+| Build: three Nothing Bundt Cakes bakeries at the system's average | $2,550,000 | $683,884 | $578,434 | 4.4 | $2,303,000 | $365,212 | $213,222 | 1.58 | 2–3 years |
+
+- Buy a typical business with $500,000 of EBITDA, at 3.5 times: The middle of what brokers report for this size: 3.1 times the owner's earnings at $1–2 million of price, 4.0 times EBITDA at $2–5 million.
+- The same, at 4.5 times: The dearer end of the range.
+- Buy: a South Florida ice cream and dessert brand (three trucks, two shops, a commissary): Seller's claim of $311,000–326,000; listed as run by an owner working about 10 hours a week, so no manager is deducted.
+- Buy: three Crumbl stores around Tampa Bay: Seller's claim; Crumbl's average store sales fell 16% in 2025, its traffic fell about 32%, and it stopped publishing store profit.
+- Build: three Nothing Bundt Cakes bakeries at the system's average: Average four-wall EBITDA of $316,591 less a 6% royalty, if the royalty is not already in it; $850,000 a bakery is the middle of the $667,100–1,032,500 range.
+
+Two Miami bakeries with a wholesale arm, trading since 1972, ask $2,200,000 (4,500 sq ft, rent $9,260 a month). Their earnings were not found. The loan would be $1,932,000 and the payments $306,378 a year, so the last tax return must show at least $382,973 to borrow it, and $605,450 of owner's earnings to be a $500,000-EBITDA business.
+
+For comparison, the hub and 3 shops built from the roll: $513,238 of EBITDA at design volumes after about six years, with no loan.
+
+## 7. Buy a platform and add the roll
+
+A sketch. The dessert brand above has a commissary, two shops and three trucks. The roll kitchen's outside channels (markets, office and gift orders, fundraisers) are about $257,372 of its $668,463 design sales and need a kitchen, not a window. Here they are baked in the bought commissary: no rent of their own, $108,681 for ovens, a mixer, a sheeter, proofers, the market kit and the launch, and a crew of 18.6 paid hours a working day. Whether that commissary has the room and the power is not known.
+
+| | A year |
+|---|---|
+| The platform's claimed earnings | $311,000 |
+| The roll line at its design: sales $257,050 | $29,584 |
+| Together, before loan payments | $340,584 |
+| Loan payments on $766,000 | −$121,473 |
+| Left after the payments | $219,111 |
+
+The roll line alone at 20% under its design leaves $5,433. Rolls sold over the platform's own two counters and from its trucks are not counted.
 
